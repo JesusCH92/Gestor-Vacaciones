@@ -1,0 +1,35 @@
+version: '3.5'
+
+services:
+  nginx:
+    image: fnandot/nginx:1.11-mpwar
+    depends_on:
+      - php-fpm
+    ports:
+      - 8080:80
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+        read_only: true
+
+  php-fpm:
+    image: fnandot/php-fpm:7.4-mpwar
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+        read_only: false
+    environment:
+      - XDEBUG_ENABLE=1
+      - XDEBUG_REMOTE_AUTOSTART=1
+      - XDEBUG_CONNECT_BACK=1
+      - XDEBUG_REMOTE_HOST=127.0.0.1
+      - XDEBUG_REMOTE_PORT=9000
+      - XDEBUG_IDE_KEY=PHPSTORM
+      - PHP_IDE_CONFIG=serverName=project_zero
+
+networks:
+  default:
+    external:
+      name: lasalle_network

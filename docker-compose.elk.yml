@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+  kibana:
+    image: fnandot/kibana:5.5-mpwar-saved
+    ports:
+      - 5601:5601
+
+  elasticsearch:
+    image: fnandot/elasticsearch:5.5-mpwar-saved
+    ports:
+      - 9200:9200
+
+networks:
+  default:
+    external:
+      name: lasalle_network
