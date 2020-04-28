@@ -9,7 +9,7 @@ services:
       - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=toor
-      - MYSQL_DATABASE= gestor_vacaciones
+      - MYSQL_DATABASE=gestor_vacaciones
 
 volumes:
   mysql_data:
@@ -18,3 +18,4 @@ networks:
   default:
     external:
       name: lasalle_network
+
