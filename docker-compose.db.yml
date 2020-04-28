@@ -9,7 +9,7 @@ services:
       - mysql_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=toor
-      - MYSQL_DATABASE=dblogs
+      - MYSQL_DATABASE= gestor_vacaciones
 
 volumes:
   mysql_data:
