@@ -18,3 +18,13 @@ o
 $docker rm -f $(docker ps -aq)
 ```
 
+
+### **Hacer una migración**
+```
+php bin/console make:migration
+```
+
+### **Migrar una migración**
+```
+php bin/console doctrine:migrations:migrate
+```
