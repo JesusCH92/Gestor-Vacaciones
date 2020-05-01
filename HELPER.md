@@ -19,12 +19,17 @@ $docker rm -f $(docker ps -aq)
 ```
 
 
-### **Hacer una migración**
+### **Hacer una migración:**
 ```
 php bin/console make:migration
 ```
 
-### **Migrar una migración**
+### **Migrar una migración:**
 ```
 php bin/console doctrine:migrations:migrate
+```
+
+### **Solucionar problemas de permisos de fichero en distintos sistemas operativos:**
+```
+git config core.filemode false
 ```
