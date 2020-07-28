@@ -29,10 +29,10 @@ endef
 create-network:
 	-@docker network create lasalle_network
 
-##    start:			starts web server containers (nginx + PHP fpm)
+##    start:			starts web server containers (nginx + PHP fpm + MySQL)
 .PHONY : start
 start: create-network
-	@docker-compose up -d
+	@docker-compose -f docker-compose.yml -f docker-compose.db.yml up -d
 
 ##    stop:			stops webserver containers
 .PHONY : stop
