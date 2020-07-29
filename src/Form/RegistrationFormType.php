@@ -10,12 +10,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name', TextType::class)
+            ->add('lastname', TextType::class)
+            ->add('phone', TextType::class)
             ->add('email', EmailType::class)
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
