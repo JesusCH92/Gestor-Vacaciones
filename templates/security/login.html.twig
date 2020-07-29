@@ -6,14 +6,14 @@
 
 {% block main_dashboard %}
     {% if app.user %}
-        <div class="mb-3">
+        <div>
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-    <div class="wrapper fadeInDown">
+    <div class="wrapper login-form-container">
         <div id="formContent">
         <!-- Login Form -->
         <form method="POST">
