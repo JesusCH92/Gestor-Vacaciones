@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UserRegistration\Domain;
+namespace App\User\Domain;
 
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Doctrine\ORM\Mapping as ORM;

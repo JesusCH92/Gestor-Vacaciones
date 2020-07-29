@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\UserRegistration\Domain\User;
+use App\User\Domain\User;
 use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

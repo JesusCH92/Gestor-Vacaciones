@@ -13,6 +13,6 @@ doctrine:
             App:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/UserRegistration/Domain'
-                prefix: 'App\UserRegistration\Domain'
+                dir: '%kernel.project_dir%/src/User/Domain'
+                prefix: 'App\User\Domain'
                 alias: App
