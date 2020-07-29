@@ -297,8 +297,7 @@ button.switch-month:hover {
 }
 
 /* STRUCTURE */
-/* !modificar el nombre  */
-.wrapper { 
+.login-form-container {
     display: flex;
     align-items: center;
     flex-direction: column;
