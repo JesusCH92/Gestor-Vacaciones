@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Company;
 use App\User\Domain\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -38,6 +41,9 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('department')
+            ->add('company', EntityType::class, [
+                'class' => Company::class,
+            ])
             ->add('roles', ChoiceType::class, [
                 'choices'  => ['Admin' => 'ROLE_ADMIN', 'user' => 'ROLE_USER', 'supervisor' => 'ROLE_SUPERVISOR'],
             ])
