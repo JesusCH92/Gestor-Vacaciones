@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\CallbackTransformer;
 
 class RegistrationFormType extends AbstractType
 {
@@ -35,6 +37,24 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('department')
+            ->add('roles', ChoiceType::class, [
+                'choices'  => ['Admin' => 'ROLE_ADMIN', 'user' => 'ROLE_USER', 'supervisor' => 'ROLE_SUPERVISOR'],
+            ])
+        ;
+
+        // Data transformer
+        $builder->get('roles')
+            ->addModelTransformer(new CallbackTransformer(
+                    function ($rolesArray) {
+                         // transform the array to a string
+                        return count($rolesArray)? $rolesArray[0]: null;
+                    },
+                    function ($rolesString) {
+                         // transform the string back to an array
+                        return [$rolesString];
+                    }
+            ))
         ;
     }
 
