@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Department;
+use App\Entity\Company;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -62,6 +63,12 @@ class User implements UserInterface
      * @ORM\JoinColumn(nullable=false)
      */
     private $department;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Company::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $company;
 
     public function __construct()
     {
@@ -200,6 +207,18 @@ class User implements UserInterface
     public function setDepartment(?Department $department): self
     {
         $this->department = $department;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
 
         return $this;
     }
