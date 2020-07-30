@@ -37,7 +37,7 @@ start: create-network
 ##    stop:			stops webserver containers
 .PHONY : stop
 stop: 
-	@docker-compose -f docker-compose.yml stop
+	@docker-compose -f docker-compose.yml -f docker-compose.db.yml stop
 
 ##    remove:			stops all containers and delete them
 .PHONY : remove
