@@ -6,6 +6,7 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Department;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -55,6 +56,12 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Department::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $department;
 
     public function __construct()
     {
@@ -184,4 +191,17 @@ class User implements UserInterface
 
         return $this;
     }
+
+    public function getDepartment(): ?Department
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?Department $department): self
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
 }
