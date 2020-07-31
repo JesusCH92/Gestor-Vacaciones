@@ -56,14 +56,8 @@
                     </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="company-management" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Gestión Empresa
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="company-management">
-                            <a class="dropdown-item" href="#" id="register-company-btn">Alta empresa</a>
-                            <a class="dropdown-item" href="#" id="edit-deregist-company-btn">Editar empresa</a>
-                        </div>
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{{ path('app_company_management') }}" id="work-space">Company Management</a>
                     </li>
                 {% endif %}
             </ul>
