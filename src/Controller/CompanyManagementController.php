@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Company\ApplicationService\CreateDepartment;
-use App\Company\ApplicationService\DepartmentRequest;
+use App\Company\ApplicationService\DTO\DepartmentRequest;
 use App\Company\ApplicationService\GetAllDepartmentsByAdmin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;

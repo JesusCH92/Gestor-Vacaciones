@@ -3,7 +3,7 @@
 namespace App\Company\ApplicationService;
 
 use App\Company\Domain\DepartmentCrudRepository;
-use App\User\Domain\User;
+use App\Company\ApplicationService\DTO\DepartmentRequest;
 
 final class CreateDepartment
 {

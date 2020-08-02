@@ -4,7 +4,7 @@ namespace App\Company\Infrastructure\Mapping;
 
 use App\Entity\Department;
 use App\Entity\Company;
-use App\Company\ApplicationService\DepartmentRequest;
+use App\Company\ApplicationService\DTO\DepartmentRequest;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class DepartmentRequestMapping

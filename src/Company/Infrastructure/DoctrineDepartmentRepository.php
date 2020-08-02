@@ -2,7 +2,7 @@
 
 namespace App\Company\Infrastructure;
 
-use App\Company\ApplicationService\DepartmentRequest;
+use App\Company\ApplicationService\DTO\DepartmentRequest;
 use App\Company\Domain\DepartmentCrudRepository;
 use App\Company\Domain\DepartmentRepository;
 use App\Company\Infrastructure\Mapping\DepartmentRequestMapping;

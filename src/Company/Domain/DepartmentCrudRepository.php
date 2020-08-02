@@ -2,7 +2,7 @@
 
 namespace App\Company\Domain;
 
-use App\Company\ApplicationService\DepartmentRequest;
+use App\Company\ApplicationService\DTO\DepartmentRequest;
 
 interface DepartmentCrudRepository
 {
