@@ -2,18 +2,24 @@
 
 namespace App\Company\Infrastructure;
 
+use App\Company\ApplicationService\DepartmentRequest;
+use App\Company\Domain\DepartmentCrudRepository;
 use App\Company\Domain\DepartmentRepository;
+use App\Company\Infrastructure\Mapping\DepartmentRequestMapping;
 use App\Entity\Department;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
 
-final class DoctrineDepartmentRepository implements DepartmentRepository
+final class DoctrineDepartmentRepository implements DepartmentRepository, DepartmentCrudRepository
 {
     private EntityManagerInterface $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    private DepartmentRequestMapping $departmentRequestMapping;
+
+    public function __construct(EntityManagerInterface $entityManager, DepartmentRequestMapping $departmentRequestMapping)
     {
         $this->entityManager = $entityManager;
+        $this->departmentRequestMapping = $departmentRequestMapping;
     }
 
     public function departmentsByAdmin(int $companyId)
@@ -39,5 +45,19 @@ final class DoctrineDepartmentRepository implements DepartmentRepository
 //         );
 
 //     return $query->getResult(Query::HYDRATE_ARRAY);
+    }
+
+    public function checkIfDepartmentCodeExist(string $codeDepartment)
+    {
+
+    }
+
+    public function createDepartment(DepartmentRequest $departmentRequest)
+    {
+        $departmentMapping = $this->departmentRequestMapping;
+        $departmentEntity = $departmentMapping($departmentRequest);
+
+        $this->entityManager->persist($departmentEntity);
+        $this->entityManager->flush();
     }
 }
