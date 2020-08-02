@@ -5,6 +5,7 @@ namespace App\Company\ApplicationService;
 use App\Company\Domain\DepartmentRepository;
 use App\User\Domain\User;
 use App\Company\ApplicationService\DTO\DepartmentResponse;
+use App\Company\ApplicationService\DTO\DepartmentsInCompany;
 
 final class GetAllDepartmentsByAdmin
 {
