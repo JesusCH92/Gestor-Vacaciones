@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Company\ApplicationService;
+namespace App\Company\ApplicationService\DTO;
 
 final class DepartmentResponse
 {
