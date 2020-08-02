@@ -30,6 +30,7 @@ final class DoctrineDepartmentRepository implements DepartmentRepository, Depart
         );
 
         return $departmentByCompanyId;
+        // TODO: refacto-> obtener solo los campos necesarios.
 //         $query = $this
 //         ->entityManager
 //         ->createQuery(
@@ -49,7 +50,7 @@ final class DoctrineDepartmentRepository implements DepartmentRepository, Depart
 
     public function checkIfDepartmentCodeExist(string $codeDepartment)
     {
-
+        // TODO : comprovar si el departamento existe, en caso contrario lanzar una exception
     }
 
     public function createDepartment(DepartmentRequest $departmentRequest)
