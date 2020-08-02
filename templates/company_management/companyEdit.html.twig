@@ -9,7 +9,6 @@
     </div>
 
     <div id="formulario-area" class="formulario-area container col-12">{# ? Ventana Editar Empresa #}
-
         <form>
 
             <label class="title-block-formulario subtitulo-solicitud">Editar nombre de la Empresa</label>
@@ -19,7 +18,7 @@
                     <label for="Name">Nombre:</label>
                 </div>
                 <div class="form-group col-md-3 col-12">
-                    <label for="Name">La Salle Ramon Ull</label>
+                    <label for="Name">{{ department_collection.companyName }}</label>
                 </div>
         
                 <div class="form-group col-md-4">
@@ -44,70 +43,45 @@
                                 <div class="col-8 text-center font-weight-bold">Campo editado</div>
                             </div>
                         </div>
-        
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-4 text-center">MediaLab</div>
-                                <div class="col-8">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-apellidos" role="button" aria-expanded="false" aria-controls="collapseExample">Editar nombre departamento</button>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="collapse" id="editar-apellidos">
-                                                <input type="text" class="form-control" id="Name" placeholder="Escribe tus apellidos">
+                        {% for department in department_collection.departments %}
+
+                            <div class="list-group-item">
+                                <div class="row">
+                                    <div class="col-4 text-center">
+                                        {{ department.departmentName }}
+                                    </div>
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-link" data-toggle="collapse" href="#edit-department-name-{{ loop.index }}" role="button" aria-expanded="false" aria-controls="collapseEditNameDepartment">Editar nombre departamento</button>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="collapse" id="edit-department-name-{{ loop.index }}">
+                                                    <input type="text" class="form-control" id="Name" placeholder="Escribe el nuevo nombre del departamento">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-        
-                                <div class="col-4 text-center">ML-01</div>
-                                <div class="col-8">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-code-dept" role="button" aria-expanded="false" aria-controls="collapseExample">Editar código departamento</button>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="collapse" id="editar-code-dept">
-                                                <input type="text" class="form-control" id="Name" placeholder="Escribe el nuevo código">
-                                            </div>
-                                        </div>
+            
+                                    <div class="col-4 text-center">
+                                        {{ department.departmentCode }}
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-        
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-4 text-center">Robotics</div>
-                                <div class="col-8">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-nombre-01" role="button" aria-expanded="false" aria-controls="collapseExample">Editar nombre departamento</button>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="collapse" id="editar-nombre-01">
-                                                <input type="text" class="form-control" id="Name" placeholder="Escribe el nombre">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="button" class="btn btn-link" data-toggle="collapse" href="#edit-code-deptartment-{{ loop.index }}" role="button" aria-expanded="false" aria-controls="collapseEditCodeDepartment">Editar código departamento</button>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-        
-                                <div class="col-4 text-center">ML-01</div>
-                                <div class="col-8">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-code-dept-01" role="button" aria-expanded="false" aria-controls="collapseExample">Editar código departamento</button>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="collapse" id="editar-code-dept-01">
-                                                <input type="text" class="form-control" id="Name" placeholder="Escribe el nuevo código">
+                                            <div class="col-md-8">
+                                                <div class="collapse" id="edit-code-deptartment-{{ loop.index }}">
+                                                    <input type="text" class="form-control" id="Name" placeholder="Escribe el nuevo código del departamento">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                        {% endfor %}
         
                     </div>
                 </div>
@@ -118,20 +92,20 @@
             <div class="form-row">
                 <div class="form-group col-xl-7 col-md-12">
                     <label for="company-name">Nombre del departamento:</label>
-                    <input type="text" class="form-control" id="company-name" placeholder="Nombre del departamento">
+                    <input type="text" class="form-control" id="department-name-added" placeholder="Nombre del departamento" required>
                 </div>
                 <div class="form-group col-xl-3 col-md-10">
                     <label for="company-name">Código del departamento:</label>
-                    <input type="text" class="form-control" id="company-name" placeholder="Código del departamento">
+                    <input type="text" class="form-control" id="code-department-added" placeholder="Código del departamento" required>
                 </div>
                 <div class="form-group col-xl-2 col-md-2 pt-1">
                     <div class="form-group col-md-12 d-flex justify-content-center pt-4">
-                        <button type="submit" class="btn btn-primary">Añadir</button>
+                        <button type="button" class="btn btn-primary" id="dpt-add-btn">Add</button>
                     </div>
                 </div>
             </div>
 
-            <label class="subtitulo-solicitud">Departamentos añadidos:</label>
+            {# <label class="subtitulo-solicitud">Departamentos añadidos:</label>
 
             <div class="form-row d-flex justify-content-center">
                 
@@ -173,7 +147,7 @@
                 <div class="form-group col-md-12 d-flex justify-content-center">
                     <button type="submit" class="btn btn-primary">Editar Empresa</button>
                 </div>
-            </div>
+            </div> #}
 
         </form>
 
