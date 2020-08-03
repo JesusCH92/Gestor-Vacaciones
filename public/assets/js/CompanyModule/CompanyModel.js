@@ -1,5 +1,4 @@
 var companyModel = (function(){
-    // var $departmentContainer = $("#departments-container");
 
     var createDepartment = function({department, callback = console.log, container}) {
         $.ajax({
