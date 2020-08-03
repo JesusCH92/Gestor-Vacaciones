@@ -1,4 +1,4 @@
-var companyModule = (function(){
+var companyController = (function(){
     var $addDepartmentBtn = $("#dpt-add-btn");
     var $departmentNameAdded = $("#department-name-added");
     var $codeDepartmentAdded = $("#code-department-added");
@@ -32,10 +32,15 @@ var companyModule = (function(){
             console.log('General Kenobi');
             var $departmentName = $departmentNameAdded.val().trim();
             var $departmentCode = $codeDepartmentAdded.val().trim();
+
             console.log($departmentName);
             console.log($departmentCode);
 
-            CompanyModelModule.createDepartment({
+            if ($departmentName === "" || $departmentCode === "") {
+                return;
+            }
+
+            companyModel.createDepartment({
                 department : {
                     name : $departmentName,
                     code : $departmentCode
