@@ -6,7 +6,9 @@
         <div class="col-8">
             <div class="row">
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-link" data-toggle="collapse" href="#edit-department-name-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditNameDepartment">Editar nombre departamento</button>
+                    <a type="button" class="btn btn-link prova-pencil-icon" data-toggle="collapse" href="#edit-department-name-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditNameDepartment">
+                        <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
+                    </a>
                 </div>
                 <div class="col-md-8">
                     <div class="collapse" id="edit-department-name-{{ department.departmentId }}">
@@ -22,7 +24,9 @@
         <div class="col-8">
             <div class="row">
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-link" data-toggle="collapse" href="#edit-code-deptartment-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditCodeDepartment">Editar código departamento</button>
+                    <a class="btn btn-link" data-toggle="collapse" href="#edit-code-deptartment-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditCodeDepartment">
+                        <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
+                    </a>
                 </div>
                 <div class="col-md-8">
                     <div class="collapse" id="edit-code-deptartment-{{ department.departmentId }}">
