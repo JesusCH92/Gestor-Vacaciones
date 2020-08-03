@@ -4,23 +4,23 @@ var companyModule = (function(){
     var $codeDepartmentAdded = $("#code-department-added");
     var $departmentContainer = $("#departments-container");
 
-    var createDepartment = function({department, callback = console.log}) {
-        $.ajax({
-            type: 'POST',
-            url: '/company/management/add/department',
-            async: true,
-            data: {department},
-            success: function(data){
-                callback({
-                    containerDepartment : $departmentContainer,
-                    department : data.department_created
-                });
-            },
-            error: function(data){
-                console.log(data);
-            }
-        });
-    };
+    // var createDepartment = function({department, callback = console.log}) {
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/company/management/add/department',
+    //         async: true,
+    //         data: {department},
+    //         success: function(data){
+    //             callback({
+    //                 containerDepartment : $departmentContainer,
+    //                 department : data.department_created
+    //             });
+    //         },
+    //         error: function(data){
+    //             console.log(data);
+    //         }
+    //     });
+    // };
 
     var paintDepartment = function( {containerDepartment, department} ) {
         containerDepartment.append(department);
@@ -35,12 +35,13 @@ var companyModule = (function(){
             console.log($departmentName);
             console.log($departmentCode);
 
-            createDepartment({
+            CompanyModelModule.createDepartment({
                 department : {
                     name : $departmentName,
                     code : $departmentCode
                 },
-                callback : paintDepartment
+                callback : paintDepartment,
+                container : $departmentContainer
             })
 
         });
