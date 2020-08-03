@@ -66,7 +66,7 @@
                     {{ app.user.name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown-A">
-                    <a class="dropdown-item" href="#" id="user-profile-btn">Perfil</a>
+                    <a class="dropdown-item" href="{{ path('app_profile') }}" id="user-profile-btn">Perfil</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('app_logout') }}">Salir</a>
                 </div>
