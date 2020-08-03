@@ -44,42 +44,8 @@
                             </div>
                         </div>
                         {% for department in department_collection.departments %}
-
-                            <div class="list-group-item">
-                                <div class="row">
-                                    <div class="col-4 text-center">
-                                        {{ department.departmentName }}
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <button type="button" class="btn btn-link" data-toggle="collapse" href="#edit-department-name-{{ loop.index }}" role="button" aria-expanded="false" aria-controls="collapseEditNameDepartment">Editar nombre departamento</button>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="collapse" id="edit-department-name-{{ loop.index }}">
-                                                    <input type="text" class="form-control" id="Name" placeholder="Escribe el nuevo nombre del departamento">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <div class="col-4 text-center">
-                                        {{ department.departmentCode }}
-                                    </div>
-                                    <div class="col-8">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <button type="button" class="btn btn-link" data-toggle="collapse" href="#edit-code-deptartment-{{ loop.index }}" role="button" aria-expanded="false" aria-controls="collapseEditCodeDepartment">Editar código departamento</button>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="collapse" id="edit-code-deptartment-{{ loop.index }}">
-                                                    <input type="text" class="form-control" id="Name" placeholder="Escribe el nuevo código del departamento">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        
+                            {% include 'company_management/_department.html.twig' %}
 
                         {% endfor %}
         
