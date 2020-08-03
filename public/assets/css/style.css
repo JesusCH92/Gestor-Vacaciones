@@ -293,7 +293,7 @@ button.switch-month:hover {
     text-transform: uppercase;
     display:inline-block;
     margin: 40px 8px 10px 8px;
-    color: #cccccc;
+    color: #7f7f7f;
 }
 
 /* STRUCTURE */
@@ -330,6 +330,12 @@ button.switch-month:hover {
     font-size: 16px;
     margin: 5px;
     width: 85%;
+}
+.login::placeholder{
+    color: #b8b8b8;
+}
+.login:focus::placeholder{
+    color: #ffffff;
 }
 
 /** End Login window**/
