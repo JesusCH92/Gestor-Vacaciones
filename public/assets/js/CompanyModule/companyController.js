@@ -47,7 +47,7 @@ var companyController = (function(){
                 },
                 callback : paintDepartment,
                 container : $departmentContainer
-            })
+            });
 
         });
     }
