@@ -339,3 +339,8 @@ button.switch-month:hover {
 }
 
 /** End Login window**/
+
+/** Etiqueta de prueba, debe ser eliminada despues de agregar los estilos correspondientes a los iconos**/
+.prova-pencil-icon .oi-pencil{
+    color: red;
+}
