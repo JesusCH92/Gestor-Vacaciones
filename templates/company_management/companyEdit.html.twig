@@ -14,23 +14,29 @@
             <label class="title-block-formulario subtitulo-solicitud">Editar nombre de la Empresa</label>
         
             <div class="form-row">
-                <div class="form-group col-md-3 col-12">
+                <div class="form-group col-md-1 col-12">
                     <label for="Name">Nombre:</label>
                 </div>
-                <div class="form-group col-md-3 col-12">
+                <div class="form-group col-md-4 col-12">
                     <label for="Name">{{ department_collection.companyName }}</label>
                 </div>
         
-                <div class="form-group col-md-4">
-                    <div class="collapse" id="editar-nombre">
-                        <input type="text" class="form-control" id="Name" placeholder="Renombrar la empresa">
-                    </div>
-                </div>
-                <div class="form-group col-md-2">
-                    <a class="btn btn-link" data-toggle="collapse" href="#editar-nombre" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <div class="form-group col-md-1">
+                    <a class="btn btn-link" data-toggle="collapse" href="#edit-company-name-container" role="button" aria-expanded="false" aria-controls="collapseExample">
                         <span class="oi oi-pencil" title="Edit company name" aria-hidden="true"></span>
                     </a>
                 </div>
+                <div class="form-group col-md-6">
+                    <div class="collapse input-group" id="edit-company-name-container">
+                        <input type="text" class="form-control" id="company-rename-input" placeholder="Renombrar la empresa">
+                        <div class="input-group-append">
+                            <a class="btn btn-outline-info prova-jc" id="edit-company-name-btn">
+                                <span class="oi oi-check" title="Rename Company" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         
             <label class="title-block-formulario subtitulo-solicitud">Editar departamentos de la empresa:</label>
