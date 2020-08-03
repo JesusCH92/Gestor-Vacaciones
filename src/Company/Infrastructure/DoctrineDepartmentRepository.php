@@ -48,9 +48,18 @@ final class DoctrineDepartmentRepository implements DepartmentRepository, Depart
 //     return $query->getResult(Query::HYDRATE_ARRAY);
     }
 
-    public function checkIfDepartmentCodeExist(string $codeDepartment)
+    public function checkIfDepartmentCodeExist(string $departmentName, string $codeDepartment)
     {
-        // TODO : comprovar si el departamento existe, en caso contrario lanzar una exception
+        // TODO : departmentEntity debe de ser null o devolver la entidad
+        $departmentRepository = $this->entityManager->getRepository(Department::class);
+        $departmentEntity = $departmentRepository->findBy(
+            [
+                'departmentname' => $departmentName, 
+                'departmentcode' => $codeDepartment 
+            ]
+        );
+
+        return $departmentEntity[0];
     }
 
     public function createDepartment(DepartmentRequest $departmentRequest)

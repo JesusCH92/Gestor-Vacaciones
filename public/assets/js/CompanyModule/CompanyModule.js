@@ -2,6 +2,7 @@ var companyModule = (function(){
     var $addDepartmentBtn = $("#dpt-add-btn");
     var $departmentNameAdded = $("#department-name-added");
     var $codeDepartmentAdded = $("#code-department-added");
+    var $departmentContainer = $("#departments-container");
 
     var createDepartment = function({department, callback = console.log}) {
         $.ajax({
@@ -10,11 +11,20 @@ var companyModule = (function(){
             async: true,
             data: {department},
             success: function(data){
-                // callback({departmentAdded: data.department_format});
-                callback(data);
+                callback({
+                    containerDepartment : $departmentContainer,
+                    department : data.department_created
+                });
+            },
+            error: function(data){
+                console.log(data);
             }
         });
     };
+
+    var paintDepartment = function( {containerDepartment, department} ) {
+        containerDepartment.append(department);
+    }
 
     var initEvents =  function(){
 
@@ -29,7 +39,8 @@ var companyModule = (function(){
                 department : {
                     name : $departmentName,
                     code : $departmentCode
-                }
+                },
+                callback : paintDepartment
             })
 
         });
