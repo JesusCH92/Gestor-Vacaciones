@@ -51,7 +51,10 @@ class CompanyManagementController extends AbstractController
         $departmentName = $department['name'];
         $departmentCode = $department['code'];
 
+        // dump($this->getUser());exit;
         $companyId = intval( $this->getUser()->getCompany()->getId() );
+        // $companyId = 1;
+        // echo 'aqui' . PHP_EOL;exit;
 
         $departmentRequest = new DepartmentRequest(
             $companyId,
@@ -59,18 +62,21 @@ class CompanyManagementController extends AbstractController
             $departmentCode
         );
 
-        echo json_encode($departmentRequest) . PHP_EOL;
-        // var_dump($departmentRequest)
-
         $createDepartment = $this->createDepartment;
-        $createDepartment->__invoke($departmentRequest);
+        $departmentCreated = $createDepartment->__invoke($departmentRequest);
 
-        // return new JsonResponse([
-        //     'say' => 'General Kenobi',
-        //     'department_format' => 'esto será un twig'
-        // ]);
+        // echo json_encode($departmentCreated) . PHP_EOL;
+        // echo $departmentCreated->departmentName() . PHP_EOL;
+
+        $departmentTemplate = $this->render('company_management/_department.html.twig', [
+            'department' => $departmentCreated,
+        ])->getContent();
+
+        return new JsonResponse([
+            'department_created' => $departmentTemplate
+        ]);
 
         // return new Response('ddd');
-        return Response::create('???');
+        // return Response::create('???');
     }
 }
