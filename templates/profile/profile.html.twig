@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} - Profile{% endblock %}
+{% block stylesheets %} {{ parent() }} {% endblock %}
+
+{% block main_dashboard %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2 d-flex justify-content-center">
+                <div class="logo-usuario rounded-circle d-flex justify-content-center">
+                    <h1>{{ nameInitial }}{{ lastNameInitial }}</h1>
+                </div>
+            </div>
+            <div class="col-10 p-3 bg-light rounded">
+                <div class="row">
+                    <h3>{{ nameInitial }}. {{ user.lastname }}</h3>
+                </div>
+                <div class="row">
+                    {% if user.roles[0] == 'ROLE_USER' %}
+                    <h6 class="lead">User</h6>
+                    {% endif %}
+                    {% if user.roles[0] == 'ROLE_SUPERVISOR' %}
+                        <h6 class="lead">Supervisor</h6>
+                    {% endif %}
+                    {% if user.roles[0] == 'ROLE_ADMIN' %}
+                        <h6 class="lead">Administrator</h6>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4 col-12">
+
+        <div class="row">
+
+            <form class="container">
+
+                <div class="row d-flex justify-content-center">
+
+                    <div class="col-md-10 col-12 my-2">
+
+                        <h4 class="title-block-formulario">Datos Personales</h4>
+                        <div class="area-personal-perfil-usuario">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3 col-12">
+                                    <label for="Name">Nombre:</label>
+                                </div>
+                                <div class="form-group col-md-3 col-12">
+                                    <label for="Name">{{ user.name }}</label>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <div class="collapse" id="editar-nombre">
+                                        <input type="text" class="form-control" id="Name" placeholder="Escribe tu nombre">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-nombre" role="button" aria-expanded="false" aria-controls="collapseExample">Editar Nombre</button>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="Name">Apellidos:</label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="Name">{{ user.lastname }}</label>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <div class="collapse" id="editar-apellidos">
+                                        <input type="text" class="form-control" id="Name" placeholder="Escribe tus apellidos">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-apellidos" role="button" aria-expanded="false" aria-controls="collapseExample">Editar Apellidos</button>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="Name">Email:</label>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="Name">{{ user.email }}</label>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <div class="collapse" id="editar-email">
+                                        <input type="email" class="form-control" id="Name" placeholder="Escribe tu email">
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-email" role="button" aria-expanded="false" aria-controls="collapseExample">Editar Apellidos</button>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <button type="button" class="btn btn-link" data-toggle="collapse" href="#editar-password" role="button" aria-expanded="false" aria-controls="collapseExample">Cambiar Contraseña</button>
+                                </div>
+                                <div class="form-group col-md-9">
+                                    <div class="collapse" id="editar-password">
+                                        <input type="email" class="form-control" id="Name" placeholder="Escribe tu contraseña">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-10 col-12 my-2">
+                        <h4 class="title-block-formulario">Datos de la Empresa</h4>
+                        <div class="area-personal-perfil-usuario">
+
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="telefono">Empresa:</label>
+                                </div>
+                                <div class="form-group col-md-9">
+                                    <label for="example-number-input">{{ user.company }}</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="departamento">Departamento:</label>
+                                </div>
+                                <div class="form-group col-md-9">
+                                    <label for="Rol">{{ user.department }}</label>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-3">
+                                    <label for="telefono">Teléfono</label>
+                                </div>
+                                <div class="form-group col-md-9">
+                                    <label for="example-number-input">+34 {{ user.phone }}</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-10 col-12 my-2">
+                        <button type="button" class="btn btn-outline-primary">Guardar Cambios</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+{% endblock %}
