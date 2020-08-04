@@ -40,9 +40,9 @@ final class GetAllDepartmentsByAdmin
 
         foreach ($departmentsInCompany as $department) {
             array_push($departmentInCompanyCollection, new DepartmentResponse(
-                $department->getId(),
-                $department->getDepartmentname(),
-                $department->getDepartmentcode()
+                $department->departmentId(),
+                $department->departmentName(),
+                $department->departmentCode()
             ));
         }
 

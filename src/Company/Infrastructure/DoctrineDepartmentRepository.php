@@ -54,8 +54,8 @@ final class DoctrineDepartmentRepository implements DepartmentRepository, Depart
         $departmentRepository = $this->entityManager->getRepository(Department::class);
         $departmentEntity = $departmentRepository->findBy(
             [
-                'departmentname' => $departmentName, 
-                'departmentcode' => $codeDepartment 
+                'departmentName' => $departmentName, 
+                'departmentCode' => $codeDepartment 
             ]
         );
 

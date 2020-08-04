@@ -25,9 +25,9 @@ final class CreateDepartment
         );
 
         $departmentResponse = new DepartmentResponse(
-            $departmentEntity->getId(),
-            $departmentEntity->getDepartmentname(),
-            $departmentEntity->getDepartmentcode()
+            $departmentEntity->departmentId(),
+            $departmentEntity->departmentName(),
+            $departmentEntity->departmentCode()
         );
 
         return $departmentResponse;
