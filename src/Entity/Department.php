@@ -12,19 +12,19 @@ class Department
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="id")
      */
-    private $id;
+    private $departmentId;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", name="departmentname", length=50)
      */
-    private $departmentname;
+    private $departmentName;
 
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", name="departmentcode", length=10)
      */
-    private $departmentcode;
+    private $departmentCode;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Company")
@@ -32,56 +32,35 @@ class Department
      */
     private $company;
 
-    public function __construct(string $departmentname, string $departmencode, Company $company)
+    public function __construct(string $departmentName, string $departmentCode, Company $company)
     {
-        $this->departmentname = $departmentname;
-        $this->departmentcode = $departmencode;
+        $this->departmentName = $departmentName;
+        $this->departmentCode = $departmentCode;
         $this->company = $company;
     }
 
-    public function getId(): ?int
+    public function departmentId(): ?int
     {
-        return $this->id;
+        return $this->departmentId;
     }
 
-    public function getDepartmentname(): ?string
+    public function departmentName(): ?string
     {
-        return $this->departmentname;
+        return $this->departmentName;
     }
 
-    // public function setDepartmentname(string $departmentname): self
-    // {
-    //     $this->departmentname = $departmentname;
-
-    //     return $this;
-    // }
-
-    public function getDepartmentcode(): ?string
+    public function departmentCode(): ?string
     {
-        return $this->departmentcode;
+        return $this->departmentCode;
     }
 
-    // public function setDepartmentcode(string $departmentcode): self
-    // {
-    //     $this->departmentcode = $departmentcode;
-
-    //     return $this;
-    // }
-
-    public function getCompany(): ?Company
+    public function company(): ?Company
     {
         return $this->company;
     }
 
-    // public function setCompany(?Company $company): self
-    // {
-    //     $this->company = $company;
-
-    //     return $this;
-    // }
-
     public function __toString()
     {
-        return $this->departmentname;
+        return $this->departmentName;
     }
 }
