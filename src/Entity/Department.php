@@ -32,6 +32,13 @@ class Department
      */
     private $company;
 
+    public function __construct(string $departmentname, string $departmencode, Company $company)
+    {
+        $this->departmentname = $departmentname;
+        $this->departmentcode = $departmencode;
+        $this->company = $company;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -42,36 +49,36 @@ class Department
         return $this->departmentname;
     }
 
-    public function setDepartmentname(string $departmentname): self
-    {
-        $this->departmentname = $departmentname;
+    // public function setDepartmentname(string $departmentname): self
+    // {
+    //     $this->departmentname = $departmentname;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getDepartmentcode(): ?string
     {
         return $this->departmentcode;
     }
 
-    public function setDepartmentcode(string $departmentcode): self
-    {
-        $this->departmentcode = $departmentcode;
+    // public function setDepartmentcode(string $departmentcode): self
+    // {
+    //     $this->departmentcode = $departmentcode;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function getCompany(): ?Company
     {
         return $this->company;
     }
 
-    public function setCompany(?Company $company): self
-    {
-        $this->company = $company;
+    // public function setCompany(?Company $company): self
+    // {
+    //     $this->company = $company;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
     public function __toString()
     {

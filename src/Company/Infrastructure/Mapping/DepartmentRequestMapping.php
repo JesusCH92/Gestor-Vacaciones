@@ -18,16 +18,17 @@ final class DepartmentRequestMapping
 
     public function __invoke(DepartmentRequest $departmentRequest)
     {
-        $departmentEnity = new Department();
         $companyRepository = $this->entityManager->getRepository(Company:: class);
 
         $companyById = $companyRepository->findBy(
             [ 'id' => $departmentRequest->companyId() ]
         );
-
-        $departmentEnity->setCompany($companyById[0]);
-        $departmentEnity->setDepartmentname($departmentRequest->departmentName());
-        $departmentEnity->setDepartmentcode($departmentRequest->departmentCode());
+        
+        $departmentEnity = new Department(
+            $departmentRequest->departmentName(),
+            $departmentRequest->departmentCode(),
+            $companyById[0]
+        );
 
         return $departmentEnity;
     }
