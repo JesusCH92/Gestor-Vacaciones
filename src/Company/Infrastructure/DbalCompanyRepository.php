@@ -4,6 +4,7 @@ namespace App\Company\Infrastructure;
 
 use App\Company\ApplicationService\DTO\CompanyRequest;
 use App\Company\Domain\CompanyRepository;
+use App\Entity\Company;
 use Doctrine\DBAL\Connection;
 
 final class DbalCompanyRepository implements CompanyRepository
@@ -20,7 +21,7 @@ final class DbalCompanyRepository implements CompanyRepository
         $queryBuilder = $this->connection->createQueryBuilder();
 
         $queryBuilder
-            ->update('company')     // TODO: he hardcoding el nombre de la tabla
+            ->update(Company::COMPANYTABLE)     // TODO: he hardcoding el nombre de la tabla
             ->set('companyname', '?')
             ->where('id = ?')
             ->setParameter(0, $companyRequest->companyName())
