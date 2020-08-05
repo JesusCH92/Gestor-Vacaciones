@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Company
 {
+    const COMPANYTABLE = 'company';
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
