@@ -28,45 +28,45 @@ class User implements UserInterface
     private $id_user;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", name="email", length=180, unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", name="user_name", length=50)
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", name="last_name", length=50)
      */
     private $lastname;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", name="phone_number", length=30)
      */
     private $phone;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="json", name="roles")
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", name="password")
      */
     private $password;
 
     /**
      * @ORM\ManyToOne(targetEntity=Department::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="id_department", referencedColumnName="id_department")
      */
     private $department;
 
     /**
      * @ORM\ManyToOne(targetEntity=Company::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="id_company", referencedColumnName="id_company")
      */
     private $company;
 
