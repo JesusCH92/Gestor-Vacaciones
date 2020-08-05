@@ -22,8 +22,8 @@ final class DbalCompanyRepository implements CompanyRepository
 
         $queryBuilder
             ->update(Company::COMPANYTABLE)     // TODO: he hardcoding el nombre de la tabla
-            ->set('companyname', '?')
-            ->where('id = ?')
+            ->set('company_name', '?')
+            ->where('id_company = ?')
             ->setParameter(0, $companyRequest->companyName())
             ->setParameter(1, $companyRequest->companyId());
 
