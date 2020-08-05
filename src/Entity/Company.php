@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompanyRepository")
+ * @ORM\Table(name="company", options={"collate"="utf8_general_ci", "charset"="utf8"})
  */
 class Company
 {
@@ -13,12 +14,12 @@ class Company
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", name="id_company")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, name="company_name")
      */
     private $companyname;
 
