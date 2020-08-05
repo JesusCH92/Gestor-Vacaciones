@@ -28,7 +28,7 @@ class Department
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Company")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="company_id", referencedColumnName="id")
      */
     private $company;
 
