@@ -6,29 +6,30 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DepartmentRepository")
+ * @ORM\Table(name="department", options={"collate"="utf8_general_ci", "charset"="utf8"})
  */
 class Department
 {
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer", name="id")
+     * @ORM\Column(type="integer", name="id_department")
      */
     private $departmentId;
 
     /**
-     * @ORM\Column(type="string", name="departmentname", length=50)
+     * @ORM\Column(type="string", name="department_name", length=50)
      */
     private $departmentName;
 
     /**
-     * @ORM\Column(type="string", name="departmentcode", length=10)
+     * @ORM\Column(type="string", name="department_code", length=10)
      */
     private $departmentCode;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Company")
-     * @ORM\JoinColumn(nullable=false, name="company_id", referencedColumnName="id")
+     * @ORM\JoinColumn(nullable=false, name="id_company", referencedColumnName="id_company")
      */
     private $company;
 
