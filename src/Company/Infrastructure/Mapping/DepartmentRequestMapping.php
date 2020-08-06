@@ -21,7 +21,7 @@ final class DepartmentRequestMapping
         $companyRepository = $this->entityManager->getRepository(Company:: class);
 
         $companyById = $companyRepository->findBy(
-            [ 'id' => $departmentRequest->companyId() ]
+            [ 'companyId' => $departmentRequest->companyId() ]
         );
         
         $departmentEnity = new Department(

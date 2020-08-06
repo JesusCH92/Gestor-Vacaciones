@@ -52,7 +52,7 @@ class CompanyManagementController extends AbstractController
         $departmentCode = $department['code'];
 
         // dump($this->getUser());exit;
-        $companyId = intval( $this->getUser()->getCompany()->getId() );
+        $companyId = intval( $this->getUser()->getCompany()->companyId() );
         // $companyId = 1;
         // echo 'aqui' . PHP_EOL;exit;
 
