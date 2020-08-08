@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
+
+use App\DayOff\Domain\ValueObject\CountDayOffRequest;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Doctrine\UuidGenerator;
+use Ramsey\Uuid\Uuid;
 
 
 /**
@@ -13,13 +17,12 @@ use Ramsey\Uuid\Doctrine\UuidGenerator;
 class DayOffForm
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var string
      *
+     * @ORM\Column(name="code_day_off_form", type="string", length=36)
      * @ORM\Id
-     * @ORM\Column(name="code_day_off_form", type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      */
+
     private $codeDayOffForm;
 
     /**
@@ -27,9 +30,7 @@ class DayOffForm
      */
     private $typeDayOff;
 
-    /**
-     * @ORM\Column(type="string",name="status_day_off_form", length=15)
-     */
+    /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\StatusDayOffForm", columnPrefix = false) */
     private $statusDayOffForm;
 
     /**
@@ -37,13 +38,11 @@ class DayOffForm
      */
     private $observation;
 
-    /**
-     * @ORM\Column(type="integer", name="count_day_off_request")
-     */
+    /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\CountDayOffRequest", columnPrefix = false) */
     private $countDayOffRequest;
 
     /**
-     * @ORM\Column(type="date", name="created_at")
+     * @ORM\Column(type="date_immutable", name="created_at")
      */
     private $createdAt;
 
@@ -54,13 +53,39 @@ class DayOffForm
     private $idUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity=App\User\Domain\User::class)
-     * @ORM\JoinColumn(name="id_supervisor", referencedColumnName="id_user", nullable=false)
+     * @ORM\Column(type="string", name="id_supervisor", length=36, nullable=true)
      */
     private $idSupervisor;
 
+    /**
+     * DayOffForm constructor.
+     * @param $typeDayOff
+     * @param $statusDayOffForm
+     * @param $observation
+     * @param $countDayOffRequest
+     * @param $idUser
+     * @param $idSupervisor
+     */
+    public function __construct(
+        $typeDayOff,
+        $statusDayOffForm,
+        $observation,
+        $countDayOffRequest,
+        $idUser,
+        $idSupervisor
+    ) {
+        $this->codeDayOffForm = Uuid::uuid4();
+        $this->typeDayOff = $typeDayOff;
+        $this->statusDayOffForm = $statusDayOffForm;
+        $this->observation = $observation;
+        $this->countDayOffRequest = $countDayOffRequest;
+        $this->createdAt = new DateTimeImmutable();
+        $this->idUser = $idUser;
+        $this->idSupervisor = $idSupervisor;
+    }
 
-    public function getCodeDayOffForm(): ?int
+
+    public function getCodeDayOffForm(): ?string
     {
         return $this->codeDayOffForm;
     }
@@ -70,23 +95,10 @@ class DayOffForm
         return $this->typeDayOff;
     }
 
-    public function setTypeDayOff(string $typeDayOff): self
-    {
-        $this->typeDayOff = $typeDayOff;
-
-        return $this;
-    }
 
     public function getStatusDayOffForm(): ?string
     {
         return $this->statusDayOffForm;
-    }
-
-    public function setStatusDayOffForm(string $statusDayOffForm): self
-    {
-        $this->statusDayOffForm = $statusDayOffForm;
-
-        return $this;
     }
 
     public function getObservation(): ?string
@@ -94,35 +106,16 @@ class DayOffForm
         return $this->observation;
     }
 
-    public function setObservation(?string $observation): self
-    {
-        $this->observation = $observation;
 
-        return $this;
-    }
-
-    public function getCountDayOffRequest(): ?int
+    public function getCountDayOffRequest(): ?CountDayOffRequest
     {
         return $this->countDayOffRequest;
     }
 
-    public function setCountDayOffRequest(int $countDayOffRequest): self
-    {
-        $this->countDayOffRequest = $countDayOffRequest;
 
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
     }
 
     public function getIdUser(): ?string
@@ -130,23 +123,9 @@ class DayOffForm
         return $this->idUser;
     }
 
-    public function setIdUser(string $idUser): self
-    {
-        $this->idUser = $idUser;
-
-        return $this;
-    }
-
     public function getIdSupervisor(): ?string
     {
         return $this->idSupervisor;
-    }
-
-    public function setIdSupervisor(?string $idSupervisor): self
-    {
-        $this->idSupervisor = $idSupervisor;
-
-        return $this;
     }
 
 }
