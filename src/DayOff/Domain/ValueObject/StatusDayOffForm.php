@@ -17,13 +17,10 @@ final class StatusDayOffForm
      */
     private $statusDayOffForm;
 
-    /**
-     * StatusDayOffForm constructor.
-     * @param $statusDayOffForm
-     */
-    public function __construct($statusDayOffForm)
+
+    public function __construct()
     {
-        $this->statusDayOffForm = $statusDayOffForm;
+
     }
 
     /**
