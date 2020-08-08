@@ -6,7 +6,7 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DayOffFormRequestRepository")
+ * @ORM\Entity
  * @ORM\Table(name="day_off_form_request", options={"collate"="utf8_general_ci", "charset"="utf8"})
  */
 class DayOffFormRequest

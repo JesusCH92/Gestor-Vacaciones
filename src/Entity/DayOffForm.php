@@ -10,7 +10,7 @@ use Ramsey\Uuid\Uuid;
 
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DayOffFormRepository")
+ * @ORM\Entity
  * @ORM\Table(name="day_off_form", options={"collate"="utf8_general_ci", "charset"="utf8"})
  */
 class DayOffForm
