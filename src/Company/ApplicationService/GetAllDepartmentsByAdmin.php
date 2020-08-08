@@ -18,8 +18,8 @@ final class GetAllDepartmentsByAdmin
 
     public function __invoke(User $user)
     {
-        $companyId = $user->getCompany()->getId();
-        $companyName = $user->getCompany()->getCompanyname();
+        $companyId = $user->getCompany()->companyId();
+        $companyName = $user->getCompany()->companyName();
 
         $departmentInCompany = $this->departmentRepository->departmentsByAdmin($companyId);
 

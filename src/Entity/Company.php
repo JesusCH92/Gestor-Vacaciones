@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CompanyRepository")
+ * @ORM\Entity
  * @ORM\Table(name="company", options={"collate"="utf8_general_ci", "charset"="utf8"})
  */
 class Company
@@ -16,32 +16,25 @@ class Company
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer", name="id_company")
      */
-    private $id;
+    private $companyId;
 
     /**
      * @ORM\Column(type="string", length=50, name="company_name")
      */
-    private $companyname;
+    private $companyName;
 
-    public function getId(): ?int
+    public function companyId(): ?int
     {
-        return $this->id;
+        return $this->companyId;
     }
 
-    public function getCompanyname(): ?string
+    public function companyName(): ?string
     {
-        return $this->companyname;
-    }
-
-    public function setCompanyname(string $companyname): self
-    {
-        $this->companyname = $companyname;
-
-        return $this;
+        return $this->companyName;
     }
 
     public function __toString()
     {
-        return $this->companyname;
+        return $this->companyName;
     }
 }

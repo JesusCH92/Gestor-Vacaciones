@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DepartmentRepository")
+ * @ORM\Entity
  * @ORM\Table(name="department", options={"collate"="utf8_general_ci", "charset"="utf8"})
  */
 class Department
