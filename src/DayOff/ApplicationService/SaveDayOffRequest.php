@@ -22,7 +22,7 @@ final class SaveDayOffRequest
 
     public function __invoke(DayOffRequest $dayOffRequest)
     {
-        $statusDayOffForm = new StatusDayOffForm('PENDING');
+        $statusDayOffForm = new StatusDayOffForm();
         $statusDayOffForm->statusByUserRole($dayOffRequest->getUser()->getRoles()[0]);
 
         $dayOffForm = new DayOffForm(
