@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-
 use App\DayOff\Domain\ValueObject\CountDayOffRequest;
 use DateTimeImmutable;
 use DateTimeInterface;
