@@ -22,7 +22,7 @@ class DayOffFormRequest
      * @ORM\ManyToOne(targetEntity=DayOffForm::class)
      * @ORM\JoinColumn(name="code_day_off_form", referencedColumnName="code_day_off_form", nullable=false)
      */
-    private $codeDayOffForm;
+    private $dayOffForm;
 
 
     /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\DayOffSelected", columnPrefix = false) */
@@ -33,9 +33,9 @@ class DayOffFormRequest
      * @param $codeDayOffForm
      * @param $dayOffSelected
      */
-    public function __construct($codeDayOffForm, $dayOffSelected)
+    public function __construct($dayOffForm, $dayOffSelected)
     {
-        $this->codeDayOffForm = $codeDayOffForm;
+        $this->dayOffForm = $dayOffForm;
         $this->dayOffSelected = $dayOffSelected;
     }
 
@@ -45,21 +45,15 @@ class DayOffFormRequest
         return $this->id;
     }
 
-    public function getDayOffSelected(): ?DateTimeInterface
+    public function dayOffSelected(): ?DateTimeInterface
     {
         return $this->dayOffSelected;
     }
 
-    public function setDayOffSelected(DateTimeInterface $dayOffSelected): self
-    {
-        $this->dayOffSelected = $dayOffSelected;
 
-        return $this;
-    }
-
-    public function getCodeDayOffForm()
+    public function dayOffForm()
     {
-        return $this->codeDayOffForm;
+        return $this->dayOffForm;
     }
 
 }

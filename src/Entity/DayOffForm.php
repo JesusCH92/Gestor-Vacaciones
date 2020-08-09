@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\DayOff\Domain\ValueObject\CountDayOffRequest;
+use App\User\Domain\User;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -49,12 +50,12 @@ class DayOffForm
      * @ORM\ManyToOne(targetEntity=App\User\Domain\User::class)
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user", nullable=false)
      */
-    private $idUser;
+    private $user;
 
     /**
      * @ORM\Column(type="string", name="id_supervisor", length=36, nullable=true)
      */
-    private $idSupervisor;
+    private $supervisorId;
 
     /**
      * DayOffForm constructor.
@@ -62,16 +63,16 @@ class DayOffForm
      * @param $statusDayOffForm
      * @param $observation
      * @param $countDayOffRequest
-     * @param $idUser
-     * @param $idSupervisor
+     * @param $user
+     * @param $supervisorId
      */
     public function __construct(
         $typeDayOff,
         $statusDayOffForm,
         $observation,
         $countDayOffRequest,
-        $idUser,
-        $idSupervisor
+        $user,
+        $supervisorId
     ) {
         $this->codeDayOffForm = Uuid::uuid4();
         $this->typeDayOff = $typeDayOff;
@@ -79,52 +80,52 @@ class DayOffForm
         $this->observation = $observation;
         $this->countDayOffRequest = $countDayOffRequest;
         $this->createdAt = new DateTimeImmutable();
-        $this->idUser = $idUser;
-        $this->idSupervisor = $idSupervisor;
+        $this->user = $user;
+        $this->supervisorId = $supervisorId;
     }
 
 
-    public function getCodeDayOffForm(): ?string
+    public function codeDayOffForm(): ?string
     {
         return $this->codeDayOffForm;
     }
 
-    public function getTypeDayOff(): ?string
+    public function typeDayOff(): ?string
     {
         return $this->typeDayOff;
     }
 
 
-    public function getStatusDayOffForm(): ?string
+    public function statusDayOffForm(): ?string
     {
         return $this->statusDayOffForm;
     }
 
-    public function getObservation(): ?string
+    public function observation(): ?string
     {
         return $this->observation;
     }
 
 
-    public function getCountDayOffRequest(): ?CountDayOffRequest
+    public function countDayOffRequest(): ?CountDayOffRequest
     {
         return $this->countDayOffRequest;
     }
 
 
-    public function getCreatedAt(): ?DateTimeInterface
+    public function createdAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function getIdUser(): ?string
+    public function user(): ?User
     {
-        return $this->idUser;
+        return $this->user;
     }
 
-    public function getIdSupervisor(): ?string
+    public function supervisorId(): ?string
     {
-        return $this->idSupervisor;
+        return $this->supervisorId;
     }
 
 }
