@@ -28,6 +28,11 @@ class FeastDay
      */
     private $calendar;
 
+    /**
+     * @ORM\Column(type="integer", name="working_year")
+     */
+    private $workingYear;
+
     public function feastdayId(): ?int
     {
         return $this->feastdayId;
@@ -41,5 +46,10 @@ class FeastDay
     public function calendar(): ?Calendar
     {
         return $this->calendar;
+    }
+    
+    public function workingYear(): ?int
+    {
+        return $this->workingYear;
     }
 }
