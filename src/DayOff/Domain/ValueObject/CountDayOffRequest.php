@@ -13,22 +13,52 @@ final class CountDayOffRequest
 
     public function __construct(int $countDayOffRequest)
     {
+        $this->guardIsPositive($countDayOffRequest);
         $this->countDayOffRequest = $countDayOffRequest;
     }
 
     /**
      * @return int
      */
-    public function getCountDayOffRequest(): int
+    public function countDayOffRequest(): int
     {
         return $this->countDayOffRequest;
     }
 
-    public function equals(int $remainingDays)
+    public function checkCountDaysSelected(string $typeDayOff, int $remainingDaysByType): bool
     {
-        if ($this->countDayOffRequest > $remainingDays){
-            //throw error exception
+        if ('HOLIDAY' === $typeDayOff) {
+            if ($this->countDayOffRequest > $remainingDaysByType) {
+                return false;
+            }
+            return true;
         }
+
+        if ('PERSONAL' === $typeDayOff) {
+            if ($this->countDayOffRequest > $remainingDaysByType) {
+                return false;
+            }
+            return true;
+        }
+
+        if ('OTHER' === $typeDayOff) {
+            if ($this->countDayOffRequest > $remainingDaysByType) {
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 
+    private function isCountPositive(int $count): bool
+    {
+        return 0 > $count;
+    }
+
+    private function guardIsPositive(int $count): void
+    {
+        if ($this->isCountPositive($count)) {
+            //throw new ();
+        }
+    }
 }
