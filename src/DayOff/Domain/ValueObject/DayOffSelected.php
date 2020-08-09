@@ -63,4 +63,9 @@ final class DayOffSelected
         return $this->dayOffSelected;
     }
 
+    public function isCorrectDaySelectedTiming($initDate,$endDate): bool
+    {
+        return $initDate < $this->dayOffSelected && $endDate > $this->dayOffSelected;
+    }
+
 }
