@@ -20,24 +20,24 @@ final class SaveDayOffRequest
         $this->dayOffCrudRepository = $dayOffCrudRepository;
     }
 
-    public function __invoke(DayOffRequest $dayOffRequest)
+    public function __invoke(DayOffRequest $dayOffRequest): void
     {
         $statusDayOffForm = new StatusDayOffForm();
-        $statusDayOffForm->statusByUserRole($dayOffRequest->getUser()->getRoles()[0]);
+        $statusDayOffForm->statusByUserRole($dayOffRequest->typeDayOff(), $dayOffRequest->user()->getRoles()[0]);
 
         $dayOffForm = new DayOffForm(
-            $dayOffRequest->getTypeDayOff(),
+            $dayOffRequest->typeDayOff(),
             $statusDayOffForm,
             null,
-            new  CountDayOffRequest($dayOffRequest->getCountDayOffRequest()),
-            $dayOffRequest->getUser(),
+            new  CountDayOffRequest($dayOffRequest->countDayOffRequest()),
+            $dayOffRequest->user(),
             null
 
         );
 
         $this->dayOffCrudRepository->saveDayOffForm($dayOffForm);
 
-        foreach ($dayOffRequest->getDaysOff() as $dayOff) {
+        foreach ($dayOffRequest->daysOff() as $dayOff) {
             $daysOfFormRequest = new DayOffFormRequest($dayOffForm, new DayOffSelected($dayOff));
 
             $this->dayOffCrudRepository->saveDayOffFormRequest($daysOfFormRequest);
