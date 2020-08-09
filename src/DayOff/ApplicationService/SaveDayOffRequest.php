@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DayOff\ApplicationService;
 
+use App\DayOff\ApplicationService\DTO\DayOffRequest;
 use App\DayOff\Domain\DayOffRepository;
 use App\DayOff\Domain\ValueObject\CountDayOffRequest;
 use App\DayOff\Domain\ValueObject\DayOffSelected;
@@ -25,22 +26,25 @@ final class SaveDayOffRequest
         $statusDayOffForm = new StatusDayOffForm();
         $statusDayOffForm->statusByUserRole($dayOffRequest->typeDayOff(), $dayOffRequest->user()->getRoles()[0]);
 
+        $countDayOffRequest = new  CountDayOffRequest($dayOffRequest->countDayOffRequest());
+        $countDayOffRequest->checkCountDaysSelected($dayOffRequest->typeDayOff(),30);
         $dayOffForm = new DayOffForm(
             $dayOffRequest->typeDayOff(),
             $statusDayOffForm,
             null,
-            new  CountDayOffRequest($dayOffRequest->countDayOffRequest()),
+            $countDayOffRequest,
             $dayOffRequest->user(),
             null
 
         );
 
-        $this->dayOffCrudRepository->saveDayOffForm($dayOffForm);
-
         foreach ($dayOffRequest->daysOff() as $dayOff) {
-            $daysOfFormRequest = new DayOffFormRequest($dayOffForm, new DayOffSelected($dayOff));
+            $dayOffSelected = new DayOffSelected($dayOff);
+            $dayOffSelected->isCorrectDaySelectedTiming(date("Y-m-d",2021-02-01),date("Y-m-d",2022-01-01));
+            $daysOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelected);
 
             $this->dayOffCrudRepository->saveDayOffFormRequest($daysOfFormRequest);
         }
+        $this->dayOffCrudRepository->saveDayOffForm($dayOffForm);
     }
 }
