@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\DayOff\ApplicationService\DayOffRequest;
+use App\DayOff\ApplicationService\DTO\DayOffRequest;
 use App\DayOff\ApplicationService\SaveDayOffRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
