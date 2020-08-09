@@ -32,6 +32,11 @@ class TypeDayOff
      * @ORM\JoinColumn(nullable=false, name="id_calendar", referencedColumnName="id_calendar")
      */
     private $calendar;
+    
+    /**
+     * @ORM\Column(type="integer", name="working_year")
+     */
+    private $workingYear;
 
     public function typeDayOffId(): ?int
     {
@@ -51,5 +56,10 @@ class TypeDayOff
     public function calendar(): ?Calendar
     {
         return $this->calendar;
+    }
+    
+    public function workingYear(): ?int
+    {
+        return $this->workingYear;
     }
 }

@@ -49,6 +49,11 @@ class RemainingDayOffSummaryByUser
      */
     private $endDateDayOffRequest;
 
+    /**
+     * @ORM\Column(type="integer", name="working_year")
+     */
+    private $workingYear;
+
     public function remainingDayOffSummaryByUserId(): ?int
     {
         return $this->remainingDayOffSummaryByUserId;
@@ -82,5 +87,10 @@ class RemainingDayOffSummaryByUser
     public function endDateDayOffRequest(): ?\DateTimeImmutable
     {
         return $this->endDateDayOffRequest;
+    }
+    
+    public function workingYear(): ?int
+    {
+        return $this->workingYear;
     }
 }
