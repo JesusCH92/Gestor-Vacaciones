@@ -23,7 +23,7 @@ final class StatusDayOffForm
             'ROLE_SUPERVISOR' => 'ACCEPTED'
         ],
         'SICK LEAVE' => [
-            'ROLE_USER' => 'ACCEPTED',
+            'ROLE_USER' => 'PENDING',
             'ROLE_SUPERVISOR' => 'ACCEPTED'
         ]
     ];
