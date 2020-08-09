@@ -17,15 +17,15 @@ class Calendar
      */
     private $calendarId;
 
-    /**
-     * @ORM\Column(type="date_immutable", name="init_date_work_year")
-     */
-    private $initDateWorkYear;
+    // /**
+    //  * @ORM\Column(type="date_immutable", name="init_date_work_year")
+    //  */
+    // private $initDateWorkYear;
 
-    /**
-     * @ORM\Column(type="date_immutable", name="end_date_work_year")
-     */
-    private $endDateWorkYear;
+    // /**
+    //  * @ORM\Column(type="date_immutable", name="end_date_work_year")
+    //  */
+    // private $endDateWorkYear;
 
     /**
      * @ORM\Column(type="date_immutable", name="init_date_day_off_request")
@@ -53,20 +53,25 @@ class Calendar
      */
     private $company;
 
+    /**
+     * @ORM\Column(type="integer", name="working_year")
+     */
+    private $workingYear;
+
     public function calendarId(): ?int
     {
         return $this->calendarId;
     }
 
-    public function initDateWorkYear(): ?\DateTimeImmutable
-    {
-        return $this->initDateWorkYear;
-    }
+    // public function initDateWorkYear(): ?\DateTimeImmutable
+    // {
+    //     return $this->initDateWorkYear;
+    // }
 
-    public function endDateWorkYear(): ?\DateTimeImmutable
-    {
-        return $this->endDateWorkYear;
-    }
+    // public function endDateWorkYear(): ?\DateTimeImmutable
+    // {
+    //     return $this->endDateWorkYear;
+    // }
 
     public function initDateDayOffRequest(): ?\DateTimeImmutable
     {
@@ -91,5 +96,10 @@ class Calendar
     public function company(): ?Company
     {
         return $this->company;
+    }
+
+    public function workingYear(): ?int
+    {
+        return $this->workingYear;
     }
 }
