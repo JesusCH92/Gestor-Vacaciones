@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DayOff\ApplicationService;
+namespace App\DayOff\ApplicationService\DTO;
 
 
 use App\User\Domain\User;
