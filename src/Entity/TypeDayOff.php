@@ -32,7 +32,7 @@ class TypeDayOff
      * @ORM\JoinColumn(nullable=false, name="id_calendar", referencedColumnName="id_calendar")
      */
     private $calendar;
-
+    
     public function typeDayOffId(): ?int
     {
         return $this->typeDayOffId;
