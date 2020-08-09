@@ -29,7 +29,7 @@ final class DayOffRequest
     /**
      * @return User
      */
-    public function getUser(): User
+    public function user(): User
     {
         return $this->user;
     }
@@ -37,7 +37,7 @@ final class DayOffRequest
     /**
      * @return string
      */
-    public function getTypeDayOff(): string
+    public function typeDayOff(): string
     {
         return $this->typeDayOff;
     }
@@ -46,7 +46,7 @@ final class DayOffRequest
     /**
      * @return int
      */
-    public function getCountDayOffRequest(): int
+    public function countDayOffRequest(): int
     {
         return $this->countDayOffRequest;
     }
@@ -54,7 +54,7 @@ final class DayOffRequest
     /**
      * @return array
      */
-    public function getDaysOff(): array
+    public function daysOff(): array
     {
         return $this->daysOff;
     }
