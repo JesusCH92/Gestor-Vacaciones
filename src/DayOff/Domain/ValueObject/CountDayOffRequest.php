@@ -3,6 +3,7 @@
 
 namespace App\DayOff\Domain\ValueObject;
 
+use App\DayOff\Domain\Exception\InvalidCountDayOffRequest;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @ORM\Embeddable */
@@ -25,29 +26,29 @@ final class CountDayOffRequest
         return $this->countDayOffRequest;
     }
 
-    public function checkCountDaysSelected(string $typeDayOff, int $remainingDaysByType): bool
+    public function checkCountDaysSelected(string $typeDayOff, int $remainingDaysByType): void
     {
         if ('HOLIDAY' === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
-                return false;
+                throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
-            return true;
+
         }
 
         if ('PERSONAL' === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
-                return false;
+                throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
-            return true;
+
         }
 
         if ('OTHER' === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
-                return false;
+                throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
-            return true;
+
         }
-        return true;
+
     }
 
     private function isCountPositive(int $count): bool
