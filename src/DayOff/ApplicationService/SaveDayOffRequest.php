@@ -37,14 +37,14 @@ final class SaveDayOffRequest
             null
 
         );
+        $this->dayOffCrudRepository->saveDayOffForm($dayOffForm);
 
         foreach ($dayOffRequest->daysOff() as $dayOff) {
             $dayOffSelected = new DayOffSelected($dayOff);
-            $dayOffSelected->isCorrectDaySelectedTiming(date("Y-m-d",2021-02-01),date("Y-m-d",2022-01-01));
+            $dayOffSelected->isCorrectDaySelectedTiming(new \DateTime('2021-01-01'), new \DateTime('2022-01-01'));
             $daysOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelected);
 
             $this->dayOffCrudRepository->saveDayOffFormRequest($daysOfFormRequest);
         }
-        $this->dayOffCrudRepository->saveDayOffForm($dayOffForm);
     }
 }
