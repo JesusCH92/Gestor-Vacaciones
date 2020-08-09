@@ -10,7 +10,7 @@ use App\Entity\DayOffFormRequest;
 use App\User\Domain\User;
 use Doctrine\ORM\EntityManagerInterface;
 
-class DoctrineDayOffRepository implements DayOffRepository
+final class DoctrineDayOffRepository implements DayOffRepository
 {
     private EntityManagerInterface $entityManager;
 
