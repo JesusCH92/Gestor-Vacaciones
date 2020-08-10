@@ -58,14 +58,11 @@ class DayOffForm
     private $supervisorId;
 
     /**
-     * DayOffForm constructor.
-     * @param $typeDayOff
-     * @param $statusDayOffForm
-     * @param $observation
-     * @param $countDayOffRequest
-     * @param $user
-     * @param $supervisorId
+     * @ORM\ManyToOne(targetEntity="App\Entity\Calendar")
+     * @ORM\JoinColumn(name="id_calendar", referencedColumnName="id_calendar", nullable=false)
      */
+    private $calendar;
+
     public function __construct(
         $typeDayOff,
         $statusDayOffForm,
@@ -128,5 +125,9 @@ class DayOffForm
         return $this->supervisorId;
     }
 
+    public function calendar(): ?Calendar
+    {
+        return $this->calendar;
+    }
 }
 
