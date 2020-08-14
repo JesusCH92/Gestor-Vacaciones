@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\TypeDayOff\Domain\ValueObject\CountDayOff;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,7 @@ class TypeDayOff
     private $typeDayOff;
 
     /**
-     * @ORM\Column(type="integer", name="count_day_off")
+     * @ORM\Embedded(class="App\TypeDayOff\Domain\ValueObject\CountDayOff", columnPrefix = false)
      */
     private $countDayOff;
 
@@ -32,23 +33,30 @@ class TypeDayOff
      * @ORM\JoinColumn(nullable=false, name="id_calendar", referencedColumnName="id_calendar")
      */
     private $calendar;
+
+    public function __construct(string $typeDayOff, CountDayOff $countDayOff, Calendar $calendar)
+    {
+        $this->typeDayOff = $typeDayOff;
+        $this->countDayOff = $countDayOff;
+        $this->calendar = $calendar;
+    }
     
-    public function typeDayOffId(): ?int
+    public function typeDayOffId(): int
     {
         return $this->typeDayOffId;
     }
 
-    public function typeDayOff(): ?string
+    public function typeDayOff(): string
     {
         return $this->typeDayOff;
     }
 
-    public function countDayOff(): ?int
+    public function countDayOff(): CountDayOff
     {
         return $this->countDayOff;
     }
 
-    public function calendar(): ?Calendar
+    public function calendar(): Calendar
     {
         return $this->calendar;
     }
