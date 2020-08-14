@@ -6,10 +6,7 @@ namespace App\Calendar\Infrastructure;
 
 use App\Calendar\ApplicationService\DTO\CalendarRequest;
 use App\Calendar\Domain\CalendarRepository;
-use App\Calendar\Domain\ValueObject\WorkDays;
-use App\Calendar\Domain\ValueObject\WorkingYear;
 use App\Entity\Calendar;
-use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class OrmCalendarRepository implements CalendarRepository
@@ -36,25 +33,23 @@ final class OrmCalendarRepository implements CalendarRepository
         return $calendarEntity;
     }
 
-    public function saveCalendar(CalendarRequest $calendarRequest): void
+    public function saveCalendar(Calendar $calendarEntity): void
     {
-        $workingYear = new WorkingYear(intval($calendarRequest->workingYear()));
-        $workDays = new WorkDays($calendarRequest->workDays());
-        $calendarEntity = new Calendar(
-            new DateTimeImmutable($calendarRequest->initDateRequest()),
-            new DateTimeImmutable($calendarRequest->endDateRequest()),
-            $workDays,
-            $calendarRequest->workDays(),
-            $calendarRequest->company(),
-            $workingYear
-        );
-
         $this->entityManager->persist($calendarEntity);
         $this->entityManager->flush();
     }
 
-    public function saveCalendarConfig(CalendarRequest $calendarRequest): void
+    public function saveTypeDayOffCollection(array $typeDayOffCollection): void
     {
-        $this->saveCalendar($calendarRequest);
+        foreach ($typeDayOffCollection as $typeDayOffEntity) {
+            $this->entityManager->persist($typeDayOffEntity);
+            $this->entityManager->flush();
+        }
+    }
+
+    public function saveCalendarConfig(Calendar $calendar, array $typeDayOffCollection): void
+    {
+        $this->saveCalendar($calendar);
+        $this->saveTypeDayOffCollection($typeDayOffCollection);
     }
 }
