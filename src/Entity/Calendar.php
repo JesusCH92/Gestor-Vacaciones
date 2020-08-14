@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Calendar\Domain\ValueObject\WorkDays;
+use App\Calendar\Domain\ValueObject\WorkingYear;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\Nonstandard\Uuid;
 
 /**
  * @ORM\Entity
@@ -11,9 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Calendar
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer", name="id_calendar")
+     * @ORM\Id
+     * @ORM\Column(type="uuid", name="id_calendar", unique=true)
      */
     private $calendarId;
 
@@ -38,9 +40,9 @@ class Calendar
     private $endDateDayOffRequest;
 
     /**
-     * @ORM\Column(type="json", name="work_days")
+     * @ORM\Embedded(class="App\Calendar\Domain\ValueObject\WorkDays", columnPrefix = false)
      */
-    private $workDays = [];
+    private $workDays;
 
     /**
      * @ORM\Column(type="json", name="no_working_days")
@@ -48,7 +50,7 @@ class Calendar
     private $noWorkingDays = [];
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Company", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company")
      * @ORM\JoinColumn(nullable=false, name="id_company", referencedColumnName="id_company")
      */
     private $company;
@@ -60,6 +62,7 @@ class Calendar
 
     public function __construct($initDateDayOffRequest, $endDateDayOffRequest, $workDays, $noWorkingDays, $company, $workingYear)
     {
+        $this->calendarId = Uuid::uuid4();
         $this->initDateDayOffRequest = $initDateDayOffRequest;
         $this->endDateDayOffRequest = $endDateDayOffRequest;
         $this->workDays = $workDays;
@@ -68,7 +71,7 @@ class Calendar
         $this->workingYear = $workingYear;
     }
 
-    public function calendarId(): ?int
+    public function calendarId(): string
     {
         return $this->calendarId;
     }
@@ -93,7 +96,7 @@ class Calendar
         return $this->endDateDayOffRequest;
     }
 
-    public function workDays(): ?array
+    public function workDays(): WorkDays
     {
         return $this->workDays;
     }
@@ -108,7 +111,7 @@ class Calendar
         return $this->company;
     }
 
-    public function workingYear(): ?int
+    public function workingYear(): ?WorkingYear
     {
         return $this->workingYear;
     }
