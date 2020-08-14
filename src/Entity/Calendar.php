@@ -54,9 +54,19 @@ class Calendar
     private $company;
 
     /**
-     * @ORM\Column(type="integer", name="working_year")
+     * @ORM\Embedded(class="App\Calendar\Domain\ValueObject\WorkingYear", columnPrefix = false)
      */
     private $workingYear;
+
+    public function __construct($initDateDayOffRequest, $endDateDayOffRequest, $workDays, $noWorkingDays, $company, $workingYear)
+    {
+        $this->initDateDayOffRequest = $initDateDayOffRequest;
+        $this->endDateDayOffRequest = $endDateDayOffRequest;
+        $this->workDays = $workDays;
+        $this->noWorkingDays = $noWorkingDays;
+        $this->company = $company;
+        $this->workingYear = $workingYear;
+    }
 
     public function calendarId(): ?int
     {
