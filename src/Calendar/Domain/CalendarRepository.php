@@ -11,5 +11,5 @@ use App\Entity\Calendar;
 interface CalendarRepository
 {
     public function findCalendarByWorkingYear(CalendarRequest $calendarRequest): ?Calendar;
-    public function saveCalendarConfig(CalendarRequest $calendarRequest): void;
+    public function saveCalendarConfig(Calendar $calendar, array $typeDayOffCollection): void;
 }
