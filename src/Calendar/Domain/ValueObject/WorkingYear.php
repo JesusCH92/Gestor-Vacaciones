@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 final class WorkingYear
 {
     /** 
-     * @ORM\Column(type="integer", name="working_year")
+     * @ORM\Column(type="integer", name="working_year", unique=true)
      */
     private int $workingYear;
 
