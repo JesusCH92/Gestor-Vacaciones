@@ -35,3 +35,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Calendar/Domain/ValueObject'
                 prefix: 'App\Calendar\Domain\ValueObject'
                 alias: CalendarEmbeddable
+            TypeDayOffEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/TypeDayOff/Domain/ValueObject'
+                prefix: 'App\TypeDayOff\Domain\ValueObject'
+                alias: TypeDayOffEmbeddable
