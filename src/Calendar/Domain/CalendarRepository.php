@@ -10,6 +10,6 @@ use App\Entity\Calendar;
 
 interface CalendarRepository
 {
-    public function findCalendarByWorkingYear(WorkingYear $workingYear): ?Calendar;
+    public function findCalendarByWorkingYear(CalendarRequest $calendarRequest): ?Calendar;
     public function saveCalendarConfig(CalendarRequest $calendarRequest): void;
 }
