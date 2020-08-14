@@ -3,7 +3,7 @@
 {% block title %}{{parent()}} - Calendar{% endblock %}
 {% block stylesheets %} 
     {{ parent() }} 
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
 {% endblock %}
 
 {% block main_dashboard %}
@@ -22,7 +22,7 @@
                         <label for="working-year">Año laboral:</label>
                     </div>
                     <div class="form-group col-md-12 col-xl-6">
-                        <input type="number" id="working-year" class="form-control" name="working-year"  min="2019" max="2080">
+                        <input type="number" id="working-year" class="form-control" name="working-year" value="2019"  min="2019" max="2080">
                     </div>
                 </div>
             </div>
@@ -31,12 +31,12 @@
                 <h5 class="font-weight-bold">Configuración del rango para pedir vacaciones</h5>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="start">Inicio de petición de vacaciones:</label>
-                        <input type="date" id="start" class="form-control" name="trip-start" value="2020-01-01" min="2020-01-01" max="2020-12-31">
+                        <label for="init-date-request">Inicio de petición de vacaciones:</label>
+                        <input type="date" id="init-date-request" name="init-date-request" class="form-control" min="2019-01-01">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="end">Fin de petición de vacaciones:</label>
-                        <input type="date" id="end" class="form-control" name="trip-start" value="2020-12-31">
+                        <label for="end-date-request">Fin de petición de vacaciones:</label>
+                        <input type="date" id="end-date-request" name="end-date-request"class="form-control" min="2019-01-01">
                     </div>
                 </div>
             </div>
@@ -44,54 +44,20 @@
             <div class="section-create-calendar-form">
                 <h5 class="font-weight-bold">Añadir la cantidad días según el tipo de "day-off"</h5>
                 <div class="form-row">
-                    <div class="form-group col-md-8 col-xl-4">
-                        <label for="exampleFormControlSelect1">Tipos de "day off"</label>
-                        <select class="form-control" id="type-day-off-select">
-                            <option value="code-holiday">Días de Vacaciones</option>
-                            <option value="code-personal-day">Días Personales</option>
-                            <option value="code-others">Otros</option>
-                        </select>
+                    <div class="form-group col-md-4">
+                        <label for="end">Número de días de vacaciones:</label>
+                        <input type="number" id="holidays-number" class="form-control" min="0" value="0">
                     </div>
 
-                    <div class="form-group col-md-6 col-xl-2">
-                        <label for="example-number-input">Número de días</label>
-                        <div class="row container">
-                            <div class="col-12">
-                                <input class="form-control" type="number" value="20" id="example-number-input">
-                            </div>
-                        </div>
+                    <div class="form-group col-md-4">
+                        <label for="end">Número de días personales:</label>
+                        <input type="number" id="personal-days-number" class="form-control" min="0" value="0">
                     </div>
 
-                    <div class="form-group col-md-6 col-xl-2">
-                        <label for="example-number-input">Add days</label>
-                        <div class="row container">
-                            <div class="col-12">
-                                <a type="button" class="btn btn-outline-success">
-                                    <span class="oi oi-plus" title="Add days" aria-hidden="true"></span>
-                                </a>                            
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-12 col-xl-4">
-                        <label >Cantidad de días según el tipo de "day-off"</label>
-                        <div class="card-body p-0">
-                            <ul class="list-group">
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <p class="m-auto">20 días vacaciones</p>
-                                    <a class="btn btn-link" href="#">
-                                        <span class="oi oi-circle-x" title="delete quantity days selected" aria-hidden="true"></span>
-                                    </a>
-                                </li>
-                                <li class="list-group-item d-flex justify-content-between">
-                                    <p class="m-auto">2 días personales</p>
-                                    <a class="btn btn-link" href="#">
-                                        <span class="oi oi-circle-x" title="delete quantity days selected" aria-hidden="true"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    {# <div class="form-group col-md-4">
+                        <label for="end">Número de días por otro motivo:</label>
+                        <input type="number" id="others-number" class="form-control" min="0" value="0">
+                    </div> #}
 
                 </div>
             </div>
@@ -103,14 +69,14 @@
                         <label >Seleccionar días laborable</label>
                     </div>
                     <div class="form-group col-md-4">
-                        <select multiple class="form-control" height="150">
-                            <option>Lunes</option>
-                            <option>Martes</option>
-                            <option>Miercoles</option>
-                            <option>Jueves</option>
-                            <option>Viernes</option>
-                            <option>Sabado</option>
-                            <option>Domingo</option>
+                        <select multiple class="form-control selectpicker" height="150" id="work-days-select">
+                            <option value="0">Lunes</option>
+                            <option value="1">Martes</option>
+                            <option value="2">Miercoles</option>
+                            <option value="3">Jueves</option>
+                            <option value="4">Viernes</option>
+                            <option value="5">Sabado</option>
+                            <option value="6">Domingo</option>
                         </select>
                     </div>
                 </div>
@@ -119,54 +85,73 @@
             <div class="section-create-calendar-form">
                 <h5 class="font-weight-bold">Añadir los días festivos del año laboral</h5>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    {# !ESTE FORMATO QUIZAS SIRVA PARA CONTROLAR EL CALENDARIO #}
+                    {# <div class="form-group col-md-6"> 
                         <label>Seleccionar los días festivos del calendario</label>
                         <div>
-                            <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-ride="carousel">
+                            <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-interval="false">
                                 <div class="carousel-inner">
+                                    <div class="carousel-item">
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-success">Cras justo odio</li>
+                                            <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item list-group-item-success">Morbi leo risus</li>
+                                            <li class="list-group-item list-group-item-success">Porta ac consectetur ac</li>
+                                            <li class="list-group-item list-group-item-success">Vestibulum at eros</li>
+                                        </ul>
+                                    </div>
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100" src="http://placehold.it/700x400" alt="First slide">
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-success">aquí debe estar</li>
+                                            <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item list-group-item-success">Morbi leo risus</li>
+                                            <li class="list-group-item list-group-item-success">Porta ac consectetur ac</li>
+                                            <li class="list-group-item list-group-item-success">Vestibulum at eros</li>
+                                        </ul>
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100" src="http://placehold.it/700x400" alt="Second slide">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img class="d-block w-100" src="http://placehold.it/700x400" alt="Third slide">
+                                        <ul class="list-group">
+                                            <li class="list-group-item list-group-item-success">Cras justo odio</li>
+                                            <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+                                            <li class="list-group-item list-group-item-success">Morbi leo risus</li>
+                                            <li class="list-group-item list-group-item-success">Porta ac consectetur ac</li>
+                                            <li class="list-group-item list-group-item-success">Vestibulum at eros</li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
-                                   data-slide="prev">
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
-                                   data-slide="next">
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
                             </div>
         
                         </div>
+                    </div> #}
+                    <div class="form-group col-md-5">
+                        <label for="start">Selecciona los días festivos individualmente:</label>
+                        <input type="date" id="feastday-date" class="form-control" min="2019-01-01">
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Días festivos seleccionados</label>
+
+                    <div class="form-group col-md-5">
+                        <label>Días festivos seleccionados:</label>
                         <div class="card-body contenedor-dias-vacaciones-seleccionados">
-                            <ul class="list-group">
-                                <li class="list-group-item">2020-05-01</li>
-                                <li class="list-group-item">2020-05-02</li>
-                                <li class="list-group-item">2020-05-03</li>
-                                <li class="list-group-item">2020-05-04</li>
-                                <li class="list-group-item">2020-05-05</li>
+                            <ul class="list-group" id="feastday-selected-container">
+                                {# ! Aquí se añade los días festivos seleccionados #}
                             </ul>
                         </div>
                     </div>
+
                 </div>
             </div>
 
             <div class="section-create-calendar-form">
                 <div class="form-row">
                     <div class="form-group col-md-12 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Crear Calendario</button>
+                        <button type="button" class="btn btn-primary" id="create-calendar-btn">Crear Calendario</button>
                     </div>
                 </div>
             </div>
@@ -179,7 +164,7 @@
 
 {% block head_js %}
     {{ parent() }}
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
 {% endblock %}
 
 {% block javascripts %}
@@ -187,7 +172,7 @@
     {# <script src="/../assets/js/CompanyModule/companyModel.js"></script>
     <script src="/../assets/js/CompanyModule/companyController.js"></script> #}
 
-    <script src="/../assets/js/CalendarModule/calendarController.js"></script>
+    <script type="text/javascript" src="/../assets/js/CalendarModule/calendarController.js"></script>
     
 
 {% endblock %}
