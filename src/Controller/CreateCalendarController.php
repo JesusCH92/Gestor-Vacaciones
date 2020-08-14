@@ -2,18 +2,61 @@
 
 namespace App\Controller;
 
+use App\Calendar\ApplicationService\CreateCalendarConfig;
+use App\Calendar\ApplicationService\DTO\CalendarRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CreateCalendarController extends AbstractController
+final class CreateCalendarController extends AbstractController
 {
+    private CreateCalendarConfig $createCalendarConfig;
+
+    public function __construct(CreateCalendarConfig $createCalendarConfig)
+    {
+        $this->createCalendarConfig = $createCalendarConfig;
+    }
+
     /**
      * @Route("/calendar/management/create/calendar", name="app_create_calendar")
      */
-    public function index()
+    public function create(Request $request)
     {
-        return $this->render('calendar_management/create_calendar.html.twig', [
-            'controller_name' => 'CreateCalendarController',
-        ]);
+        $calendarConfig = $request->get('calendar');
+
+        $workingYear = $calendarConfig['workingYear'];
+        $initDateRequest = $calendarConfig['initDateRequest'];
+        $endDateRequest = $calendarConfig['endDateRequest'];
+        $holidaysNumber = $calendarConfig['holidaysNumber'];
+        $personalDaysNumber = $calendarConfig['personalDaysNumber'];
+        $workDays = $calendarConfig['workDays'];
+        $feastdayCollection = $calendarConfig['feastDayCollection'];
+        var_dump($calendarConfig);
+
+        $company = $this->getUser()->getCompany();
+
+        // var_dump($this->getUser()->getCompany());exit;
+
+        $calendarRequest = new CalendarRequest(
+            $workingYear,
+            $initDateRequest,
+            $endDateRequest,
+            $holidaysNumber,
+            $personalDaysNumber,
+            $workDays,
+            $feastdayCollection,
+            $company
+        );
+
+        $createCalendarConfig = $this->createCalendarConfig;
+        $createCalendarConfig->__invoke($calendarRequest);
+
+
+        // return new JsonResponse([
+        //     'calendar_created' => 'OK'
+        // ]);
+        return Response::create('???');
     }
 }
