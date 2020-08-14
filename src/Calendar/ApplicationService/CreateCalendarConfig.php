@@ -20,8 +20,7 @@ final class CreateCalendarConfig
 
     public function __invoke(CalendarRequest $calendarRequest)
     {
-        $workingYear = new WorkingYear(intval($calendarRequest->workingYear()));
-        $calendarEntity = $this->calendarRepository->findCalendarByWorkingYear($workingYear);
+        $calendarEntity = $this->calendarRepository->findCalendarByWorkingYear($calendarRequest);
 
         if (null !== $calendarEntity) {
             throw new CalendarAlreadyExistsException($calendarRequest->workingYear());
