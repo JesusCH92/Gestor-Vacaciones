@@ -47,9 +47,18 @@ final class OrmCalendarRepository implements CalendarRepository
         }
     }
 
-    public function saveCalendarConfig(Calendar $calendar, array $typeDayOffCollection): void
+    public function saveFeastdayCollection(array $feastdayCollection): void
+    {
+        foreach ($feastdayCollection as $feastdayEntity) {
+            $this->entityManager->persist($feastdayEntity);
+            $this->entityManager->flush();
+        }
+    }
+
+    public function saveCalendarConfig(Calendar $calendar, array $typeDayOffCollection, array $feastdayCollection): void
     {
         $this->saveCalendar($calendar);
         $this->saveTypeDayOffCollection($typeDayOffCollection);
+        $this->saveFeastdayCollection($feastdayCollection);
     }
 }
