@@ -11,7 +11,9 @@ use App\Calendar\Domain\ValueObject\WorkDays;
 use App\Calendar\Domain\ValueObject\WorkingYear;
 use App\DayOff\Domain\Constants\DayOff;
 use App\Entity\Calendar;
+use App\Entity\FeastDay;
 use App\Entity\TypeDayOff;
+use App\Featsday\Domain\ValueObject\FeastdayDate;
 use App\TypeDayOff\Domain\ValueObject\CountDayOff;
 use DateTimeImmutable;
 
@@ -34,8 +36,9 @@ final class CreateCalendarConfig
 
         $calendar = $this->mappingCalendarFromCalendarRequest($calendarRequest);
         $typeDayOffCollection = $this->mappingTypeDayOffFromCalendarRequest($calendar, $calendarRequest);
+        $feastdayCollection = $this->mappingFeastDayFromCalendarRequest($calendar, $calendarRequest);
 
-        $this->calendarRepository->saveCalendarConfig($calendar, $typeDayOffCollection);
+        $this->calendarRepository->saveCalendarConfig($calendar, $typeDayOffCollection, $feastdayCollection);
     }
 
     public function mappingCalendarFromCalendarRequest(CalendarRequest $calendarRequest): Calendar
@@ -75,5 +78,22 @@ final class CreateCalendarConfig
         ];
 
         return $typeDayOffEntityCollection;
+    }
+
+    public function mappingFeastDayFromCalendarRequest(Calendar $calendarEntity,CalendarRequest $calendarRequest): array
+    {
+        $feastDayCollection = [];
+
+        foreach($calendarRequest->feastdayCollection() as $feastday){
+
+            $feastdayDateEntity = new FeastdayDate($feastday);
+
+            array_push($feastDayCollection, new FeastDay(
+                $feastdayDateEntity,
+                $calendarEntity
+            ));
+        }
+
+        return $feastDayCollection;
     }
 }
