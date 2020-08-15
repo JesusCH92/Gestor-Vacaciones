@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Featsday\Domain\ValueObject\FeastdayDate;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,7 +19,7 @@ class FeastDay
     private $feastdayId;
 
     /**
-     * @ORM\Column(type="date_immutable", name="feastday_date")
+     * @ORM\Embedded(class="App\Featsday\Domain\ValueObject\FeastdayDate", columnPrefix = false)
      */
     private $feastdayDate;
 
@@ -28,17 +29,23 @@ class FeastDay
      */
     private $calendar;
 
-    public function feastdayId(): ?int
+    public function __construct(FeastdayDate $feastdayDate, Calendar $calendar)
+    {
+        $this->feastdayDate = $feastdayDate;
+        $this->calendar = $calendar;
+    }
+
+    public function feastdayId(): int
     {
         return $this->feastdayId;
     }
 
-    public function feastdayDate(): ?\DateTimeImmutable
+    public function feastdayDate(): FeastdayDate
     {
         return $this->feastdayDate;
     }
 
-    public function calendar(): ?Calendar
+    public function calendar(): Calendar
     {
         return $this->calendar;
     }
