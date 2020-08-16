@@ -7,7 +7,7 @@ namespace App\Calendar\ApplicationService;
 use App\Calendar\ApplicationService\DTO\CalendarRequest;
 use App\Calendar\ApplicationService\Exception\CalendarAlreadyExistsException;
 use App\Calendar\Domain\CalendarRepository;
-use App\Calendar\Domain\ValueObject\DayOffRequest;
+use App\Calendar\Domain\ValueObject\DayOffConfig;
 use App\Calendar\Domain\ValueObject\WorkDays;
 use App\Calendar\Domain\ValueObject\WorkingYear;
 use App\DayOff\Domain\Constants\DayOff;
@@ -16,7 +16,6 @@ use App\Entity\FeastDay;
 use App\Entity\TypeDayOff;
 use App\Featsday\Domain\ValueObject\FeastdayDate;
 use App\TypeDayOff\Domain\ValueObject\CountDayOff;
-use DateTimeImmutable;
 
 final class CreateCalendarConfig
 {
@@ -46,15 +45,18 @@ final class CreateCalendarConfig
     {
         $workingYear = new WorkingYear(intval($calendarRequest->workingYear()));
         $workDays = new WorkDays($calendarRequest->workDays());
-        $dayOffRequest = new DayOffRequest(
-            new DateTimeImmutable($calendarRequest->initDateRequest()),
-            new DateTimeImmutable($calendarRequest->endDateRequest()),
+
+        $initDate = $calendarRequest->initDateRequest();
+        $endDate = $calendarRequest->endDateRequest();
+
+        $dayOffConfig = new DayOffConfig(
+            $initDate,
+            $endDate
         );
 
         $calendarEntity = new Calendar(
-            $dayOffRequest,
+            $dayOffConfig,
             $workDays,
-            $calendarRequest->workDays(),
             $calendarRequest->company(),
             $workingYear
         );
@@ -62,7 +64,7 @@ final class CreateCalendarConfig
         return $calendarEntity;
     }
 
-    public function mappingTypeDayOffFromCalendarRequest(Calendar $calendarEntity,CalendarRequest $calendarRequest): array
+    public function mappingTypeDayOffFromCalendarRequest(Calendar $calendarEntity, CalendarRequest $calendarRequest): array
     {
         $holidayTypeDayOffEntity = new TypeDayOff(
             DayOff::HOLIDAY,
