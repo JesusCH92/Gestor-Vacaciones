@@ -7,6 +7,7 @@ namespace App\Calendar\ApplicationService;
 use App\Calendar\ApplicationService\DTO\CalendarRequest;
 use App\Calendar\ApplicationService\Exception\CalendarAlreadyExistsException;
 use App\Calendar\Domain\CalendarRepository;
+use App\Calendar\Domain\ValueObject\DayOffRequest;
 use App\Calendar\Domain\ValueObject\WorkDays;
 use App\Calendar\Domain\ValueObject\WorkingYear;
 use App\DayOff\Domain\Constants\DayOff;
@@ -45,10 +46,13 @@ final class CreateCalendarConfig
     {
         $workingYear = new WorkingYear(intval($calendarRequest->workingYear()));
         $workDays = new WorkDays($calendarRequest->workDays());
-
-        $calendarEntity = new Calendar(
+        $dayOffRequest = new DayOffRequest(
             new DateTimeImmutable($calendarRequest->initDateRequest()),
             new DateTimeImmutable($calendarRequest->endDateRequest()),
+        );
+
+        $calendarEntity = new Calendar(
+            $dayOffRequest,
             $workDays,
             $calendarRequest->workDays(),
             $calendarRequest->company(),
