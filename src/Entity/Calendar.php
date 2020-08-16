@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Calendar\Domain\ValueObject\DayOffRequest;
 use App\Calendar\Domain\ValueObject\WorkDays;
 use App\Calendar\Domain\ValueObject\WorkingYear;
 use Doctrine\ORM\Mapping as ORM;
@@ -29,15 +30,20 @@ class Calendar
     //  */
     // private $endDateWorkYear;
 
-    /**
-     * @ORM\Column(type="date_immutable", name="init_date_day_off_request")
-     */
-    private $initDateDayOffRequest;
+    // /**
+    //  * @ORM\Column(type="date_immutable", name="init_date_day_off_request")
+    //  */
+    // private $initDateDayOffRequest;
+
+    // /**
+    //  * @ORM\Column(type="date_immutable", name="end_date_day_off_request")
+    //  */
+    // private $endDateDayOffRequest;
 
     /**
-     * @ORM\Column(type="date_immutable", name="end_date_day_off_request")
+     * @ORM\Embedded(class="App\Calendar\Domain\ValueObject\DayOffRequest", columnPrefix = false)
      */
-    private $endDateDayOffRequest;
+    private $dayOffRequest;
 
     /**
      * @ORM\Embedded(class="App\Calendar\Domain\ValueObject\WorkDays", columnPrefix = false)
@@ -60,11 +66,12 @@ class Calendar
      */
     private $workingYear;
 
-    public function __construct($initDateDayOffRequest, $endDateDayOffRequest, $workDays, $noWorkingDays, $company, $workingYear)
+    public function __construct(DayOffRequest $dayOffRequest, $workDays, $noWorkingDays, $company, $workingYear)
     {
         $this->calendarId = Uuid::uuid4();
-        $this->initDateDayOffRequest = $initDateDayOffRequest;
-        $this->endDateDayOffRequest = $endDateDayOffRequest;
+        // $this->initDateDayOffRequest = $initDateDayOffRequest;
+        // $this->endDateDayOffRequest = $endDateDayOffRequest;
+        $this->dayOffRequest = $dayOffRequest;
         $this->workDays = $workDays;
         $this->noWorkingDays = $noWorkingDays;
         $this->company = $company;
@@ -86,14 +93,19 @@ class Calendar
     //     return $this->endDateWorkYear;
     // }
 
-    public function initDateDayOffRequest(): ?\DateTimeImmutable
-    {
-        return $this->initDateDayOffRequest;
-    }
+    // public function initDateDayOffRequest(): ?\DateTimeImmutable
+    // {
+    //     return $this->initDateDayOffRequest;
+    // }
 
-    public function endDateDayOffRequest(): ?\DateTimeImmutable
+    // public function endDateDayOffRequest(): ?\DateTimeImmutable
+    // {
+    //     return $this->endDateDayOffRequest;
+    // }
+
+    public function dayOffRequest(): DayOffRequest
     {
-        return $this->endDateDayOffRequest;
+        return $this->dayOffRequest;
     }
 
     public function workDays(): WorkDays
