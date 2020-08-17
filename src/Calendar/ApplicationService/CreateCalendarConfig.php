@@ -10,11 +10,11 @@ use App\Calendar\Domain\CalendarRepository;
 use App\Calendar\Domain\ValueObject\DayOffConfig;
 use App\Calendar\Domain\ValueObject\WorkDays;
 use App\Calendar\Domain\ValueObject\WorkingYear;
-use App\DayOff\Domain\Constants\DayOff;
+use App\TypeDayOff\Domain\Constants\DayOff;
 use App\Entity\Calendar;
 use App\Entity\FeastDay;
 use App\Entity\TypeDayOff;
-use App\Featsday\Domain\ValueObject\FeastdayDate;
+use App\Feastday\Domain\ValueObject\FeastdayDate;
 use App\TypeDayOff\Domain\ValueObject\CountDayOff;
 
 final class CreateCalendarConfig
