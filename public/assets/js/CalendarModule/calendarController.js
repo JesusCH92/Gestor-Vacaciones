@@ -21,7 +21,7 @@ var calendarController = (function(){
                 callback(data);
             },
             error: function(data){
-                console.log(data);
+                console.log(JSON.parse(data.responseText));
             }
         });
     };
