@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\DayOff\Domain\Constants;
+namespace App\TypeDayOff\Domain\Constants;
 
 final class DayOff
 {
