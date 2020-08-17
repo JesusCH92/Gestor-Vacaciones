@@ -45,5 +45,5 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/Feastday/Domain/ValueObject'
-                prefix: 'App\Featsday\Domain\ValueObject'
+                prefix: 'App\Feastday\Domain\ValueObject'
                 alias: FeastdayEmbeddable
