@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace App\Featsday\Domain\ValueObject;
+namespace App\Feastday\Domain\ValueObject;
 
 use App\Calendar\Domain\Exception\InvalidWorkingYearException;
-use App\Featsday\Domain\Exception\InvalidDateException;
+use App\Feastday\Domain\Exception\InvalidDateException;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 

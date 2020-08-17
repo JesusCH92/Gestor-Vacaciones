@@ -6,7 +6,7 @@ namespace App\Calendar\Domain\ValueObject;
 
 use App\Calendar\Domain\Exception\InvalidDayOffRequestDates;
 use App\Calendar\Domain\Exception\InvalidWorkingYearException;
-use App\Featsday\Domain\Exception\InvalidDateException;
+use App\Feastday\Domain\Exception\InvalidDateException;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
 

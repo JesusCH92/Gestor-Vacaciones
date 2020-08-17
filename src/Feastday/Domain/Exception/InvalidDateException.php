@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Featsday\Domain\Exception;
+namespace App\Feastday\Domain\Exception;
 
 use Exception;
 use Throwable;

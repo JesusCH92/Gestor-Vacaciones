@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Featsday\Domain\ValueObject\FeastdayDate;
+use App\Feastday\Domain\ValueObject\FeastdayDate;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,7 +19,7 @@ class FeastDay
     private $feastdayId;
 
     /**
-     * @ORM\Embedded(class="App\Featsday\Domain\ValueObject\FeastdayDate", columnPrefix = false)
+     * @ORM\Embedded(class="App\Feastday\Domain\ValueObject\FeastdayDate", columnPrefix = false)
      */
     private $feastdayDate;
 
