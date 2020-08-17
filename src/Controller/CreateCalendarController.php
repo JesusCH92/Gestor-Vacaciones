@@ -33,7 +33,7 @@ final class CreateCalendarController extends AbstractController
         $personalDaysNumber = $calendarConfig['personalDaysNumber'];
         $workDays = $calendarConfig['workDays'];
         $feastdayCollection = $calendarConfig['feastDayCollection'];
-        var_dump($calendarConfig);
+        // var_dump($calendarConfig);
 
         $company = $this->getUser()->getCompany();
 
@@ -57,6 +57,6 @@ final class CreateCalendarController extends AbstractController
         // return new JsonResponse([
         //     'calendar_created' => 'OK'
         // ]);
-        return Response::create('???');
+        return Response::create('create calendar config');
     }
 }
