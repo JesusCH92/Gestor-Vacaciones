@@ -140,7 +140,7 @@ Ventana Revistar dias de vacaciones por usuario
 }
 
 /** Estilos Calendario**/
-.calendar {
+/* .calendar {
     margin: auto;
     font-family:'Muli', sans-serif;
     font-weight: 400;
@@ -215,7 +215,7 @@ button.switch-month {
 }
 button.switch-month:hover {
     color: #4f97e3;
-}
+} */
 /** Fin Estilos Calendario**/
 
 /*Ventana Espacio de trabajo */
@@ -344,3 +344,37 @@ button.switch-month:hover {
 .prova-pencil-icon .oi-pencil{
     color: red;
 }
+
+/** Edit Calendar View**/
+.feastday-reset-btn, .feastday-add-btn, .feastday-delete-btn{
+    width: 25px;    height: 25px;
+    padding: 0;
+}
+
+.feastday-reset-btn .oi-circle-x, .feastday-delete-btn .oi-circle-x{
+    border-radius: 50%;
+    color: #FF605C;
+    background-color: #ffffff;
+}
+
+.feastday-reset-btn:hover, .feastday-delete-btn:hover{
+    border-color: #f10e42;
+    background-color: #FF605C;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+.feastday-add-btn .oi-circle-check{
+    border-radius: 50%;
+    color: #00CA4E;
+    background-color: #ffffff;
+}
+
+.feastday-add-btn:hover{
+    border-color: #03973c;
+    background-color: #00CA4E;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+/** Edit Calendar View End**/
