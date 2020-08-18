@@ -1,0 +1,134 @@
+        <div class="section-create-calendar-form">
+            <h5 class="font-weight-bold">Editar el rango para pedir vacaciones</h5>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="init-date-request">Inicio de petición de vacaciones:</label>
+                    <input type="date" id="init-date-request" name="init-date-request" class="form-control" min="2019-01-01">
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="end-date-request">Fin de petición de vacaciones:</label>
+                    <input type="date" id="end-date-request" name="end-date-request"class="form-control" min="2019-01-01">
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-12" for="range-dayoff-request-save-btn">Guardar</label>
+                    <button class="btn btn-outline-info edit-department-code-btn">
+                        <span class="oi oi-check" title="Save Range Day Off Request" aria-hidden="true" id="range-dayoff-request-save-btn"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-create-calendar-form">
+            <h5 class="font-weight-bold">Editar la cantidad días según el tipo de "day-off"</h5>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="holidays-number-input">Número de días de vacaciones:</label>
+                    <div class="input-group">
+                        <input type="number" id="holidays-number-input" class="form-control" min="0" value="0">
+                        <div class="input-group-append">
+                            <a class="btn btn-outline-info">
+                                <span class="oi oi-check" title="Update holiday number" aria-hidden="true" id="update-hodliday-number-btn"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="personal-days-number-input">Número de días personales:</label>
+                    <div class="input-group">
+                        <input type="number" id="personal-days-number-input" class="form-control" min="0" value="0">
+                        <div class="input-group-append">
+                            <a class="btn btn-outline-info">
+                                <span class="oi oi-check" title="Update personal day off number" aria-hidden="true" id="update-personal-dayoff-number-btn"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-create-calendar-form">
+            <h5 class="font-weight-bold">Editar los días laborables</h5>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label >Seleccionar días laborable</label>
+                    <select multiple class="form-control selectpicker" height="150" id="work-days-select">
+                        <option selected value="0">Lunes</option>
+                        <option value="1">Martes</option>
+                        <option value="2">Miercoles</option>
+                        <option value="3">Jueves</option>
+                        <option value="4">Viernes</option>
+                        <option value="5">Sabado</option>
+                        <option value="6">Domingo</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label class="col-12" for="range-dayoff-request-save-btn">Guardar</label>
+                    <button class="btn btn-outline-info edit-department-code-btn">
+                        <span class="oi oi-check" title="Save Working days" aria-hidden="true" id="working-days-save-btn"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-create-calendar-form">
+            <h5 class="font-weight-bold">Editar los días festivos del año laboral</h5>
+            <label>Listado de los días festivos:</label>
+            <div class="form-row d-flex justify-content-center">
+                <div class="card-body contenedor-dias-vacaciones-seleccionados col-12 col-md-8 col-xl-5">
+                    <ul class="list-group" id="feastday-selected-container">
+                        {# ! Aquí se añaden los días festivos seleccionados #}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p class="m-auto">2020-05-01</p>
+                            <a class="btn btn-link feastday-delete-btn my-auto">
+                                <span class="oi oi-circle-x" title="Delete feast day in Calendar" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <p class="m-auto">2020-12-25</p>
+                            <a class="btn btn-link feastday-delete-btn my-auto">
+                                <span class="oi oi-circle-x" title="Delete feast day in Calendar" aria-hidden="true"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-create-calendar-form">
+            <h5 class="font-weight-bold">Añadir los días festivos del año laboral</h5>
+            <div class="form-row">
+                <div class="form-group col-md-5">
+                    <label for="start">Selecciona los días festivos individualmente:</label>
+                    <input type="date" id="feastday-date" class="form-control" min="2019-01-01">
+                </div>
+
+                <div class="form-group col-md-5">
+                    <label>Días festivos seleccionados:</label>
+                    <div class="card-body contenedor-dias-vacaciones-seleccionados">
+                        <ul class="list-group" id="feastday-selected-container">
+                            {# ! Aquí se añade los días festivos seleccionados #}
+                            <li class="list-group-item d-flex justify-content-between">
+                                <p class="m-auto">2020-05-01</p>
+                                <a class="btn btn-link feastday-reset-btn my-auto">
+                                    <span class="oi oi-circle-x" title="Quit feast day selected" aria-hidden="true"></span>
+                                </a>
+                                <a class="btn btn-link feastday-add-btn my-auto">
+                                    <span class="oi oi-circle-check" title="Add feast day selected" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between">
+                                <p class="m-auto">2020-12-25</p>
+                                <a class="btn btn-link feastday-reset-btn my-auto">
+                                    <span class="oi oi-circle-x" title="Quit feast day selected" aria-hidden="true"></span>
+                                </a>
+                                <a class="btn btn-link feastday-add-btn my-auto">
+                                    <span class="oi oi-circle-check" title="Add feast day selected" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
