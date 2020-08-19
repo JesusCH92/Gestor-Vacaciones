@@ -10,8 +10,8 @@
             <input type="date" value="{{ calendar_config.endDate }}" id="end-date-request" name="end-date-request"class="form-control" min="2019-01-01">
         </div>
         <div class="form-group col-md-2">
-            <label class="col-12" for="range-dayoff-request-save-btn">Guardar</label>
-            <button class="btn btn-outline-info edit-department-code-btn">
+            <label class="col-12" for="update-dayoff-request-btn">Guardar</label>
+            <button class="btn btn-outline-info" id="update-dayoff-request-btn">
                 <span class="oi oi-check" title="Save Range Day Off Request" aria-hidden="true" id="range-dayoff-request-save-btn"></span>
             </button>
         </div>
@@ -26,8 +26,8 @@
             <div class="input-group">
                 <input type="number" id="holidays-number-input" class="form-control" min="0" value="{{ calendar_config.typeDayOffCollection.Holiday }}">
                 <div class="input-group-append">
-                    <a class="btn btn-outline-info">
-                        <span class="oi oi-check" title="Update holiday number" aria-hidden="true" id="update-hodliday-number-btn"></span>
+                    <a class="btn btn-outline-info" id="update-hodliday-number-btn">
+                        <span class="oi oi-check" title="Update holiday number" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>
@@ -38,8 +38,8 @@
             <div class="input-group">
                 <input type="number" id="personal-days-number-input" class="form-control" min="0" value="{{ calendar_config.typeDayOffCollection.Personal }}">
                 <div class="input-group-append">
-                    <a class="btn btn-outline-info">
-                        <span class="oi oi-check" title="Update personal day off number" aria-hidden="true" id="update-personal-dayoff-number-btn"></span>
+                    <a class="btn btn-outline-info" id="update-personal-dayoff-number-btn">
+                        <span class="oi oi-check" title="Update personal day off number" aria-hidden="true"></span>
                     </a>
                 </div>
             </div>
