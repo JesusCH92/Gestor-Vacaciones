@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Calendar\ApplicationService;
 
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
+use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
 use App\Calendar\Domain\CalendarConfigRepository;
 use App\Company\ApplicationService\DTO\CalendarConfigResponse;
 
@@ -17,13 +18,12 @@ final class GetCalendarConfig
         $this->calendarConfigRepository = $calendarConfigRepository;
     }
 
-    public function __invoke(CalendarConfigRequest $calendarConfigRequest): ?CalendarConfigResponse
+    public function __invoke(CalendarConfigRequest $calendarConfigRequest): CalendarConfigResponse
     {
         $calendarEntity = $this->calendarConfigRepository->getCalendarByCalendarId($calendarConfigRequest);
 
         if (null === $calendarEntity) {
-            // ! lanzar una excepcion
-            return null;
+            throw new CalendarNotFoundException();
         }
         
         $initDateRequest = $calendarEntity->dayOffConfig()->initDateDayOffRequest()->format('Y-m-d');
