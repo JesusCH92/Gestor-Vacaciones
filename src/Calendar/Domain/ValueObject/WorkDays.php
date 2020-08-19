@@ -50,4 +50,9 @@ final class WorkDays
 
         $this->workDays = $workDays;
     }
+
+    public function workDays(): array
+    {
+        return $this->workDays;
+    }
 }
