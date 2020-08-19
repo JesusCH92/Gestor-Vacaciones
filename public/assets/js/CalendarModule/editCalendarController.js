@@ -15,8 +15,8 @@ var editCalendarController = (function(){
             if ($workingYear === "") {
                 return;
             }
-
-            editCalendarModel().getCalendarConfigByWorkingYear({
+            var _editCalendarModel = editCalendarModel();
+            _editCalendarModel.getCalendarConfigByWorkingYear({
                 id : $workingYear,
                 callback : paintCalendarConfig,
                 container : $calendarConfigContainer
