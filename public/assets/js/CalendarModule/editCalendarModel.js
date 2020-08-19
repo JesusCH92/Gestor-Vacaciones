@@ -17,4 +17,4 @@ var editCalendarModel = (function() {
     return {
         getCalendarConfigByWorkingYear : getCalendarConfigByWorkingYear
     }
-})();
+});
