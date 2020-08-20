@@ -29,8 +29,24 @@ var editCalendarModel = (function() {
         });
     };
 
+    var updateWorkDays = function ({workDays, callback = console.log}) {
+        $.ajax({
+            type: 'PUT',
+            url: '/calendar/management/update/workDays',
+            async: true,
+            data: {workDays},
+            success: function(data){
+                callback(data);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    };
+
     return {
         getCalendarConfigByWorkingYear : getCalendarConfigByWorkingYear,
-        updateDayOffRequest : updateDayOffRequest
+        updateDayOffRequest : updateDayOffRequest,
+        updateWorkDays : updateWorkDays
     }
 });
