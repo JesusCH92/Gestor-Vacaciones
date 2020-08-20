@@ -4,11 +4,11 @@ declare(strict_types = 1);
 
 namespace App\Calendar\Infrastructure;
 
-use App\Calendar\Domain\DayOffConfigRepository;
+use App\Calendar\Domain\CalendarUpdaterRepository;
 use App\Entity\Calendar;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class OrmCalendarCrudRepository implements DayOffConfigRepository
+final class OrmCalendarCrudRepository implements CalendarUpdaterRepository
 {
     private EntityManagerInterface $entityManager;
 
