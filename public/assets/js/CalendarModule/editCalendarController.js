@@ -3,9 +3,11 @@ var editCalendarController = (function(){
     var $workingYearSelect = $("#working-year-select");
     var $calendarConfigContainer = $("#calendar-config-container");
 
-    var paintCalendarConfig = function( {calendarConfigContainer, calendarConfig} ) {
+    var paintCalendarConfig = function( {calendarConfigContainer, calendarConfig, calendarId} ) {
         calendarConfigContainer.html(calendarConfig);
         $("#work-days-select").selectpicker();
+        var _calendarConfigController = calendarConfigController(calendarId);
+        _calendarConfigController.initEventCalendarConfig();
     };
 
     var initEvent = function () {
