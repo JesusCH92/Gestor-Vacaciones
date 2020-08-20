@@ -27,9 +27,7 @@ final class DayOffConfig
 
     public function __construct(string $initDateDayOffRequest, string $endDateDayOffRequest)
     {
-        $this->guardAreValidDayOffRequestDates($initDateDayOffRequest, $endDateDayOffRequest);
-        $this->initDateDayOffRequest = new DateTimeImmutable($initDateDayOffRequest);
-        $this->endDateDayOffRequest = new DateTimeImmutable($endDateDayOffRequest);
+        $this->setDayOffConfig($initDateDayOffRequest, $endDateDayOffRequest);
     }
 
     public function initDateDayOffRequest(): DateTimeImmutable
@@ -88,7 +86,7 @@ final class DayOffConfig
         return $year < 2019;
     }
 
-    public function updateDayOffConfig(string $initDate, string $endDate): void
+    public function setDayOffConfig(string $initDate, string $endDate): void
     {
         $this->guardAreValidDayOffRequestDates($initDate, $endDate);
         $this->initDateDayOffRequest = new DateTimeImmutable($initDate);
