@@ -65,11 +65,6 @@ class Calendar
         return $this->workDays;
     }
 
-    public function updateDayOffConfig(DayOffConfig $dayOffConfig): void
-    {
-        $this->dayOffConfig = $dayOffConfig;
-    }
-
     public function company(): Company
     {
         return $this->company;
