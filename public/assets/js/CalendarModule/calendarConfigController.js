@@ -7,6 +7,7 @@ var calendarConfigController = (function(_calendarId){
     var $holidaysNumberInput = $("#holidays-number-input");
     var $updatePersonalDayOffNumberBtn = $("#update-personal-dayoff-number-btn");
     var $personalDaysNumberInput = $("#personal-days-number-input");
+    var $updateWorkingDaysBtn = $("#update-working-days-btn");
     var $workDaysSelect = $("#work-days-select");
     
     var _editCalendarModel = editCalendarModel();
@@ -26,6 +27,17 @@ var calendarConfigController = (function(_calendarId){
                     endDateRequest : $endDateRequest
                 }
             });
+        });
+
+        $updateWorkingDaysBtn.click( function() {
+            console.log("El Rick más Rick");
+            var $workDays = $workDaysSelect.val() === [] ? "" : $workDaysSelect.val();
+            var $workDaysCorpus = {
+                calendarId : calendarId,
+                workDays : $workDays
+            };
+            console.log($workDaysCorpus);
+            _editCalendarModel.updateWorkDays({ workDays : $workDaysCorpus });
         });
     };
 
