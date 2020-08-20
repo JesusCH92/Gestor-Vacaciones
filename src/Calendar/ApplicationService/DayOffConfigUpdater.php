@@ -6,26 +6,26 @@ namespace App\Calendar\ApplicationService;
 
 use App\Calendar\ApplicationService\DTO\DayOffConfigRequest;
 use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
-use App\Calendar\Domain\DayOffConfigRepository;
+use App\Calendar\Domain\CalendarUpdaterRepository;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
-final class DayOffConfigUpdate
+final class DayOffConfigUpdater
 {
-    private DayOffConfigRepository $dayOffConfigRepository;
+    private CalendarUpdaterRepository $calendarUpdaterRepository;
 
-    public function __construct(DayOffConfigRepository $dayOffConfigRepository)
+    public function __construct(CalendarUpdaterRepository $calendarUpdaterRepository)
     {
-        $this->dayOffConfigRepository = $dayOffConfigRepository;
+        $this->calendarUpdaterRepository = $calendarUpdaterRepository;
     }
 
-    public function __invoke(DayOffConfigRequest $dayOffConfigRequest)
+    public function __invoke(DayOffConfigRequest $dayOffConfigRequest): void
     {
         $calendarId = $dayOffConfigRequest->calendaId();
         if (!Uuid::isValid($calendarId)) {
             throw new CalendarNotFoundException();
         }
 
-        $calendarEntity = $this->dayOffConfigRepository->getCalendarByCalendarId($calendarId);
+        $calendarEntity = $this->calendarUpdaterRepository->getCalendarByCalendarId($calendarId);
 
         if (null === $calendarEntity) {
             throw new CalendarNotFoundException();
@@ -36,6 +36,6 @@ final class DayOffConfigUpdate
             $dayOffConfigRequest->endDateDayOffRequest()
         );
         
-        $this->dayOffConfigRepository->saveCalendar($calendarEntity);
+        $this->calendarUpdaterRepository->saveCalendar($calendarEntity);
     }
 }
