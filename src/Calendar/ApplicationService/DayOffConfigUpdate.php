@@ -31,7 +31,7 @@ final class DayOffConfigUpdate
             throw new CalendarNotFoundException();
         }
         
-        $calendarEntity->dayOffConfig()->updateDayOffConfig(
+        $calendarEntity->dayOffConfig()->setDayOffConfig(
             $dayOffConfigRequest->initDateDayOffRequest(),
             $dayOffConfigRequest->endDateDayOffRequest()
         );
