@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Controller;
 
-use App\Calendar\ApplicationService\DayOffConfigUpdate;
+use App\Calendar\ApplicationService\DayOffConfigUpdater;
 use App\Calendar\ApplicationService\DTO\DayOffConfigRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,11 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class DayOffRequestUpdaterController extends AbstractController
 {
-    private DayOffConfigUpdate $dayOffConfigUpdate;
+    private DayOffConfigUpdater $dayOffConfigUpdater;
 
-    public function __construct(DayOffConfigUpdate $dayOffConfigUpdate)
+    public function __construct(DayOffConfigUpdater $dayOffConfigUpdater)
     {
-        $this->dayOffConfigUpdate = $dayOffConfigUpdate;
+        $this->dayOffConfigUpdater = $dayOffConfigUpdater;
     }
 
     /**
@@ -36,8 +36,8 @@ final class DayOffRequestUpdaterController extends AbstractController
             $calendarId
         );
 
-        $dayOffConfigUpdate = $this->dayOffConfigUpdate;
-        $dayOffConfigUpdate->__invoke($dayOffConfigRequest);
+        $dayOffConfigUpdater = $this->dayOffConfigUpdater;
+        $dayOffConfigUpdater->__invoke($dayOffConfigRequest);
 
         return new Response('update day off request in calendar');
     }
