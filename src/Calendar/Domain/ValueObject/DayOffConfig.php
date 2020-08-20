@@ -87,4 +87,11 @@ final class DayOffConfig
 
         return $year < 2019;
     }
+
+    public function updateDayOffConfig(string $initDate, string $endDate): void
+    {
+        $this->guardAreValidDayOffRequestDates($initDate, $endDate);
+        $this->initDateDayOffRequest = new DateTimeImmutable($initDate);
+        $this->endDateDayOffRequest = new DateTimeImmutable($endDate);
+    }
 }
