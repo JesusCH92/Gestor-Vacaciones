@@ -8,13 +8,13 @@ final class DayOffConfigRequest
 {
     private string $initDateDayOffRequest;
     private string $endDateDayOffRequest;
-    private string $calendaId;
+    private string $calendarId;
 
-    public function __construct(string $initDateDayOffRequest, string $endDateDayOffRequest, string $calendaId)
+    public function __construct(string $initDateDayOffRequest, string $endDateDayOffRequest, string $calendarId)
     {
         $this->initDateDayOffRequest = $initDateDayOffRequest;
         $this->endDateDayOffRequest = $endDateDayOffRequest;
-        $this->calendaId = $calendaId;
+        $this->calendarId = $calendarId;
     }
 
     public function initDateDayOffRequest(): string
@@ -27,8 +27,8 @@ final class DayOffConfigRequest
         return $this->endDateDayOffRequest;
     }
 
-    public function calendaId(): string
+    public function calendarId(): string
     {
-        return $this->calendaId;
+        return $this->calendarId;
     }
 }

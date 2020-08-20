@@ -20,7 +20,7 @@ final class DayOffConfigUpdater
 
     public function __invoke(DayOffConfigRequest $dayOffConfigRequest): void
     {
-        $calendarId = $dayOffConfigRequest->calendaId();
+        $calendarId = $dayOffConfigRequest->calendarId();
         if (!Uuid::isValid($calendarId)) {
             throw new CalendarNotFoundException();
         }
