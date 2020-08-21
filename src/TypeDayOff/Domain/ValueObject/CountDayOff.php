@@ -20,7 +20,7 @@ final class CountDayOff
     public function __construct(int $countDayOff)
     {
         $this->guardIsPositive($countDayOff);
-        $this->countDayOff = $countDayOff;
+        $this->setCountDayOff($countDayOff);
     }
 
     private function guardIsPositive(int $count): void
@@ -38,5 +38,10 @@ final class CountDayOff
     public function countDayOff(): int
     {
         return $this->countDayOff;
+    }
+
+    public function setCountDayOff(int $dayOffNumber): void
+    {
+        $this->countDayOff = $dayOffNumber;
     }
 }
