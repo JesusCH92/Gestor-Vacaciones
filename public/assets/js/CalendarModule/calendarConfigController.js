@@ -11,6 +11,7 @@ var calendarConfigController = (function(_calendarId){
     var $workDaysSelect = $("#work-days-select");
     var $feastdayInput = $("#feastday-date");
     var $feastdaySelectedContiner = $("#feastday-list-container");
+    var $feastdayInCalendarContainer = $("#feastday-selected-container");
     
     var _editCalendarModel = editCalendarModel();
 
@@ -99,6 +100,20 @@ var calendarConfigController = (function(_calendarId){
                 container : $feastdaySelectedContiner
             });
         });
+
+        $feastdayInCalendarContainer.click(function() {
+            if ( !$(event.target).hasClass('feastday-delete-btn') ) {
+                return;
+            }
+            var $feastdayItemToDelete = $(event.target).closest("li.feastday-item-calendar");
+            var $feastdayCorpus = {
+                calendarId : calendarId,
+                date : $feastdayItemToDelete.attr("feastday-date")
+            };
+            console.log($feastdayItemToDelete.attr("feastday-date"));
+            _editCalendarModel.deleteFeastday({ feastday : $feastdayCorpus, deleteItem : $feastdayItemToDelete});
+        });
+
 
     };
 
