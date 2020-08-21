@@ -59,7 +59,7 @@ var editCalendarModel = (function() {
         });
     };
 
-    var addFeastday = function({feastday, callback = console.log, container, deleteItem}) {
+    var addFeastday = function ({feastday, callback = console.log, container, deleteItem}) {
         $.ajax({
             type: 'POST',
             url: '/calendar/management/add/feastday',
@@ -78,11 +78,28 @@ var editCalendarModel = (function() {
         });
     };
 
+    var deleteFeastday =  function ({feastday, callback = console.log, deleteItem}) {
+        $.ajax({
+            type: 'DELETE',
+            url: '/calendar/management/delete/feastday',
+            async: true,
+            data: {feastday},
+            success: function(data){
+                callback(data);
+                deleteItem.remove();
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    };
+
     return {
         getCalendarConfigByWorkingYear : getCalendarConfigByWorkingYear,
         updateDayOffRequest : updateDayOffRequest,
         updateWorkDays : updateWorkDays,
         updateTypeDayOffNumber : updateTypeDayOffNumber,
-        addFeastday : addFeastday
+        addFeastday : addFeastday,
+        deleteFeastday : deleteFeastday
     }
 });
