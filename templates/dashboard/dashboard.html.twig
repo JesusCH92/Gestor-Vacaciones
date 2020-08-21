@@ -52,7 +52,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-sm-12">
+            {# <div class="col-md-8 col-sm-12">
                 <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -171,6 +171,9 @@
                 
                     <button type="button" id="history-href" class="btn btn-link">Mi historial de solicitud de vacaciones</button>
                 </div>
+            </div> #}
+            <div class="col-md-8 col-sm-12">
+                {% include 'dayoff_form/calendar/calendar_info.html.twig' %}
             </div>
             <div class="col-md-4 col-sm-12">
                 <h5>Compañeros de la empresa en vacaciones:</h5>
