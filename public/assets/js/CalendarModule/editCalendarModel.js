@@ -44,9 +44,25 @@ var editCalendarModel = (function() {
         });
     };
 
+    var updateTypeDayOffNumber = function ({typeDayOff, callback = console.log}) {
+        $.ajax({
+            type: 'PUT',
+            url: '/calendar/management/typeDayOff',
+            async: true,
+            data: {typeDayOff},
+            success: function(data){
+                callback(data);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    };
+
     return {
         getCalendarConfigByWorkingYear : getCalendarConfigByWorkingYear,
         updateDayOffRequest : updateDayOffRequest,
-        updateWorkDays : updateWorkDays
+        updateWorkDays : updateWorkDays,
+        updateTypeDayOffNumber : updateTypeDayOffNumber
     }
 });
