@@ -23,7 +23,7 @@ final class FeastdayCreator
 
     public function __invoke(FeastdayRequest $feastdayRequest)
     {
-        $calendarId = $feastdayRequest->calendarId();
+        $calendarId = $feastdayRequest->calendarId();   // ! lanzar la excepcion si esl id no es Uuid
         $feastdayDate = $feastdayRequest->feastdayDate();
 
         $calendarEntity = $this->feastdayRepository->getCalendarByCalendarId($calendarId);
