@@ -30,7 +30,6 @@ var calendarConfigController = (function(_calendarId){
         });
 
         $updateWorkingDaysBtn.click( function() {
-            console.log("El Rick más Rick");
             var $workDays = $workDaysSelect.val() === [] ? "" : $workDaysSelect.val();
             var $workDaysCorpus = {
                 calendarId : calendarId,
@@ -38,6 +37,28 @@ var calendarConfigController = (function(_calendarId){
             };
             console.log($workDaysCorpus);
             _editCalendarModel.updateWorkDays({ workDays : $workDaysCorpus });
+        });
+
+        $updateHolidayNumberBtn.click( function() {
+            var $holidayNumberDays = $holidaysNumberInput.val();
+            var $holidayCorpus = {
+                calendarId : calendarId,
+                number : $holidayNumberDays,
+                type : 'Holiday'
+            };
+            console.log($holidayCorpus);
+            _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $holidayCorpus });
+        });
+
+        $updatePersonalDayOffNumberBtn.click( function() {
+            var $personalDayOffNumberDays = $personalDaysNumberInput.val();
+            var $personalDayOffCorpus = {
+                calendarId : calendarId,
+                number : $personalDayOffNumberDays,
+                type : 'Personal'
+            };
+            console.log($personalDayOffCorpus);
+            _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $personalDayOffCorpus });
         });
     };
 
