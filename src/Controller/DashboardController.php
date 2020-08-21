@@ -32,6 +32,11 @@ class DashboardController extends AbstractController
         $calendarConfigResponse = $getCalendarConfig->__invoke($calendar);
 
         $getDatesOfCalendar = $this->getDatesOfCalendar;
+
+        // $feastday = [];
+        // foreach($calendarConfigResponse->feastdayCollection() as $feastdayDate) {
+        //     array_push($feastday, $feastdayDate['date']);
+        // }
         $calendarInfo = $getDatesOfCalendar->__invoke(
             new DateTimeImmutable( $calendarConfigResponse->initDate() ),
             new DateTimeImmutable(  $calendarConfigResponse->endDate() ),
