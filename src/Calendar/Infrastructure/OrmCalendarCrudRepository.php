@@ -7,11 +7,12 @@ namespace App\Calendar\Infrastructure;
 use App\Calendar\Domain\CalendarUpdaterRepository;
 use App\Entity\Calendar;
 use App\Entity\FeastDay;
+use App\Feastday\Domain\FeastdayDeleterRepository;
 use App\Feastday\Domain\FeastdayRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class OrmCalendarCrudRepository implements CalendarUpdaterRepository, FeastdayRepository
+final class OrmCalendarCrudRepository implements CalendarUpdaterRepository, FeastdayRepository, FeastdayDeleterRepository
 {
     private EntityManagerInterface $entityManager;
 
@@ -52,6 +53,12 @@ final class OrmCalendarCrudRepository implements CalendarUpdaterRepository, Feas
     public function saveFeastday(FeastDay $feastdayEntity): void
     {
         $this->entityManager->persist($feastdayEntity);
+        $this->entityManager->flush();
+    }
+
+    public function deleteFeastday(FeastDay $feastdayEntity): void
+    {
+        $this->entityManager->remove($feastdayEntity);
         $this->entityManager->flush();
     }
 }
