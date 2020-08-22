@@ -13,6 +13,37 @@ doctrine:
             App:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/UserRegistration/Domain'
-                prefix: 'App\UserRegistration\Domain'
+                dir: '%kernel.project_dir%/src/User/Domain'
+                prefix: 'App\User\Domain'
                 alias: App
+            Entity:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Entity'
+                prefix: 'App\Entity'
+                alias: Entity
+
+            DayOff:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/DayOff/Domain/ValueObject'
+                prefix: 'App\DayOff\Domain\ValueObject'
+                alias: Embeddable
+            CalendarEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Calendar/Domain/ValueObject'
+                prefix: 'App\Calendar\Domain\ValueObject'
+                alias: CalendarEmbeddable
+            TypeDayOffEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/TypeDayOff/Domain/ValueObject'
+                prefix: 'App\TypeDayOff\Domain\ValueObject'
+                alias: TypeDayOffEmbeddable
+            FeastdayEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Feastday/Domain/ValueObject'
+                prefix: 'App\Feastday\Domain\ValueObject'
+                alias: FeastdayEmbeddable

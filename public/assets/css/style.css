@@ -1,0 +1,445 @@
+*, *:before, *:after {
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+
+body{
+    width: 1024px;
+    height: 100%;
+    font-family: 'Open Sans', sans-serif,'Roboto';
+}
+
+#main-container{
+    padding: 2% 0;
+}
+
+/**Cabecera NavBar**/
+
+
+/** Fin Cabecera NavBar**/
+
+/** ventana notificaciones **/
+.notificaciones-title{
+    border-top: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;    border-left: 1px solid #dddddd;
+    border-top-left-radius: 5px;    border-top-right-radius: 5px;
+    box-shadow: 0px -1px 4px 0 rgba(0,0,0,0.37);
+    text-align: center;
+}
+
+.listado-notificaciones{
+    margin: 0;     padding: 5px;
+    max-height: calc(100vh - 380px);
+    overflow-y: auto;
+}
+
+#informacion-solicitud-usuario, .listado-notificaciones, .formulario-area, .block-formulario, 
+.area-personal-perfil-usuario, .contenedor-dias-vacaciones, .dias-disponibles, #calendar_first{
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    box-shadow : 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+
+.list-group-item.list-group-item-action.list-group-item-light.notificacion-usuario{
+    border: 0;
+}
+/** fin ventana notificaciones **/
+
+/** ventana solicitud-notificacion **/
+
+.datos-usuario{
+    font-weight: bold;
+    font-size: 13px;
+    padding-top: 9px;
+    padding-left: 1px;
+}
+
+#peticion-dias-vacaciones{
+    max-height: 150px;
+    overflow-y: auto;
+}
+.subtitulo-solicitud{
+    font-weight: bold;
+}
+/** fin ventana solicitud-notificacion **/
+
+/**
+Ventana Revistar dias de vacaciones por usuario
+ **/
+.container-table{
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    max-height: 245px;
+    overflow-y: auto;
+}
+.table{
+    max-height: 400px!important;
+}
+
+
+/** Fin ventana Revistar dias de vacaciones por usuario **/
+
+
+/** Ventana alta de usuario**/
+.center-title{
+    text-align: center;
+}
+.block-formulario{
+    padding: 1%;
+}
+
+.container-btn-formulario, .title-block-formulario{
+    padding: 2% 0 0 0;
+}
+/** Fin de la Ventana alta de usuario**/
+
+/** Ventana Perfil Usuario **/
+.logo-usuario{
+    border: 1px solid #dddddd;
+    box-shadow : 0 1px 4px 0 rgba(0,0,0,0.37);
+    width: 100px;    height: 100px;
+    align-items: center;
+}
+
+.area-personal-perfil-usuario{
+    padding: 1%;
+}
+/** Fin de la Ventana Perfil Usuario **/
+
+/**Ventana formulario de las solicitudes de vacaciones**/
+/* #titulo-formulario, #contenedor-area-formulario-vacaciones{
+    display: none;
+} */
+.dias-disponibles{
+    width: 100px; height: 100px;
+    border: 1px solid #dddddd;
+}
+.dias-disponibles-numerico{
+    height: 60%;
+    font-size: 50px;
+}
+.dias-disponibles-cadena{
+    height: 20%;
+}
+.contenedor-dias-vacaciones-seleccionados{
+    max-height: 300px;
+    overflow-y: auto;
+}
+.titulo-formulario, .contenedor-area-formulario-vacaciones{
+    margin: 1% 0;
+}
+.titulo-dias-seleccionados{
+    margin: 4% 8% 0 8%;
+}
+/** Fin de la Ventana formulario de las solicitudes de vacaciones**/
+
+/**Ventana Espacio de trabajo **/
+.title-block-workspace{
+    color: #000000;
+}
+
+/** Estilos Calendario**/
+/* .calendar {
+    margin: auto;
+    font-family:'Muli', sans-serif;
+    font-weight: 400;
+}
+.calendar_content{
+    height: 330px;
+}
+.calendar_content, .calendar_weekdays, .calendar_header {
+    position: relative;
+    overflow: hidden;
+}
+.calendar_weekdays div {
+    display:inline-block;
+    vertical-align:top;
+}
+.calendar_weekdays div, .calendar_content div {
+    width: 14.28571%;
+    height: 20%;
+    overflow: hidden;
+    text-align: center;
+    background-color: transparent;
+    color: #6f6f6f;
+    font-size: 14px;
+}
+.calendar_content div {
+    border: 1px solid transparent;
+    float: left;
+}
+.calendar_content div:hover {
+    border: 1px solid #dcdcdc;
+    cursor: default;
+}
+.calendar_content div.blank:hover {
+    cursor: default;
+    border: 1px solid transparent;
+}
+.calendar_content div.past-date {
+    color: #d5d5d5;
+}
+.calendar_content div.today {
+    font-weight: bold;
+    font-size: 14px;
+    color: #87b633;
+    border: 1px solid #dcdcdc;
+}
+.calendar_content div.selected {
+    background-color: #f0f0f0;
+}
+.calendar_header {
+    width: 100%;
+    text-align: center;
+}
+.calendar_header h2 {
+    padding: 0 10px;
+    font-family:'Muli', sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #4f97e3;
+    float:left;
+    width:70%;
+    margin: 0 0 10px;
+}
+button.switch-month {
+    background-color: transparent;
+    padding: 0;
+    outline: none;
+    border: none;
+    color: #dcdcdc;
+    float: left;
+    width:15%;
+    transition: color .2s;
+}
+button.switch-month:hover {
+    color: #4f97e3;
+} */
+/** Fin Estilos Calendario**/
+
+/*Ventana Espacio de trabajo */
+.title-block-workspace{
+    color: #000000;
+}
+.title-business{
+    vertical-align: text-bottom;
+    text-align: left;
+}
+.title-department{
+    vertical-align: text-bottom;
+    text-align: left;
+    color: gray;
+}
+#format-background1{
+    height: 110px;
+}
+#format-background2{
+    height: 110px;
+}
+#days-holidays{
+    color: #2d77ff;
+}
+.info{
+    color: gray;
+}
+#solicitud-vacaciones-btn{
+    background-color: #2d77ff;
+}
+#history{
+    text-align: right;
+}
+.workspace-calendar{
+    padding-top: 2%;
+}
+.square-legend{
+    width: 10px;
+    height: 10px;
+    background-color: #2d77ff;
+}
+#legend-accept{
+    background-color: #00ff00;
+}
+#legend-denied{
+    background-color: #ff0000;
+}
+#legend-pending{
+    background-color: #ffff00;
+}
+#legend-festive{
+    background-color: #ff6f00;
+}
+#legend-labor{
+    background-color: #75f2ff;
+}
+#legend-non-work{
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
+
+.collapse-dates{
+    background-color: transparent;
+    border: none;
+}
+/* Fin de la ventana espacio de trabajo*/
+
+/** Login Window**/
+
+/* BASIC */
+.h2-login {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display:inline-block;
+    margin: 40px 8px 10px 8px;
+    color: #7f7f7f;
+}
+
+/* STRUCTURE */
+.login-form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+}
+
+/* FORM TYPOGRAPHY*/
+#formContent {
+    border-radius: 10px 10px 10px 10px;
+    background: #fff;
+    max-width: 450px;
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.btn-login{
+    margin: 10px;
+}
+
+.login{
+    background-color: #f6f6f6;
+    border: none;
+    color: #0d0d0d;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    width: 85%;
+}
+.login::placeholder{
+    color: #b8b8b8;
+}
+.login:focus::placeholder{
+    color: #ffffff;
+}
+
+/** End Login window**/
+
+/** Etiqueta de prueba, debe ser eliminada despues de agregar los estilos correspondientes a los iconos**/
+.prova-pencil-icon .oi-pencil{
+    color: red;
+}
+
+/** Edit Calendar View**/
+.feastday-reset-btn, .feastday-add-btn, .feastday-delete-btn{
+    width: 25px;    height: 25px;
+    padding: 0;
+}
+
+.feastday-reset-btn .oi-circle-x, .feastday-delete-btn .oi-circle-x{
+    border-radius: 50%;
+    color: #FF605C;
+    background-color: #ffffff;
+}
+
+.feastday-reset-btn:hover, .feastday-delete-btn:hover{
+    border-color: #f10e42;
+    background-color: #FF605C;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+.feastday-add-btn .oi-circle-check{
+    border-radius: 50%;
+    color: #00CA4E;
+    background-color: #ffffff;
+}
+
+.feastday-add-btn:hover{
+    border-color: #03973c;
+    background-color: #00CA4E;
+    border-width: 2px;
+    border-radius: 50%;
+}
+
+/** Edit Calendar View End**/
+
+/* ! Calendar : refactor names id and class */
+#myCarousel {
+    width: 520px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.carousel-control-prev {
+    margin-left: -15px;
+}
+
+.carousel-control-next {
+    right: auto;
+    margin-left: 575px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='000000' width='10' height='10' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
+}
+/* ! Calendar : refactor names id and class */
+
+/* ! Calendario del carousel: refactor */
+.calendar-month{
+    text-align: center;
+    margin: 10px;
+}
+
+.day-of-week{
+    border-bottom: 2px solid #4f97e3;
+    font-weight: bold;
+
+}
+.day-of-month{
+    padding: 15px;
+}
+
+.no-existing-day{
+    color: white;
+    pointer-events:none;
+}
+.month-of-year{
+    padding: 15px;
+    background-color: #4f97e3;
+    color: white;
+}
+.selectable-day:hover{
+    background-color: #4f97e3;
+    color: white;
+    opacity: 0.5;
+}
+.feastday{
+    color: red;
+    pointer-events:none;
+}
+.no-working-day{
+    color: grey;
+    pointer-events:none;
+}
+
+span.carousel-control-prev-icon{
+    opacity:1 !important;color:red;
+}
+/* ! Fin Calendario del carousel */

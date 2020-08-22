@@ -1,0 +1,50 @@
+<div class="list-group-item">
+    <div class="row">
+        <div class="col-4 text-center">
+            {{ department.departmentName }}
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-md-2">
+                    <a class="btn btn-link prova-pencil-icon" data-toggle="collapse" href="#edit-department-name-container-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditNameDepartment">
+                        <span class="oi oi-pencil" title="Edit department name" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="col-md-10">
+                    <div class="collapse input-group" id="edit-department-name-container-{{ department.departmentId }}">
+                        <input type="text" class="form-control" id="department-rename-input-{{ department.departmentId }}" placeholder="Escribe el nuevo nombre del departamento">
+                        <div class="input-group-append">
+                            <a class="btn btn-outline-info edit-department-name-btn">
+                                <span class="oi oi-check" title="Rename Department" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 text-center">
+            {{ department.departmentCode }}
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <div class="col-md-2">
+                    <a class="btn btn-link" data-toggle="collapse" href="#edit-code-deptartment-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditCodeDepartment">
+                        <span class="oi oi-pencil" title="Edit code department" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="col-md-10">
+                    <div class="collapse input-group" id="edit-code-deptartment-{{ department.departmentId }}">
+                        <input type="text" class="form-control" id="department-rename-input-{{ department.departmentId }}" placeholder="Escribe el nuevo código del departamento">
+                        <div class="input-group-append">
+                            <a class="btn btn-outline-info edit-department-code-btn">
+                                <span class="oi oi-check" title="Rename code department" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,14 +2,85 @@
 
 {% block title %}Register{% endblock %}
 
-{% block body %}
-    <h1>Register</h1>
+{% block main_dashboard %}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+<div class="p-3 mb-3 bg-light rounded">
+    <h3 class="title-block-workspace center-title">Gestion de usuario - Alta</h3>
+</div>
 
-        <button class="btn">Register</button>
+<div id="formulario-area" class="formulario-area container col-xl-8 col-md-10 col-12"><!-- ? Ventana de las Alta Usuario -->
+    {{ form_start(registrationForm, { 'attr': {'class': 'form-register'} }) }}
+    
+    <label class="title-block-formulario subtitulo-solicitud">Datos Personales</label>
+
+    <div class="block-formulario">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                {{ form_label(registrationForm.name, 'Name:') }}
+                {{ form_widget(registrationForm.name, { 'attr': {'placeholder': 'Name'} }) }}
+                {{ form_errors(registrationForm.name) }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form_label(registrationForm.lastname, 'Lastname:') }}
+                {{ form_widget(registrationForm.lastname, { 'attr': {'placeholder': 'Lastname'} }) }}
+            </div>
+
+            <div class="form-group col-md-6">
+                {{ form_label(registrationForm.plainPassword, 'Password:') }}
+                {{ form_widget(registrationForm.plainPassword, { 'attr': {'placeholder': 'Password'} }) }}
+                {{ form_errors(registrationForm.plainPassword) }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form_label(registrationForm.email, 'Email:') }}
+                {{ form_widget(registrationForm.email, { 'attr': {'placeholder': 'Email'} }) }}
+            </div>
+
+            <div class="form-group col-md-6">
+                {{ form_label(registrationForm.phone, 'Phone:') }}
+                {{ form_widget(registrationForm.phone, { 'attr': {'placeholder': 'Phone'} }) }}
+            </div>
+        </div>
+
+    </div>
+
+    <label class="title-block-formulario subtitulo-solicitud">Datos de la Empresa</label>
+
+    <div class="block-formulario">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                {{ form_label(registrationForm.company, 'Company:') }}
+                {# {{ form_widget(registrationForm.company, { 'attr': {'disabled': 'true'} }) }} #}
+                {{ form_widget(registrationForm.company) }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form_label(registrationForm.department, 'Department:') }}
+                {{ form_widget(registrationForm.department) }}
+            </div>
+
+            <div class="form-group col-md-6">
+                {{ form_label(registrationForm.roles, 'Roles:') }}
+                {{ form_widget(registrationForm.roles) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row container-btn-formulario">
+        <div class="form-group col-md-12 d-flex justify-content-center">
+            <button type="submit" class="btn btn-outline-primary">ALTA</button>
+        </div>
+    </div>
+
     {{ form_end(registrationForm) }}
+
+</div>
+
 {% endblock %}
