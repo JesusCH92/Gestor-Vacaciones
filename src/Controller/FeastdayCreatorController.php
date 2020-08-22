@@ -39,7 +39,7 @@ final class FeastdayCreatorController extends AbstractController
         $feastdayCreated = $feastdayCreator->__invoke($feastdayRequest);
 
         $feastdayTemplate = $this->render('calendar_management/feastday_item/feastday_item.html.twig', [
-            'feastday' => $feastdayCreated,
+            'feastday' => $feastdayCreated->date(),
         ])->getContent();
 
         return new JsonResponse([
