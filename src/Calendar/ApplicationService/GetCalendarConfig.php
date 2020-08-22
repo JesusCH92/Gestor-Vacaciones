@@ -54,10 +54,7 @@ final class GetCalendarConfig
 
         foreach($feastdayEntities as $feasday){
             array_push($feastdayCollection, 
-                [
-                    'id' => $feasday->feastdayId(),
-                    'date' => $feasday->feastdayDate()->feastdayDate()->format('Y-m-d')
-                ]
+                $feasday->feastdayDate()->feastdayDate()->format('Y-m-d')
             );
         }
 
