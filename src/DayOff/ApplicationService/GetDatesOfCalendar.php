@@ -83,7 +83,7 @@ final class GetDatesOfCalendar
             foreach ($feastdays as $feastday) {
                 // dump($date->format('Y-m-d'));
                 // dump($feastday['date']);exit;
-                if ($date->format('Y-m-d') === $feastday['date']) {
+                if ($date->format('Y-m-d') === $feastday) {
                     $isFeastday = true;
                 }
             }
