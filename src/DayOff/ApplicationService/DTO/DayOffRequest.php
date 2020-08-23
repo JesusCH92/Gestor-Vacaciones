@@ -3,61 +3,62 @@
 
 namespace App\DayOff\ApplicationService\DTO;
 
-
+use App\Entity\Calendar;
 use App\User\Domain\User;
 
 final class DayOffRequest
 {
     private User $user;
-    private string $typeDayOff;
-    private int $countDayOffRequest;
-    private array $daysOff;
-
+    private Calendar $calendar;
+    private string $typeDayOffSelected;
+    private array $daysOffSelected;
+    private array $typeDayOffCollection;
+    private array $feastdaysCollection;
 
     public function __construct(
         User $user,
-        string $typeDayOff,
-        int $countDayOffRequest,
-        array $daysOff
+        Calendar $calendar,
+        string $typeDayOffSelected,
+        array $daysOffSelected,
+        array $typeDayOffCollection,
+        array $feastdaysCollection
     ) {
         $this->user = $user;
-        $this->typeDayOff = $typeDayOff;
-        $this->countDayOffRequest = $countDayOffRequest;
-        $this->daysOff = $daysOff;
+        $this->calendar = $calendar;
+        $this->typeDayOffSelected = $typeDayOffSelected;
+        $this->daysOffSelected = $daysOffSelected;
+        $this->typeDayOffCollection = $typeDayOffCollection;
+        $this->feastdaysCollection = $feastdaysCollection;
     }
 
-    /**
-     * @return User
-     */
     public function user(): User
     {
         return $this->user;
     }
 
-    /**
-     * @return string
-     */
-    public function typeDayOff(): string
+    public function calendar(): Calendar
     {
-        return $this->typeDayOff;
+        return $this->calendar;
     }
 
-
-    /**
-     * @return int
-     */
-    public function countDayOffRequest(): int
+    public function typeDayOffSelected(): string
     {
-        return $this->countDayOffRequest;
+        return $this->typeDayOffSelected;
     }
 
-    /**
-     * @return array
-     */
-    public function daysOff(): array
+    public function daysOffSelected(): array
     {
-        return $this->daysOff;
+        return $this->daysOffSelected;
     }
 
+    public function typeDayOffCollection(): array
+    {
+        return $this->typeDayOffCollection;
+    }
+
+    public function feastdaysCollection(): array
+    {
+        return $this->feastdaysCollection;
+    }
 
 }
