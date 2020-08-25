@@ -25,7 +25,7 @@ class DayOffFormRequest
     private $dayOffForm;
 
 
-    /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\DayOffSelected", columnPrefix = false) */
+    /** @ORM\Embedded(class = "App\DayOffForm\Domain\ValueObject\DayOffSelected", columnPrefix = false) */
     private $dayOffSelected;
 
     /**
