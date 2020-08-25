@@ -379,16 +379,16 @@ button.switch-month:hover {
 
 /** Edit Calendar View End**/
 
-/*  Calendar carousel */
-.container-carousel-of-dates{
+/**  Calendar carousel **/
+/* .container-carousel-of-dates{
     width: 565px;
     text-align: center;
-}
+} */
 
 #datesCarousel {
-    text-align: center;
-    width: 525px;
-
+    /* text-align: center; */
+    width: 560px;
+    padding-left: 20px;
 }
 .carousel-control-prev-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
@@ -399,14 +399,14 @@ button.switch-month:hover {
 }
 
 .carousel-control-prev {
-    margin-left: -20px;
+    /* margin-left: -20px; */
     width: 20px;
 }
 
 .carousel-control-next {
     right: auto;
     width: 20px;
-    margin-left: 525px;
+    margin-left: 540px;
 }
 
 /* ! Calendar : refactor names id and class */
@@ -428,7 +428,7 @@ button.switch-month:hover {
 
 .no-existing-day{
     color: white;
-    pointer-events:none;
+    /* pointer-events:none; */
 }
 .month-of-year{
     padding: 15px;
@@ -443,11 +443,11 @@ button.switch-month:hover {
 }
 .feastday{
     color: red;
-    pointer-events:none;
+    /* pointer-events:none; */
 }
 .no-working-day{
     color: grey;
-    pointer-events:none;
+    /* pointer-events:none; */
 }
 
 /* ! Fin Calendario del carousel */
