@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DayOff\Domain;
+namespace App\DayOffForm\Domain;
 
 
 use App\Entity\DayOffForm;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DayOff\ApplicationService\DTO;
+namespace App\DayOffForm\ApplicationService\DTO;
 
 use App\Entity\Calendar;
 use App\User\Domain\User;

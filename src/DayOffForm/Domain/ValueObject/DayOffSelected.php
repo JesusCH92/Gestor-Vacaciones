@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DayOff\Domain\ValueObject;
+namespace App\DayOffForm\Domain\ValueObject;
 
 use App\DayOff\Domain\Exception\InvalidDateTypeException;
 use App\DayOff\Domain\Exception\InvalidDayOffSelectedException;

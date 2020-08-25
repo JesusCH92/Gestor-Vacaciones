@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DayOff\Domain\ValueObject;
+namespace App\DayOffForm\Domain\ValueObject;
 
 use Doctrine\ORM\Mapping as ORM;
 

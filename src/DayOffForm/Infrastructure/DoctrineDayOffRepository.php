@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DayOff\Infrastructure;
+namespace App\DayOffForm\Infrastructure;
 
 
 use App\DayOff\Domain\DayOffRepository;

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\DayOff\ApplicationService\DTO;
+namespace App\DayOffForm\ApplicationService\DTO;
 
 final class DatesOfCalendarResponse
 {

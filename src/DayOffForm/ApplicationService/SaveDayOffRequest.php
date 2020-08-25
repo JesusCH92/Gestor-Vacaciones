@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DayOff\ApplicationService;
+namespace App\DayOffForm\ApplicationService;
 
 use App\DayOff\ApplicationService\DTO\DayOffRequest;
 use App\DayOff\Domain\DayOffRepository;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\DayOff\Domain\Exception;
+namespace App\DayOffForm\Domain\Exception;
 
 use Exception;
 use Throwable;
