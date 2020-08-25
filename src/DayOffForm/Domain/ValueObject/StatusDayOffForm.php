@@ -8,25 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 /** @ORM\Embeddable */
 final class StatusDayOffForm
 {
-
     const STATUS = [
-        'HOLIDAY' => [
-            'ROLE_USER' => 'PENDING',
-            'ROLE_SUPERVISOR' => 'ACCEPTED'
-        ],
-        'PERSONAL' => [
-            'ROLE_USER' => 'PENDING',
-            'ROLE_SUPERVISOR' => 'ACCEPTED'
-        ],
-        'OTHER' => [
-            'ROLE_USER' => 'PENDING',
-            'ROLE_SUPERVISOR' => 'ACCEPTED'
-        ],
-        'SICK LEAVE' => [
-            'ROLE_USER' => 'PENDING',
-            'ROLE_SUPERVISOR' => 'ACCEPTED'
-        ]
+        'ROLE_USER' => 'PENDING',
+        'ROLE_SUPERVISOR' => 'APPROVED'
     ];
+
     /**
      * @ORM\Column(type="string",name="status_day_off_form", length=15)
      */
@@ -46,18 +32,18 @@ final class StatusDayOffForm
         return $this->statusDayOffForm;
     }
 
-    public function statusByUserRole(string $type, string $role): void
+    public function statusByUserRole( string $role): void
     {
-        $this->statusDayOffForm = self::STATUS[$type][$role];
+        $this->statusDayOffForm = self::STATUS[$role];
     }
 
     public function acceptDayOff(): self
     {
-        return new self('ACCEPTED');
+        return new self('APPROVED');
     }
 
     public function denyDayOff(): self
     {
-        return new self('DENIED');
+        return new self('REJECTED');
     }
 }
