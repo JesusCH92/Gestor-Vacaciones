@@ -11,40 +11,79 @@ use App\DayOffForm\Domain\ValueObject\DayOffSelected;
 use App\DayOffForm\Domain\ValueObject\StatusDayOffForm;
 use App\Entity\DayOffForm;
 use App\Entity\DayOffFormRequest;
+use DateTimeImmutable;
 
 final class SaveDayOffRequest
 {
-    private DayOffRepository $dayOffCrudRepository;
+    private DayOffRepository $dayOffRepository;
 
-    public function __construct(DayOffRepository $dayOffCrudRepository)
+    public function __construct(DayOffRepository $dayOffRepository)
     {
-        $this->dayOffCrudRepository = $dayOffCrudRepository;
+        $this->dayOffRepository = $dayOffRepository;
     }
 
     public function __invoke(DayOffRequest $dayOffRequest): void
     {
-        $statusDayOffForm = new StatusDayOffForm();
-        $statusDayOffForm->statusByUserRole($dayOffRequest->typeDayOff(), $dayOffRequest->user()->getRoles()[0]);
+        $dayOffFormCollection = $this->dayOffRepository->findByUserAndStatusDayOffForm($dayOffRequest->user(), $dayOffRequest->typeDayOffSelected());
 
-        $countDayOffRequest = new  CountDayOffRequest($dayOffRequest->countDayOffRequest());
-        $countDayOffRequest->checkCountDaysSelected($dayOffRequest->typeDayOff(),30);
-        $dayOffForm = new DayOffForm(
-            $dayOffRequest->typeDayOff(),
+        $remainingDays = $this->calculateRemainingDaysByType($dayOffFormCollection, $dayOffRequest->typeDayOffCollection()[$dayOffRequest->typeDayOffSelected()]);
+
+        $dayOffForm = $this->mappingDayOffFormFromDayOffRequest($dayOffRequest, $remainingDays);
+        $dayOffRequestCollection = $this->mappingDayOffFormRequestFromDayOffRequest($dayOffRequest, $dayOffForm);
+
+        $this->dayOffRepository->saveDayOffForm($dayOffForm, $dayOffRequestCollection);
+
+    }
+
+    public function calculateRemainingDaysByType(array $dayOffFormCollection, int $totalCount)
+    {
+        $count = 0;
+        if (!empty($dayOffFormCollection)) {
+            foreach ($dayOffFormCollection as $dayOffForm) {
+                $count += $dayOffForm['countDayOffRequest.countDayOffRequest'];
+            }
+            return $totalCount - $count;
+        }
+        return $totalCount;
+    }
+
+    public function mappingDayOffFormFromDayOffRequest(DayOffRequest $dayOffRequest, int $remainingDays): DayOffForm
+    {
+        $statusDayOffForm = new StatusDayOffForm();
+        $statusDayOffForm->statusByUserRole($dayOffRequest->user()->getRoles()[0]);
+
+        $countDayOffRequest = new  CountDayOffRequest(count($dayOffRequest->daysOffSelected()));
+        $countDayOffRequest->checkCountDaysSelected($dayOffRequest->typeDayOffSelected(), $remainingDays);
+
+        return new DayOffForm(
+            $dayOffRequest->typeDayOffSelected(),
             $statusDayOffForm,
             null,
             $countDayOffRequest,
+            new DateTimeImmutable(),
             $dayOffRequest->user(),
-            null
+            null,
+            $dayOffRequest->calendar()
 
         );
-        $this->dayOffCrudRepository->saveDayOffForm($dayOffForm);
+    }
 
-        foreach ($dayOffRequest->daysOff() as $dayOff) {
+    public function mappingDayOffFormRequestFromDayOffRequest(DayOffRequest $dayOffRequest, DayOffForm $dayOffForm): array
+    {
+        $dayOffFormRequestCollection = [];
+
+        foreach ($dayOffRequest->daysOffSelected() as $dayOff) {
+
+            $initDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->initDateDayOffRequest();
+            $endDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->endDateDayOffRequest();
+
             $dayOffSelected = new DayOffSelected($dayOff);
-            $dayOffSelected->isCorrectDaySelectedTiming(new \DateTime('2021-01-01'), new \DateTime('2022-01-01'));
-            $daysOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelected);
+            $dayOffSelected->isCorrectDaySelectedTiming($initDateDayOffRequest, $endDateDayOffRequest);
 
-            $this->dayOffCrudRepository->saveDayOffFormRequest($daysOfFormRequest);
+            $dayOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelected);
+
+            array_push($dayOffFormRequestCollection, $dayOfFormRequest);
         }
+        return $dayOffFormRequestCollection;
     }
 }
