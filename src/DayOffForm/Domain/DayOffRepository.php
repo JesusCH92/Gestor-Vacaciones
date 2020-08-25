@@ -11,6 +11,6 @@ use App\User\Domain\User;
 interface DayOffRepository
 {
     public function findOne(User $userId);
-    public function saveDayOffForm(DayOffForm $dayOffForm);
-    public function saveDayOffFormRequest(DayOffFormRequest $dayOffFormRequest);
+    public function saveDayOffForm(DayOffForm $dayOffForm, array $dayOffFormRequestCollection);
+    public function findByUserAndStatusDayOffForm(User $user);
 }
