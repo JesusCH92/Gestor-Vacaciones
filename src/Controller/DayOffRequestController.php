@@ -34,7 +34,8 @@ final class DayOffRequestController extends AbstractController
 
         $request = $request->get('day_off_request');
 
-        $calendarId = "5e33d004-4145-40ab-8d08-7bee1854e03a";
+        //$calendarId = "5e33d004-4145-40ab-8d08-7bee1854e03a";
+        $calendarId = $request['id_calendar'];
         $calendarRequest = new CalendarConfigRequest($calendarId);
 
         $getCalendarById = $this->getCalendarById;
@@ -55,6 +56,7 @@ final class DayOffRequestController extends AbstractController
             )
         );
 
+        //var_dump($calendar);
         return Response::create('??');
     }
 }
