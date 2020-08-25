@@ -5,16 +5,10 @@ declare(strict_types = 1);
 namespace App\DayOffForm\ApplicationService;
 
 use App\DayOffForm\ApplicationService\DTO\DatesOfCalendarResponse;
-use DatePeriod;
-use DateTime;
 use DateTimeImmutable;
 
 final class GetDatesOfCalendar
 {
-
-    public function __construct()
-    {
-    }
 
     public function __invoke(DateTimeImmutable $init_date, DateTimeImmutable $end_date, array $feastdays): array
     {
