@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService;
 
-use App\DayOff\ApplicationService\DTO\DayOffRequest;
-use App\DayOff\Domain\DayOffRepository;
-use App\DayOff\Domain\ValueObject\CountDayOffRequest;
-use App\DayOff\Domain\ValueObject\DayOffSelected;
-use App\DayOff\Domain\ValueObject\StatusDayOffForm;
+use App\DayOffForm\ApplicationService\DTO\DayOffRequest;
+use App\DayOffForm\Domain\DayOffRepository;
+use App\DayOffForm\Domain\ValueObject\CountDayOffRequest;
+use App\DayOffForm\Domain\ValueObject\DayOffSelected;
+use App\DayOffForm\Domain\ValueObject\StatusDayOffForm;
 use App\Entity\DayOffForm;
 use App\Entity\DayOffFormRequest;
 

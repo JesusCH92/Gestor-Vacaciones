@@ -4,7 +4,7 @@
 namespace App\DayOffForm\Infrastructure;
 
 
-use App\DayOff\Domain\DayOffRepository;
+use App\DayOffForm\Domain\DayOffRepository;
 use App\Entity\DayOffForm;
 use App\Entity\DayOffFormRequest;
 use App\User\Domain\User;

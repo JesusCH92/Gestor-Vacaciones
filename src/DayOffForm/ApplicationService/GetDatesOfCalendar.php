@@ -4,16 +4,13 @@ declare(strict_types = 1);
 
 namespace App\DayOffForm\ApplicationService;
 
-use App\DayOff\ApplicationService\DTO\DatesOfCalendarResponse;
+use App\DayOffForm\ApplicationService\DTO\DatesOfCalendarResponse;
 use DatePeriod;
+use DateTime;
 use DateTimeImmutable;
 
 final class GetDatesOfCalendar
 {
-    private $yearArray = [];
-    private $monthArray;
-    private $datesArray = [];
-    private $month;
 
     public function __construct()
     {
@@ -22,21 +19,21 @@ final class GetDatesOfCalendar
     public function __invoke(DateTimeImmutable $init_date, DateTimeImmutable $end_date, array $feastdays): array
     {
         $year = $init_date->format('Y');
-        $this->month = $init_date->format('m');
-        $this->monthArray = [
+        $month = $init_date->format('m');
+        $monthArray = [
             'year' => $year,
-            'month' => $this->month,
+            'month' => $month,
             'week' => []
         ];
 
         $datePeriod = $this->daysInBetween($init_date, $end_date);
-        $this->saveInArrayPeriodOfTime($datePeriod,$feastdays);
+        $yearArray =$this->saveMonthsInArray($datePeriod, $feastdays, $month, $monthArray);
 
         $calendarDatesResponse = [];
         // $calendarDatesFormat = new DatesOfCalendarResponse(
 
         // )
-        foreach ($this->yearArray as $monthCalendar) {
+        foreach ($yearArray as $monthCalendar) {
             array_push($calendarDatesResponse, new DatesOfCalendarResponse(
                 $monthCalendar['year'],
                 $monthCalendar['month'],
@@ -46,7 +43,7 @@ final class GetDatesOfCalendar
         return $calendarDatesResponse;
     }
 
-    public function daysInBetween($init_date, $end_date): DatePeriod
+    public function daysInBetween($init_date, $end_date)
     {
         return new \DatePeriod(
             $init_date,
@@ -55,54 +52,66 @@ final class GetDatesOfCalendar
         );
     }
 
-    public function checkMonth(DateTimeImmutable $date)
+    public function checkDiferentMonth(DateTimeImmutable $date, string $month)
     {
-        if ($date->format('m') != $this->month) {
-            array_push($this->yearArray, $this->monthArray);
-
-            $year = $date->format('Y');
-            $this->month = $date->format('m');
-
-            $this->monthArray = [
-                'year' => $year,
-                'month' => $this->month,
-                'week' => []
-            ];
-
-            $this->datesArray = [];
+        if ($date->format('m') != $month) {
+            return true;
         }
+        return false;
     }
 
-    public function saveInArrayPeriodOfTime($datePeriod,$feastdays)
+    public function saveMonthsInArray($datePeriod, $feastdays, $month, $monthArray)
     {
+        $yearArray = [];
+        $datesArray = [];
         foreach ($datePeriod as $date) {
-            $this->checkMonth($date);
+            if ($this->checkDiferentMonth($date, $month)) {
+                array_push($yearArray, $monthArray);
 
-            $isFeastday = false;
+                $year = $date->format('Y');
+                $month = $date->format('m');
 
-            foreach ($feastdays as $feastday) {
-                // dump($date->format('Y-m-d'));
-                // dump($feastday['date']);exit;
-                if ($date->format('Y-m-d') === $feastday) {
-                    $isFeastday = true;
-                }
+                $monthArray = [
+                    'year' => $year,
+                    'month' => $month,
+                    'week' => []
+                ];
+
+                $datesArray = [];
             }
-            // if (in_array($date->format('Y-m-d'), $feastdays)) {
-            //     $isFeastday = true;
-            // }
 
-            $dayOfWeek = date("w", strtotime($date->format('Y-m-d')));
-
-            $dayArray = [
-                'date' => $date->format('Y-m-d'),
-                'day' => $dayOfWeek,
-                'feastday' => $isFeastday
-            ];
-
-            array_push($this->datesArray, $dayArray);
-            $this->monthArray['week'] = $this->datesArray;
+            $dayArray = $this->saveWeeksInArray($feastdays, $date);
+            array_push($datesArray, $dayArray);
+            $monthArray['week'] = $datesArray;
 
         }
-        array_push($this->yearArray, $this->monthArray);
+        array_push($yearArray, $monthArray);
+        return $yearArray;
+    }
+
+    public function saveWeeksInArray(array $feastdays, DateTimeImmutable $date)
+    {
+
+        $isFeastday= $this->isFeastDay($feastdays, $date);
+        $dayOfWeek = date("w", strtotime($date->format('Y-m-d')));
+
+        $dayArray = [
+            'date' => $date->format('Y-m-d'),
+            'day' => $dayOfWeek,
+            'feastday' => $isFeastday
+        ];
+        return $dayArray;
+    }
+
+    public function isFeastDay(array $feastdays, DateTimeImmutable $date)
+    {
+        $isFeastday = false;
+
+        foreach ($feastdays as $feastday) {
+            if ($date->format('Y-m-d') == $feastday) {
+                $isFeastday = true;
+            }
+        }
+        return $isFeastday;
     }
 }
