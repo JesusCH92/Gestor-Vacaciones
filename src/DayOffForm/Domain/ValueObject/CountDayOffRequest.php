@@ -3,7 +3,7 @@
 
 namespace App\DayOffForm\Domain\ValueObject;
 
-use App\DayOff\Domain\Exception\InvalidCountDayOffRequest;
+use App\DayOffForm\Domain\Exception\InvalidCountDayOffRequest;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @ORM\Embeddable */

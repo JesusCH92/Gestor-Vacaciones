@@ -3,8 +3,8 @@
 
 namespace App\DayOffForm\Domain\ValueObject;
 
-use App\DayOff\Domain\Exception\InvalidDateTypeException;
-use App\DayOff\Domain\Exception\InvalidDayOffSelectedException;
+use App\DayOffForm\Domain\Exception\InvalidDateTypeException;
+use App\DayOffForm\Domain\Exception\InvalidDayOffSelectedException;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
