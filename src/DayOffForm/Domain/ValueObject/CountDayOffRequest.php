@@ -28,26 +28,20 @@ final class CountDayOffRequest
 
     public function checkCountDaysSelected(string $typeDayOff, int $remainingDaysByType): void
     {
-        if ('HOLIDAY' === $typeDayOff) {
+        if ('Holiday' === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
                 throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
 
         }
 
-        if ('PERSONAL' === $typeDayOff) {
+        if ('Personal' === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
                 throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
 
         }
 
-        if ('OTHER' === $typeDayOff) {
-            if ($this->countDayOffRequest > $remainingDaysByType) {
-                throw new InvalidCountDayOffRequest($remainingDaysByType);
-            }
-
-        }
 
     }
 
