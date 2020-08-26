@@ -26,7 +26,7 @@ final class DayOffRequestController extends AbstractController
     }
 
     /**
-     * @Route("/dayoff/add", options={"expose"=true}, name="app_day_off")
+     * @Route("/dayoff/add", options={"expose"=true}, name="app_dayoff_request")
      */
     public function dayOff(Request $request)
     {
