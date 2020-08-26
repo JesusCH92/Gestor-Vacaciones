@@ -5,6 +5,7 @@ namespace App\DayOffForm\Infrastructure;
 
 
 use App\DayOffForm\Domain\DayOffRepository;
+use App\Entity\Calendar;
 use App\Entity\DayOffForm;
 use App\Entity\DayOffFormRequest;
 use App\User\Domain\User;
@@ -25,7 +26,7 @@ final class DoctrineDayOffRepository implements DayOffRepository
         return $dayOffRepository->findBy(['idUser' => $user]);
     }
 
-    public function findByUserAndStatusDayOffForm(User $user, string $typeDayOffForm): array
+    public function findByUserAndStatusDayOffForm(User $user,Calendar $calendar, string $typeDayOffForm): array
     {
         $query = $this
             ->entityManager
@@ -33,11 +34,12 @@ final class DoctrineDayOffRepository implements DayOffRepository
                 <<<DQL
 SELECT d.countDayOffRequest.countDayOffRequest
 FROM App\Entity\DayOffForm d
-WHERE d.user = :user AND d.typeDayOff = :type AND (d.statusDayOffForm.statusDayOffForm = :approved OR d.statusDayOffForm.statusDayOffForm = :pending )
+WHERE d.user = :user AND d.calendar = :calendar AND d.typeDayOff = :type AND (d.statusDayOffForm.statusDayOffForm = :approved OR d.statusDayOffForm.statusDayOffForm = :pending )
 DQL
             )->setParameters(
                 [
                     'user' => $user,
+                    'calendar' => $calendar,
                     'type' => $typeDayOffForm,
                     'approved' => 'APPROVED',
                     'pending' => 'PENDING'
