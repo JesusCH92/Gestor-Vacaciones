@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} - Profile{% endblock %}
+{% block stylesheets %} {{ parent() }} {% endblock %}
+
+{% block main_dashboard %}
+    <div class="p-3 mb-3 bg-light rounded">
+        <h3 class="title-block-workspace">Seleciona tus días de vacaciones</h3>
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-1">
+                <h4>Año:</h4>
+            </div>
+            <div class="col-2">
+                <select class="form-control">
+                    <option value="actual-year">{{ year }}</option>
+                    <option value="year-before">{{ year-1 }}</option>
+                </select>
+
+            </div>
+
+            <div class="col-3">
+                <h4>Fecha disponible:</h4>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="row"><h6>{{ calendar.initDate }}</h6></div>
+                </div>
+                <div class="row">
+                    <div class="row"><h6>{{ calendar.endDate }}</h6></div>
+                </div>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+                <div class="rounded dias-disponibles container">
+                    <div class="row dias-disponibles-numerico"><p class="tex-center mx-auto">{{ calendar.typeDayOffCollection.Holiday }}</p></div>
+                    <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">días de</p></div>
+                    <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">vacaciones</p></div>
+                </div>
+            </div>
+            <div class="col-2 d-flex align-items-center">
+                <div class="rounded dias-disponibles container">
+                    <div class="row dias-disponibles-numerico"><p class="tex-center mx-auto">{{ calendar.typeDayOffCollection.Personal }}</p></div>
+                    <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">días</p></div>
+                    <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">personales</p></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    </div>
+    <div class="row contenedor-area-formulario-vacaciones" id="contenedor-area-formulario-vacaciones">
+        <div class="container my-2">
+            <h5>Seleccionar un rango de fechas para solicitar vacaciones</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="start">Primer día de vacaciones:</label>
+                    <input type="date" id="start" class="form-control" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
+                </div>
+                <div class="col-md-6">
+                    <label for="end">Último día de vacaciones:</label>
+                    <input type="date" id="end" class="form-control" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-8 col-md-10 col-12 container my-2"><!-- ? Calendario-->
+
+            {% include 'dayoff_form/calendar/calendar_info.html.twig' %}
+
+        </div><!-- ? Fin del Calendario-->
+
+        <div class="col-xl-4 col-md-8 col-12 container my-2">
+
+            <div class="container contenedor-dias-vacaciones">
+
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label class="titulo-dias-seleccionados" id="year-selected">Year selected: {{ year }}</label>
+
+                            <label for="exampleFormControlSelect1">Solicitar días de:</label>
+                            <select class="form-control" id="exampleFormControlSelect1">
+                                <option value="code-holiday">Días de Vacaciones</option>
+                                <option value="code-personal-day">Días Personales</option>
+                                <option value="code-personal-day">Baja Laboral</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label class="titulo-dias-seleccionados">Días seleccionados: 2</label>
+                        <div class="card-body contenedor-dias-vacaciones-seleccionados">
+                            <ul class="list-group">
+
+                                <li class="list-group-item">2020-05-04</li>
+                                <li class="list-group-item">2020-05-11</li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="form-row container-btn-formulario">
+                        <div class="form-group col-md-12 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary" >
+                                <span class="iconify-inline" data-icon="bi:plus-circle"></span>Save</button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="iconify-inline" data-icon="carbon:save"></span></button>
+                            <a class="btn btn-link feastday-reset-btn my-auto">
+                                <span class="iconify-inline" data-icon="carbon:save"></span>
+                            </a>
+                            <a class="btn btn-link feastday-reset-btn my-auto">
+                                <span class="iconify iconify-inline" data-icon="bytesize:edit"></span>Edit
+                            </a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- <script src="/../assets/js/UserModule/UserModule.js"></script> -->
+
+{% endblock %}
