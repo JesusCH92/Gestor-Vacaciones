@@ -10,5 +10,6 @@ use App\Entity\Calendar;
 interface CalendarRepository
 {
     public function findCalendarByWorkingYear(CalendarRequest $calendarRequest): ?Calendar;
+    public function findCalendarByYear(int $year): ?Calendar;
     public function saveCalendarConfig(Calendar $calendar, array $typeDayOffCollection, array $feastdayCollection): void;
 }

@@ -61,4 +61,18 @@ final class OrmCalendarRepository implements CalendarRepository
         $this->saveTypeDayOffCollection($typeDayOffCollection);
         $this->saveFeastdayCollection($feastdayCollection);
     }
+
+    public function findCalendarByYear(int $year): ?Calendar
+    {
+        $calendarRepository = $this->entityManager->getRepository(Calendar::class);
+        $calendar = $calendarRepository->findBy(
+            [
+                'workingYear.workingYear' => $year
+            ]
+        );
+
+        $calendarEntity = [] === $calendar ? null : $calendar[0];
+
+        return $calendarEntity;
+    }
 }
