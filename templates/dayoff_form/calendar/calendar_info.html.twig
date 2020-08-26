@@ -1,6 +1,6 @@
 {# {% set workingDays = ['1','2','3','4','5'] %} #}
 <div class="form-group">
-    <label>Seleccionar los días festivos del calendario</label>
+    <h5>Seleccionar fechas para solicitar vacaciones</h5>
     <div class="container-carousel-of-dates  d-flex justify-content-center align-items-center">
         <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-interval="false">
             <div class="carousel-inner" id="datesCarousel">
@@ -8,7 +8,8 @@
                     <div class="carousel-item {% if month.month== "now"|date("m") %} active {% endif %}">
                         <div class="container calendar-month">
                             <div class="row">
-                                <div class="col calendar-month month-of-year">{{ month.month }}-{{ month.year }}</div>
+
+                                <div class="col calendar-month month-of-year">{{ month.month }} - {{ month.year }}</div>
                             </div>
                             <div class="row day-of-week">
                                 <div class="col calendar-month day-of-month">do</div>
