@@ -24,7 +24,7 @@ final class SaveDayOffRequest
 
     public function __invoke(DayOffRequest $dayOffRequest): void
     {
-        $dayOffFormCollection = $this->dayOffRepository->findByUserAndStatusDayOffForm($dayOffRequest->user(), $dayOffRequest->typeDayOffSelected());
+        $dayOffFormCollection = $this->dayOffRepository->findByUserAndStatusDayOffForm($dayOffRequest->user(), $dayOffRequest->calendar(), $dayOffRequest->typeDayOffSelected());
 
         $remainingDays = $this->calculateRemainingDaysByType($dayOffFormCollection, $dayOffRequest->typeDayOffCollection()[$dayOffRequest->typeDayOffSelected()]);
 
