@@ -5,7 +5,7 @@
         <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-interval="false">
             <div class="carousel-inner" id="datesCarousel">
                 {% for month in calendar_info %}
-                    <div class="carousel-item {% if month.month==02 %} active {% endif %}">
+                    <div class="carousel-item {% if month.month== "now"|date("m") %} active {% endif %}">
                         <div class="container calendar-month">
                             <div class="row">
                                 <div class="col calendar-month month-of-year">{{ month.month }}-{{ month.year }}</div>
