@@ -5,32 +5,49 @@ namespace App\Calendar\ApplicationService;
 
 
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
-use App\Calendar\ApplicationService\DTO\CalendarRequest;
 use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
-use App\Calendar\Domain\CalendarConfigRepository;
 use App\Calendar\Domain\CalendarRepository;
 
 final class GetCalendarByYear
 {
     private CalendarRepository $calendarRepository;
-    private GetCalendarConfig $getCalendarConfig;
 
-    public function __construct(CalendarRepository $calendarRepository, GetCalendarConfig $getCalendarConfig)
+    public function __construct(CalendarRepository $calendarRepository)
     {
         $this->calendarRepository = $calendarRepository;
-        $this->getCalendarConfig = $getCalendarConfig;
     }
 
     public function __invoke(int $year)
     {
-        $calendar = $this->calendarRepository->findCalendarByYear($year);
-        if ($calendar == null){
+        $calendarCollection=[];
+        $calendarCollection = $this->actualYear($year,$calendarCollection);
+        $calendarCollection = $this->yearBefore($year - 1,$calendarCollection);
+
+        return $calendarCollection;
+
+    }
+
+    public function actualYear(int $actualYear, array $calendarCollection)
+    {
+        $calendar = $this->calendarRepository->findCalendarByYear($actualYear);
+        if ($calendar == null) {
             throw new CalendarNotFoundException();
         }
-        $calendarConfigRequest = new CalendarConfigRequest($calendar->calendarId());
-        $getCalendarConfig = $this->getCalendarConfig;
-        return $getCalendarConfig->__invoke($calendarConfigRequest);
+        $calendarArray = ['workingYear'=>$calendar->workingYear()->workingYear(),
+            'calendarId'=>$calendar->calendarId()];
+        array_push($calendarCollection,$calendarArray);
+        return $calendarCollection;
+    }
 
+    public function yearBefore(int $yearBefore, array $calendarCollection)
+    {
+        $calendar = $this->calendarRepository->findCalendarByYear($yearBefore);
+        if (null !== $calendar){
+            $calendarArray = ['workingYear'=>$calendar->workingYear()->workingYear(),
+                'calendarId'=>$calendar->calendarId()];
+            array_push($calendarCollection,$calendarArray);
+        }
+         return $calendarCollection;
     }
 
 }
