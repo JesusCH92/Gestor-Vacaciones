@@ -1,14 +1,14 @@
 {# {% set workingDays = ['1','2','3','4','5'] %} #}
 <div class="form-group">
     <label>Seleccionar los días festivos del calendario</label>
-    <div>
+    <div class="container-carousel-of-dates  d-flex justify-content-center align-items-center">
         <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-interval="false">
-            <div class="carousel-inner" id="myCarousel">
+            <div class="carousel-inner" id="datesCarousel">
                 {% for month in calendar_info %}
                     <div class="carousel-item {% if month.month==02 %} active {% endif %}">
                         <div class="container calendar-month">
                             <div class="row">
-                                <div class="col calendar-month month-of-year">{{ month.month}}-{{ month.year }}</div>
+                                <div class="col calendar-month month-of-year">{{ month.month }}-{{ month.year }}</div>
                             </div>
                             <div class="row day-of-week">
                                 <div class="col calendar-month day-of-month">do</div>
@@ -20,11 +20,11 @@
                                 <div class="col calendar-month day-of-month">sa</div>
                             </div>
                             <div class="row">
-                            {% if month.week[0].day > 0 %}
+                                {% if month.week[0].day > 0 %}
 
-                                {% for i in 0..(month.week[0].day-1) %}
-                                    <div class="col calendar-month day-of-month no-existing-day" date="">00</div>
-                                {% endfor %}
+                                    {% for i in 0..(month.week[0].day-1) %}
+                                        <div class="col calendar-month day-of-month no-existing-day" date="">00</div>
+                                    {% endfor %}
                                 {% endif %}
                                 {% for day in month.week %}
                                     {% set dayNumber = day.date|split('-') %}
