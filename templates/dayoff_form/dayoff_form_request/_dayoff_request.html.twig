@@ -1,0 +1,102 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-3">
+            <h4>Año:{{ year }}</h4>
+        </div>
+
+
+        <div class="col-3">
+            <h4>Fecha disponible:</h4>
+        </div>
+        <div class="col-2">
+            <div class="row">
+                <div class="row"><h6>{{ calendar.initDate }}</h6></div>
+            </div>
+            <div class="row">
+                <div class="row"><h6>{{ calendar.endDate }}</h6></div>
+            </div>
+        </div>
+        <div class="col-2 d-flex align-items-center">
+            <div class="rounded dias-disponibles container">
+                <div class="row dias-disponibles-numerico"><p class="tex-center mx-auto">{{ remainig_days.Holiday }}</p></div>
+                <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">días de</p></div>
+                <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">vacaciones</p></div>
+            </div>
+        </div>
+        <div class="col-2 d-flex align-items-center">
+            <div class="rounded dias-disponibles container">
+                <div class="row dias-disponibles-numerico"><p class="tex-center mx-auto">{{ remainig_days.Personal }}</p></div>
+                <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">días</p></div>
+                <div class="row dias-disponibles-cadena"><p class="tex-center mx-auto">personales</p></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+</div>
+<div class="row contenedor-area-formulario-vacaciones" id="contenedor-area-formulario-vacaciones">
+    <div class="container my-2">
+        <h5>Seleccionar un rango de fechas para solicitar vacaciones</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="start">Primer día de vacaciones:</label>
+                <input type="date" id="start" class="form-control" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
+            </div>
+            <div class="col-md-6">
+                <label for="end">Último día de vacaciones:</label>
+                <input type="date" id="end" class="form-control" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-8 col-md-10 col-12 container my-2"><!-- ? Calendario-->
+
+        {% include 'dayoff_form/calendar/calendar_info.html.twig' %}
+
+    </div><!-- ? Fin del Calendario-->
+
+    <div class="col-xl-4 col-md-8 col-12 container my-2">
+
+        <div class="container contenedor-dias-vacaciones">
+
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label class="titulo-dias-seleccionados" id="year-selected">Year selected: {{ year }}</label>
+
+                        <label for="exampleFormControlSelect1">Solicitar días de:</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option value="Holiday">Días de Vacaciones</option>
+                            <option value="Personal">Días Personales</option>
+                            <option value="Work_off">Baja Laboral</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label class="titulo-dias-seleccionados">Días seleccionados: 2</label>
+                    <div class="card-body contenedor-dias-vacaciones-seleccionados">
+                        <ul class="list-group dates-selected-calendar">
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="form-row container-btn-formulario">
+                    <div class="form-group col-md-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
