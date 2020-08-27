@@ -79,7 +79,8 @@ final class DayOffFormByCalendarController extends AbstractController
             'calendar' => $calendarConfigResponse,
             'remainig_days' => $remainingDaysOffResponse->remainingDaysOff(),
             'calendar_info' => $calendarInfo,
-            'working_days' => $calendarConfigResponse->workDays()
+            'working_days' => $calendarConfigResponse->workDays(),
+            'feast_days' => json_encode($calendarConfigResponse->feastdayCollection())
         ])->getContent();
 
         return new JsonResponse([
