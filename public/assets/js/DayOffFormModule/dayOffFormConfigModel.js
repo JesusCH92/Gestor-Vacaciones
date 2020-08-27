@@ -1,4 +1,20 @@
 var dayOffFormConfigModel = (function() {
+
+    var saveDayOffFormRequest = function ({dayOff, callback = console.log}) {
+        $.ajax({
+            type: 'POST',
+            url: '/dayoff/management/add',
+            async: true,
+            data: {dayOff},
+            success: function(data){
+                callback(data);
+            },
+            error: function(data){
+                console.log(JSON.parse(data.responseText));
+            }
+        });
+    };
+
     var getCalendarConfigByWorkingYear = function ({id, callback = console.log, container}) {
         $.ajax({
             type: 'GET',
@@ -13,7 +29,9 @@ var dayOffFormConfigModel = (function() {
             }
         });
     };
+
     return {
-        getCalendarConfigByWorkingYear : getCalendarConfigByWorkingYear
+        getCalendarConfigByWorkingYear : getCalendarConfigByWorkingYear,
+        saveDayOffFormRequest : saveDayOffFormRequest
     }
 });
