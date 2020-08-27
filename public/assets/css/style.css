@@ -129,7 +129,7 @@ Ventana Revistar dias de vacaciones por usuario
 .titulo-formulario, .contenedor-area-formulario-vacaciones{
     margin: 1% 0;
 }
-.titulo-dias-seleccionados{
+.title-days-selected{
     margin: 4% 8% 0 8%;
 }
 /** Fin de la Ventana formulario de las solicitudes de vacaciones**/
