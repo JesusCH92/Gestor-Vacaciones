@@ -4,6 +4,7 @@
 namespace App\DayOffForm\Domain\ValueObject;
 
 use App\DayOffForm\Domain\Exception\InvalidCountDayOffRequest;
+use App\TypeDayOff\Domain\Constants\DayOff;
 use Doctrine\ORM\Mapping as ORM;
 
 /** @ORM\Embeddable */
@@ -28,14 +29,14 @@ final class CountDayOffRequest
 
     public function checkCountDaysSelected(string $typeDayOff, int $remainingDaysByType): void
     {
-        if ('Holiday' === $typeDayOff) {
+        if (DayOff::HOLIDAY === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
                 throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
 
         }
 
-        if ('Personal' === $typeDayOff) {
+        if (DayOff::PERSONAL === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
                 throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
