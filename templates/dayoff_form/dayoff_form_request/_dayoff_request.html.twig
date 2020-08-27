@@ -11,10 +11,10 @@
         </div>
         <div class="col-2">
             <div class="row">
-                <div class="row"><h6>{{ calendar.initDate }}</h6></div>
+                <div class="row"><h6 id="init-date-day-off">{{ calendar.initDate }}</h6></div>
             </div>
             <div class="row">
-                <div class="row"><h6>{{ calendar.endDate }}</h6></div>
+                <div class="row"><h6 id="end-date-day-off">{{ calendar.endDate }}</h6></div>
             </div>
         </div>
         <div class="col-2 d-flex align-items-center">
@@ -44,11 +44,11 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="start">Primer día de vacaciones:</label>
-                <input type="date" id="start" class="form-control" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
+                <input type="date" id="start" class="form-control date-range init-range" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
             </div>
             <div class="col-md-6">
                 <label for="end">Último día de vacaciones:</label>
-                <input type="date" id="end" class="form-control" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
+                <input type="date" id="end" class="form-control date-range end-range" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
             </div>
         </div>
     </div>
@@ -64,12 +64,14 @@
         <div class="container contenedor-dias-vacaciones">
 
             <form>
+                <input type="hidden" id="feast-days-calendar-collection" value="{{ feast_days }}">
+                <input type="hidden" id="work-days-calendar-collection" value="{{ working_days|json_encode() }}">
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <label class="titulo-dias-seleccionados" id="year-selected">Year selected: {{ year }}</label>
+                        <p class="title-days-selected" id="year-selected">Year selected: {{ year }}</p>
 
-                        <label for="exampleFormControlSelect1">Solicitar días de:</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
+                        <label for="type-day-off-form-select">Solicitar días de:</label>
+                        <select class="form-control" id="type-day-off-form-select">
                             <option value="Holiday">Días de Vacaciones</option>
                             <option value="Personal">Días Personales</option>
                             <option value="Work_off">Baja Laboral</option>
@@ -78,7 +80,7 @@
                 </div>
 
                 <div class="form-row">
-                    <label class="titulo-dias-seleccionados">Días seleccionados: 2</label>
+                    <label class="title-days-selected count-days-selected">Días seleccionados: 0</label>
                     <div class="card-body contenedor-dias-vacaciones-seleccionados">
                         <ul class="list-group dates-selected-calendar">
                         </ul>
@@ -88,7 +90,7 @@
 
                 <div class="form-row container-btn-formulario">
                     <div class="form-group col-md-12 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="button" class="btn btn-primary" id="save-day-off-form">
                             Save
                         </button>
                     </div>
