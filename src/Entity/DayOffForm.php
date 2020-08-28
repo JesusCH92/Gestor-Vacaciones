@@ -47,7 +47,7 @@ class DayOffForm
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=App\User\Domain\User::class)
+     * @ORM\ManyToOne(targetEntity=App\User\Infrastructure\Model\SymfonyUser::class)
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user", nullable=false)
      */
     private $user;
