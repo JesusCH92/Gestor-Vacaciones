@@ -10,6 +10,7 @@ use App\DayOffForm\ApplicationService\DTO\DayOffRequest;
 use App\DayOffForm\ApplicationService\GetRemainingDaysOffByUser;
 use App\DayOffForm\ApplicationService\SaveDayOffRequest;
 use App\Entity\Calendar;
+use App\TypeDayOff\Domain\Constants\DayOff;
 use App\User\Domain\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,6 +78,9 @@ final class DayOffRequestController extends AbstractController
             $typeDayOffCollection);
         $getRemainingDaysOffByUser = $this->getRemainingDaysOffByUser;
         $remainingDaysOffResponse = $getRemainingDaysOffByUser->__invoke($dayOffOfCalendarRequest);
-        return $remainingDaysOffResponse->remainingDaysOff()[$typeDayOff];
+        if ($typeDayOff !== DayOff::WORKOFF){
+            return $remainingDaysOffResponse->remainingDaysOff()[$typeDayOff];
+        }
+        return 0;
     }
 }
