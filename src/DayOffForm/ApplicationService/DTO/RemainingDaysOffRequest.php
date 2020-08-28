@@ -7,7 +7,7 @@ namespace App\DayOffForm\ApplicationService\DTO;
 use App\Entity\Calendar;
 use App\User\Domain\User;
 
-final class DayOffOfCalendarRequest
+final class RemainingDaysOffRequest
 {
     private Calendar $calendar;
     private User $user;

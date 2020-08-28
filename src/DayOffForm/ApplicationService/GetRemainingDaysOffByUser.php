@@ -4,8 +4,7 @@
 namespace App\DayOffForm\ApplicationService;
 
 
-use App\DayOffForm\ApplicationService\DTO\DayOffOfCalendarRequest;
-use App\DayOffForm\ApplicationService\DTO\DayOffRequest;
+use App\DayOffForm\ApplicationService\DTO\RemainingDaysOffRequest;
 use App\DayOffForm\ApplicationService\DTO\RemainingDaysOffResponse;
 use App\DayOffForm\Domain\DayOffRepository;
 use App\TypeDayOff\Domain\Constants\DayOff;
@@ -22,7 +21,7 @@ final class GetRemainingDaysOffByUser
         $this->typeDayOffRepository = $typeDayOffRepository;
     }
 
-    public function __invoke(DayOffOfCalendarRequest $dayOffOfCalendarRequest): RemainingDaysOffResponse
+    public function __invoke(RemainingDaysOffRequest $dayOffOfCalendarRequest): RemainingDaysOffResponse
     {
         $dayOffFormCollectionOfHollidays = $this->dayOffRepository->findByUserAndStatusDayOffForm($dayOffOfCalendarRequest->user(),
             $dayOffOfCalendarRequest->calendar(),
