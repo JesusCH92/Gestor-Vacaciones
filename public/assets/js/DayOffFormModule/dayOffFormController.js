@@ -50,6 +50,10 @@ var dayOffFormController = (function(_calendarId){
             $datesSelectedArray = getDatesSelected();
             $typeDayOff =$("#type-day-off-form-select").children("option:selected").val();
 
+            if ($datesSelectedArray.length===0){
+                console.log("No hay días seleccionados");
+                return;
+            }
             //var _dayoffFormConfigModel = dayOffFormConfigModel();
             saveDayOffFormRequest({
                 day_off_request : {
