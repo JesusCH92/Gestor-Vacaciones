@@ -38,6 +38,7 @@ final class GetCalendarConfig
 
         $calendarConfigResponse = new CalendarConfigResponse(
             $calendarConfigRequest->calendarId(),
+            $calendarEntity->workingYear()->workingYear(),
             $initDateRequest,
             $endDateRequest,
             $workDays,

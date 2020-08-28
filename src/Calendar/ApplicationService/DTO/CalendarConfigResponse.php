@@ -1,21 +1,30 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Company\ApplicationService\DTO;
 
 final class CalendarConfigResponse
 {
     private string $calendarId;
+    private int $workingYear;
     private string $initDate;
     private string $endDate;
     private array $workDays;
     private array $typeDayOffCollection;
     private array $feastdayCollection;
 
-    public function __construct(string $calendarId, string $initDate, string $endDate, array $workDays, array $typeDayOffCollection, array $feastdayCollection)
-    {
+    public function __construct(
+        string $calendarId,
+        int $workingYear,
+        string $initDate,
+        string $endDate,
+        array $workDays,
+        array $typeDayOffCollection,
+        array $feastdayCollection
+    ) {
         $this->calendarId = $calendarId;
+        $this->workingYear = $workingYear;
         $this->initDate = $initDate;
         $this->endDate = $endDate;
         $this->workDays = $workDays;
@@ -26,6 +35,11 @@ final class CalendarConfigResponse
     public function calendarId(): string
     {
         return $this->calendarId;
+    }
+
+    public function workingYear(): int
+    {
+        return $this->workingYear;
     }
 
     public function initDate()
