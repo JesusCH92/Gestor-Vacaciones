@@ -25,7 +25,7 @@ class DashboardController extends AbstractController
      */
     public function index()
     {
-        $calendarId = "af5c0988-efd6-4863-9f98-35cba0cf7981";
+        $calendarId = "e784aaa5-f5d5-434c-b910-07146793814e";
         $calendar = new CalendarConfigRequest($calendarId);
 
         $getCalendarConfig =$this->getCalendarConfig;
