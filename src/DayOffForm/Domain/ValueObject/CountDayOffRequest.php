@@ -4,6 +4,7 @@
 namespace App\DayOffForm\Domain\ValueObject;
 
 use App\DayOffForm\Domain\Exception\InvalidCountDayOffRequest;
+use App\DayOffForm\Domain\Exception\InvalidCountNoDaysSelected;
 use App\TypeDayOff\Domain\Constants\DayOff;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -41,13 +42,13 @@ final class CountDayOffRequest
 
     private function isCountPositive(int $count): bool
     {
-        return 0 > $count;
+        return 0 >= $count;
     }
 
     private function guardIsPositive(int $count): void
     {
         if ($this->isCountPositive($count)) {
-            throw new InvalidCountDayOffRequest($count);
+            throw new InvalidCountNoDaysSelected($count);
         }
     }
 }
