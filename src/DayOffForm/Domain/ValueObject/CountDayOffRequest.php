@@ -19,9 +19,6 @@ final class CountDayOffRequest
         $this->countDayOffRequest = $countDayOffRequest;
     }
 
-    /**
-     * @return int
-     */
     public function countDayOffRequest(): int
     {
         return $this->countDayOffRequest;
@@ -33,17 +30,13 @@ final class CountDayOffRequest
             if ($this->countDayOffRequest > $remainingDaysByType) {
                 throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
-
         }
 
         if (DayOff::PERSONAL === $typeDayOff) {
             if ($this->countDayOffRequest > $remainingDaysByType) {
                 throw new InvalidCountDayOffRequest($remainingDaysByType);
             }
-
         }
-
-
     }
 
     private function isCountPositive(int $count): bool
@@ -54,7 +47,7 @@ final class CountDayOffRequest
     private function guardIsPositive(int $count): void
     {
         if ($this->isCountPositive($count)) {
-            //throw new ();
+            throw new InvalidCountDayOffRequest($count);
         }
     }
 }
