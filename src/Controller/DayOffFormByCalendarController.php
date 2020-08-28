@@ -65,7 +65,6 @@ final class DayOffFormByCalendarController extends AbstractController
         $remainingDaysOffResponse = $this->remainingDays($calendarResponse->calendar(), $user, $calendarConfigResponse->typeDayOffCollection());
 
         $dayOffConfigTemplate = $this->render('dayoff_form/dayoff_form_request/_dayoff_request.html.twig', [
-            'year' => '2020',
             'calendar' => $calendarConfigResponse,
             'remainig_days' => $remainingDaysOffResponse->remainingDaysOff(),
             'calendar_info' => $calendarInfo,
