@@ -5,198 +5,112 @@ namespace App\User\Domain;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\UserInterface;
+// use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Department;
 use App\Entity\Company;
+use Ramsey\Uuid\Nonstandard\Uuid;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="user", options={"collate"="utf8_general_ci", "charset"="utf8"})
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @ORM\MappedSuperclass
  */
-class User implements UserInterface
+class User
 {
-
     /**
-     * @var \Ramsey\Uuid\UuidInterface
-     *
      * @ORM\Id
      * @ORM\Column(name="id_user", type="uuid", unique=true)
-     * @ORM\GeneratedValue(strategy="CUSTOM")
-     * @ORM\CustomIdGenerator(class=UuidGenerator::class)
      */
-    private $id_user;
+    protected $userId;
 
     /**
      * @ORM\Column(type="string", name="email", length=180, unique=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", name="user_name", length=50)
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string", name="last_name", length=50)
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @ORM\Column(type="string", name="phone_number", length=30)
      */
-    private $phone;
+    protected $phone;
 
     /**
      * @ORM\Column(type="json", name="roles")
      */
-    private $roles = [];
+    protected $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string", name="password")
      */
-    private $password;
+    protected $password;
 
     /**
      * @ORM\ManyToOne(targetEntity=Department::class)
      * @ORM\JoinColumn(nullable=false, name="id_department", referencedColumnName="id_department")
      */
-    private $department;
+    protected $department;
 
     /**
      * @ORM\ManyToOne(targetEntity=Company::class)
      * @ORM\JoinColumn(nullable=false, name="id_company", referencedColumnName="id_company")
      */
-    private $company;
+    protected $company;
 
-    public function __construct()
+    public function __construct(string $email, string $name, string $lastname, string $phone, string $roles, string $password, Department $department, Company $company)
     {
-        $this->roles=['ROLE_USER'];
+        $this->userId = Uuid::uuid4();
+        $this->email = $email;
+        $this->name = $name;
+        $this->lastname = $lastname;
+        $this->phone = $phone;
+        $this->roles = [$roles];
+        $this->password = $password;
+        $this->department = $department;
+        $this->company = $company;
     }
 
 
-    public function getId(): ?string
+    public function userId(): ?string
     {
-        return $this->id_user;
+        return $this->userId;
     }
 
-    public function getEmail(): ?string
+    public function email(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function name(): string
     {
-        $this->email = $email;
-
-        return $this;
+        return $this->name;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
-    public function getUsername(): string
+    public function lastname(): string
     {
-        return (string) $this->email;
+        return $this->lastname;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getRoles(): array
+    public function phone(): string
     {
-        $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        //$roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
+        return $this->phone;
     }
 
-    public function setRoles(array $roles): self
+    public function roles(): array
     {
-        $this->roles = $roles;
-
-        return $this;
+        return $this->roles;
     }
 
-    /**
-     * @see UserInterface
-     */
-    public function getPassword(): string
+    public function password(): string
     {
-        return (string) $this->password;
-    }
-
-    public function setPassword(string $password): self
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getSalt()
-    {
-        // not needed when using the "bcrypt" algorithm in security.yaml
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function eraseCredentials()
-    {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getName(): string
-    {
-        return (string) $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getLastname(): string
-    {
-        return (string) $this->lastname;
-    }
-
-    public function setLastname(string $lastname): self
-    {
-        $this->lastname = $lastname;
-
-        return $this;
-    }
-
-    /**
-     * @see UserInterface
-     */
-    public function getPhone(): string
-    {
-        return (string) $this->phone;
-    }
-
-    public function setPhone(string $phone): self
-    {
-        $this->phone = $phone;
-
-        return $this;
+        return $this->password;
     }
 
     public function getDepartment(): ?Department
@@ -204,23 +118,8 @@ class User implements UserInterface
         return $this->department;
     }
 
-    public function setDepartment(?Department $department): self
-    {
-        $this->department = $department;
-
-        return $this;
-    }
-
     public function getCompany(): ?Company
     {
         return $this->company;
     }
-
-    public function setCompany(?Company $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
 }
