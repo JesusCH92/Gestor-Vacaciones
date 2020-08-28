@@ -14,6 +14,7 @@ final class DayOffRequest
     private array $daysOffSelected;
     private array $typeDayOffCollection;
     private array $feastdaysCollection;
+    private int $remainingDaysByType;
 
     public function __construct(
         User $user,
@@ -21,7 +22,8 @@ final class DayOffRequest
         string $typeDayOffSelected,
         array $daysOffSelected,
         array $typeDayOffCollection,
-        array $feastdaysCollection
+        array $feastdaysCollection,
+        int $remainingDaysByType
     ) {
         $this->user = $user;
         $this->calendar = $calendar;
@@ -29,6 +31,7 @@ final class DayOffRequest
         $this->daysOffSelected = $daysOffSelected;
         $this->typeDayOffCollection = $typeDayOffCollection;
         $this->feastdaysCollection = $feastdaysCollection;
+        $this->remainingDaysByType = $remainingDaysByType;
     }
 
     public function user(): User
@@ -59,6 +62,11 @@ final class DayOffRequest
     public function feastdaysCollection(): array
     {
         return $this->feastdaysCollection;
+    }
+
+    public function remainingDaysByType(): int
+    {
+        return $this->remainingDaysByType;
     }
 
 }
