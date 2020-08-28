@@ -69,7 +69,7 @@ final class DayOffRequestController extends AbstractController
             )
         );
 
-        return Response::create('??');
+        return Response::create('Day off form request saved');
     }
 
     private function remainingDays(Calendar $calendar, User $user, array $typeDayOffCollection, string $typeDayOff) :int
