@@ -24,27 +24,11 @@ final class SaveDayOffRequest
 
     public function __invoke(DayOffRequest $dayOffRequest): void
     {
-        $dayOffFormCollection = $this->dayOffRepository->findByUserAndStatusDayOffForm($dayOffRequest->user(), $dayOffRequest->calendar(), $dayOffRequest->typeDayOffSelected());
-
-        $remainingDays = $this->calculateRemainingDaysByType($dayOffFormCollection, $dayOffRequest->typeDayOffCollection()[$dayOffRequest->typeDayOffSelected()]);
-
-        $dayOffForm = $this->mappingDayOffFormFromDayOffRequest($dayOffRequest, $remainingDays);
+        $dayOffForm = $this->mappingDayOffFormFromDayOffRequest($dayOffRequest, $dayOffRequest->remainingDaysByType());
         $dayOffRequestCollection = $this->mappingDayOffFormRequestFromDayOffRequest($dayOffRequest, $dayOffForm);
 
         $this->dayOffRepository->saveDayOffForm($dayOffForm, $dayOffRequestCollection);
 
-    }
-
-    public function calculateRemainingDaysByType(array $dayOffFormCollection, int $totalCount)
-    {
-        $count = 0;
-        if (!empty($dayOffFormCollection)) {
-            foreach ($dayOffFormCollection as $dayOffForm) {
-                $count += $dayOffForm['countDayOffRequest.countDayOffRequest'];
-            }
-            return $totalCount - $count;
-        }
-        return $totalCount;
     }
 
     public function mappingDayOffFormFromDayOffRequest(DayOffRequest $dayOffRequest, int $remainingDays): DayOffForm
