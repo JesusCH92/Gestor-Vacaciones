@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Form;
+namespace App\User\Infrastructure\Framework\Form;
 
 use App\Entity\Company;
-use App\User\Domain\User;
+use App\Entity\Department;
+use App\User\Infrastructure\Framework\Form\Model\RegistrationFormModel;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -14,8 +15,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\CallbackTransformer;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -27,7 +26,7 @@ class RegistrationFormType extends AbstractType
             ->add('phone', TextType::class)
             ->add('email', EmailType::class)
             ->add('plainPassword', PasswordType::class, [
-                'mapped' => false,
+                // 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Please enter a password',
@@ -40,7 +39,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('department')
+            ->add('department', EntityType::class, [
+                'class' => Department::class,
+            ])
             ->add('company', EntityType::class, [
                 'class' => Company::class,
             ])
@@ -48,26 +49,12 @@ class RegistrationFormType extends AbstractType
                 'choices'  => ['Admin' => 'ROLE_ADMIN', 'user' => 'ROLE_USER', 'supervisor' => 'ROLE_SUPERVISOR'],
             ])
         ;
-
-        // Data transformer
-        $builder->get('roles')
-            ->addModelTransformer(new CallbackTransformer(
-                    function ($rolesArray) {
-                         // transform the array to a string
-                        return count($rolesArray)? $rolesArray[0]: null;
-                    },
-                    function ($rolesString) {
-                         // transform the string back to an array
-                        return [$rolesString];
-                    }
-            ))
-        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => RegistrationFormModel::class,
         ]);
     }
 }
