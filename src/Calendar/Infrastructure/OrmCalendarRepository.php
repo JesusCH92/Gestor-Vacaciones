@@ -18,9 +18,9 @@ final class OrmCalendarRepository implements CalendarRepository
         $this->entityManager = $entityManager;
     }
 
-    public function findCalendarByWorkingYear(CalendarRequest $calendarRequest): ?Calendar
+    public function findCalendarByWorkingYear(int $workingYear): ?Calendar
     {
-        $workinYear = intval($calendarRequest->workingYear());
+        $workinYear = intval($workingYear);
         $calendarRepository = $this->entityManager->getRepository(Calendar::class);
         $calendar = $calendarRepository->findBy(
             [
@@ -62,17 +62,4 @@ final class OrmCalendarRepository implements CalendarRepository
         $this->saveFeastdayCollection($feastdayCollection);
     }
 
-    public function findCalendarByYear(int $year): ?Calendar
-    {
-        $calendarRepository = $this->entityManager->getRepository(Calendar::class);
-        $calendar = $calendarRepository->findBy(
-            [
-                'workingYear.workingYear' => $year
-            ]
-        );
-
-        $calendarEntity = [] === $calendar ? null : $calendar[0];
-
-        return $calendarEntity;
-    }
 }
