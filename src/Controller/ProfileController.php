@@ -16,15 +16,15 @@ class ProfileController extends AbstractController
     {
         $user = $this->getUser();
 
-        $nameInitial = strtoupper($user->getName()[0]);
-        $lastNameInitial = strtoupper($user->getLastName()[0]);
+        // $nameInitial = strtoupper($user->getName()[0]);
+        // $lastNameInitial = strtoupper($user->getLastName()[0]);
 
         return $this->render(
             'profile/profile.html.twig',
             [
                 'user' => $user,
-                'nameInitial' => $nameInitial,
-                'lastNameInitial' => $lastNameInitial
+                'nameInitial' => 'L',
+                'lastNameInitial' => 'L'
             ]
         );
     }
