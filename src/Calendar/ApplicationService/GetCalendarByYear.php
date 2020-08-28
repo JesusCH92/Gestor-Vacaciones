@@ -3,8 +3,6 @@
 
 namespace App\Calendar\ApplicationService;
 
-
-use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
 use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
 use App\Calendar\Domain\CalendarRepository;
 
@@ -29,7 +27,7 @@ final class GetCalendarByYear
 
     public function actualYear(int $actualYear, array $calendarCollection)
     {
-        $calendar = $this->calendarRepository->findCalendarByYear($actualYear);
+        $calendar = $this->calendarRepository->findCalendarByWorkingYear($actualYear);
         if ($calendar == null) {
             throw new CalendarNotFoundException();
         }
@@ -41,7 +39,7 @@ final class GetCalendarByYear
 
     public function yearBefore(int $yearBefore, array $calendarCollection)
     {
-        $calendar = $this->calendarRepository->findCalendarByYear($yearBefore);
+        $calendar = $this->calendarRepository->findCalendarByWorkingYear($yearBefore);
         if (null !== $calendar){
             $calendarArray = ['workingYear'=>$calendar->workingYear()->workingYear(),
                 'calendarId'=>$calendar->calendarId()];
