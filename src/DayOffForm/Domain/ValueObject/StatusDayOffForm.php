@@ -24,15 +24,12 @@ final class StatusDayOffForm
         $this->statusDayOffForm = $statusDayOffForm;
     }
 
-    /**
-     * @return mixed
-     */
     public function statusDayOffForm()
     {
         return $this->statusDayOffForm;
     }
 
-    public function statusByUserRole( string $role): void
+    public function statusByUserRole(string $role): void
     {
         $this->statusDayOffForm = self::STATUS[$role];
     }
