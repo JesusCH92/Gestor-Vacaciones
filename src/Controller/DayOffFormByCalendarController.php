@@ -7,9 +7,12 @@ use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
 use App\Calendar\ApplicationService\GetCalendarById;
 use App\Calendar\ApplicationService\GetCalendarByYear;
 use App\Calendar\ApplicationService\GetCalendarConfig;
-use App\DayOffForm\ApplicationService\DTO\DayOffOfCalendarRequest;
+use App\DayOffForm\ApplicationService\DTO\RemainingDaysOffRequest;
+use App\DayOffForm\ApplicationService\DTO\RemainingDaysOffResponse;
 use App\DayOffForm\ApplicationService\GetDatesOfCalendar;
 use App\DayOffForm\ApplicationService\GetRemainingDaysOffByUser;
+use App\Entity\Calendar;
+use App\User\Domain\User;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -41,12 +44,7 @@ final class DayOffFormByCalendarController extends AbstractController
     {
         $user = $this->getUser();
 
-        /*$calendarByYear = $this->getCalendarByYear;
-        $year = date("Y");
-        $calendar = $calendarByYear->__invoke($year);
-*/
         $calendarId = $id;
-
 
         $calendarRequest = new CalendarConfigRequest($calendarId);
 
@@ -58,21 +56,13 @@ final class DayOffFormByCalendarController extends AbstractController
 
         $getDatesOfCalendar = $this->getDatesOfCalendar;
 
-        // $feastday = [];
-        // foreach($calendarConfigResponse->feastdayCollection() as $feastdayDate) {
-        //     array_push($feastday, $feastdayDate['date']);
-        // }
         $calendarInfo = $getDatesOfCalendar->__invoke(
             new DateTimeImmutable($calendarConfigResponse->initDate()),
             new DateTimeImmutable($calendarConfigResponse->endDate()),
             $calendarConfigResponse->feastdayCollection()
         );
 
-        $dayOffOfCalendarRequest = new DayOffOfCalendarRequest($calendarResponse->calendar(), $user,
-            $calendarConfigResponse->typeDayOffCollection());
-        $getRemainingDaysOffByUser = $this->getRemainingDaysOffByUser;
-        $remainingDaysOffResponse = $getRemainingDaysOffByUser->__invoke($dayOffOfCalendarRequest);
-
+        $remainingDaysOffResponse = $this->remainingDays($calendarResponse->calendar(), $user, $calendarConfigResponse->typeDayOffCollection());
 
         $dayOffConfigTemplate = $this->render('dayoff_form/dayoff_form_request/_dayoff_request.html.twig', [
             'year' => '2020',
@@ -86,6 +76,14 @@ final class DayOffFormByCalendarController extends AbstractController
         return new JsonResponse([
             'dayoff_config' => $dayOffConfigTemplate
         ]);
+
+    }
+    private function remainingDays(Calendar $calendar, User $user, array $typeDayOffCollection) :RemainingDaysOffResponse
+    {
+        $dayOffOfCalendarRequest = new RemainingDaysOffRequest($calendar, $user,
+            $typeDayOffCollection);
+        $getRemainingDaysOffByUser = $this->getRemainingDaysOffByUser;
+        return $getRemainingDaysOffByUser->__invoke($dayOffOfCalendarRequest);
 
     }
 }
