@@ -111,15 +111,15 @@ Ventana Revistar dias de vacaciones por usuario
 /* #titulo-formulario, #contenedor-area-formulario-vacaciones{
     display: none;
 } */
-.dias-disponibles{
+.days-available{
     width: 100px; height: 100px;
     border: 1px solid #dddddd;
 }
-.dias-disponibles-numerico{
+.days-available-numeric{
     height: 60%;
     font-size: 50px;
 }
-.dias-disponibles-cadena{
+.days-available-chain{
     height: 20%;
 }
 .contenedor-dias-vacaciones-seleccionados{
