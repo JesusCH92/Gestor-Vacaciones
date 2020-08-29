@@ -401,12 +401,14 @@ button.switch-month:hover {
 .carousel-control-prev {
     /* margin-left: -20px; */
     width: 20px;
+    height: 560px;
 }
 
 .carousel-control-next {
     right: auto;
     width: 20px;
-    margin-left: 540px;
+    margin-left: 560px;
+    height: 560px;
 }
 
 /* ! Calendar : refactor names id and class */
@@ -415,19 +417,28 @@ button.switch-month:hover {
 .calendar-month{
     text-align: center;
 }
-
-.day-of-week{
+.day-of-week-collection{
     border-bottom: 2px solid #4f97e3;
     font-weight: bold;
+}
+
+.day-of-week{
+    width: 75px;
+    height: 40px;
+    padding-top: 5px;
 
 }
 .day-of-month{
-    padding: 15px;
+    width: 75px;
+    height: 55px;
+    padding-bottom: 5px;
+    padding-top: 15px;
     margin: 10px;
 }
 
 .no-existing-day{
     color: white;
+
     /* pointer-events:none; */
 }
 .month-of-year{
@@ -443,10 +454,14 @@ button.switch-month:hover {
 }
 .feastday{
     color: red;
+    /*background-color: red;
+    opacity: 0.3;*/
     /* pointer-events:none; */
 }
 .no-working-day{
-    color: grey;
+    color: gray;
+    /*background-color: gray;
+    opacity: 0.3;*/
     /* pointer-events:none; */
 }
 
