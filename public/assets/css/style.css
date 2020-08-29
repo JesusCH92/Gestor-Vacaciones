@@ -122,11 +122,11 @@ Ventana Revistar dias de vacaciones por usuario
 .days-available-chain{
     height: 20%;
 }
-.contenedor-dias-vacaciones-seleccionados{
+.container-days-selected-holidays{
     max-height: 300px;
     overflow-y: auto;
 }
-.titulo-formulario, .contenedor-area-formulario-vacaciones{
+.titulo-formulario, .container-area-form-vacation{
     margin: 1% 0;
 }
 .title-days-selected{
