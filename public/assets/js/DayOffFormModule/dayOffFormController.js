@@ -11,6 +11,9 @@ var dayOffFormController = (function(_calendarId){
     var $feastDaysCalendarCollection = $("#feast-days-calendar-collection");
     var $workingDaysCalendarCollection = $("#work-days-calendar-collection");
     var $saveDayOffForm = $("#save-day-off-form");
+    var $removeDayOffForm = $("#remove-day-off-form");
+    var $remainingDayHoliday = $(".remaining-day-holiday");
+    var $remainingDayPersonal = $(".remaining-day-personal");
 
     var initEventDayOffConfig = function() {
         $CarouselDates.click( function() {
@@ -54,6 +57,15 @@ var dayOffFormController = (function(_calendarId){
                 console.log("No hay días seleccionados");
                 return;
             }
+
+            if ($typeDayOff === 'Holiday' && parseInt($remainingDayHoliday.text()) < $datesSelectedArray.length){
+                console.log("No puedes pedir tantos días de vacaciones");
+                return;
+            }
+            if ($typeDayOff === 'Personal' && parseInt($remainingDayPersonal.text()) < $datesSelectedArray.length){
+                console.log("No puedes pedir tantos días personales");
+                return;
+            }
             //var _dayoffFormConfigModel = dayOffFormConfigModel();
             saveDayOffFormRequest({
                 day_off_request : {
@@ -63,7 +75,11 @@ var dayOffFormController = (function(_calendarId){
                 }
             });
 
+        });
 
+        $removeDayOffForm.click(function (){
+            $datesSelectedCalendar.empty();
+            $countDaysSelected.html("Días seleccionados: 0");
         });
 
         var saveDayOffFormRequest = function ({day_off_request, callback = console.log}) {
