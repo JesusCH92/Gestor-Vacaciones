@@ -17,9 +17,7 @@
                 <div class="row">
 
                     <h6 class="lead">
-                        {% if user.roles[0] == 'ROLE_USER' %}User{% endif %}
-                        {% if user.roles[0] == 'ROLE_SUPERVISOR' %}Supervisor{% endif %}
-                        {% if user.roles[0] == 'ROLE_ADMIN' %}Administrator{% endif %}
+                        {{ app.user.roles }}
                     </h6>
                 </div>
             </div>
