@@ -8,12 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class SearchDayOffByUserController extends AbstractController
 {
     /**
-     * @Route("/search/day/off/by/user", name="search_day_off_by_user")
+     * @Route("/supervise/dayoff/employees", name="supervise_day_off_employee")
      */
     public function index()
     {
-        return $this->render('search_day_off_by_user/index.html.twig', [
-            'controller_name' => 'SearchDayOffByUserController',
+        return $this->render('supervise_employees/supervise_search_day_off/search-employee-day-off.twig', [
+
         ]);
+
     }
 }
