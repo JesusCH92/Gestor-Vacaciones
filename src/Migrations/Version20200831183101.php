@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200827173921 extends AbstractMigration
+final class Version20200831183101 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,7 +22,7 @@ final class Version20200827173921 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE user (id_user CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', id_department INT NOT NULL, id_company INT NOT NULL, email VARCHAR(180) NOT NULL, user_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, phone_number VARCHAR(30) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), INDEX IDX_8D93D6496897615D (id_department), INDEX IDX_8D93D6499122A03F (id_company), PRIMARY KEY(id_user)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_general_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id_user CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', id_department INT NOT NULL, id_company INT NOT NULL, email VARCHAR(180) NOT NULL, user_name VARCHAR(50) NOT NULL, last_name VARCHAR(50) NOT NULL, phone_number VARCHAR(30) NOT NULL, password VARCHAR(255) NOT NULL, roles JSON NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), INDEX IDX_8D93D6496897615D (id_department), INDEX IDX_8D93D6499122A03F (id_company), PRIMARY KEY(id_user)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_general_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE calendar (id_calendar CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', id_company INT NOT NULL, init_date_day_off_request DATE NOT NULL COMMENT \'(DC2Type:date_immutable)\', end_date_day_off_request DATE NOT NULL COMMENT \'(DC2Type:date_immutable)\', work_days JSON NOT NULL, working_year INT NOT NULL, UNIQUE INDEX UNIQ_6EA9A146E5F8C1CD (working_year), INDEX IDX_6EA9A1469122A03F (id_company), PRIMARY KEY(id_calendar)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_general_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE company (id_company INT AUTO_INCREMENT NOT NULL, company_name VARCHAR(50) NOT NULL, PRIMARY KEY(id_company)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_general_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE day_off_form (code_day_off_form VARCHAR(36) NOT NULL, id_user CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', id_calendar CHAR(36) NOT NULL COMMENT \'(DC2Type:uuid)\', type_day_off VARCHAR(30) NOT NULL, observation VARCHAR(255) DEFAULT NULL, created_at DATE NOT NULL COMMENT \'(DC2Type:date_immutable)\', id_supervisor VARCHAR(36) DEFAULT NULL, status_day_off_form VARCHAR(15) NOT NULL, count_day_off_request INT NOT NULL, INDEX IDX_90E3A5D36B3CA4B (id_user), INDEX IDX_90E3A5D33E724DD3 (id_calendar), PRIMARY KEY(code_day_off_form)) DEFAULT CHARACTER SET utf8 COLLATE `utf8_general_ci` ENGINE = InnoDB');
