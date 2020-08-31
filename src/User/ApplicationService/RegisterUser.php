@@ -8,6 +8,7 @@ use App\User\ApplicationService\DTO\RegisterUserRequest;
 use App\User\ApplicationService\Exception\AlreadyExistingUserException;
 use App\User\Domain\Factory\UserFactory;
 use App\User\Domain\UserRepository;
+use App\User\Domain\ValueObject\Roles;
 
 final class RegisterUser
 {
@@ -29,6 +30,8 @@ final class RegisterUser
             throw new AlreadyExistingUserException($email);
         }
 
+        $roles = new Roles($registerUserRequest->roles());
+
         $user = $this->userFactory->register(
             $registerUserRequest->name(),
             $registerUserRequest->lastName(),
@@ -37,7 +40,7 @@ final class RegisterUser
             $registerUserRequest->password(),
             $registerUserRequest->deparment(),
             $registerUserRequest->company(),
-            $registerUserRequest->roles()
+            $roles
         );
 
         $this->userRepository->saveUser($user);
