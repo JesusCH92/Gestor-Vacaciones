@@ -16,6 +16,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/User/Infrastructure/Model'
                 prefix: 'App\User\Infrastructure\Model'
                 alias: SymfonyUser
+            SymfonyUserEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/User/Domain/ValueObject'
+                prefix: 'App\User\Domain\ValueObject'
+                alias: SymfonyUserEmbeddable
             Entity:
                 is_bundle: false
                 type: annotation
