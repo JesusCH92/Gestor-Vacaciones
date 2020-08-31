@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 // use Symfony\Component\Security\Core\User\UserInterface;
 use App\Entity\Department;
 use App\Entity\Company;
+use App\User\Domain\ValueObject\Roles;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
 /**
@@ -42,9 +43,9 @@ class User
     protected $phone;
 
     /**
-     * @ORM\Column(type="json", name="roles")
+     * @ORM\Embedded(class="App\User\Domain\ValueObject\Roles", columnPrefix = false)
      */
-    protected $roles = [];
+    protected $roles;
 
     /**
      * @var string The hashed password
@@ -64,14 +65,14 @@ class User
      */
     protected $company;
 
-    public function __construct(string $email, string $name, string $lastname, string $phone, string $roles, string $password, Department $department, Company $company)
+    public function __construct(string $email, string $name, string $lastname, string $phone, Roles $roles, string $password, Department $department, Company $company)
     {
         $this->userId = Uuid::uuid4();
         $this->email = $email;
         $this->name = $name;
         $this->lastname = $lastname;
         $this->phone = $phone;
-        $this->roles = [$roles];
+        $this->roles = $roles;
         $this->password = $password;
         $this->department = $department;
         $this->company = $company;
@@ -103,7 +104,7 @@ class User
         return $this->phone;
     }
 
-    public function roles(): array
+    public function roles(): Roles
     {
         return $this->roles;
     }
