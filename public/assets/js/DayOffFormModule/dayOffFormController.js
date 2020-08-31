@@ -90,6 +90,8 @@ var dayOffFormController = (function(_calendarId){
                 data: {day_off_request},
                 success: function(data){
                     callback(data);
+                    //window.location.replace("http://localhost:8080/dayoff");
+                    location.reload();
                 },
                 error: function(data){
                     console.log(JSON.parse(data.responseText));
