@@ -6,12 +6,16 @@ namespace App\User\Infrastructure\Framework\Form\Model;
 
 use App\Entity\Company;
 use App\Entity\Department;
+use App\User\Infrastructure\Framework\Validator\UniqueUser;
 
 final class RegistrationFormModel
 {
     private $name;
     private $lastName;
     private $phone;
+    /**
+     * @UniqueUser
+     */
     private $email;
     private $plainPassword;
     private $department;
