@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\User\ApplicationService;
 
 use App\User\ApplicationService\DTO\RegisterUserRequest;
+use App\User\ApplicationService\Exception\AlreadyExistingUserException;
 use App\User\Domain\Factory\UserFactory;
 use App\User\Domain\UserRepository;
 
@@ -25,7 +26,7 @@ final class RegisterUser
         $email = $registerUserRequest->email();
 
         if (null !== $this->userRepository->findUserByEmail($email)) {
-            // ! lanzar una excepcion
+            throw new AlreadyExistingUserException($email);
         }
 
         $user = $this->userFactory->register(
