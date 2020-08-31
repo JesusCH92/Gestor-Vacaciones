@@ -26,7 +26,7 @@ final class DoctrineDayOffRepository implements DayOffRepository
         return $dayOffRepository->findBy(['idUser' => $user]);
     }
 
-    public function findByUserAndStatusDayOffForm(User $user,Calendar $calendar, string $typeDayOffForm): array
+    public function findByUserAndStatusDayOffForm(User $user, Calendar $calendar, string $typeDayOffForm): array
     {
         $query = $this
             ->entityManager
@@ -57,11 +57,53 @@ DQL
 
     }
 
-    public function saveDayOffFormRequest(array $dayOffFormRequestCollection) :void
+    public function saveDayOffFormRequest(array $dayOffFormRequestCollection): void
     {
         foreach ($dayOffFormRequestCollection as $dayOffFormRequest) {
             $this->entityManager->persist($dayOffFormRequest);
             $this->entityManager->flush();
         }
+    }
+
+    public function approveDayOffForm(string $dayOffFormId, string $observation, string $supervisorId)
+    {
+        $query = $this
+            ->entityManager
+            ->createQuery(
+                <<<DQL
+UPDATE App\Entity\DayOffForm d
+SET d.statusDayOffForm.statusDayOffForm = :status, d.observation = :observation, d.supervisorId = :supervisor
+WHERE d.codeDayOffForm = :code
+DQL
+            )->setParameters(
+                [
+                    'status' => 'APPROVED',
+                    'observation' => $observation,
+                    'supervisor' => $supervisorId,
+                    'code' => $dayOffFormId
+                ]
+            );
+        $query->execute();
+    }
+
+    public function denyDayOffForm(string $dayOffFormId, string $observation, string $supervisorId)
+    {
+        $query = $this
+            ->entityManager
+            ->createQuery(
+                <<<DQL
+UPDATE App\Entity\DayOffForm d
+SET d.statusDayOffForm.statusDayOffForm = :status, d.observation = :observation, d.supervisorId = :supervisor
+WHERE d.codeDayOffForm = :code
+DQL
+            )->setParameters(
+                [
+                    'status' => 'DENIED',
+                    'observation' => $observation,
+                    'supervisor' => $supervisorId,
+                    'code' => $dayOffFormId
+                ]
+            );
+        $query->execute();
     }
 }
