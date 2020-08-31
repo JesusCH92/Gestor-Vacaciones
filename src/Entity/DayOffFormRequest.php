@@ -45,7 +45,7 @@ class DayOffFormRequest
         return $this->id;
     }
 
-    public function dayOffSelected(): ?DateTimeInterface
+    public function dayOffSelected()
     {
         return $this->dayOffSelected;
     }
