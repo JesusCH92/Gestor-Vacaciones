@@ -18,8 +18,8 @@
 
             <div class="list-group">
                 {% for user in users %}
-                <a href="#" class="list-group-item list-group-item-action list-group-item-light notificacion-usuario user-notification-container">
-                    <div class="d-flex w-100 justify-content-between notificacion-usuario employee-notification" user="{{ user.user.getId }}" dayoff="{{ user.day_off_form.codeDayOffForm }}">
+                <a href="#" class="list-group-item list-group-item-action list-group-item-light notificacion-usuario user-notification-container" user="{{ user.user.getId }}"  dayoff="{{ user.day_off_form.codeDayOffForm }}">
+                    <div class="d-flex w-100 justify-content-between notificacion-usuario employee-notification">
                         <h5 class="mb-1 notificacion-usuario user-notification">{{ user.user.name }} {{ user.user.lastname }}</h5>
                         <small>{{ user.day_off_form.createdAt|date('Y-m-d') }}</small>
                     </div>
@@ -31,7 +31,7 @@
         </div>
         {% endif %}
     </div>
-    <br>
+    <hr class="my-4 col-12">
     <div class="notificaciones-area container employee-info">
 
     </div>
@@ -45,8 +45,8 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/superviseEmployeesConfigController.js"></script>
-    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/superviseEmployeesModel.js"></script>
-    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/superviseEmployeesController.js"></script>
+    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/Notification/superviseEmployeesConfigController.js"></script>
+    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/Notification/superviseEmployeesModel.js"></script>
+    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/Notification/superviseEmployeesController.js"></script>
 
 {% endblock %}

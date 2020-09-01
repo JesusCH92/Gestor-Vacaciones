@@ -14,16 +14,14 @@ var superviseEmployeesConfigController = (function(){
 
     var initEvent = function () {
         $userNotificationContainer.click(function() {
-            if (!$(event.target).hasClass('employee-notification')) {
-                return;
-            }
-            console.log($(event.target).attr("dayoff"));
-            console.log($(event.target).attr("user"));
+
+            console.log($(this).attr("dayoff"));
+            console.log($(this).attr("dayoff"));
             //console.log($employeeNotification.attr("user"));
-            var userId = $(event.target).attr("user");
+            var userId = $(this).attr("dayoff");
 
             //console.log($employeeNotification.attr("dayoff"));
-            var dayOffFormId = $(event.target).attr("dayoff");
+            var dayOffFormId = $(this).attr("dayoff");
 
             var _superviseEmployeesModel = superviseEmployeesModel();
             getDayOffFormByUser(
