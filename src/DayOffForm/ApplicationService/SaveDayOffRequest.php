@@ -34,7 +34,7 @@ final class SaveDayOffRequest
     public function mappingDayOffFormFromDayOffRequest(DayOffRequest $dayOffRequest, int $remainingDays): DayOffForm
     {
         $statusDayOffForm = new StatusDayOffForm();
-        $statusDayOffForm->statusByUserRole($dayOffRequest->user()->getRoles()[0]);
+        $statusDayOffForm->statusByUserRole($dayOffRequest->user()->getRoles()[0]); // ! It's SymfonyUser
 
         $countDayOffRequest = new  CountDayOffRequest(count($dayOffRequest->daysOffSelected()));
         $countDayOffRequest->checkCountDaysSelected($dayOffRequest->typeDayOffSelected(), $remainingDays);
