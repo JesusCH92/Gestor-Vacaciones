@@ -9,7 +9,7 @@ use App\Entity\DayOffFormRequest;
 use App\Entity\Department;
 use App\SuperviseEmployees\Domain\DTO\DatesDayOffFormRequest;
 use App\SuperviseEmployees\Domain\UserDayOffRequestRepository;
-use App\User\Domain\User;
+use App\User\Infrastructure\Model\SymfonyUser;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepository
@@ -23,7 +23,7 @@ final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepositor
 
     public function findUsersByDepartment(Department $department)
     {
-        $userRepository = $this->entityManager->getRepository(User::class);
+        $userRepository = $this->entityManager->getRepository(SymfonyUser::class);
         return $userRepository->findBy(['department' => $department]);
     }
 
@@ -53,7 +53,7 @@ final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepositor
     public function findDayOfFormById(string $dayOffFormId)
     {
         $userRepository = $this->entityManager->getRepository(DayOffForm::class);
-        return $userRepository->findBy(['codeDayOffForm' => $dayOffFormId])[0];
+        return $userRepository->find($dayOffFormId);
 
     }
     public function findByDayOffFormRequestById(DatesDayOffFormRequest $dayOffForm): array
