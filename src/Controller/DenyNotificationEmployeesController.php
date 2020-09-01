@@ -31,7 +31,7 @@ final class DenyNotificationEmployeesController extends AbstractController
         $observation = $request['comment'];
         $dayOffId = $request['day_off_id'];
         $denyDayOffForm = $this->denyDayOffForm;
-        $denyDayOffForm->__invoke(new DenyDayOffFormRequest($dayOffId, $user->getId(), $observation));
+        $denyDayOffForm->__invoke(new DenyDayOffFormRequest($dayOffId, $user->userId(), $observation));
 
 
         return Response::create('??????');
