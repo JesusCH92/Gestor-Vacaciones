@@ -5,7 +5,6 @@ var superviseEmployeesController = (function(){
     var $dayOffFormId = $("#day-off-form-id");
 
     var initSuperviseEmployees = function() {
-        console.log("holaaa");
         $approveDayOffFormBtn.click(function (){
             console.log($dayOffFormId.attr("value"));
             $comment = $superviseComment.val();
