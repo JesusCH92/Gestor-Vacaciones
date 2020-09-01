@@ -54,11 +54,6 @@
                         <input type="number" id="personal-days-number" class="form-control" min="0" value="0">
                     </div>
 
-                    {# <div class="form-group col-md-4">
-                        <label for="end">Número de días por otro motivo:</label>
-                        <input type="number" id="others-number" class="form-control" min="0" value="0">
-                    </div> #}
-
                 </div>
             </div>
 
@@ -85,52 +80,6 @@
             <div class="section-create-calendar-form">
                 <h5 class="font-weight-bold">Añadir los días festivos del año laboral</h5>
                 <div class="form-row">
-                    {# !ESTE FORMATO QUIZAS SIRVA PARA CONTROLAR EL CALENDARIO #}
-                    {# <div class="form-group col-md-6"> 
-                        <label>Seleccionar los días festivos del calendario</label>
-                        <div>
-                            <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-interval="false">
-                                <div class="carousel-inner">
-                                    <div class="carousel-item">
-                                        <ul class="list-group">
-                                            <li class="list-group-item list-group-item-success">Cras justo odio</li>
-                                            <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item list-group-item-success">Morbi leo risus</li>
-                                            <li class="list-group-item list-group-item-success">Porta ac consectetur ac</li>
-                                            <li class="list-group-item list-group-item-success">Vestibulum at eros</li>
-                                        </ul>
-                                    </div>
-                                    <div class="carousel-item active">
-                                        <ul class="list-group">
-                                            <li class="list-group-item list-group-item-success">aquí debe estar</li>
-                                            <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item list-group-item-success">Morbi leo risus</li>
-                                            <li class="list-group-item list-group-item-success">Porta ac consectetur ac</li>
-                                            <li class="list-group-item list-group-item-success">Vestibulum at eros</li>
-                                        </ul>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <ul class="list-group">
-                                            <li class="list-group-item list-group-item-success">Cras justo odio</li>
-                                            <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
-                                            <li class="list-group-item list-group-item-success">Morbi leo risus</li>
-                                            <li class="list-group-item list-group-item-success">Porta ac consectetur ac</li>
-                                            <li class="list-group-item list-group-item-success">Vestibulum at eros</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-        
-                        </div>
-                    </div> #}
                     <div class="form-group col-md-5">
                         <label for="start">Selecciona los días festivos individualmente:</label>
                         <input type="date" id="feastday-date" class="form-control" min="2019-01-01">
@@ -169,8 +118,6 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {# <script src="/../assets/js/CompanyModule/companyModel.js"></script>
-    <script src="/../assets/js/CompanyModule/companyController.js"></script> #}
 
     <script type="text/javascript" src="/../assets/js/CalendarModule/calendarController.js"></script>
     
