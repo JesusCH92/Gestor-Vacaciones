@@ -29,11 +29,11 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: Entity
 
-            DayOff:
+            DayOffFormEmbeddable:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/DayOff/Domain/ValueObject'
-                prefix: 'App\DayOff\Domain\ValueObject'
+                dir: '%kernel.project_dir%/src/DayOffForm/Domain/ValueObject'
+                prefix: 'App\DayOffForm\Domain\ValueObject'
                 alias: Embeddable
             CalendarEmbeddable:
                 is_bundle: false

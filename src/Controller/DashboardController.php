@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
 use App\Calendar\ApplicationService\GetCalendarConfig;
-use App\DayOff\ApplicationService\GetDatesOfCalendar;
+use App\DayOffForm\ApplicationService\GetDatesOfCalendar;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,7 +25,7 @@ class DashboardController extends AbstractController
      */
     public function index()
     {
-        $calendarId = "9eb95c15-1c6a-4ad8-b083-2a2e992815af";
+        $calendarId = "94b9fc99-fbfe-4eb6-a3fa-3f0c0a384741";
         $calendar = new CalendarConfigRequest($calendarId);
 
         $getCalendarConfig =$this->getCalendarConfig;

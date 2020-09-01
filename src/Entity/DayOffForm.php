@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\DayOff\Domain\ValueObject\CountDayOffRequest;
+use App\DayOffForm\Domain\ValueObject\CountDayOffRequest;
 use App\User\Domain\User;
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -30,7 +30,7 @@ class DayOffForm
      */
     private $typeDayOff;
 
-    /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\StatusDayOffForm", columnPrefix = false) */
+    /** @ORM\Embedded(class = "App\DayOffForm\Domain\ValueObject\StatusDayOffForm", columnPrefix = false) */
     private $statusDayOffForm;
 
     /**
@@ -38,7 +38,7 @@ class DayOffForm
      */
     private $observation;
 
-    /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\CountDayOffRequest", columnPrefix = false) */
+    /** @ORM\Embedded(class = "App\DayOffForm\Domain\ValueObject\CountDayOffRequest", columnPrefix = false) */
     private $countDayOffRequest;
 
     /**
@@ -68,17 +68,20 @@ class DayOffForm
         $statusDayOffForm,
         $observation,
         $countDayOffRequest,
+        $createdAt,
         $user,
-        $supervisorId
+        $supervisorId,
+        $calendar
     ) {
         $this->codeDayOffForm = Uuid::uuid4();
         $this->typeDayOff = $typeDayOff;
         $this->statusDayOffForm = $statusDayOffForm;
         $this->observation = $observation;
         $this->countDayOffRequest = $countDayOffRequest;
-        $this->createdAt = new DateTimeImmutable();
+        $this->createdAt = $createdAt;
         $this->user = $user;
         $this->supervisorId = $supervisorId;
+        $this->calendar = $calendar;
     }
 
 
