@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="user", options={"collate"="utf8_general_ci", "charset"="utf8"})
  * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-final class SymfonyUser extends User implements UserInterface
+class SymfonyUser extends User implements UserInterface
 {
     /**
      * @see UserInterface
