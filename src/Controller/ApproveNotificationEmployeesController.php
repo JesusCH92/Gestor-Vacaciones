@@ -30,7 +30,7 @@ final class ApproveNotificationEmployeesController extends AbstractController
         $observation = $request['comment'];
         $dayOffId = $request['day_off_id'];
         $approveDayOffForm = $this->approveDayOffForm;
-        $approveDayOffForm->__invoke(new ApproveDayOffFormRequest($dayOffId, $user->getId(), $observation));
+        $approveDayOffForm->__invoke(new ApproveDayOffFormRequest($dayOffId, $user->userId(), $observation));
 
 
         return Response::create('??????');
