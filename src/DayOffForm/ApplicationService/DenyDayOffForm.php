@@ -6,7 +6,7 @@ namespace App\DayOffForm\ApplicationService;
 use App\DayOffForm\ApplicationService\DTO\DenyDayOffFormRequest;
 use App\DayOffForm\Domain\DayOffRepository;
 
-class DenyDayOffForm
+final class DenyDayOffForm
 {
     private DayOffRepository $dayOffRepository;
 
