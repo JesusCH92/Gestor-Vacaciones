@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\DayOffForm\Domain\ValueObject\CountDayOffRequest;
 use App\User\Domain\User;
-use DateTimeImmutable;
+use App\User\Infrastructure\Model\SymfonyUser;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -85,18 +85,18 @@ class DayOffForm
     }
 
 
-    public function codeDayOffForm(): ?string
+    public function codeDayOffForm(): string
     {
         return $this->codeDayOffForm;
     }
 
-    public function typeDayOff(): ?string
+    public function typeDayOff(): string
     {
         return $this->typeDayOff;
     }
 
 
-    public function statusDayOffForm(): ?string
+    public function statusDayOffForm(): string
     {
         return $this->statusDayOffForm;
     }
@@ -107,18 +107,18 @@ class DayOffForm
     }
 
 
-    public function countDayOffRequest(): ?CountDayOffRequest
+    public function countDayOffRequest(): CountDayOffRequest
     {
         return $this->countDayOffRequest;
     }
 
 
-    public function createdAt(): ?DateTimeInterface
+    public function createdAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function user(): ?User
+    public function user(): User
     {
         return $this->user;
     }
@@ -128,7 +128,7 @@ class DayOffForm
         return $this->supervisorId;
     }
 
-    public function calendar(): ?Calendar
+    public function calendar(): Calendar
     {
         return $this->calendar;
     }
