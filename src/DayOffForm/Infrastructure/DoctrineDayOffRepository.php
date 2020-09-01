@@ -8,6 +8,7 @@ use App\DayOffForm\Domain\DayOffRepository;
 use App\Entity\Calendar;
 use App\Entity\DayOffForm;
 use App\Entity\DayOffFormRequest;
+use App\TypeDayOff\Domain\Constants\DayOff;
 use App\User\Domain\User;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -105,5 +106,38 @@ DQL
                 ]
             );
         $query->execute();
+    }
+
+    public function findDaysOffRequest(array $dayOffFormCollection): array
+    {
+        $dayOffFormRequestCollection = [];
+        $dayOffRepository = $this->entityManager->getRepository(DayOffFormRequest::class);
+        foreach ($dayOffFormCollection as $dayOffForm){
+            $dayOffFormRequest = $dayOffRepository->findBy(['dayOffForm' => $dayOffForm]);
+            //$dayOffArray = ['' =>];
+        }
+        return [];
+    }
+
+    public function findByCalendar(Calendar $calendar): array
+    {
+        $query = $this
+            ->entityManager
+            ->createQuery(
+                <<<DQL
+SELECT d.countDayOffRequest.countDayOffRequest
+FROM App\Entity\DayOffForm d
+WHERE d.calendar = :calendar AND d.typeDayOff = :type AND (d.statusDayOffForm.statusDayOffForm = :approved)
+DQL
+            )->setParameters(
+                [
+                    'calendar' => $calendar,
+                    'type' => DayOff::HOLIDAY,
+                    'approved' => 'APPROVED'
+                ]
+            );
+        $dayOffCollection = $query->getResult();
+
+        return [];
     }
 }
