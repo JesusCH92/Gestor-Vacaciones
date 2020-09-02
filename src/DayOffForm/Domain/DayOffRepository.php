@@ -15,4 +15,5 @@ interface DayOffRepository
     public function approveDayOffForm(string $dayOffFormId, string $observation, string $supervisorId);
     public function denyDayOffForm(string $dayOffFormId, string $observation, string $supervisorId);
     public function findByCalendar(Calendar $calendar);
+    public function findByDepartmentAndUsername(Calendar $calendar, string $userName, int $departmentId);
 }
