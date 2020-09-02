@@ -14,6 +14,7 @@ use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class FilterDayOffByDepartmentByName extends AbstractController
@@ -40,13 +41,17 @@ final class FilterDayOffByDepartmentByName extends AbstractController
      */
     public function findUserInDayOff(Request $request)
     {
+        if(!$request->isXmlHttpRequest()){
+            return new Response('not ajax', 404);
+        }
+
         $request = $request->get('filterEmployeesCorpus');
         $departmentId = $request['department'];
         $userName = $request['user'];
 
         $calendarByYear = $this->getCalendarByYear;
-        $year = date("Y");
-        $calendar = $calendarByYear->__invoke($year);
+        $currentYear = date("Y");
+        $calendar = $calendarByYear->__invoke($currentYear);
 
         if ('0' === $departmentId && '' === $userName) {
             $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORM;
@@ -54,12 +59,12 @@ final class FilterDayOffByDepartmentByName extends AbstractController
             $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORMINDEPARTMENT;
         } elseif ('0' === $departmentId && '' !== $userName) {
             $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORMBYNAME;
-        } else {
+        } elseif ('0' !== $departmentId && '' !== $userName) {
             $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORMBYNAMEINDEPARTMENT;
         }
 
-        $datesByDepartmentByUserName = $this->findDatesDayOffFormByDepartmentByUserName;
-        $datesDayOffFormResponse = $datesByDepartmentByUserName->__invoke(new DatesDayOffByDepartmentByUserNameRequest($calendar->calendar(),
+        $findDatesDayOffFormByDepartmentByUserName = $this->findDatesDayOffFormByDepartmentByUserName;
+        $datesDayOffFormResponse = $findDatesDayOffFormByDepartmentByUserName->__invoke(new DatesDayOffByDepartmentByUserNameRequest($calendar->calendar(),
             $departmentId, $userName, $filtereDayOffFormType));
 
         $getCalendarConfig = $this->getCalendarConfig;
