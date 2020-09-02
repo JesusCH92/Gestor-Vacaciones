@@ -11,12 +11,14 @@ class DatesDayOffByDepartmentByUserNameRequest
     private Calendar $calendar;
     private int $departmentId;
     private string $userName;
+    private string $filtereDayOffFormType;
 
-    public function __construct(Calendar $calendar, int $departmentId, string $userName)
+    public function __construct(Calendar $calendar, int $departmentId, string $userName, string $filtereDayOffFormType)
     {
         $this->calendar = $calendar;
         $this->departmentId =$departmentId;
         $this->userName = $userName;
+        $this->filtereDayOffFormType = $filtereDayOffFormType;
     }
 
     public function calendar(): Calendar
@@ -32,6 +34,11 @@ class DatesDayOffByDepartmentByUserNameRequest
     public function userName(): string
     {
         return $this->userName;
+    }
+
+    public function filtereDayOffFormType(): string
+    {
+        return $this->filtereDayOffFormType;
     }
 
 }
