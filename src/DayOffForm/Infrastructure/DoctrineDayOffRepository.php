@@ -5,6 +5,7 @@ namespace App\DayOffForm\Infrastructure;
 
 
 use App\DayOffForm\Domain\DayOffRepository;
+use App\DayOffForm\Domain\ValueObject\StatusDayOffForm;
 use App\Entity\Calendar;
 use App\Entity\DayOffForm;
 use App\Entity\DayOffFormRequest;
@@ -42,8 +43,8 @@ DQL
                     'user' => $user,
                     'calendar' => $calendar,
                     'type' => $typeDayOffForm,
-                    'approved' => 'APPROVED',
-                    'pending' => 'PENDING'
+                    'approved' => StatusDayOffForm::APPROVED,
+                    'pending' => StatusDayOffForm::PENDING
                 ]
             );
         return $query->getResult();
@@ -78,7 +79,7 @@ WHERE d.codeDayOffForm = :code
 DQL
             )->setParameters(
                 [
-                    'status' => 'APPROVED',
+                    'status' => StatusDayOffForm::APPROVED,
                     'observation' => $observation,
                     'supervisor' => $supervisorId,
                     'code' => $dayOffFormId
@@ -99,7 +100,7 @@ WHERE d.codeDayOffForm = :code
 DQL
             )->setParameters(
                 [
-                    'status' => 'DENIED',
+                    'status' => StatusDayOffForm::DENIED,
                     'observation' => $observation,
                     'supervisor' => $supervisorId,
                     'code' => $dayOffFormId
@@ -112,11 +113,19 @@ DQL
     {
         $dayOffFormRequestCollection = [];
         $dayOffRepository = $this->entityManager->getRepository(DayOffFormRequest::class);
-        foreach ($dayOffFormCollection as $dayOffForm){
+        foreach ($dayOffFormCollection as $dayOffForm) {
             $dayOffFormRequest = $dayOffRepository->findBy(['dayOffForm' => $dayOffForm]);
-            //$dayOffArray = ['' =>];
+            $datesArray = [];
+            foreach ($dayOffFormRequest as $dates) {
+                array_push($datesArray, $dates->dayOffSelected());
+            }
+            $dayOffArray = [
+                'dayOffId' => $dayOffForm->codeDayOffForm(),
+                'dates' => $datesArray
+            ];
+            array_push($dayOffFormRequestCollection, $dayOffArray);
         }
-        return [];
+        return $dayOffFormRequestCollection;
     }
 
     public function findByCalendar(Calendar $calendar): array
@@ -125,7 +134,7 @@ DQL
             ->entityManager
             ->createQuery(
                 <<<DQL
-SELECT d.countDayOffRequest.countDayOffRequest
+SELECT d
 FROM App\Entity\DayOffForm d
 WHERE d.calendar = :calendar AND d.typeDayOff = :type AND (d.statusDayOffForm.statusDayOffForm = :approved)
 DQL
@@ -133,11 +142,42 @@ DQL
                 [
                     'calendar' => $calendar,
                     'type' => DayOff::HOLIDAY,
-                    'approved' => 'APPROVED'
+                    'approved' => StatusDayOffForm::APPROVED
                 ]
             );
         $dayOffCollection = $query->getResult();
+        return $this->findDaysOffRequest($dayOffCollection);
 
-        return [];
+    }
+
+    public function findByDepartmentAndUsername(Calendar $calendar, string $userName, int $departmentId)
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+        $qb
+            ->select('u.userId','u.name','u.lastname', 'dof.codeDayOffForm', 'dor.dayOffSelected.dayOffSelected')
+            ->from('App\User\Infrastructure\Model\SymfonyUser', 'u')
+            ->leftJoin(
+                'App\Entity\DayOffForm',
+                'dof',
+                \Doctrine\ORM\Query\Expr\Join::WITH,
+                'u.userId = dof.user'
+            )
+            ->leftJoin('App\Entity\DayOffFormRequest',
+            'dor',
+                \Doctrine\ORM\Query\Expr\Join::WITH,
+                'dof = dor.dayOffForm'
+            )
+            ->where('
+            u.name like :userName
+            and u.department = :departmentId
+            and dof.calendar = :calendar 
+            and dof.typeDayOff = :typeDayOff and dof.statusDayOffForm.statusDayOffForm = :statusDayOffForm
+            ')
+            ->setParameter('calendar', $calendar)
+            ->setParameter('typeDayOff', DayOff::HOLIDAY)
+            ->setParameter('statusDayOffForm', StatusDayOffForm::APPROVED)
+            ->setParameter('userName', "%$userName%")
+            ->setParameter('departmentId', $departmentId);
+        return $qb->getQuery()->getResult();
     }
 }
