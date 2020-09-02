@@ -7,8 +7,8 @@ var daysOffModel = (function() {
             async: true,
             data: {filterEmployeesCorpus},
             success: function(data){
-                callback(data);
-                //callback({filterUserDayOff : container, dayoffConfig : data.dayoff_config});
+                //callback(data);
+                callback({filterUserDayOff : container, dayoffConfig : data.dayoff_config});
             },
             error: function(data){
                 console.log(data);
