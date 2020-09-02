@@ -23,8 +23,7 @@ var daysOffModel = (function() {
             async: true,
             dataType: "json",
             success: function(data){
-                callback(data);
-                // callback({calendarContainer : container, calendar : data.user_dayoff_calendar});
+                callback({calendarContainer : container, calendar : data.user_dayoff_calendar});
             },
             error: function(data){
                 console.log(data);
