@@ -19,9 +19,7 @@ final class CalendarByActualYear
     public function __invoke(int $year): CalendarByYearResponse
     {
         $calendarByWorkingYear = $this->calendarRepository->findCalendarByWorkingYear($year);
-        if ($calendarByWorkingYear === null){
-            $calendarByWorkingYear = $this->calendarRepository->findCalendarByWorkingYear($year-1);
-        }
+
         return new CalendarByYearResponse($calendarByWorkingYear);
     }
 }
