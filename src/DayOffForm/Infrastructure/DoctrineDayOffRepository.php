@@ -154,7 +154,7 @@ DQL
     {
         $qb = $this->entityManager->createQueryBuilder();
         $qb
-            ->select('u.userId','u.name','u.lastname', 'dof.codeDayOffForm', 'dor.dayOffSelected.dayOffSelected')
+            ->select('u.userId', 'u.email','u.name','u.lastname', 'dof.codeDayOffForm', 'dor.dayOffSelected.dayOffSelected')
             ->from('App\User\Infrastructure\Model\SymfonyUser', 'u')
             ->leftJoin(
                 'App\Entity\DayOffForm',
