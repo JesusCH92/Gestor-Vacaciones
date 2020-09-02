@@ -29,7 +29,17 @@
                         {% endif %}
                         {% for day in month.week %}
                         {% set dayNumber = day.date|split('-') %}
-                        <div class="col calendar-month day-of-month {% if day.feastday %} feastday {% elseif day.day not in working_days %} no-working-day {% else %}selectable-day {% endif %}" date="{{ day.date }}" day="{{ day.day }}">{{ dayNumber[2] }}</div>
+
+                            {% set count = 0 %}
+                            {% for datesDayOff in dates_dayoff %}
+                                {% for dates in datesDayOff.daysOffRequest %}
+                                    {% if day.date in dates|date("Y-m-d") %}
+                                        {% set count= count +1 %}
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% endfor %}
+                        <div data-toggle="tooltip" data-placement="top" title="{{ count }}" class="col calendar-month day-of-month {% if day.feastday %} feastday {% elseif day.day not in working_days %} no-working-day {% endif %}{% if count>0 %}date-in-user {% endif %}" date="{{ day.date }}" day="{{ day.day }}">{{ dayNumber[2] }}</div>
                         {% endfor %}
                         {% set lastWeek = month.week|last %}
                         {% if lastWeek.day<6 %}
