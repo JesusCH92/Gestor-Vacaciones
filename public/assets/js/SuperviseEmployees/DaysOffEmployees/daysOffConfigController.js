@@ -9,7 +9,9 @@ var daysOffConfigController = (function(){
         filterUserDayOff.html(dayoffConfig);
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
-        })
+        });
+        var _userInDayOffController = userInDayOffController();
+        _userInDayOffController.initEventUserInDayOff();
     }
 
     var _daysOffModel = daysOffModel();
