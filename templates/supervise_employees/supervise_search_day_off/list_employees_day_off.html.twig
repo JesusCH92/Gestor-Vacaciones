@@ -4,11 +4,11 @@
     <div class="col-xl-4 col-md-3 col-12 mt-1">
         <h5 class="col-12">Listado de empleados</h5>
         <div class="list-group">
-            {% set newArray = [] %}
+            {% set usersUniqueFilterResult = [] %}
             {% for user in dates_dayoff %}
-                {% if user.userId not in newArray %}
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-light" userId="{{ user.userId }}" id="1">{{ user.userName }} {{ user.lastName }}</a>
-                    {% set newArray = newArray|merge([user.userId]) %}
+                {% if user.userId not in usersUniqueFilterResult %}
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center list-group-item-light" userId="{{ user.userId }}" id="1">{{ user.userName }} {{ user.lastName }}</a>
+                    {% set usersUniqueFilterResult = usersUniqueFilterResult|merge([user.userId]) %}
                 {% endif %}
             {% endfor %}
         </div>
