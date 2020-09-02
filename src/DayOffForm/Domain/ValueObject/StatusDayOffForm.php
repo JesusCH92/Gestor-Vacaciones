@@ -8,9 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 /** @ORM\Embeddable */
 final class StatusDayOffForm
 {
-    const STATUS = [
-        'ROLE_USER' => 'PENDING',
-        'ROLE_SUPERVISOR' => 'APPROVED'
+    public const PENDING = 'PENDING';
+    public const APPROVED = 'APPROVED';
+    public const DENIED = 'DENIED';
+
+    public const STATUS = [
+        'ROLE_USER' => self::PENDING,
+        'ROLE_SUPERVISOR' => self::APPROVED
     ];
 
     /**
@@ -19,7 +23,7 @@ final class StatusDayOffForm
     private $statusDayOffForm;
 
 
-    public function __construct(string $statusDayOffForm = 'PENDING')
+    public function __construct(string $statusDayOffForm = self::PENDING)
     {
         $this->statusDayOffForm = $statusDayOffForm;
     }
@@ -36,11 +40,11 @@ final class StatusDayOffForm
 
     public function acceptDayOff(): self
     {
-        return new self('APPROVED');
+        return new self(self::APPROVED);
     }
 
     public function denyDayOff(): self
     {
-        return new self('REJECTED');
+        return new self(self::DENIED);
     }
 }
