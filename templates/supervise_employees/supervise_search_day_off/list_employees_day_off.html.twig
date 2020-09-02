@@ -1,0 +1,20 @@
+<div class="row resultados-busqueda-usuarios-de-vacaciones mt-3">
+
+    <h3 class="col-12">Resultados de la busqueda:</h3>
+    <div class="col-xl-4 col-md-3 col-12 mt-1">
+        <h5 class="col-12">Listado de empleados</h5>
+        <div class="list-group">
+            {% set newArray = [] %}
+            {% for user in dates_dayoff %}
+                {% if user.userId not in newArray %}
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-light" userId="{{ user.userId }}" id="1">{{ user.userName }} {{ user.lastName }}</a>
+                    {% set newArray = newArray|merge([user.userId]) %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-xl-8 col-md-9 col-12 mt-1">
+        {% include 'supervise_employees/supervise_search_day_off/calendar/calendar.html.twig' %}
+    </div>
+</div>
