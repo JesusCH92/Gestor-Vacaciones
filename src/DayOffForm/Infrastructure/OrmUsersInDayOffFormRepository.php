@@ -25,14 +25,14 @@ class OrmUsersInDayOffFormRepository implements UsersInDayOffFormRepository
         $this->entityManager = $entityManager;
     }
 
-    public function filterUserInDayOff(UsersInDayOffFormFilteredRequest $usersInDayOffFormFilteredRequest): array
+    public function userInDayOffByFilteringType(UsersInDayOffFormFilteredRequest $usersInDayOffFormFilteredRequest): array
     {
-        $filtereDayOffFormType = $usersInDayOffFormFilteredRequest->filtereDayOffFormType();
+        $filteringType = $usersInDayOffFormFilteredRequest->filtereDayOffFormType();
         $calendar = $usersInDayOffFormFilteredRequest->calendar();
         $userName = $usersInDayOffFormFilteredRequest->userName();
         $departmentId = $usersInDayOffFormFilteredRequest->departmentId();
 
-        $userInDayOffFilteredCollection = $this->$filtereDayOffFormType($calendar, $userName, $departmentId);
+        $userInDayOffFilteredCollection = $this->$filteringType($calendar, $userName, $departmentId);
 
         return $userInDayOffFilteredCollection;
     }
