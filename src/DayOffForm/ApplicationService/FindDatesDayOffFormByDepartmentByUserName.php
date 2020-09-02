@@ -44,11 +44,12 @@ class FindDatesDayOffFormByDepartmentByUserName
             }
 
             $userId = $dayOffFormRequestByCode[array_key_first($dayOffFormRequestByCode)]['userId'];
+            $email = $dayOffFormRequestByCode[array_key_first($dayOffFormRequestByCode)]['email'];
             $name = $dayOffFormRequestByCode[array_key_first($dayOffFormRequestByCode)]['name'];
             $lastName = $dayOffFormRequestByCode[array_key_first($dayOffFormRequestByCode)]['lastname'];
             $dayOffFormId = $dayOffFormRequestByCode[array_key_first($dayOffFormRequestByCode)]['lastname'];
 
-            $userInDayOffFormResponse = new UserInDayOffFormResponse($userId, $name,
+            $userInDayOffFormResponse = new UserInDayOffFormResponse($userId, $email,$name,
                 $lastName, $dayOffFormId, $daysOffFormRequest);
 
             array_push($usersInDayOffCollection, $userInDayOffFormResponse);
