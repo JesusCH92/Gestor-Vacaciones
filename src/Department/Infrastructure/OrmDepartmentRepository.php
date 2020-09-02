@@ -23,9 +23,4 @@ final class OrmDepartmentRepository implements DepartmentRepository
         return $department->findAll();
     }
 
-    public function getDepartmentByName(string $name)
-    {
-        $department = $this->entityManager->getRepository(Department::class);
-        return $department->findBy(['departmentName'=> $name]);
-    }
 }
