@@ -28,13 +28,13 @@ final class FindDatesDayOffFormByDepartmentByUserName
             $dayOffByDepartmentByUserNameRequest->filtereDayOffFormType()
             );
 
-        $usersInDayOffApproved = $this->usersInDayOffFormRepository->filterUserInDayOff($usersInDayOffFormFilteredRequest);
+        $usersInDayOffApproved = $this->usersInDayOffFormRepository->userInDayOffByFilteringType($usersInDayOffFormFilteredRequest);
 
         return $this->mappingUsersInDayOffCollection($usersInDayOffApproved);
 
     }
 
-    public function mappingUsersInDayOffCollection(array $usersInDayOffApproved): array
+    public static function mappingUsersInDayOffCollection(array $usersInDayOffApproved): array
     {
         $usersInDayOffCollection = [];
         $codeDayOffForm = array_unique(array_column($usersInDayOffApproved, 'codeDayOffForm'));
