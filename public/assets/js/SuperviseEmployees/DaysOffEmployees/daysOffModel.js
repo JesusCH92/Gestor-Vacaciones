@@ -16,7 +16,24 @@ var daysOffModel = (function() {
         });
     };
 
+    var getCalendarWithUserInDayOffByCurrentYear = function ( { id, callback = console.log, container} ) {
+        $.ajax({
+            type: 'GET',
+            url: `/supervise/dayoff/user/${id}`,
+            async: true,
+            dataType: "json",
+            success: function(data){
+                callback(data);
+                // callback({calendarContainer : container, calendar : data.user_dayoff_calendar});
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    };
+
     return {
-        getDayOffFormByDepartment : getDayOffFormByDepartment
+        getDayOffFormByDepartment : getDayOffFormByDepartment,
+        getCalendarWithUserInDayOffByCurrentYear : getCalendarWithUserInDayOffByCurrentYear
     }
 });
