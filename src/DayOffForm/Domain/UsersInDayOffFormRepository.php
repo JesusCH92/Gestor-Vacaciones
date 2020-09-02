@@ -9,6 +9,6 @@ use App\Entity\Calendar;
 
 interface UsersInDayOffFormRepository
 {
-    public function filterUserInDayOff(UsersInDayOffFormFilteredRequest $usersInDayOffFormFilteredRequest): array;
+    public function userInDayOffByFilteringType(UsersInDayOffFormFilteredRequest $usersInDayOffFormFilteredRequest): array;
     public function findDayOffFormRequestByCalendarUserId(Calendar $calendar, string $userId): array;
 }
