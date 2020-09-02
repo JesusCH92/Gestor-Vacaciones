@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\DayOffForm\ApplicationService\DTO;
+namespace App\DayOffForm\Domain\DTO;
 
 
 use App\Entity\Calendar;
 
-class DatesDayOffByDepartmentByUserNameRequest
+final class UsersInDayOffFormFilteredRequest
 {
     private Calendar $calendar;
     private int $departmentId;
@@ -16,7 +16,7 @@ class DatesDayOffByDepartmentByUserNameRequest
     public function __construct(Calendar $calendar, int $departmentId, string $userName, string $filtereDayOffFormType)
     {
         $this->calendar = $calendar;
-        $this->departmentId =$departmentId;
+        $this->departmentId = $departmentId;
         $this->userName = $userName;
         $this->filtereDayOffFormType = $filtereDayOffFormType;
     }
