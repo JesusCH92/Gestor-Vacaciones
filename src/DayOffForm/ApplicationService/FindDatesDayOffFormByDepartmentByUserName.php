@@ -7,22 +7,28 @@ namespace App\DayOffForm\ApplicationService;
 use App\DayOffForm\ApplicationService\DTO\DatesDayOffByDepartmentByUserNameRequest;
 use App\DayOffForm\ApplicationService\DTO\UserInDayOffFormResponse;
 use App\DayOffForm\Domain\DayOffRepository;
+use App\DayOffForm\Domain\DTO\UsersInDayOffFormFilteredRequest;
+use App\DayOffForm\Domain\UsersInDayOffFormRepository;
 
-class FindDatesDayOffFormByDepartmentByUserName
+final class FindDatesDayOffFormByDepartmentByUserName
 {
-    private DayOffRepository $dayOffRepository;
+    private UsersInDayOffFormRepository $usersInDayOffFormRepository;
 
-    public function __construct(DayOffRepository $dayOffRepository)
+    public function __construct(UsersInDayOffFormRepository $usersInDayOffFormRepository)
     {
-        $this->dayOffRepository = $dayOffRepository;
+        $this->usersInDayOffFormRepository = $usersInDayOffFormRepository;
     }
 
     public function __invoke(DatesDayOffByDepartmentByUserNameRequest $dayOffByDepartmentByUserNameRequest): array
     {
-
-        $usersInDayOffApproved = $this->dayOffRepository->findByDepartmentAndUsername($dayOffByDepartmentByUserNameRequest->calendar(),
+        $usersInDayOffFormFilteredRequest = new UsersInDayOffFormFilteredRequest(
+            $dayOffByDepartmentByUserNameRequest->calendar(),
+            $dayOffByDepartmentByUserNameRequest->departmentId(),
             $dayOffByDepartmentByUserNameRequest->userName(),
-            $dayOffByDepartmentByUserNameRequest->departmentId());
+            $dayOffByDepartmentByUserNameRequest->filtereDayOffFormType()
+            );
+
+        $usersInDayOffApproved = $this->usersInDayOffFormRepository->filterUserInDayOff($usersInDayOffFormFilteredRequest);
 
         return $this->mappingUsersInDayOffCollection($usersInDayOffApproved);
 
@@ -49,7 +55,7 @@ class FindDatesDayOffFormByDepartmentByUserName
             $lastName = $dayOffFormRequestByCode[array_key_first($dayOffFormRequestByCode)]['lastname'];
             $dayOffFormId = $dayOffFormRequestByCode[array_key_first($dayOffFormRequestByCode)]['lastname'];
 
-            $userInDayOffFormResponse = new UserInDayOffFormResponse($userId, $email,$name,
+            $userInDayOffFormResponse = new UserInDayOffFormResponse($userId, $email, $name,
                 $lastName, $dayOffFormId, $daysOffFormRequest);
 
             array_push($usersInDayOffCollection, $userInDayOffFormResponse);
