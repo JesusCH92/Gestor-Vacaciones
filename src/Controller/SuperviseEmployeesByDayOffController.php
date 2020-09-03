@@ -20,7 +20,7 @@ final class SuperviseEmployeesByDayOffController extends AbstractController
     }
 
     /**
-     * @Route("/notification/list/employees/dayoff/{id}", options={"expose"=true}, name="app_dayoff_notification")
+     * @Route("supervise/management/notification/employees/dayoff/{id}", options={"expose"=true}, name="app_dayoff_notification")
      */
     public function dayOff($id)
     {

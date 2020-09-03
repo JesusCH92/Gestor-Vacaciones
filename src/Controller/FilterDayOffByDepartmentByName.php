@@ -37,7 +37,7 @@ final class FilterDayOffByDepartmentByName extends AbstractController
     }
 
     /**
-     * @Route("/supervise/management/employees", name="app_supervise_management_find_employees")
+     * @Route("/supervise/management/dayoff/employees/filter", name="app_supervise_management_find_employees")
      */
     public function findUserInDayOff(Request $request)
     {

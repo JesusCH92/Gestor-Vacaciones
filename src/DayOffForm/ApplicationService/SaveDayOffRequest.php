@@ -34,7 +34,9 @@ final class SaveDayOffRequest
     public function mappingDayOffFormFromDayOffRequest(DayOffRequest $dayOffRequest, int $remainingDays): DayOffForm
     {
         $statusDayOffForm = new StatusDayOffForm();
-        $statusDayOffForm->statusByUserRole($dayOffRequest->user()->getRoles()[0]); // ! It's SymfonyUser
+        // ! Roles got from SymfonyUser entity;
+        $roleUser = $dayOffRequest->user()->getRoles()[0];
+        $statusDayOffForm->statusByUserRole($roleUser); 
 
         $countDayOffRequest = new  CountDayOffRequest(count($dayOffRequest->daysOffSelected()));
         $countDayOffRequest->checkCountDaysSelected($dayOffRequest->typeDayOffSelected(), $remainingDays);
@@ -56,16 +58,15 @@ final class SaveDayOffRequest
     {
         $dayOffFormRequestCollection = [];
 
+        $initDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->initDateDayOffRequest();
+        $endDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->endDateDayOffRequest();
+        $typeDayOffSelected = $dayOffRequest->typeDayOffSelected();
+
         foreach ($dayOffRequest->daysOffSelected() as $dayOff) {
-
-            $initDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->initDateDayOffRequest();
-            $endDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->endDateDayOffRequest();
-
             $dayOffSelected = new DayOffSelected($dayOff);
-            //throw an exception if the date selected is not in between the init date and the end date to select a day off
-            $dayOffSelected->isCorrectDaySelectedTiming($initDateDayOffRequest, $endDateDayOffRequest);
+            $dayOffSelectedValid = $dayOffSelected->guardIfIsValidDate($typeDayOffSelected, $initDateDayOffRequest, $endDateDayOffRequest);
 
-            $dayOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelected);
+            $dayOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelectedValid);
 
             array_push($dayOffFormRequestCollection, $dayOfFormRequest);
         }

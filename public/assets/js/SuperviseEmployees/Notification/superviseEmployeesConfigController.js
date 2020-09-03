@@ -16,40 +16,18 @@ var superviseEmployeesConfigController = (function(){
         $userNotificationContainer.click(function() {
 
             console.log($(this).attr("dayoff"));
-            console.log($(this).attr("dayoff"));
-            //console.log($employeeNotification.attr("user"));
-            var userId = $(this).attr("dayoff");
 
-            //console.log($employeeNotification.attr("dayoff"));
             var dayOffFormId = $(this).attr("dayoff");
 
             var _superviseEmployeesModel = superviseEmployeesModel();
-            getDayOffFormByUser(
-
-                dayOffFormId,
-                paintDayOffConfig,
-                $employeeInfo
+            _superviseEmployeesModel.getDayOffFormByUser({
+                dayOffFormId :dayOffFormId,
+                callback: paintDayOffConfig,
+                container: $employeeInfo
+                }
             );
 
-
-            //_superviseEmployeesModel.getDayOffFormByUser(userId,dayOffFormId)
         });
-
-
-        var getDayOffFormByUser = function (dayOffRequest, callback = console.log, container) {
-            console.log(dayOffRequest);
-            $.ajax({
-                type: 'GET',
-                url: `/notification/list/employees/dayoff/${dayOffRequest}`,
-                async: true,
-                success: function(data){
-                    callback({employeeInfo : container, dayoffConfig : data.dayoff_config});
-                },
-                error: function(data){
-                    console.log(data);
-                }
-            });
-        };
     };
 
     initEvent();

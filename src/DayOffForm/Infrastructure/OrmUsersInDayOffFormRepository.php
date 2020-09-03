@@ -11,12 +11,12 @@ use App\Entity\Calendar;
 use App\TypeDayOff\Domain\Constants\DayOff;
 use Doctrine\ORM\EntityManagerInterface;
 
-class OrmUsersInDayOffFormRepository implements UsersInDayOffFormRepository
+final class OrmUsersInDayOffFormRepository implements UsersInDayOffFormRepository
 {
-    public const USERSINDAYOFFBYNAMEINDEPARTMENT = 'usersInDayOffByNameInDepartment';
-    public const USERSINDAYOFFINDEPARTMENT = 'usersInDayOffByNameInDepartment';
-    public const USERSINDAYOFFBYNAME = 'usersInDayOffByName';
-    public const USERSINDAYOFF = 'usersInDayOffByName';
+    public const USERSINDAYOFFBYNAMEINDEPARTMENT = 'usersInDayOffByNameInDepartmentFiltered';
+    public const USERSINDAYOFFINDEPARTMENT = 'usersInDayOffByNameInDepartmentFiltered';
+    public const USERSINDAYOFFBYNAME = 'usersInDayOffByNameFiltered';
+    public const USERSINDAYOFF = 'usersInDayOffByNameFiltered';
 
     private EntityManagerInterface $entityManager;
 
@@ -37,7 +37,7 @@ class OrmUsersInDayOffFormRepository implements UsersInDayOffFormRepository
         return $userInDayOffFilteredCollection;
     }
 
-    private function usersInDayOffByNameInDepartment(Calendar $calendar, string $userName, int $departmentId)
+    private function usersInDayOffByNameInDepartmentFiltered(Calendar $calendar, string $userName, int $departmentId)
     {
         $qb = $this->entityManager->createQueryBuilder();
         $qb
@@ -69,7 +69,7 @@ class OrmUsersInDayOffFormRepository implements UsersInDayOffFormRepository
         return $qb->getQuery()->getResult();
     }
 
-    private function usersInDayOffByName(Calendar $calendar, string $userName, int $departmentId)
+    private function usersInDayOffByNameFiltered(Calendar $calendar, string $userName, int $departmentId)
     {
         $qb = $this->entityManager->createQueryBuilder();
         $qb
