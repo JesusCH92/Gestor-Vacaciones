@@ -24,7 +24,6 @@ final class DayOffSelected
     public function __construct(string $dayOffSelected)
     {
         $this->checkCorrectDateType($dayOffSelected);
-        $this->isLowerThanCurrentDateByTypeDayOff($dayOffSelected);
         $this->dayOffSelected = new DateTimeImmutable($dayOffSelected);
     }
 
@@ -42,16 +41,16 @@ final class DayOffSelected
         return $this->dayOffSelected;
     }
 
-    public function isCorrectDaySelectedTiming($initDate, $endDate)
+    public function validCorrectDaySelectedTiming($initDate, $endDate)
     {
         if ($initDate > $this->dayOffSelected || $endDate < $this->dayOffSelected) {
             throw new InvalidDayOffSelectedException($initDate, $endDate);
         }
     }
 
-    public function isLowerThanCurrentDateByTypeDayOff()
+    public function validDateBeforeThanCurrentDateByTypeDayOff(string $typeDayOff)
     {
-        if (date('Y-m-d')> $this->dayOffSelected){
+        if (DayOff::WORKOFF !== $typeDayOff && date('Y-m-d') > $this->dayOffSelected->format('Y-m-d')) {
             throw new InvalidLowerDateSelectedThanCurrentDate();
         }
     }
