@@ -37,7 +37,7 @@ final class DayOffFormByCalendarController extends AbstractController
     }
 
     /**
-     * @Route("/dayoff/{id}", name="app_dayoff_config")
+     * @Route("/dayoff/request/{id}", name="app_dayoff_config")
      */
     public function index($id)
     {
