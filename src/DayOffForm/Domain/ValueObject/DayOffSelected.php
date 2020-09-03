@@ -55,4 +55,27 @@ final class DayOffSelected
         }
     }
 
+    public function isDateBeforeThanCurrentDateByTypeDayOff(string $typeDayOff)
+    {
+        $isValid = true;
+        if (DayOff::WORKOFF !== $typeDayOff && date('Y-m-d') > $this->dayOffSelected->format('Y-m-d')) {
+            $isValid = false;
+        }
+
+        return $isValid;
+    }
+
+    public function guardIfIsValidProva(DayOffSelected $dayOffSelected)
+    {
+        if ($this->isDateBeforeThanCurrentDateByTypeDayOff( $dayOffSelected->dayOffSelected()->format('Y-m-d') ) ) {
+            throw new InvalidLowerDateSelectedThanCurrentDate();
+        }
+
+        if (true) {
+            // ! lanzar exception
+        }
+
+        return $dayOffSelected;
+    }
+
 }
