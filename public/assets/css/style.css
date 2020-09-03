@@ -139,86 +139,7 @@ Ventana Revistar dias de vacaciones por usuario
     color: #000000;
 }
 
-/** Estilos Calendario**/
-/* .calendar {
-    margin: auto;
-    font-family:'Muli', sans-serif;
-    font-weight: 400;
-}
-.calendar_content{
-    height: 330px;
-}
-.calendar_content, .calendar_weekdays, .calendar_header {
-    position: relative;
-    overflow: hidden;
-}
-.calendar_weekdays div {
-    display:inline-block;
-    vertical-align:top;
-}
-.calendar_weekdays div, .calendar_content div {
-    width: 14.28571%;
-    height: 20%;
-    overflow: hidden;
-    text-align: center;
-    background-color: transparent;
-    color: #6f6f6f;
-    font-size: 14px;
-}
-.calendar_content div {
-    border: 1px solid transparent;
-    float: left;
-}
-.calendar_content div:hover {
-    border: 1px solid #dcdcdc;
-    cursor: default;
-}
-.calendar_content div.blank:hover {
-    cursor: default;
-    border: 1px solid transparent;
-}
-.calendar_content div.past-date {
-    color: #d5d5d5;
-}
-.calendar_content div.today {
-    font-weight: bold;
-    font-size: 14px;
-    color: #87b633;
-    border: 1px solid #dcdcdc;
-}
-.calendar_content div.selected {
-    background-color: #f0f0f0;
-}
-.calendar_header {
-    width: 100%;
-    text-align: center;
-}
-.calendar_header h2 {
-    padding: 0 10px;
-    font-family:'Muli', sans-serif;
-    font-weight: 300;
-    font-size: 18px;
-    color: #4f97e3;
-    float:left;
-    width:70%;
-    margin: 0 0 10px;
-}
-button.switch-month {
-    background-color: transparent;
-    padding: 0;
-    outline: none;
-    border: none;
-    color: #dcdcdc;
-    float: left;
-    width:15%;
-    transition: color .2s;
-}
-button.switch-month:hover {
-    color: #4f97e3;
-} */
-/** Fin Estilos Calendario**/
-
-/*Ventana Espacio de trabajo */
+/* *Ventana Espacio de trabajo */
 .title-block-workspace{
     color: #000000;
 }
@@ -438,8 +359,6 @@ button.switch-month:hover {
 
 .no-existing-day{
     color: white;
-
-    /* pointer-events:none; */
 }
 .month-of-year{
     padding: 15px;
@@ -447,27 +366,68 @@ button.switch-month:hover {
     color: white;
     margin: 0px;
 }
+
+.selectable-day{
+    color: #000000;
+    font-weight: bold;
+}
+
+.today-current{
+    color: #4f97e3;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.today-current:hover{
+    color:#ffffff;
+    font-weight: bolder;
+    border-color: #4f97e3;
+}
+
+.today-current.feastday:hover{
+    color: #E91E63;
+    border-color: #E91E63;
+}
+
+.today-current.no-working-day:hover{
+    color: grey;
+    border-color: grey;
+}
+
 .selectable-day:hover{
     background-color: #4f97e3;
-    color: white;
+    color: #ffffff;
+    font-weight: bolder;
     opacity: 0.5;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #0d66c1;
+    box-shadow: 0 0 1px 1px #0d66c1;
 }
+
+.selectable-day:active{
+    border: 1px solid #4254ba;
+    box-shadow: 0 0 1px 1px #ffffff;
+    color: #4254ba;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
 .feastday{
-    color: red;
-    /*background-color: red;
-    opacity: 0.3;*/
-    /* pointer-events:none; */
+    color: #E91E63;
+    border-radius: 5px;
+    border: 2px solid;
+    cursor: not-allowed;
 }
 .no-working-day{
     color: gray;
-    /*background-color: gray;
-    opacity: 0.3;*/
-    /* pointer-events:none; */
+    cursor: not-allowed;
 }
 
 .date-in-user{
     background-color: #4f97e3;
-    color: white;
+    color: #ffffff;
     opacity: 0.5;
 }
 
