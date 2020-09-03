@@ -3,11 +3,12 @@ var dayOffFormConfigModel = (function() {
     var saveDayOffFormRequest = function ({day_off_request, callback = console.log}) {
         $.ajax({
             type: 'POST',
-            url: '/dayoff/management/add',
+            url: '/dayoff/request/management/add',
             async: true,
             data: {day_off_request},
             success: function(data){
                 callback(data);
+                location.reload();
             },
             error: function(data){
                 console.log(JSON.parse(data.responseText));
@@ -18,7 +19,7 @@ var dayOffFormConfigModel = (function() {
     var getCalendarConfigByWorkingYear = function ({id, callback = console.log, container}) {
         $.ajax({
             type: 'GET',
-            url: `/dayoff/${id}`,
+            url: `/dayoff/request/${id}`,
             async: true,
             dataType: "json",
             success: function(data){
