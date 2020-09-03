@@ -3,7 +3,7 @@ var daysOffModel = (function() {
     var getDayOffFormByDepartment = function ({filterEmployeesCorpus, callback = console.log, container}) {
         $.ajax({
             type: 'GET',
-            url: `/supervise/management/employees`,
+            url: `/supervise/management/dayoff/employees/filter`,
             async: true,
             data: {filterEmployeesCorpus},
             success: function(data){
@@ -19,7 +19,7 @@ var daysOffModel = (function() {
     var getCalendarWithUserInDayOffByCurrentYear = function ( { id, callback = console.log, container} ) {
         $.ajax({
             type: 'GET',
-            url: `/supervise/dayoff/user/${id}`,
+            url: `/supervise/management/dayoff/user/${id}`,
             async: true,
             dataType: "json",
             success: function(data){
