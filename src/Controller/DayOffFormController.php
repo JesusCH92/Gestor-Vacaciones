@@ -18,7 +18,7 @@ final class DayOffFormController extends AbstractController
     }
 
     /**
-     * @Route("/dayoff", name="app_dayoff")
+     * @Route("/dayoff/request", name="app_dayoff")
      */
     public function index()
     {
