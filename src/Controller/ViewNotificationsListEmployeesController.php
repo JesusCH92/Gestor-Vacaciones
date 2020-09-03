@@ -19,7 +19,7 @@ final class ViewNotificationsListEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/notification/list/employees", name="app_notifications_list")
+     * @Route("supervise/management/notification/list", name="app_notifications_list")
      */
     public function index()
     {
