@@ -63,8 +63,8 @@ final class SaveDayOffRequest
 
             $dayOffSelected = new DayOffSelected($dayOff);
             //throw an exception if the date selected is not in between the init date and the end date to select a day off
-            $dayOffSelected->isCorrectDaySelectedTiming($initDateDayOffRequest, $endDateDayOffRequest);
-
+            $dayOffSelected->validCorrectDaySelectedTiming($initDateDayOffRequest, $endDateDayOffRequest);
+            $dayOffSelected->validDateBeforeThanCurrentDateByTypeDayOff($dayOffRequest->typeDayOffSelected());
             $dayOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelected);
 
             array_push($dayOffFormRequestCollection, $dayOfFormRequest);
