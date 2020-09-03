@@ -11,7 +11,7 @@ var dayOffFormConfigModel = (function() {
                 location.reload();
             },
             error: function(data){
-                console.log(JSON.parse(data.responseText));
+                console.error(JSON.parse(data.responseText));
             }
         });
     };
