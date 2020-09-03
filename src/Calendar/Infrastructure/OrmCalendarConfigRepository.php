@@ -42,9 +42,7 @@ final class OrmCalendarConfigRepository implements CalendarConfigRepository
             ]
         );
 
-        $feastdayEntitiesCollection = [] === $feastdayEntities ? null : $feastdayEntities;
-
-        return $feastdayEntitiesCollection;
+        return $feastdayEntities;
     }
 
     public function getTypeDayOffByCalendarId(CalendarConfigRequest $calendarConfigRequest): array
