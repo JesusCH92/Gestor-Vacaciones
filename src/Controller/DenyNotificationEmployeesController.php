@@ -20,7 +20,7 @@ final class DenyNotificationEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/notification/supervisor/denied", options={"expose"=true}, name="app_notification_supervise_denied")
+     * @Route("/supervise/management/notification/deny", options={"expose"=true}, name="app_notification_supervise_denied")
      */
     public function dayOff(Request $request)
     {
