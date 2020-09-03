@@ -58,17 +58,14 @@ final class SaveDayOffRequest
     {
         $dayOffFormRequestCollection = [];
 
+        $initDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->initDateDayOffRequest();
+        $endDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->endDateDayOffRequest();
+        $typeDayOffSelected = $dayOffRequest->typeDayOffSelected();
+
         foreach ($dayOffRequest->daysOffSelected() as $dayOff) {
-
-            $initDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->initDateDayOffRequest();
-            $endDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->endDateDayOffRequest();
-
             $dayOffSelected = new DayOffSelected($dayOff);
-            //throw an exception if the date selected is not in between the init date and the end date to select a day off
-            // $dayOffSelected->validCorrectDaySelectedTiming($initDateDayOffRequest, $endDateDayOffRequest);
-            // $dayOffSelected->validDateBeforeThanCurrentDateByTypeDayOff($dayOffRequest->typeDayOffSelected());
+            $dayOffSelectedValid = $dayOffSelected->guardIfIsValidDate($typeDayOffSelected, $initDateDayOffRequest, $endDateDayOffRequest);
 
-            $dayOffSelectedValid = $dayOffSelected->guardIfIsValidProva($dayOffSelected);
             $dayOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelectedValid);
 
             array_push($dayOffFormRequestCollection, $dayOfFormRequest);
