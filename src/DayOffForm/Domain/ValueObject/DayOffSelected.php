@@ -41,41 +41,40 @@ final class DayOffSelected
         return $this->dayOffSelected;
     }
 
-    public function validCorrectDaySelectedTiming($initDate, $endDate)
+    public function isNotCorrectDaySelectedTiming($initDate, $endDate)
     {
+        $isNotCorrectDate = false;
         if ($initDate > $this->dayOffSelected || $endDate < $this->dayOffSelected) {
-            throw new InvalidDayOffSelectedException($initDate, $endDate);
+            $isNotCorrectDate = true;
         }
+        return $isNotCorrectDate;
     }
 
-    public function validDateBeforeThanCurrentDateByTypeDayOff(string $typeDayOff)
+
+    public function isNotValidDateBeforeThanCurrentDateByTypeDayOff(string $typeDayOff)
     {
+        $isNotValid = false;
         if (DayOff::WORKOFF !== $typeDayOff && date('Y-m-d') > $this->dayOffSelected->format('Y-m-d')) {
+            $isNotValid = true;
+        }
+
+        return $isNotValid;
+    }
+
+    public function guardIfIsValidDate(
+        string $typeDayOffSelected,
+        DateTimeImmutable $initDateDayOffRequest,
+        DateTimeImmutable $endDateDayOffRequest
+    ) {
+        if ($this->isNotValidDateBeforeThanCurrentDateByTypeDayOff($typeDayOffSelected)) {
             throw new InvalidLowerDateSelectedThanCurrentDate();
         }
-    }
 
-    public function isDateBeforeThanCurrentDateByTypeDayOff(string $typeDayOff)
-    {
-        $isValid = true;
-        if (DayOff::WORKOFF !== $typeDayOff && date('Y-m-d') > $this->dayOffSelected->format('Y-m-d')) {
-            $isValid = false;
+        if ($this->isNotCorrectDaySelectedTiming($initDateDayOffRequest, $endDateDayOffRequest)) {
+            throw new InvalidDayOffSelectedException();
         }
 
-        return $isValid;
-    }
-
-    public function guardIfIsValidProva(DayOffSelected $dayOffSelected)
-    {
-        if ($this->isDateBeforeThanCurrentDateByTypeDayOff( $dayOffSelected->dayOffSelected()->format('Y-m-d') ) ) {
-            throw new InvalidLowerDateSelectedThanCurrentDate();
-        }
-
-        if (true) {
-            // ! lanzar exception
-        }
-
-        return $dayOffSelected;
+        return new self($this->dayOffSelected->format('Y-m-d'));
     }
 
 }
