@@ -31,13 +31,11 @@ final class CreateCalendarController extends AbstractController
         $endDateRequest = $calendarConfig['endDateRequest'];
         $holidaysNumber = $calendarConfig['holidaysNumber'];
         $personalDaysNumber = $calendarConfig['personalDaysNumber'];
-        $workDays = $calendarConfig['workDays'];
-        $feastdayCollection = $calendarConfig['feastDayCollection'];
-        // var_dump($calendarConfig);
+        $workDays = $calendarConfig['workDays'] === '' ? [] : $calendarConfig['workDays'];
+        $feastdayCollection = $calendarConfig['feastDayCollection'] === '' ? [] : $calendarConfig['feastDayCollection'];
+        
 
         $company = $this->getUser()->getCompany();
-
-        // var_dump($this->getUser()->getCompany());exit;
 
         $calendarRequest = new CalendarRequest(
             $workingYear,
