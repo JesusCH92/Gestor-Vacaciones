@@ -1,11 +1,11 @@
 var dayOffFormConfigModel = (function() {
 
-    var saveDayOffFormRequest = function ({dayOff, callback = console.log}) {
+    var saveDayOffFormRequest = function ({day_off_request, callback = console.log}) {
         $.ajax({
             type: 'POST',
             url: '/dayoff/management/add',
             async: true,
-            data: {dayOff},
+            data: {day_off_request},
             success: function(data){
                 callback(data);
             },
