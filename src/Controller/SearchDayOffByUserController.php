@@ -16,7 +16,7 @@ class SearchDayOffByUserController extends AbstractController
     }
 
     /**
-     * @Route("/supervise/dayoff/employees", name="supervise_day_off_employee")
+     * @Route("/supervise/management/dayoff/employees", name="supervise_day_off_employee")
      */
     public function index()
     {
