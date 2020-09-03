@@ -1,6 +1,7 @@
 var dayOffFormController = (function(_calendarId){
     var $calendarId = _calendarId;
     var $CarouselDates = $("#datesCarousel");
+    var $datesInCalendar = $(".selectable-day");
     var $datesSelectedCalendar = $(".dates-selected-calendar");
     var $countDaysSelected = $(".count-days-selected");
     var $dateRangeSelected = $(".date-range");
@@ -14,14 +15,28 @@ var dayOffFormController = (function(_calendarId){
     var $removeDayOffForm = $("#remove-day-off-form");
     var $remainingDayHoliday = $(".remaining-day-holiday");
     var $remainingDayPersonal = $(".remaining-day-personal");
+    var $typeDayOffFormSelect = $("#type-day-off-form-select");
+
 
     var initEventDayOffConfig = function() {
-        $CarouselDates.click( function() {
+        /*$CarouselDates.click( function() {
             if (!$(event.target).hasClass('selectable-day')) {
                 return;
             }
 
             var $dayOfMonth = $(event.target).attr("date");
+            printDates($dayOfMonth);
+        });
+
+         */
+        $datesInCalendar.click( function() {
+            var $dayOfMonth = $(this).attr("date");
+            var $typeDayOffSelected = $typeDayOffFormSelect.val();
+
+            if (isValidDate($dayOfMonth) !== true && 'Work_off' !==$typeDayOffSelected) {
+                console.log('no es valida la fecha');
+                return;
+            }
             printDates($dayOfMonth);
         });
 
@@ -31,7 +46,10 @@ var dayOffFormController = (function(_calendarId){
             if ("" === $initRange.val() || "" === $endRange.val()){
                 return;
             }
-            if (isValidDate($initRange.val()) !== true ) {
+
+            var $typeDayOffSelected = $typeDayOffFormSelect.val();
+
+            if (isValidDate($initRange.val()) !== true && 'Work_off' !==$typeDayOffSelected) {
                 console.log('no es valida la fecha');
                 return;
             }
@@ -50,8 +68,8 @@ var dayOffFormController = (function(_calendarId){
         });
 
         $saveDayOffForm.click( function() {
-            $datesSelectedArray = getDatesSelected();
-            $typeDayOff =$("#type-day-off-form-select").children("option:selected").val();
+            var $datesSelectedArray = getDatesSelected();
+            var $typeDayOff = $("#type-day-off-form-select").children("option:selected").val();
 
             if ($datesSelectedArray.length===0){
                 console.log("No hay días seleccionados");
@@ -126,16 +144,15 @@ var dayOffFormController = (function(_calendarId){
             var dateArray = [];
             $listDatesSelected = $datesSelectedCalendar.find("li");
             for (let i=0; i<$listDatesSelected.length;i++){
-                //console.log($listDatesSelected[i].innerText);
                 dateArray.push( $listDatesSelected[i].innerText );
             }
-            //$dateSelected = $listDatesSelected.html();
-            //console.log($listDatesSelected);
+
             return dateArray;
         }
+
         var isValidDate = function ($dateString) {
-            var $date = new Date($dateString);
-            return $date instanceof Date && !isNaN($date);
+            var $date = new Date($dateString + ':23:59:59');
+            return $date instanceof Date && !isNaN($date) && ($date >= new Date('2019-01-01')) && new Date() <= $date;
         };
 
     };
