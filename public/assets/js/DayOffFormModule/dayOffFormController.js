@@ -66,8 +66,8 @@ var dayOffFormController = (function(_calendarId){
                 console.log("No puedes pedir tantos días personales");
                 return;
             }
-            //var _dayoffFormConfigModel = dayOffFormConfigModel();
-            saveDayOffFormRequest({
+            var _dayoffFormConfigModel = dayOffFormConfigModel();
+            _dayoffFormConfigModel.saveDayOffFormRequest({
                 day_off_request : {
                     id_calendar : $calendarId,
                     days_off : JSON.stringify($datesSelectedArray),
@@ -81,23 +81,6 @@ var dayOffFormController = (function(_calendarId){
             $datesSelectedCalendar.empty();
             $countDaysSelected.html("Días seleccionados: 0");
         });
-
-        var saveDayOffFormRequest = function ({day_off_request, callback = console.log}) {
-            $.ajax({
-                type: 'POST',
-                url: '/dayoff/management/add',
-                async: true,
-                data: {day_off_request},
-                success: function(data){
-                    callback(data);
-                    //window.location.replace("http://localhost:8080/dayoff");
-                    location.reload();
-                },
-                error: function(data){
-                    console.log(JSON.parse(data.responseText));
-                }
-            });
-        };
 
 
         var printDates= function ($date){
