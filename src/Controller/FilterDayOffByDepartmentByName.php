@@ -54,13 +54,13 @@ final class FilterDayOffByDepartmentByName extends AbstractController
         $calendar = $calendarByYear->__invoke($currentYear);
 
         if ('0' === $departmentId && '' === $userName) {
-            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORM;
+            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFF;
         } elseif ('0' !== $departmentId && '' === $userName) {
-            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORMINDEPARTMENT;
+            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFINDEPARTMENT;
         } elseif ('0' === $departmentId && '' !== $userName) {
-            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORMBYNAME;
+            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFBYNAME;
         } elseif ('0' !== $departmentId && '' !== $userName) {
-            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFFORMBYNAMEINDEPARTMENT;
+            $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFFBYNAMEINDEPARTMENT;
         }
 
         $findDatesDayOffFormByDepartmentByUserName = $this->findDatesDayOffFormByDepartmentByUserName;
