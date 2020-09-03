@@ -5,6 +5,9 @@ namespace App\DayOffForm\Domain\ValueObject;
 
 use App\DayOffForm\Domain\Exception\InvalidDateTypeException;
 use App\DayOffForm\Domain\Exception\InvalidDayOffSelectedException;
+use App\DayOffForm\Domain\Exception\InvalidLowerDateSelectedThanCurrentDate;
+use App\Entity\TypeDayOff;
+use App\TypeDayOff\Domain\Constants\DayOff;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
@@ -21,6 +24,7 @@ final class DayOffSelected
     public function __construct(string $dayOffSelected)
     {
         $this->checkCorrectDateType($dayOffSelected);
+        $this->isLowerThanCurrentDateByTypeDayOff($dayOffSelected);
         $this->dayOffSelected = new DateTimeImmutable($dayOffSelected);
     }
 
@@ -42,6 +46,13 @@ final class DayOffSelected
     {
         if ($initDate > $this->dayOffSelected || $endDate < $this->dayOffSelected) {
             throw new InvalidDayOffSelectedException($initDate, $endDate);
+        }
+    }
+
+    public function isLowerThanCurrentDateByTypeDayOff()
+    {
+        if (date('Y-m-d')> $this->dayOffSelected){
+            throw new InvalidLowerDateSelectedThanCurrentDate();
         }
     }
 
