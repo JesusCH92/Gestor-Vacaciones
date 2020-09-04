@@ -39,6 +39,21 @@ start: create-network
 stop: 
 	@docker-compose -f docker-compose.yml -f docker-compose.db.yml stop
 
+## ! deploy project-> up environment + clear cache + install dependencies + migration database
+.PHONY : deploy
+deploy: create-network
+	@docker-compose -f docker-compose.yml -f docker-compose.db.yml up -d
+	# -@php bin/console cache:clear
+	-@$(call docker_phpcli_run,composer install --no-interaction) ;
+	-@docker-compose exec php-fpm php bin/console doctrine:migrations:migrate
+
+
+## ! Install dependencies with composer
+.PHONY : install
+install:
+	-@$(call docker_phpcli_run,composer install --no-interaction) ;
+
+
 ##    remove:			stops all containers and delete them
 .PHONY : remove
 remove:
