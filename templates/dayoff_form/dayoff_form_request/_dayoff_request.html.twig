@@ -42,11 +42,11 @@
     <div class="container my-2">
         <h5>Seleccionar un rango de fechas para solicitar vacaciones</h5>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12 col-sm-12">
                 <label for="start">Primer día de vacaciones:</label>
                 <input type="date" id="start" class="form-control date-range init-range" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
             </div>
-            <div class="col-md-6">
+            <div class="col-lg-6 col-md-12 col-sm-12">
                 <label for="end">Último día de vacaciones:</label>
                 <input type="date" id="end" class="form-control date-range end-range" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
             </div>
@@ -58,7 +58,7 @@
         {% include 'dayoff_form/calendar/calendar_info.html.twig' %}
 
     </div><!-- ? Fin del Calendario-->
-
+    {% if calendar.endDate > current_day %}
     <div class="col-xl-4 col-md-8 col-12 container my-2">
 
         <div class="container contenedor-dias-vacaciones">
@@ -107,6 +107,7 @@
 
         </div>
     </div>
+    {% endif %}
 
 </div>
 
