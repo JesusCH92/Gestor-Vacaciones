@@ -173,11 +173,13 @@ Ventana Revistar dias de vacaciones por usuario
 .workspace-calendar{
     padding-top: 2%;
 }
+
 .square-legend{
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     background-color: #2d77ff;
 }
+/*
 #legend-accept{
     background-color: #00ff00;
 }
@@ -196,7 +198,7 @@ Ventana Revistar dias de vacaciones por usuario
 #legend-non-work{
     background-color: rgba(0, 0, 0, 0.65);
 }
-
+*/
 
 .collapse-dates{
     background-color: transparent;
@@ -431,4 +433,62 @@ Ventana Revistar dias de vacaciones por usuario
     opacity: 0.5;
 }
 
+.dashboard.working-day{
+    color: #000000;
+    font-weight: bold;
+}
+
+.dashboard.feastday{
+    color: #E91E63;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.holiday.approved{
+    background-color: #47DDF6;
+}
+
+.holiday.pending{
+    background-color: #35DEB2;
+}
+
+.holiday.denied{
+    background-color: #3F89E0;
+}
+
+.personal.approved{
+    background-color: #BCEB0F;
+}
+
+.personal.pending{
+    background-color: #D4C30B;
+}
+
+.personal.denied{
+    background-color: #37D602;
+}
+
+.workoff.approved{
+    background-color: #E544FF;
+}
+
+.workoff.pending{
+    background-color: #A341F0;
+}
+
+.workoff.denied{
+    background-color: #E833AF;
+}
+
+.user-on-dayoff.holiday{
+    border-color: #47DDF6;
+}
+
+.user-on-dayoff.personal{
+    border-color: #BCEB0F;
+}
+
+.user-on-dayoff.workoff{
+    border-color: #E544FF;
+}
 /* ! Fin Calendario del carousel */
