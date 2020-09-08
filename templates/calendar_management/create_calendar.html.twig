@@ -22,36 +22,48 @@
                         <label for="working-year">Año laboral:</label>
                     </div>
                     <div class="form-group col-md-12 col-xl-6">
-                        <input type="number" id="working-year" class="form-control" name="working-year" value="2019"  min="2019" max="2080">
+                        <input type="number" id="working-year" class="form-control text-center" name="working-year" value="2019"  min="2019" max="2080">
                     </div>
                 </div>
             </div>
 
             <div class="section-create-calendar-form">
-                <h5 class="font-weight-bold">Configuración del rango para pedir vacaciones</h5>
+                <h5 class="font-weight-bold">Configuración del rango de fechas para pedir días libres</h5>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="init-date-request">Inicio de petición de vacaciones:</label>
-                        <input type="date" id="init-date-request" name="init-date-request" class="form-control" min="2019-01-01">
+                        <label for="init-date-request">Inicio de peticiones de días libres:</label>
+                        <input type="date" id="init-date-request" name="init-date-request" class="form-control text-center" min="2019-01-01">
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="end-date-request">Fin de petición de vacaciones:</label>
-                        <input type="date" id="end-date-request" name="end-date-request"class="form-control" min="2019-01-01">
+                        <label for="end-date-request">Fin de peticiones de días libres:</label>
+                        <input type="date" id="end-date-request" name="end-date-request"class="form-control text-center" min="2019-01-01">
                     </div>
                 </div>
             </div>
 
             <div class="section-create-calendar-form">
-                <h5 class="font-weight-bold">Añadir la cantidad días según el tipo de "day-off"</h5>
+                <h5 class="font-weight-bold">Añadir la cantidad días según el tipo de días libres</h5>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label for="end">Número de días de vacaciones:</label>
-                        <input type="number" id="holidays-number" class="form-control" min="0" value="0">
+                    <div class="form-group col-md-6">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <label for="end">Número de días de vacaciones:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" id="holidays-number" class="form-control text-center" min="0" value="0">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group col-md-4">
-                        <label for="end">Número de días personales:</label>
-                        <input type="number" id="personal-days-number" class="form-control" min="0" value="0">
+                    <div class="form-group col-md-6">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <label for="end">Número de días personales:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" id="personal-days-number" class="form-control text-center" min="0" value="0">
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -60,10 +72,10 @@
             <div class="section-create-calendar-form">
                 <h5 class="font-weight-bold">Escoger los días laborables</h5>
                 <div class="form-row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-6 col-xl-3">
                         <label >Seleccionar días laborable</label>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6 col-xl-4">
                         <select multiple class="form-control selectpicker" height="150" id="work-days-select">
                             <option value="1">Lunes</option>
                             <option value="2">Martes</option>
@@ -82,7 +94,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-5">
                         <label for="start">Selecciona los días festivos individualmente:</label>
-                        <input type="date" id="feastday-date" class="form-control" min="2019-01-01">
+                        <input type="date" id="feastday-date" class="form-control text-center" min="2019-01-01">
                     </div>
 
                     <div class="form-group col-md-5">
