@@ -25,7 +25,7 @@ class DashboardController extends AbstractController
      */
     public function index()
     {
-        $calendarId = "94b9fc99-fbfe-4eb6-a3fa-3f0c0a384741";
+        $calendarId = "3bef8293-9dfb-4648-8fe7-373185240766";
         $calendar = new CalendarConfigRequest($calendarId);
 
         $getCalendarConfig =$this->getCalendarConfig;
@@ -37,6 +37,7 @@ class DashboardController extends AbstractController
         // foreach($calendarConfigResponse->feastdayCollection() as $feastdayDate) {
         //     array_push($feastday, $feastdayDate['date']);
         // }
+
         $calendarInfo = $getDatesOfCalendar->__invoke(
             new DateTimeImmutable( $calendarConfigResponse->initDate() ),
             new DateTimeImmutable(  $calendarConfigResponse->endDate() ),
@@ -45,7 +46,8 @@ class DashboardController extends AbstractController
 
         return $this->render('dashboard/dashboard.html.twig', [
             'calendar_info' => $calendarInfo,
-            'working_days'  =>$calendarConfigResponse->workDays()
+            'working_days'  =>$calendarConfigResponse->workDays(),
+            'current_day' => date('Y-m-d')      // ! print current day with style in calendar
         ]);
     }
 }
