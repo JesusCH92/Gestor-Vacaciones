@@ -16,4 +16,7 @@ interface DayOffRepository
     public function denyDayOffForm(string $dayOffFormId, string $observation, string $supervisorId);
     public function findByCalendar(Calendar $calendar);
     public function findByDepartmentAndUsername(Calendar $calendar, string $userName, int $departmentId);
+    public function findByCalendarByUser(Calendar $calendar , string $userId): array;
+    public function findUsersInDayOffToday(): array;
+    public function findLastDayOffFormRequestByUser(User $user);
 }
