@@ -11,7 +11,7 @@
 
                 {% if not is_granted('ROLE_ADMIN') %}
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="#" id="work-space">Espacio de trabajo</a>
+                        <a class="nav-link text-white" href="{{ path('app_dashboard') }}" id="work-space">Espacio de trabajo</a>
                     </li>
 
                 {% endif %}
