@@ -1,15 +1,12 @@
-var editCalendarController = (function(){
+var dayOffFormConfigController = (function(){
     var $workingYearFilterBtn = $("#working-year-filter-btn");
     var $workingYearSelect = $("#working-year-select");
     var $dayoffConfigContainer = $("#dayoff-config-container");
 
-    var paintDayOffConfig = function( { dayoffConfigContainer, dayoffConfig, calendarId} ) {
-        dayoffConfigContainer.html(dayoffConfig);
-        var _dayOffController = dayOffFormController(calendarId);
-        _dayOffController.initEventDayOffConfig();
-    };
 
     var initEvent = function () {
+        var _dayOffFormRenderTemplate= dayOffFormRenderTemplate();
+
         $workingYearFilterBtn.click(function() {
             var $workingYear = $workingYearSelect.val();
             console.log('working year selected: ' + $workingYear);
@@ -19,7 +16,7 @@ var editCalendarController = (function(){
             var _dayoffFormConfigModel = dayOffFormConfigModel();
             _dayoffFormConfigModel.getCalendarConfigByWorkingYear({
                 id : $workingYear,
-                callback : paintDayOffConfig,
+                callback : _dayOffFormRenderTemplate.paintDayOffConfig,
                 container : $dayoffConfigContainer
             });
         });
