@@ -7,11 +7,12 @@ namespace App\User\Infrastructure\Persistence;
 use App\User\Domain\User;
 use App\User\Domain\UserByDepartmentRepository;
 use App\User\Domain\UserByIdRepository;
+use App\User\Domain\UserDeleteRepository;
 use App\User\Domain\UserRepository;
 use App\User\Infrastructure\Model\SymfonyUser;
 use Doctrine\ORM\EntityManagerInterface;
 
-final class OrmUserRepository implements UserRepository, UserByDepartmentRepository, UserByIdRepository
+final class OrmUserRepository implements UserRepository, UserByDepartmentRepository, UserByIdRepository, UserDeleteRepository
 {
     private EntityManagerInterface $entityManager;
 
@@ -62,5 +63,11 @@ final class OrmUserRepository implements UserRepository, UserByDepartmentReposit
         $user = $userRepository->find($userId); // ! return entity or null
 
         return $user;
+    }
+
+    public function deleteUser(User $user): void
+    {
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
     }
 }
