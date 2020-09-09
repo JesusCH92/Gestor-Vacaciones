@@ -44,7 +44,7 @@ final class DayOffSelected
     public function isNotCorrectDaySelectedTiming($initDate, $endDate)
     {
         $isNotCorrectDate = false;
-        if ($initDate > $this->dayOffSelected || $endDate < $this->dayOffSelected) {
+        if ($initDate > $this->dayOffSelected || $endDate < $this->dayOffSelected || $endDate < date('Y-m-d')) {
             $isNotCorrectDate = true;
         }
         return $isNotCorrectDate;
