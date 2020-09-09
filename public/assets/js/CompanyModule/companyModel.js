@@ -21,7 +21,7 @@ var companyModel = (function(){
     var editCompany = function({company, callback = console.log, id}) {
         $.ajax({
             type: 'POST',
-            url: `/edit/${id}/company`,
+            url: `/company/management/edit/${id}`,
             async: true,
             data: {company},
             success: function(data){
