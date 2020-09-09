@@ -35,8 +35,8 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/dashboard, roles: [ROLE_USER, ROLE_SUPERVISOR] }
-        - { path: ^/company/management/, roles: ROLE_ADMIN }
-        - { path: ^/calendar/management/, roles: ROLE_ADMIN }
-        - { path: ^/user/management/, roles: ROLE_ADMIN }
-        - { path: ^/supervise/management/, roles: ROLE_SUPERVISOR }
-        - { path: ^/dayoff/request/, roles: [ROLE_USER, ROLE_SUPERVISOR] }
+        - { path: ^/company/management, roles: ROLE_ADMIN }
+        - { path: ^/calendar/management, roles: ROLE_ADMIN }
+        - { path: ^/user/management, roles: ROLE_ADMIN }
+        - { path: ^/supervise/management, roles: ROLE_SUPERVISOR }
+        - { path: ^/dayoff/request, roles: [ROLE_USER, ROLE_SUPERVISOR] }
