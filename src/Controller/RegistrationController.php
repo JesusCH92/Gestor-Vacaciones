@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/user/management/register", name="app_register")
      */
     public function register(RegisterUser $registerUser, Request $request): Response
     {
