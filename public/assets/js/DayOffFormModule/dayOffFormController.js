@@ -1,6 +1,5 @@
 var dayOffFormController = (function(_calendarId){
     var $calendarId = _calendarId;
-    var $CarouselDates = $("#datesCarousel");
     var $datesInCalendar = $(".selectable-day");
     var $datesSelectedCalendar = $(".dates-selected-calendar");
     var $countDaysSelected = $(".count-days-selected");
@@ -16,19 +15,10 @@ var dayOffFormController = (function(_calendarId){
     var $remainingDayHoliday = $(".remaining-day-holiday");
     var $remainingDayPersonal = $(".remaining-day-personal");
     var $typeDayOffFormSelect = $("#type-day-off-form-select");
-
+    var _dayOffFormRenderTemplate= dayOffFormRenderTemplate();
 
     var initEventDayOffConfig = function() {
-        /*$CarouselDates.click( function() {
-            if (!$(event.target).hasClass('selectable-day')) {
-                return;
-            }
 
-            var $dayOfMonth = $(event.target).attr("date");
-            printDates($dayOfMonth);
-        });
-
-         */
         $datesInCalendar.click( function() {
             var $dayOfMonth = $(this).attr("date");
             var $typeDayOffSelected = $typeDayOffFormSelect.val();
@@ -37,7 +27,7 @@ var dayOffFormController = (function(_calendarId){
                 console.log('no es valida la fecha');
                 return;
             }
-            printDates($dayOfMonth);
+            callprintDatesSelected($dayOfMonth);
         });
 
 
@@ -55,13 +45,12 @@ var dayOffFormController = (function(_calendarId){
             }
             if ($initRange.val() < $initDateDayOff.html() || $endRange.val() > $endDateDayOff.html() || $endRange.val()<$initRange.val()){
                 console.log("La fecha seleccionada es incorrecta");
-                //alert("La fecha seleccionada es menor a la permitida");
             }
             $feastDays=JSON.parse($feastDaysCalendarCollection.val());
 
             $arrayDatesRange = getDatesInRange($initRange.val(),$endRange.val());
             for (let i=0;i<$arrayDatesRange.length;i++){
-                printDates($arrayDatesRange[i]);
+                callprintDatesSelected($arrayDatesRange[i]);
             }
 
 
@@ -101,60 +90,55 @@ var dayOffFormController = (function(_calendarId){
         });
 
 
-        var printDates= function ($date){
-            $datesSelectedArray = getDatesSelected();
+    };
 
-            $feastDays=JSON.parse($feastDaysCalendarCollection.val());
-            $workingDays = JSON.parse($workingDaysCalendarCollection.val());
-            var currentDay = new Date($date).getDay().toString();
+    var callprintDatesSelected= function ($date){
+        $datesSelectedArray = getDatesSelected();
 
-            if (!$feastDays.includes($date) && $workingDays.includes(currentDay) && !$datesSelectedArray.includes($date)){
-                var dateList =   document.createElement("li");
-                dateList.className = "list-group-item date-selected";
-                dateList.innerText = $date;
-                $datesSelectedCalendar.append(dateList);
+        $feastDays=JSON.parse($feastDaysCalendarCollection.val());
+        $workingDays = JSON.parse($workingDaysCalendarCollection.val());
+        var currentDay = new Date($date).getDay().toString();
 
-                var countDaysSelected = $countDaysSelected.html();
-                var countdays =countDaysSelected.split(":");
-                var count =parseInt(countdays[1])+1;
-                $countDaysSelected.html("Días seleccionados:"+ count);
-            }
+        if (!$feastDays.includes($date) && $workingDays.includes(currentDay) && !$datesSelectedArray.includes($date)){
+            _dayOffFormRenderTemplate.printDates({date : $date})
 
-        };
-        var getDatesInRange =function (startDate, stopDate) {
-            var dateArray = [];
-            var currentDate = new Date(startDate);
-            var endDate = new Date(stopDate);
-            while (currentDate <= endDate) {
-                var month = parseInt(currentDate.getMonth())+1;
-                var day = currentDate.getDate();
-                if (month.toString().length<2){
-                    month="0"+month.toString();
-                }
-                if (day.toString().length<2){
-                    day="0"+day.toString();
-                }
-                dateArray.push( currentDate.getFullYear()+"-"+month +"-"+day );
-                currentDate.setDate(currentDate.getDate() + 1);
-
-            }
-            return dateArray;
-        };
-        var getDatesSelected = function () {
-            var dateArray = [];
-            $listDatesSelected = $datesSelectedCalendar.find("li");
-            for (let i=0; i<$listDatesSelected.length;i++){
-                dateArray.push( $listDatesSelected[i].innerText );
-            }
-
-            return dateArray;
         }
 
-        var isValidDate = function ($dateString) {
-            var $date = new Date($dateString + ':23:59:59');
-            return $date instanceof Date && !isNaN($date) && ($date >= new Date('2019-01-01')) && new Date() <= $date;
-        };
+    };
 
+    var getDatesInRange =function (startDate, stopDate) {
+        var dateArray = [];
+        var currentDate = new Date(startDate);
+        var endDate = new Date(stopDate);
+        while (currentDate <= endDate) {
+            var month = parseInt(currentDate.getMonth())+1;
+            var day = currentDate.getDate();
+            if (month.toString().length<2){
+                month="0"+month.toString();
+            }
+            if (day.toString().length<2){
+                day="0"+day.toString();
+            }
+            dateArray.push( currentDate.getFullYear()+"-"+month +"-"+day );
+            currentDate.setDate(currentDate.getDate() + 1);
+
+        }
+        return dateArray;
+    };
+
+    var getDatesSelected = function () {
+        var dateArray = [];
+        $listDatesSelected = $datesSelectedCalendar.find("li");
+        for (let i=0; i<$listDatesSelected.length;i++){
+            dateArray.push( $listDatesSelected[i].innerText );
+        }
+
+        return dateArray;
+    }
+
+    var isValidDate = function ($dateString) {
+        var $date = new Date($dateString + ':23:59:59');
+        return $date instanceof Date && !isNaN($date) && ($date >= new Date('2019-01-01')) && new Date() <= $date;
     };
 
     return{
