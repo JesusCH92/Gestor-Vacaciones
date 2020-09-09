@@ -6,7 +6,7 @@ namespace App\Calendar\ApplicationService;
 
 use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
 use App\Calendar\Domain\CalendarUpdaterRepository;
-use App\Company\ApplicationService\DTO\WorkDaysRequest;
+use App\Calendar\ApplicationService\DTO\WorkDaysRequest;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
 final class WorkDaysUpdater
