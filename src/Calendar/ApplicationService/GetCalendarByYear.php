@@ -45,7 +45,7 @@ final class GetCalendarByYear
                 'calendarId'=>$calendar->calendarId()];
             array_push($calendarCollection,$calendarArray);
         }
-         return $calendarCollection;
+        return $calendarCollection;
     }
 
 }
