@@ -1,7 +1,7 @@
 <div class="row resultados-busqueda-usuarios-de-vacaciones mt-3">
 
     <h3 class="col-12">Resultados de la busqueda:</h3>
-    <div class="col-xl-4 col-md-3 col-12 mt-1">
+    <div class="col-xl-4 col-md-12 col-12 mt-1">
         <h5 class="col-12">Listado de empleados</h5>
         <div class="list-group">
             {% set usersUniqueFilterResult = [] %}
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="col-xl-8 col-md-9 col-12 mt-1" id="calendar-container">
+    <div class="col-xl-8 col-md-12 col-12 mt-1" id="calendar-container">
         {% include 'supervise_employees/supervise_search_day_off/calendar/calendar.html.twig'
             with {'calendar_info' : calendar_info , 'working_days' : working_days, 'dates_dayoff' : dates_dayoff}
         %}

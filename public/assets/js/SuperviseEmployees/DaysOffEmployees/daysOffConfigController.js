@@ -4,17 +4,9 @@ var daysOffConfigController = (function(){
     $departmentSelect = $('#filter-department');
     $filterUserDayOffContainer = $('.filter-user-day-off-container');
 
-    var paintFilterDayOff= function({filterUserDayOff, dayoffConfig}){
-        console.log("hola");
-        filterUserDayOff.html(dayoffConfig);
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        });
-        var _userInDayOffController = userInDayOffController();
-        _userInDayOffController.initEventUserInDayOff();
-    }
-
     var _daysOffModel = daysOffModel();
+    var _userInDayOffRenderTemplate = userInDayOffRenderTemplate();
+
     var initEvent = function () {
 
         $daysOffFilterUserBtn.click(function (){
@@ -28,7 +20,7 @@ var daysOffConfigController = (function(){
             console.log($userInDayOffCorpus);
             _daysOffModel.getDayOffFormByDepartment({
                 filterEmployeesCorpus : $userInDayOffCorpus,
-                callback : paintFilterDayOff,
+                callback : _userInDayOffRenderTemplate.paintFilterDayOff,
                 container : $filterUserDayOffContainer
             });
 
