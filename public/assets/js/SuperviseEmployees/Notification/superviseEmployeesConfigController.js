@@ -4,14 +4,6 @@ var superviseEmployeesConfigController = (function(){
 
     var _superviseEmployeesRenderTemplate = superviseEmployeesRenderTemplate();
 
-    /*var paintDayOffConfig = function( { employeeInfo, dayoffConfig} ) {
-        employeeInfo.html(dayoffConfig);
-        var _superviseEmployees = superviseEmployeesController();
-        _superviseEmployees.initSuperviseEmployees();
-    };
-
-
-     */
     var initEvent = function () {
         $userNotificationContainer.click(function() {
 
