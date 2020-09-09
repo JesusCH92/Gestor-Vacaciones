@@ -7,7 +7,7 @@ namespace App\Calendar\ApplicationService;
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
 use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
 use App\Calendar\Domain\CalendarConfigRepository;
-use App\Company\ApplicationService\DTO\CalendarConfigResponse;
+use App\Calendar\ApplicationService\DTO\CalendarConfigResponse;
 
 final class GetCalendarConfig
 {

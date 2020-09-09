@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Company\ApplicationService\DTO;
+namespace App\Calendar\ApplicationService\DTO;
 
 final class CalendarConfigResponse
 {
