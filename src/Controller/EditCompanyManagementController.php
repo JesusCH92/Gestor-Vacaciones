@@ -19,7 +19,7 @@ class EditCompanyManagementController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}/company", name="app_edit_company_management")
+     * @Route("/company/management/edit/{id}", name="app_edit_company_management", methods={"POST"})
      */
     public function index($id, Request $request)
     {
