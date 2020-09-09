@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\User\ApplicationService;
 
 use App\User\ApplicationService\DTO\UserByIdRequest;
+use App\User\ApplicationService\Exception\UserNotFoundException;
 use App\User\Domain\UserByIdRepository;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
@@ -22,7 +23,7 @@ final class FindUserById
         $userId = $userByIdRequest->userId();
 
         if (!Uuid::isValid($userId)) {
-            // ! throw not founnd user exception;
+            throw new UserNotFoundException($userId);
         }
 
         return $this->userByIdRepository->findUserById( $userId );
