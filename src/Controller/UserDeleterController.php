@@ -24,9 +24,6 @@ final class UserDeleterController extends AbstractController
      */
     public function userDelete($id)
     {
-        dump(
-            new UserByIdRequest($id)
-        );
 
         $userDeleter = $this->userDeleter;
         $userDeleter->__invoke( new UserByIdRequest($id) );
