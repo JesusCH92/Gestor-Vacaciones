@@ -1,5 +1,5 @@
 var calendarCreatorModel = (function () {
-    var createCalendar = function ({calendar, callback = console.log}) {
+    var createCalendar = function ({calendar, callback = console.log, callbackError = console.log}) {
         $.ajax({
             type: 'POST',
             url: '/calendar/management/create/calendar',
@@ -9,7 +9,7 @@ var calendarCreatorModel = (function () {
                 callback(data);
             },
             error: function(data){
-                console.log(JSON.parse(data.responseText));
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
