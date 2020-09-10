@@ -6,6 +6,7 @@ var userFormController = ( function (id) {
     var $userRolSelectForm = $("#form--rol-select"); 
 
     var _userFormModel = userFormModel();
+    var _errorModal = errorModal();
 
     var initEvent = function () {
         $editAndRemoveformBtn.click( function () {
@@ -15,7 +16,8 @@ var userFormController = ( function (id) {
         $removeUserBtn.click( function () {
             console.log(_userId);
             _userFormModel.deleteUser({
-                id : _userId
+                id : _userId,
+                callbackError : _errorModal.paintErrorModal
             });
         });
 
@@ -26,7 +28,8 @@ var userFormController = ( function (id) {
             }
             console.log($editUserCorpus);
             _userFormModel.updateRolUser({
-                userCorpus : $editUserCorpus
+                userCorpus : $editUserCorpus,
+                callbackError : _errorModal.paintErrorModal
             });
         });
 
