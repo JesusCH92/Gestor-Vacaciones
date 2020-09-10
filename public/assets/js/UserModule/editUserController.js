@@ -7,6 +7,7 @@ var editUserController = (function(){
 
     var _editUserRenderTemplate = editUserRenderTemplate();
     var _editUserModel = editUserModel();
+    var _errorModal = errorModal();
 
     var initEvent = function () {
         $userNameFilterBtn.click(function(){
@@ -23,7 +24,8 @@ var editUserController = (function(){
             _editUserModel.getFilteringUser({ 
                 userSearchedCorpus : $userSearchedCorpus, 
                 callback : _editUserRenderTemplate.paintFilteringUserContainer,
-                container : $userResultContainer
+                container : $userResultContainer,
+                callbackError : _errorModal.paintErrorModal
             });
         });
     }
