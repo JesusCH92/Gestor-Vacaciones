@@ -39,7 +39,7 @@ final class CompanyManagementController extends AbstractController
     }
 
     /**
-     * @Route("/company/management/add/department", options={"expose"=true}, name="app_add_department")
+     * @Route("/company/management/add/department", methods={"POST"}, options={"expose"=true}, name="app_add_department")
      */
     public function addDepartment(Request $request)
     {
