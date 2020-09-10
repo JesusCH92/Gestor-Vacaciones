@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\User\Domain\User;
+use App\User\Infrastructure\Model\SymfonyUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
@@ -19,7 +20,8 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, User::class);
+        // parent::__construct($registry, User::class);
+        parent::__construct($registry, SymfonyUser::class);
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\User\Domain\User;
+use App\User\Infrastructure\Model\SymfonyUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -67,7 +67,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(SymfonyUser::class)->findOneBy(['email' => $credentials['email']]);
 
         if (!$user) {
             // fail authentication with a custom error
@@ -94,6 +94,11 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
+        }
+
+        if ('ROLE_ADMIN' === $token->getUser()->roles()->roles()[0] ) {
+            // ! If is admin redirect to Company Management functionlity
+            return new RedirectResponse($this->urlGenerator->generate('app_company_management'));
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));

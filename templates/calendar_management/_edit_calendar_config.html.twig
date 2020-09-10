@@ -1,46 +1,50 @@
 <div class="section-create-calendar-form">
     <h5 class="font-weight-bold">Editar el rango para pedir vacaciones</h5>
     <div class="form-row">
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6 col-xl-4">
             <label for="init-date-request">Inicio de petición de vacaciones:</label>
-            <input type="date" value="{{ calendar_config.initDate }}" id="init-date-request" name="init-date-request" class="form-control" min="2019-01-01">
+            <input type="date" value="{{ calendar_config.initDate }}" id="init-date-request" name="init-date-request" class="form-control text-center" min="2019-01-01">
         </div>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6 col-xl-4">
             <label for="end-date-request">Fin de petición de vacaciones:</label>
-            <input type="date" value="{{ calendar_config.endDate }}" id="end-date-request" name="end-date-request"class="form-control" min="2019-01-01">
+            <input type="date" value="{{ calendar_config.endDate }}" id="end-date-request" name="end-date-request"class="form-control text-center" min="2019-01-01">
         </div>
-        <div class="form-group col-md-2">
-            <label class="col-12" for="update-dayoff-request-btn">Guardar</label>
-            <button class="btn btn-outline-info" id="update-dayoff-request-btn">
+        <div class="form-group col-md-10 col-xl-4">
+            <label class="col-12" for="update-dayoff-request-btn">Guardar el rango de petición</label>
+            {# <button class="btn btn-outline-info" id="update-dayoff-request-btn">
                 <span class="oi oi-check" title="Save Range Day Off Request" aria-hidden="true" id="range-dayoff-request-save-btn"></span>
+            </button> #}
+
+            <button class="btn btn-outline-primary" id="update-dayoff-request-btn">
+                Guardar
             </button>
         </div>
     </div>
 </div>
 
 <div class="section-create-calendar-form">
-    <h5 class="font-weight-bold">Editar la cantidad días según el tipo de "day-off"</h5>
+    <h5 class="font-weight-bold">Editar la cantidad días según el tipo de días libres</h5>
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="holidays-number-input">Número de días de vacaciones:</label>
             <div class="input-group">
-                <input type="number" id="holidays-number-input" class="form-control" min="0" value="{{ calendar_config.typeDayOffCollection.Holiday }}">
+                <input type="number" id="holidays-number-input" class="form-control text-center" min="0" value="{{ calendar_config.typeDayOffCollection.Holiday }}">
                 <div class="input-group-append">
-                    <a class="btn btn-outline-info" id="update-hodliday-number-btn">
-                        <span class="oi oi-check" title="Update holiday number" aria-hidden="true"></span>
-                    </a>
+                    <button class="btn btn-outline-primary" title="Update holiday number" id="update-hodliday-number-btn">
+                        Guardar
+                    </button>
                 </div>
             </div>
         </div>
 
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-6">
             <label for="personal-days-number-input">Número de días personales:</label>
             <div class="input-group">
-                <input type="number" id="personal-days-number-input" class="form-control" min="0" value="{{ calendar_config.typeDayOffCollection.Personal }}">
+                <input type="number" id="personal-days-number-input" class="form-control text-center" min="0" value="{{ calendar_config.typeDayOffCollection.Personal }}">
                 <div class="input-group-append">
-                    <a class="btn btn-outline-info" id="update-personal-dayoff-number-btn">
-                        <span class="oi oi-check" title="Update personal day off number" aria-hidden="true"></span>
-                    </a>
+                    <button class="btn btn-outline-primary" title="Update personal day off number" id="update-personal-dayoff-number-btn">
+                        Guardar
+                    </button>
                 </div>
             </div>
         </div>
@@ -63,9 +67,9 @@
             </select>
         </div>
         <div class="form-group col-md-5">
-            <label class="col-12" for="update-working-days-btn">Update working days</label>
-            <button class="btn btn-outline-info edit-department-code-btn" id="update-working-days-btn">
-                <span class="oi oi-check" title="Save Working days" aria-hidden="true"></span>Update
+            <label class="col-12" for="update-working-days-btn">Guardar los días laborables</label>
+            <button class="btn btn-outline-primary" id="update-working-days-btn">
+                Guardar
             </button>
         </div>
     </div>
@@ -91,7 +95,7 @@
     <div class="form-row">
         <div class="form-group col-md-5">
             <label for="start">Selecciona los días festivos individualmente:</label>
-            <input type="date" id="feastday-date" class="form-control" min="2019-01-01">
+            <input type="date" id="feastday-date" class="form-control text-center" min="2019-01-01">
         </div>
 
         <div class="form-group col-md-5">

@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class CompanyManagementController extends AbstractController
+final class CompanyManagementController extends AbstractController
 {
     private GetAllDepartmentsByAdmin $getAllDepartmentsByAdmin;
     private CreateDepartment $createDepartment;
@@ -23,7 +23,7 @@ class CompanyManagementController extends AbstractController
     }
 
     /**
-     * @Route("/company/management", name="app_company_management")
+     * @Route("/company/management", methods={"GET"}, name="app_company_management")
      */
     public function index()
     {
@@ -39,7 +39,7 @@ class CompanyManagementController extends AbstractController
     }
 
     /**
-     * @Route("/company/management/add/department", options={"expose"=true}, name="app_add_department")
+     * @Route("/company/management/add/department", methods={"POST"}, options={"expose"=true}, name="app_add_department")
      */
     public function addDepartment(Request $request)
     {

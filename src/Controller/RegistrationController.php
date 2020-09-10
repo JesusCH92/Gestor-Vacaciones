@@ -2,39 +2,40 @@
 
 namespace App\Controller;
 
-use App\User\Domain\User;
-use App\Form\RegistrationFormType;
+use App\User\ApplicationService\DTO\RegisterUserRequest;
+use App\User\ApplicationService\RegisterUser;
+use App\User\Infrastructure\Framework\Form\Model\RegistrationFormModel;
+use App\User\Infrastructure\Framework\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class RegistrationController extends AbstractController
+final class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="app_register")
+     * @Route("/user/management/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    public function register(RegisterUser $registerUser, Request $request): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $model = new RegistrationFormModel();
+        $form = $this->createForm(RegistrationFormType::class, $model);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
+
+            $registerUserRequest = new RegisterUserRequest(
+                $model->name(),
+                $model->lastName(),
+                $model->phone(),
+                $model->email(),
+                $model->plainPassword(),
+                $model->department(),
+                $model->company(),
+                $model->roles()
             );
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // do anything else you need here, like send an email
+            $registerUser->__invoke($registerUserRequest);
 
             return $this->redirectToRoute('app_register');
         }

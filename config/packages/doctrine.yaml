@@ -10,12 +10,18 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
+            SymfonyUser:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/User/Domain'
-                prefix: 'App\User\Domain'
-                alias: App
+                dir: '%kernel.project_dir%/src/User/Infrastructure/Model'
+                prefix: 'App\User\Infrastructure\Model'
+                alias: SymfonyUser
+            SymfonyUserEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/User/Domain/ValueObject'
+                prefix: 'App\User\Domain\ValueObject'
+                alias: SymfonyUserEmbeddable
             Entity:
                 is_bundle: false
                 type: annotation
@@ -23,11 +29,11 @@ doctrine:
                 prefix: 'App\Entity'
                 alias: Entity
 
-            DayOff:
+            DayOffFormEmbeddable:
                 is_bundle: false
                 type: annotation
-                dir: '%kernel.project_dir%/src/DayOff/Domain/ValueObject'
-                prefix: 'App\DayOff\Domain\ValueObject'
+                dir: '%kernel.project_dir%/src/DayOffForm/Domain/ValueObject'
+                prefix: 'App\DayOffForm\Domain\ValueObject'
                 alias: Embeddable
             CalendarEmbeddable:
                 is_bundle: false

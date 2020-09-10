@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace App\Controller;
 
 use App\Calendar\ApplicationService\WorkDaysUpdater;
-use App\Company\ApplicationService\DTO\WorkDaysRequest;
+use App\Calendar\ApplicationService\DTO\WorkDaysRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

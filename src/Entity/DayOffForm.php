@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use App\DayOff\Domain\ValueObject\CountDayOffRequest;
+use App\DayOffForm\Domain\ValueObject\CountDayOffRequest;
 use App\User\Domain\User;
-use DateTimeImmutable;
+use App\User\Infrastructure\Model\SymfonyUser;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -30,7 +30,7 @@ class DayOffForm
      */
     private $typeDayOff;
 
-    /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\StatusDayOffForm", columnPrefix = false) */
+    /** @ORM\Embedded(class = "App\DayOffForm\Domain\ValueObject\StatusDayOffForm", columnPrefix = false) */
     private $statusDayOffForm;
 
     /**
@@ -38,7 +38,7 @@ class DayOffForm
      */
     private $observation;
 
-    /** @ORM\Embedded(class = "App\DayOff\Domain\ValueObject\CountDayOffRequest", columnPrefix = false) */
+    /** @ORM\Embedded(class = "App\DayOffForm\Domain\ValueObject\CountDayOffRequest", columnPrefix = false) */
     private $countDayOffRequest;
 
     /**
@@ -47,7 +47,7 @@ class DayOffForm
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity=App\User\Domain\User::class)
+     * @ORM\ManyToOne(targetEntity=App\User\Infrastructure\Model\SymfonyUser::class)
      * @ORM\JoinColumn(name="id_user", referencedColumnName="id_user", nullable=false)
      */
     private $user;
@@ -68,32 +68,35 @@ class DayOffForm
         $statusDayOffForm,
         $observation,
         $countDayOffRequest,
+        $createdAt,
         $user,
-        $supervisorId
+        $supervisorId,
+        $calendar
     ) {
         $this->codeDayOffForm = Uuid::uuid4();
         $this->typeDayOff = $typeDayOff;
         $this->statusDayOffForm = $statusDayOffForm;
         $this->observation = $observation;
         $this->countDayOffRequest = $countDayOffRequest;
-        $this->createdAt = new DateTimeImmutable();
+        $this->createdAt = $createdAt;
         $this->user = $user;
         $this->supervisorId = $supervisorId;
+        $this->calendar = $calendar;
     }
 
 
-    public function codeDayOffForm(): ?string
+    public function codeDayOffForm(): string
     {
         return $this->codeDayOffForm;
     }
 
-    public function typeDayOff(): ?string
+    public function typeDayOff(): string
     {
         return $this->typeDayOff;
     }
 
 
-    public function statusDayOffForm(): ?string
+    public function statusDayOffForm(): string
     {
         return $this->statusDayOffForm;
     }
@@ -104,18 +107,18 @@ class DayOffForm
     }
 
 
-    public function countDayOffRequest(): ?CountDayOffRequest
+    public function countDayOffRequest(): CountDayOffRequest
     {
         return $this->countDayOffRequest;
     }
 
 
-    public function createdAt(): ?DateTimeInterface
+    public function createdAt(): DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    public function user(): ?User
+    public function user(): User
     {
         return $this->user;
     }
@@ -125,7 +128,7 @@ class DayOffForm
         return $this->supervisorId;
     }
 
-    public function calendar(): ?Calendar
+    public function calendar(): Calendar
     {
         return $this->calendar;
     }

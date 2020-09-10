@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Edit Calendar{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+{% endblock %}
+
+{% block main_dashboard %}
+    <div class="p-3 mb-3 bg-light rounded">
+        <h3 class="title-block-workspace center-title">Notificaciones</h3>
+    </div>
+    <div id="notificaciones-area" class="notificaciones-area container notifications-container"><!-- ? Ventana de las Notificaciones -->
+        {% if users is empty %}
+            <p>No hay notificaciones </p>
+        {% else %}
+        <div class="container listado-notificaciones">
+
+            <div class="list-group">
+                {% for user in users %}
+                <button type="button" class="list-group-item list-group-item-action list-group-item-light notificacion-usuario user-notification-container" user="{{ user.user.userId }}"  dayoff="{{ user.day_off_form.codeDayOffForm }}">
+                    <div class="d-flex w-100 justify-content-between notificacion-usuario employee-notification">
+                        <h5 class="mb-1 notificacion-usuario user-notification">{{ user.user.name }} {{ user.user.lastname }}</h5>
+                        <small>{{ user.day_off_form.createdAt|date('Y-m-d') }}</small>
+                    </div>
+                </button>
+                {% endfor %}
+            </div>
+
+
+        </div>
+        {% endif %}
+    </div>
+    <hr class="my-4 col-12">
+    <div class="notificaciones-area container employee-info">
+
+    </div>
+
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/Notification/superviseEmployeesRenderTemplate.js"></script>
+    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/Notification/superviseEmployeesConfigController.js"></script>
+    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/Notification/superviseEmployeesModel.js"></script>
+    <script type="text/javascript" src="/../assets/js/SuperviseEmployees/Notification/superviseEmployeesController.js"></script>
+
+{% endblock %}

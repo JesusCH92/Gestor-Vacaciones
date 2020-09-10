@@ -11,7 +11,7 @@
 
                 {% if not is_granted('ROLE_ADMIN') %}
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="#" id="work-space">Espacio de trabajo</a>
+                        <a class="nav-link text-white" href="{{ path('app_dashboard') }}" id="work-space">Espacio de trabajo</a>
                     </li>
 
                 {% endif %}
@@ -32,8 +32,8 @@
                             Gestión de usuarios
                         </a>
                         <div class="dropdown-menu" aria-labelledby="user-management">
-                            <a class="dropdown-item" href="#" id="register-user-btn">Dar alta a un usuario</a>
-                            <a class="dropdown-item" href="#" id="edit-user-btn">Editar/Baja a un usuario</a>
+                            <a class="dropdown-item" href="{{ path("app_register") }}" id="register-user-btn">Dar alta a un usuario</a>
+                            <a class="dropdown-item" href="{{ path("app_user_searcher_view") }}" id="edit-user-btn">Editar/Baja a un usuario</a>
                         </div>
                     </li>
                 {% endif %}
@@ -44,16 +44,14 @@
                             Supervisar Empleados
                         </a>
                         <div class="dropdown-menu" aria-labelledby="supervise-user">
-                            <a class="dropdown-item" href="#" id="notificationes-btn">Leer Notificaciones</a>
-                            <a class="dropdown-item" href="#" id="search-user-vacation-btn">Revisar días de
-                                vacaciones por
-                                usuario</a>
+                            <a class="dropdown-item" href="{{ path("app_notifications_list") }}" id="notificationes-btn">Leer Notificaciones</a>
+                            <a class="dropdown-item" href="{{ path("supervise_day_off_employee") }}" id="search-user-vacation-btn">Revisar días de vacaciones por usuario</a>
                         </div>
                     </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="{{ path('app_company_management') }}" id="work-space">Company Management</a>
+                        <a class="nav-link text-white" href="{{ path('app_company_management') }}" id="work-space">Gestión de la Empresa</a>
                     </li>
                 {% endif %}
             </ul>
@@ -62,7 +60,7 @@
                     {{ app.user.name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown-A">
-                    <a class="dropdown-item" href="{{ path('app_profile') }}" id="user-profile-btn">Perfil</a>
+                    <a class="dropdown-item" href="#" id="user-profile-btn">Perfil</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('app_logout') }}">Salir</a>
                 </div>

@@ -7,7 +7,8 @@ namespace App\Calendar\ApplicationService;
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
 use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
 use App\Calendar\Domain\CalendarConfigRepository;
-use App\Company\ApplicationService\DTO\CalendarConfigResponse;
+use App\Calendar\ApplicationService\DTO\CalendarConfigResponse;
+use Ramsey\Uuid\Nonstandard\Uuid;
 
 final class GetCalendarConfig
 {
@@ -20,6 +21,10 @@ final class GetCalendarConfig
 
     public function __invoke(CalendarConfigRequest $calendarConfigRequest): CalendarConfigResponse
     {
+        if (!Uuid::isValid($calendarConfigRequest->calendarId())) {
+            throw new CalendarNotFoundException();
+        }
+        
         $calendarEntity = $this->calendarConfigRepository->getCalendarByCalendarId($calendarConfigRequest);
 
         if (null === $calendarEntity) {
@@ -38,6 +43,7 @@ final class GetCalendarConfig
 
         $calendarConfigResponse = new CalendarConfigResponse(
             $calendarConfigRequest->calendarId(),
+            $calendarEntity->workingYear()->workingYear(),
             $initDateRequest,
             $endDateRequest,
             $workDays,

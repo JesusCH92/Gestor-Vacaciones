@@ -1,0 +1,83 @@
+<div id="formulario-area" class="formulario-area container col-11">{# ! Ventana de las Editar Usuario #}
+    <form>
+        <label class="title-block-formulario subtitulo-solicitud">Datos Personales</label>
+        <div class="block-formulario">
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Name</label>
+                    <input type="text" value="{{ user_info.userName }}" class="form-control" placeholder="Name" disabled>
+                </div>
+                
+            </div>
+
+            <div class="form-row">  
+                <div class="form-group col-md-12">
+                    <label>LastName</label>
+                    <input type="text" value="{{ user_info.userLastName}}" class="form-control" placeholder="LastName" disabled>
+                </div>  
+                {# <div class="form-group col-md-6">
+                    <label for="inputPassword4">Password</label>
+                    <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                </div> #}
+                
+            </div>
+
+            <div class="form-row">  
+                <div class="form-group col-md-6">
+                    <label>Email</label>
+                    <input type="email" value="{{ user_info.userEmail }}" class="form-control" placeholder="Email" disabled>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Teléfono</label>
+                    <input type="text" class="form-control" value="{{ user_info.userPhone }}" placeholder="telefono" disabled>
+                </div>
+            </div>
+
+        </div>
+
+        <label class="title-block-formulario subtitulo-solicitud">Datos de la Empresa</label>
+        <div class="block-formulario">
+
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Empresa</label>
+                    <input type="text" class="form-control" value="{{ user_info.company }}" placeholder="empresa" disabled>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Departamento</label>
+                    <select class="form-control" disabled>
+                        <option selected>{{ user_info.department }}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="form--rol-select">Rol</label>
+                    <select id="form--rol-select" class="form-control">
+                        
+                        <option value="ROLE_USER">Empleado</option>
+                        <option value="ROLE_SUPERVISOR">Supervisor</option>
+                        
+                    </select>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form-row container-btn-formulario ">
+            <div class="form-group col-md-6 col-6 d-flex justify-content-end">
+                <button class="btn btn-outline-primary btn-sm form--btn form--btn-edit">EDITAR</button>
+            </div>
+            <div class="form-group col-md-6 col-6 d-flex justify-content-start">
+                <button class="btn btn-outline-danger btn-sm form--btn form--btn-remove">BAJA</button>
+            </div>
+
+        </div>
+
+
+    </form>
+            
+</div>{# ! Fin de la Ventana de las Editar Usuario #}

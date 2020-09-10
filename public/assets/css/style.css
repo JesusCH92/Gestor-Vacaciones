@@ -111,25 +111,25 @@ Ventana Revistar dias de vacaciones por usuario
 /* #titulo-formulario, #contenedor-area-formulario-vacaciones{
     display: none;
 } */
-.dias-disponibles{
+.days-available{
     width: 100px; height: 100px;
     border: 1px solid #dddddd;
 }
-.dias-disponibles-numerico{
+.days-available-numeric{
     height: 60%;
     font-size: 50px;
 }
-.dias-disponibles-cadena{
+.days-available-chain{
     height: 20%;
 }
-.contenedor-dias-vacaciones-seleccionados{
+.container-days-selected-holidays{
     max-height: 300px;
     overflow-y: auto;
 }
-.titulo-formulario, .contenedor-area-formulario-vacaciones{
+.titulo-formulario, .container-area-form-vacation{
     margin: 1% 0;
 }
-.titulo-dias-seleccionados{
+.title-days-selected{
     margin: 4% 8% 0 8%;
 }
 /** Fin de la Ventana formulario de las solicitudes de vacaciones**/
@@ -139,86 +139,7 @@ Ventana Revistar dias de vacaciones por usuario
     color: #000000;
 }
 
-/** Estilos Calendario**/
-/* .calendar {
-    margin: auto;
-    font-family:'Muli', sans-serif;
-    font-weight: 400;
-}
-.calendar_content{
-    height: 330px;
-}
-.calendar_content, .calendar_weekdays, .calendar_header {
-    position: relative;
-    overflow: hidden;
-}
-.calendar_weekdays div {
-    display:inline-block;
-    vertical-align:top;
-}
-.calendar_weekdays div, .calendar_content div {
-    width: 14.28571%;
-    height: 20%;
-    overflow: hidden;
-    text-align: center;
-    background-color: transparent;
-    color: #6f6f6f;
-    font-size: 14px;
-}
-.calendar_content div {
-    border: 1px solid transparent;
-    float: left;
-}
-.calendar_content div:hover {
-    border: 1px solid #dcdcdc;
-    cursor: default;
-}
-.calendar_content div.blank:hover {
-    cursor: default;
-    border: 1px solid transparent;
-}
-.calendar_content div.past-date {
-    color: #d5d5d5;
-}
-.calendar_content div.today {
-    font-weight: bold;
-    font-size: 14px;
-    color: #87b633;
-    border: 1px solid #dcdcdc;
-}
-.calendar_content div.selected {
-    background-color: #f0f0f0;
-}
-.calendar_header {
-    width: 100%;
-    text-align: center;
-}
-.calendar_header h2 {
-    padding: 0 10px;
-    font-family:'Muli', sans-serif;
-    font-weight: 300;
-    font-size: 18px;
-    color: #4f97e3;
-    float:left;
-    width:70%;
-    margin: 0 0 10px;
-}
-button.switch-month {
-    background-color: transparent;
-    padding: 0;
-    outline: none;
-    border: none;
-    color: #dcdcdc;
-    float: left;
-    width:15%;
-    transition: color .2s;
-}
-button.switch-month:hover {
-    color: #4f97e3;
-} */
-/** Fin Estilos Calendario**/
-
-/*Ventana Espacio de trabajo */
+/* *Ventana Espacio de trabajo */
 .title-block-workspace{
     color: #000000;
 }
@@ -252,11 +173,13 @@ button.switch-month:hover {
 .workspace-calendar{
     padding-top: 2%;
 }
+
 .square-legend{
-    width: 10px;
-    height: 10px;
+    width: 15px;
+    height: 15px;
     background-color: #2d77ff;
 }
+/*
 #legend-accept{
     background-color: #00ff00;
 }
@@ -275,7 +198,7 @@ button.switch-month:hover {
 #legend-non-work{
     background-color: rgba(0, 0, 0, 0.65);
 }
-
+*/
 
 .collapse-dates{
     background-color: transparent;
@@ -379,67 +302,193 @@ button.switch-month:hover {
 
 /** Edit Calendar View End**/
 
-/* ! Calendar : refactor names id and class */
-#myCarousel {
-    width: 520px;
-    margin-left: 50px;
-    margin-right: 50px;
+/**  Calendar carousel **/
+/* .container-carousel-of-dates{
+    width: 565px;
+    text-align: center;
+} */
+
+#datesCarousel {
+    /* text-align: center; */
+    width: 560px;
+    padding-left: 20px;
+}
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 }
 
 .carousel-control-prev {
-    margin-left: -15px;
+    /* margin-left: -20px; */
+    width: 20px;
+    height: 560px;
 }
 
 .carousel-control-next {
     right: auto;
-    margin-left: 575px;
+    width: 20px;
+    margin-left: 560px;
+    height: 560px;
 }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon{
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='000000' width='10' height='10' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5L4.25 4l2.5-2.5L5.25 0z'/%3e%3c/svg%3e");
-}
 /* ! Calendar : refactor names id and class */
 
 /* ! Calendario del carousel: refactor */
 .calendar-month{
     text-align: center;
-    margin: 10px;
+}
+.day-of-week-collection{
+    border-bottom: 2px solid #4f97e3;
+    font-weight: bold;
 }
 
 .day-of-week{
-    border-bottom: 2px solid #4f97e3;
-    font-weight: bold;
+    width: 75px;
+    height: 40px;
+    padding-top: 5px;
 
 }
 .day-of-month{
-    padding: 15px;
+    width: 75px;
+    height: 55px;
+    padding-bottom: 5px;
+    padding-top: 15px;
+    margin: 10px;
 }
 
 .no-existing-day{
     color: white;
-    pointer-events:none;
 }
 .month-of-year{
     padding: 15px;
     background-color: #4f97e3;
     color: white;
-}
-.selectable-day:hover{
-    background-color: #4f97e3;
-    color: white;
-    opacity: 0.5;
-}
-.feastday{
-    color: red;
-    pointer-events:none;
-}
-.no-working-day{
-    color: grey;
-    pointer-events:none;
+    margin: 0px;
 }
 
-span.carousel-control-prev-icon{
-    opacity:1 !important;color:red;
+.selectable-day{
+    color: #000000;
+    font-weight: bold;
+}
+
+.today-current{
+    color: #4f97e3;
+    border-radius: 50%;
+    border: 2px solid;
+}
+
+.today-current:hover{
+    color:#ffffff;
+    font-weight: bolder;
+    border-color: #4f97e3;
+}
+
+.today-current.feastday:hover{
+    color: #E91E63;
+    border-color: #E91E63;
+}
+
+.today-current.no-working-day:hover{
+    color: grey;
+    border-color: grey;
+}
+
+.selectable-day:hover{
+    background-color: #4f97e3;
+    color: #ffffff;
+    font-weight: bolder;
+    opacity: 0.5;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #0d66c1;
+    box-shadow: 0 0 1px 1px #0d66c1;
+}
+
+.selectable-day:active{
+    border: 1px solid #4254ba;
+    box-shadow: 0 0 1px 1px #ffffff;
+    color: #4254ba;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+.feastday{
+    color: #E91E63;
+    border-radius: 5px;
+    border: 2px solid;
+    cursor: not-allowed;
+}
+.no-working-day{
+    color: gray;
+    cursor: not-allowed;
+}
+
+.date-in-user{
+    background-color: #4f97e3;
+    color: #ffffff;
+    opacity: 0.5;
+}
+
+.dashboard.working-day{
+    color: #000000;
+    font-weight: bold;
+}
+
+.dashboard.feastday{
+    color: #E91E63;
+    border-radius: 5px;
+    border: 2px solid;
+}
+
+.holiday.approved{
+    background-color: #47DDF6;
+}
+
+.holiday.pending{
+    background-color: #35DEB2;
+}
+
+.holiday.denied{
+    background-color: #3F89E0;
+}
+
+.personal.approved{
+    background-color: #BCEB0F;
+}
+
+.personal.pending{
+    background-color: #D4C30B;
+}
+
+.personal.denied{
+    background-color: #37D602;
+}
+
+.workoff.approved{
+    background-color: #E544FF;
+}
+
+.workoff.pending{
+    background-color: #A341F0;
+}
+
+.workoff.denied{
+    background-color: #E833AF;
+}
+
+.user-on-dayoff.holiday{
+    border-color: #47DDF6;
+}
+
+.user-on-dayoff.personal{
+    border-color: #BCEB0F;
+}
+
+.user-on-dayoff.workoff{
+    border-color: #E544FF;
 }
 /* ! Fin Calendario del carousel */

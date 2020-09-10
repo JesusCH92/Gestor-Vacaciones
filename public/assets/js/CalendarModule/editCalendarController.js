@@ -3,6 +3,8 @@ var editCalendarController = (function(){
     var $workingYearSelect = $("#working-year-select");
     var $calendarConfigContainer = $("#calendar-config-container");
 
+    var _errorModal = errorModal();
+
     var paintCalendarConfig = function( {calendarConfigContainer, calendarConfig, calendarId} ) {
         calendarConfigContainer.html(calendarConfig);
         $("#work-days-select").selectpicker();
@@ -21,7 +23,8 @@ var editCalendarController = (function(){
             _editCalendarModel.getCalendarConfigByWorkingYear({
                 id : $workingYear,
                 callback : paintCalendarConfig,
-                container : $calendarConfigContainer
+                container : $calendarConfigContainer,
+                callbackError : _errorModal.paintErrorModal
             });
         });
     };

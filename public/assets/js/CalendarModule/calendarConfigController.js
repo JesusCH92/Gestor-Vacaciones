@@ -14,6 +14,7 @@ var calendarConfigController = (function(_calendarId){
     var $feastdayInCalendarContainer = $("#feastday-selected-container");
     
     var _editCalendarModel = editCalendarModel();
+    var _errorModal = errorModal();
 
     var isValidDate = function ($dateString) {
         var $date = new Date($dateString);
@@ -50,7 +51,8 @@ var calendarConfigController = (function(_calendarId){
                     calendarId : calendarId,
                     initDateRequest : $initDateRquest,
                     endDateRequest : $endDateRequest
-                }
+                },
+                callbackError : _errorModal.paintErrorModal
             });
         });
 
@@ -61,7 +63,7 @@ var calendarConfigController = (function(_calendarId){
                 workDays : $workDays
             };
             console.log($workDaysCorpus);
-            _editCalendarModel.updateWorkDays({ workDays : $workDaysCorpus });
+            _editCalendarModel.updateWorkDays({ workDays : $workDaysCorpus, callbackError : _errorModal.paintErrorModal });
         });
 
         $updateHolidayNumberBtn.click( function() {
@@ -72,7 +74,7 @@ var calendarConfigController = (function(_calendarId){
                 type : 'Holiday'
             };
             console.log($holidayCorpus);
-            _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $holidayCorpus });
+            _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $holidayCorpus, callbackError : _errorModal.paintErrorModal });
         });
 
         $updatePersonalDayOffNumberBtn.click( function() {
@@ -83,7 +85,7 @@ var calendarConfigController = (function(_calendarId){
                 type : 'Personal'
             };
             console.log($personalDayOffCorpus);
-            _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $personalDayOffCorpus });
+            _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $personalDayOffCorpus, callbackError: _errorModal.paintErrorModal });
         });
 
         $feastdayInput.change(function(){
@@ -111,7 +113,7 @@ var calendarConfigController = (function(_calendarId){
                 date : $feastdayItemToDelete.attr("feastday-date")
             };
             console.log($feastdayItemToDelete.attr("feastday-date"));
-            _editCalendarModel.deleteFeastday({ feastday : $feastdayCorpus, deleteItem : $feastdayItemToDelete});
+            _editCalendarModel.deleteFeastday({ feastday : $feastdayCorpus, deleteItem : $feastdayItemToDelete, callbackError : _errorModal.paintErrorModal});
         });
 
 
