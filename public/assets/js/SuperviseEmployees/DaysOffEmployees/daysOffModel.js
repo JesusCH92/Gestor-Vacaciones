@@ -1,6 +1,6 @@
 var daysOffModel = (function() {
 
-    var getDayOffFormByDepartment = function ({filterEmployeesCorpus, callback = console.log, container}) {
+    var getDayOffFormByDepartment = function ({filterEmployeesCorpus, callback = console.log, container, callbackError = console.log}) {
         $.ajax({
             type: 'GET',
             url: `/supervise/management/dayoff/employees/filter`,
@@ -11,12 +11,12 @@ var daysOffModel = (function() {
                 callback({filterUserDayOff : container, dayoffConfig : data.dayoff_config});
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var getCalendarWithUserInDayOffByCurrentYear = function ( { id, callback = console.log, container} ) {
+    var getCalendarWithUserInDayOffByCurrentYear = function ( { id, callback = console.log, container, callbackError = console.log} ) {
         $.ajax({
             type: 'GET',
             url: `/supervise/management/dayoff/user/${id}`,
@@ -26,7 +26,7 @@ var daysOffModel = (function() {
                 callback({calendarContainer : container, calendar : data.user_dayoff_calendar});
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
