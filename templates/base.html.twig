@@ -24,27 +24,12 @@
 
             {% endblock %}
         </section>
-        
-        <div id="modal-error" class="modal fade" role="dialog">{# !MODAL ERROR #}
-            <div class="modal-dialog">
-    
-            <!-- Modal content-->
-                <div class="modal-content">
-                    <div id="titulo-modal" class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">ERROR</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p id="modal-error-texto"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-gescct" data-dismiss="modal">ACEPTAR</button>
-                    </div>
-                </div>
-            </div>
-        </div>{# ! FIN MODAL ERROR #}
+
+        {% include '_error_modal/_error_modal.html.twig' %}
+
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script type="text/javascript" src="/../assets/js/ErrorModal/errorModalTemplate.js"></script>
         {% endblock %}
 
         {% block head_js %}
