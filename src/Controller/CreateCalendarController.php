@@ -20,7 +20,7 @@ final class CreateCalendarController extends AbstractController
     }
 
     /**
-     * @Route("/calendar/management/create/calendar", name="app_create_calendar")
+     * @Route("/calendar/management/create/calendar", methods={"POST"}, name="app_create_calendar")
      */
     public function create(Request $request)
     {
