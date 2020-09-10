@@ -19,7 +19,7 @@ final class ApproveNotificationEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("/supervise/management/notification/approve", options={"expose"=true}, name="app_notification_supervise_approve")
+     * @Route("/supervise/management/notification/approve", methods={"POST"}, name="app_notification_supervise_approve")
      */
     public function dayOff(Request $request)
     {
