@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Department\ApplicationService\DepartmentCodeUpdater;
 use App\Department\ApplicationService\DTO\DepartmentCodeRequest;
+use App\Department\ApplicationService\Exception\DepartmentCodeIsNotValidException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,13 +28,18 @@ final class DepartmentCodeUpdaterController extends AbstractController
     {
         $department = $request->get('department');
 
-        $departmentName = $department['code'];
+        $departmentCode = $department['code'];
         $departmentId = $department['id'];
+
+        if ("" === $departmentCode || strlen($departmentCode) > 10) {
+            throw new DepartmentCodeIsNotValidException($departmentCode);
+        }
+
 
         $this->departmentCodeUpdater->__invoke(
             new DepartmentCodeRequest(
                 $departmentId,
-                $departmentName
+                $departmentCode
             )
         );
         
