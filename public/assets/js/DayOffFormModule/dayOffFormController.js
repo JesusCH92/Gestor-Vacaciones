@@ -15,7 +15,9 @@ var dayOffFormController = (function(_calendarId){
     var $remainingDayHoliday = $(".remaining-day-holiday");
     var $remainingDayPersonal = $(".remaining-day-personal");
     var $typeDayOffFormSelect = $("#type-day-off-form-select");
+
     var _dayOffFormRenderTemplate= dayOffFormRenderTemplate();
+    var _errorModal = errorModal();
 
     var initEventDayOffConfig = function() {
 
@@ -79,7 +81,8 @@ var dayOffFormController = (function(_calendarId){
                     id_calendar : $calendarId,
                     days_off : JSON.stringify($datesSelectedArray),
                     type_of_day : $typeDayOff
-                }
+                },
+                callbackError : _errorModal.paintErrorModal
             });
 
         });
