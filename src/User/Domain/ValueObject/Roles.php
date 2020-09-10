@@ -14,12 +14,10 @@ final class Roles
 {
     public const USER = 'ROLE_USER';
     public const SUPERVISOR = 'ROLE_SUPERVISOR';
-    public const ADMIN = 'ROLE_ADMIN';
 
     public static $allowedValues = [
         self::USER,
-        self::SUPERVISOR,
-        self::ADMIN
+        self::SUPERVISOR
     ];
 
     /**
