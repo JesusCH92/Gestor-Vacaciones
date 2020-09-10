@@ -1,9 +1,4 @@
 var editCalendarModel = (function() {
-    var paintErrorModal = function ({message_error}) {
-        // $("#main-container").append(_modal);
-        $("#modal-error").modal('show')
-        // return _modal;
-    };
 
     var getCalendarConfigByWorkingYear = function ({id, callback = console.log, container, callbackError = console.log}) {
         $.ajax({
