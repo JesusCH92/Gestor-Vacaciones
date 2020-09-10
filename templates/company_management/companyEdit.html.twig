@@ -9,7 +9,7 @@
     </div>
 
     <div id="formulario-area" class="formulario-area container col-12">{# ? Ventana Editar Empresa #}
-        <form>
+        <section>
 
             <label class="title-block-formulario subtitulo-solicitud">Editar nombre de la Empresa</label>
         
@@ -18,7 +18,7 @@
                     <label for="Name">Nombre:</label>
                 </div>
                 <div class="form-group col-md-4 col-12">
-                    <label for="Name">{{ department_collection.companyName }}</label>
+                    <label for="Name" id="company--name__label">{{ department_collection.companyName }}</label>
                 </div>
         
                 <div class="form-group col-md-1">
@@ -30,7 +30,7 @@
                     <div class="collapse input-group" id="edit-company-name-container">
                         <input type="text" class="form-control" id="company-rename-input" placeholder="Renombrar la empresa">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary prova-jc" id="edit-company-name-btn">
+                            <button class="btn btn-outline-primary" id="edit-company-name-btn">
                                 Guardar
                             </button>
                         </div>
@@ -43,7 +43,7 @@
 
             <div class="form-row">
                 <div class="form-group col-xl-12">
-                    <div class="list-group list-group-flush" id="departments-container">
+                    <div class="list-group list-group-flush" id="department--container">
         
                         <div class="list-group-item">
                             <div class="row">
@@ -79,51 +79,7 @@
                 </div>
             </div>
 
-            {# <label class="subtitulo-solicitud">Departamentos añadidos:</label>
-
-            <div class="form-row d-flex justify-content-center">
-                
-                <div class="form-group col-md-8">
-                    
-                    <div class="list-group">
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-4 text-center font-weight-bold">Nombre del departamento</div>
-                                <div class="col-4 text-center font-weight-bold">Código del departamento</div>
-                                <div class="col-4 text-center font-weight-bold">#</div>
-                            </div>
-                        </div>
-        
-                        <div class="list-group-item">
-                            <div class="row">
-                                <div class="col-4 text-center">MediaLab</div>
-                                <div class="col-4 text-center">ML-01</div>
-                                <div class="col-4 text-center">
-                                    <button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button>
-                                </div>
-                            </div>
-        
-                            <div class="row">
-                                <div class="col-4 text-center">Robotica</div>
-                                <div class="col-4 text-center">RB-09</div>
-                                <div class="col-4 text-center">
-                                    <button type="button" class="btn btn-outline-danger btn-sm">Eliminar</button>
-                                </div>
-                            </div>
-        
-                        </div>
-        
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-row container-btn-formulario">
-                <div class="form-group col-md-12 d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary">Editar Empresa</button>
-                </div>
-            </div> #}
-
-        </form>
+        </section>
 
     </div>{# ? Fin de la Ventana de las Editar Empresa #}
     

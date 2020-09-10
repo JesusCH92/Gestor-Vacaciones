@@ -2,9 +2,16 @@ var companyController = (function(){
     var $addDepartmentBtn = $("#dpt-add-btn");
     var $departmentNameAdded = $("#department-name-added");
     var $codeDepartmentAdded = $("#code-department-added");
-    var $departmentContainer = $("#departments-container");
+    var $departmentContainer = $("#department--container");
     var $editCompanyBtn = $("#edit-company-name-btn");
     var $renameCompanyInput = $("#company-rename-input");
+    var $companyNameLabel = $("#company--name__label");
+    var $departmentNameBtnClass = "department--name-btn";
+    var $departmentNameInputIdTag = "#department--name-input-";
+    var $departmentNameLabelIdTag = "#department--name-label-";
+    var $departmentCodeBtnClass = "department--code-btn";
+    var $departmentCodeInputIdTag = "#department--code-input-";
+    var $departmentCodeLabelIdTag = "#department--code-label-"; 
 
     var paintDepartment = function( {containerDepartment, department} ) {
         containerDepartment.append(department);
@@ -12,8 +19,7 @@ var companyController = (function(){
 
     var initEvents =  function(){
 
-        $addDepartmentBtn.click(function(){
-            console.log('General Kenobi');
+        $addDepartmentBtn.click( function(){
             var $departmentName = $departmentNameAdded.val().trim();
             var $departmentCode = $codeDepartmentAdded.val().trim();
 
@@ -35,7 +41,7 @@ var companyController = (function(){
 
         });
 
-        $editCompanyBtn.click(function(){
+        $editCompanyBtn.click( function(){
             console.log("don't push me!!");
 
             var $companyRename = $renameCompanyInput.val().trim();
@@ -51,7 +57,46 @@ var companyController = (function(){
                     name : $companyRename,
                     id : $id
                 },
-                id : $id
+                id : $id,
+                label : $companyNameLabel
+            });
+        });
+
+        $departmentContainer.click( function () {
+            if ( !$(event.target).hasClass($departmentNameBtnClass) ) {
+                return;
+            }
+            var $departmentId = $(event.target).attr('deptId');
+            var $departmentNameInput = $($departmentNameInputIdTag + $departmentId);
+            if ( $departmentNameInput.val().trim() === "") {
+                return;
+            }
+            var $departmentCorpus = {
+                id : $departmentId,
+                name : $departmentNameInput.val().trim()
+            };
+            companyModel.departmentNameUpdate({
+                department : $departmentCorpus,
+                label : $($departmentNameLabelIdTag + $departmentId)
+            });
+        });
+
+        $departmentContainer.click( function () {
+            if ( !$(event.target).hasClass($departmentCodeBtnClass) ) {
+                return;
+            }
+            var $departmentId = $(event.target).attr('deptId');
+            var $departmentCodeInput = $($departmentCodeInputIdTag + $departmentId);
+            if ( $departmentCodeInput.val().trim() === "" || $departmentCodeInput.val().trim().length > 10) {
+                return;
+            }
+            var $departmentCorpus = {
+                id : $departmentId,
+                code : $departmentCodeInput.val().trim()
+            };
+            companyModel.departmentCodeUpdate({
+                department : $departmentCorpus,
+                label : $($departmentCodeLabelIdTag + $departmentId)
             });
         });
     };

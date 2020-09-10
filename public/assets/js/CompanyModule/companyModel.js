@@ -1,6 +1,6 @@
 var companyModel = (function(){
 
-    var createDepartment = function({department, callback = console.log, container}) {
+    var createDepartment = function({ department, callback = console.log, container }) {
         $.ajax({
             type: 'POST',
             url: '/company/management/add/department',
@@ -18,7 +18,7 @@ var companyModel = (function(){
         });
     };
 
-    var editCompany = function({company, callback = console.log, id}) {
+    var editCompany = function({ company, callback = console.log, id, label }) {
         $.ajax({
             type: 'POST',
             url: `/company/management/edit/${id}`,
@@ -28,6 +28,43 @@ var companyModel = (function(){
                 callback(
                     data
                 );
+                label.html(company['name']);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    };
+
+    var departmentNameUpdate = function ({ department, callback = console.log, label }) {
+        $.ajax({
+            type: 'POST',
+            url: `/company/management/edit/department/name`,
+            async: true,
+            data: { department },
+            success: function(data){
+                callback(
+                    data
+                );
+                label.text(department['name']);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    };
+
+    var departmentCodeUpdate = function ({ department, callback = console.log, label }) {
+        $.ajax({
+            type: 'POST',
+            url: `/company/management/edit/department/code`,
+            async: true,
+            data: { department },
+            success: function(data){
+                callback(
+                    data
+                );
+                label.text(department['code']);
             },
             error: function(data){
                 console.log(data);
@@ -37,6 +74,8 @@ var companyModel = (function(){
 
     return{
         createDepartment : createDepartment,
-        editCompany : editCompany
+        editCompany : editCompany,
+        departmentNameUpdate : departmentNameUpdate,
+        departmentCodeUpdate : departmentCodeUpdate
     }
 })();
