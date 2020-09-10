@@ -23,7 +23,7 @@ class CompanyManagementController extends AbstractController
     }
 
     /**
-     * @Route("/company/management", name="app_company_management")
+     * @Route("/company/management", methods={"GET"}, name="app_company_management")
      */
     public function index()
     {
