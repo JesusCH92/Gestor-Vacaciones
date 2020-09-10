@@ -6,6 +6,7 @@ var daysOffConfigController = (function(){
 
     var _daysOffModel = daysOffModel();
     var _userInDayOffRenderTemplate = userInDayOffRenderTemplate();
+    var _errorModal = errorModal();
 
     var initEvent = function () {
 
@@ -21,7 +22,8 @@ var daysOffConfigController = (function(){
             _daysOffModel.getDayOffFormByDepartment({
                 filterEmployeesCorpus : $userInDayOffCorpus,
                 callback : _userInDayOffRenderTemplate.paintFilterDayOff,
-                container : $filterUserDayOffContainer
+                container : $filterUserDayOffContainer,
+                callbackError : _errorModal.paintErrorModal
             });
 
         });
