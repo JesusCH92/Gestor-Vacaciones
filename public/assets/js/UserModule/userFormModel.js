@@ -19,7 +19,6 @@ var userFormModel = ( function () {
             type: 'DELETE',
             url: `/user/management/delete/${id}`,
             async: true,
-            dataType: "json",
             success: function(data){
                 callback(data);
                 // callback({calendarConfigContainer : container, calendarConfig : data.calendar_config, calendarId: id});
