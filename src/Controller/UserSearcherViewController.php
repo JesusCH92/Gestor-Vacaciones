@@ -8,7 +8,7 @@ use App\Company\ApplicationService\GetAllDepartmentsByAdmin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class UserSearcherViewController extends AbstractController
+final class UserSearcherViewController extends AbstractController
 {
     private GetAllDepartmentsByAdmin $getAllDepartmentsByAdmin;
 
