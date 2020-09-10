@@ -1,22 +1,21 @@
 <div class="list-group-item">
     <div class="row">
-        <div class="col-4 text-center">
+        <div class="col-4 text-center" id="department--name-label-{{ department.departmentId }}">
             {{ department.departmentName }}
         </div>
         <div class="col-8">
             <div class="row">
                 <div class="col-md-4">
-                    <a class="btn btn-link prova-pencil-icon" data-toggle="collapse" href="#edit-department-name-container-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditNameDepartment">
+                    <a class="btn btn-link prova-pencil-icon" data-toggle="collapse" href="#department--name-container-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditNameDepartment">
                         Editar nombre del departamento
                     </a>
                 </div>
                 <div class="col-md-8">
-                    <div class="collapse input-group" id="edit-department-name-container-{{ department.departmentId }}">
-                        <input type="text" class="form-control" id="department-rename-input-{{ department.departmentId }}" placeholder="Escribe el nuevo nombre del departamento">
+                    <div class="collapse input-group" id="department--name-container-{{ department.departmentId }}">
+                        <input type="text" class="form-control" id="department--name-input-{{ department.departmentId }}" placeholder="Escribe el nuevo nombre del departamento">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary edit-department-name-btn">
+                            <button class="btn btn-outline-primary department--name-btn" deptId="{{ department.departmentId }}">
                                 Guardar
-                                {# <span class="oi oi-check" title="Rename Department" aria-hidden="true"></span> #}
                             </button>
                         </div>
                     </div>
@@ -24,24 +23,22 @@
             </div>
         </div>
 
-        <div class="col-4 text-center">
+        <div class="col-4 text-center" id="department--code-label-{{ department.departmentId }}">
             {{ department.departmentCode }}
         </div>
         <div class="col-8">
             <div class="row">
                 <div class="col-md-4">
-                    <a class="btn btn-link" data-toggle="collapse" href="#edit-code-deptartment-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditCodeDepartment">
+                    <a class="btn btn-link" data-toggle="collapse" href="#department--code-container-{{ department.departmentId }}" role="button" aria-expanded="false" aria-controls="collapseEditCodeDepartment">
                         Editar el código del departamento
-                        {# <span class="oi oi-pencil" title="Edit code department" aria-hidden="true"></span> #}
                     </a>
                 </div>
                 <div class="col-md-8">
-                    <div class="collapse input-group" id="edit-code-deptartment-{{ department.departmentId }}">
-                        <input type="text" class="form-control" id="department-rename-input-{{ department.departmentId }}" placeholder="Escribe el nuevo código del departamento">
+                    <div class="collapse input-group" id="department--code-container-{{ department.departmentId }}">
+                        <input type="text" class="form-control" id="department--code-input-{{ department.departmentId }}" placeholder="Escribe el nuevo código del departamento">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-primary edit-department-code-btn">
+                            <button class="btn btn-outline-primary department--code-btn" deptId="{{ department.departmentId }}">
                                 Guardar
-                                {# <span class="oi oi-check" title="Rename code department" aria-hidden="true"></span> #}
                             </button>
                         </div>
                     </div>
