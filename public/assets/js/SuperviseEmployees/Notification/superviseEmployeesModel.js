@@ -1,6 +1,6 @@
 var superviseEmployeesModel = (function() {
 
-    var getDayOffFormByUser = function ({dayOffFormId, callback = console.log, container}) {
+    var getDayOffFormByUser = function ({dayOffFormId, callback = console.log, container, callbackError = console.log}) {
         $.ajax({
             type: 'GET',
             url: `/supervise/management/notification/employees/dayoff/${dayOffFormId}`,
@@ -9,11 +9,11 @@ var superviseEmployeesModel = (function() {
                 callback({employeeInfo : container, dayoffConfig : data.dayoff_config});
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
-    var approveDayOffformRequest = function ({day_off, callback = console.log}) {
+    var approveDayOffformRequest = function ({day_off, callback = console.log, callbackError = console.log}) {
         $.ajax({
             type: 'POST',
             url: '/supervise/management/notification/approve',
@@ -25,11 +25,11 @@ var superviseEmployeesModel = (function() {
                 callback(data);
             },
             error: function(data){
-                console.log(data.responseText);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
-    var denyDayOffformRequest = function ({day_off, callback = console.log}) {
+    var denyDayOffformRequest = function ({day_off, callback = console.log, callbackError = console.log}) {
         $.ajax({
             type: 'POST',
             url: '/supervise/management/notification/deny',
@@ -41,7 +41,7 @@ var superviseEmployeesModel = (function() {
                 callback(data);
             },
             error: function(data){
-                console.log(data.responseText);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
