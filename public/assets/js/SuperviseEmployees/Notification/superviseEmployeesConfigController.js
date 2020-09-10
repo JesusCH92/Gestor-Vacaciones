@@ -3,6 +3,7 @@ var superviseEmployeesConfigController = (function(){
     var $employeeInfo = $(".employee-info");
 
     var _superviseEmployeesRenderTemplate = superviseEmployeesRenderTemplate();
+    var _errorModal = errorModal();
 
     var initEvent = function () {
         $userNotificationContainer.click(function() {
@@ -14,8 +15,9 @@ var superviseEmployeesConfigController = (function(){
             var _superviseEmployeesModel = superviseEmployeesModel();
             _superviseEmployeesModel.getDayOffFormByUser({
                 dayOffFormId :dayOffFormId,
-                callback: _superviseEmployeesRenderTemplate.paintDayOffConfig,
-                container: $employeeInfo
+                callback : _superviseEmployeesRenderTemplate.paintDayOffConfig,
+                container : $employeeInfo,
+                callbackError : _errorModal.paintErrorModal
                 }
             );
 

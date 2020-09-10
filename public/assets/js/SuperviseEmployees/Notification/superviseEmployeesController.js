@@ -4,6 +4,8 @@ var superviseEmployeesController = (function(){
     var $superviseComment = $("#supervisor-comment");
     var $dayOffFormId = $("#day-off-form-id");
 
+    var _errorModal = errorModal();
+
     var initSuperviseEmployees = function() {
         _superviseEmployeesModel = superviseEmployeesModel();
         $approveDayOffFormBtn.click(function (){
@@ -11,19 +13,25 @@ var superviseEmployeesController = (function(){
             $comment = $superviseComment.val();
             $dayOffId = $dayOffFormId.attr("value");
 
-            _superviseEmployeesModel.approveDayOffformRequest({day_off: {
-                comment: $comment,
-                day_off_id: $dayOffId
-                }});
+            _superviseEmployeesModel.approveDayOffformRequest({
+                day_off : {
+                    comment : $comment,
+                    day_off_id : $dayOffId
+                },
+                callbackError : _errorModal.paintErrorModal
+            });
         });
         $deniedDayOffFormBtn.click(function (){
             console.log("denied");
             $comment = $superviseComment.val();
             $dayOffId = $dayOffFormId.attr("value");
-            _superviseEmployeesModel.denyDayOffformRequest({day_off: {
+            _superviseEmployeesModel.denyDayOffformRequest({
+                day_off: {
                     comment: $comment,
                     day_off_id: $dayOffId
-                }});
+                },
+                callbackError : _errorModal.paintErrorModal
+            });
         });
 
     };
