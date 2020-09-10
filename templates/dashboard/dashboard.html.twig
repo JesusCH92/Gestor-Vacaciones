@@ -1,0 +1,239 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{parent()}} - Dashboard{% endblock %}
+{% block stylesheets %} {{ parent() }} {% endblock %}
+
+{% block main_dashboard %}
+    <div class="p-3 mb-3 bg-light rounded">
+        <h3 class="title-block-workspace center-title">Espacio de trabajo</h3>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 my-auto">
+                <h3 class="title-business">{{ app.user.company }} > {{ app.user.department }}</h3>
+            </div>
+
+        </div>
+    </div>
+                
+    <hr class="my-4 col-12">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 my-auto">
+                <div class="p-3 mb-3 bg-light rounded" id="format-background1">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h1 id="days-holidays">{{ remaining_day.Holiday }}</h1>
+                            </div>
+                            <div class="col">
+                                <h5>DIAS DE VACACIONES</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-4 my-auto">
+                <div class="p-3 mb-3 bg-light rounded" id="format-background2">
+                    <h5>NOTIFICACIONES</h5>
+                    <p class="info">{% if last_dayoff is null %} No hay solucitudes {% else %}El estado de tu última solicitud es:
+                            {% if last_dayoff.statusLastDayOff == 'PENDING' %}
+                                pendiente
+                            {% endif %}
+                            {% if last_dayoff.statusLastDayOff == 'APPROVED' %}
+                               aprobada
+                            {% endif %}
+                            {% if last_dayoff.statusLastDayOff == 'DENIED' %}
+                                denegada
+                            {% endif %}
+                        {% endif %}</p>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4 text-center my-auto">
+                <a role="button" class="btn btn-primary btn-lg" id="solicitud-vacaciones-btn" href="{{ path('app_dayoff') }}">Solicitar vacaciones</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-lg-8">
+                {% include 'dashboard/calendar/_calendar_dashboard.html.twig' %}
+                <div class="p-3 mb-3 bg-light rounded">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>Vacaciones</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend holiday approved">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Aceptado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend holiday denied">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Denegado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend holiday pending">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Pendiente</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>Personales</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend personal approved">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Aceptado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend personal denied">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Denegado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend personal pending">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Pendiente</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <div class="col">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>Baja laboral</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend workoff approved">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Aceptado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend workoff denied">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Denegado</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="square-legend workoff pending">
+
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <p>Pendiente</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12 col-lg-4">
+                <h5>Compañeros en día libre:</h5>
+                {% if users_dayoff is not empty %}
+                <div class="list-group">
+                    {% for user in users_dayoff %}
+                    <p class="list-group-item list-group-item-action list-group-item-light mb-0 user-on-dayoff{% if user.typeDayOff == 'Work_off' %} workoff {% elseif user.typeDayOff == 'Holiday' %} holiday {% else %} personal {% endif %}">{{ user.name }} {{ user.lastname }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block head_js %}
+{{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+{% endblock %}

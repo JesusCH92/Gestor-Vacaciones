@@ -10,9 +10,46 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
+            SymfonyUser:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/User/Infrastructure/Model'
+                prefix: 'App\User\Infrastructure\Model'
+                alias: SymfonyUser
+            SymfonyUserEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/User/Domain/ValueObject'
+                prefix: 'App\User\Domain\ValueObject'
+                alias: SymfonyUserEmbeddable
+            Entity:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
-                alias: App
+                alias: Entity
+
+            DayOffFormEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/DayOffForm/Domain/ValueObject'
+                prefix: 'App\DayOffForm\Domain\ValueObject'
+                alias: Embeddable
+            CalendarEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Calendar/Domain/ValueObject'
+                prefix: 'App\Calendar\Domain\ValueObject'
+                alias: CalendarEmbeddable
+            TypeDayOffEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/TypeDayOff/Domain/ValueObject'
+                prefix: 'App\TypeDayOff\Domain\ValueObject'
+                alias: TypeDayOffEmbeddable
+            FeastdayEmbeddable:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Feastday/Domain/ValueObject'
+                prefix: 'App\Feastday\Domain\ValueObject'
+                alias: FeastdayEmbeddable

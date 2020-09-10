@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Calendar{% endblock %}
+{% block stylesheets %} 
+    {{ parent() }} 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+{% endblock %}
+
+{% block main_dashboard %}
+    <div class="p-3 mb-3 bg-light rounded">
+        <h3 class="title-block-workspace center-title">Create calendar</h3>
+    </div>
+
+    <div>{# ? CREATE CALENDAR VIEW #}
+        
+        <form>
+
+            <div class="section-create-calendar-form">
+                <h5 class="font-weight-bold">Configuración del año laboral</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-12 col-xl-6">
+                        <label for="working-year">Año laboral:</label>
+                    </div>
+                    <div class="form-group col-md-12 col-xl-6">
+                        <input type="number" id="working-year" class="form-control text-center" name="working-year" value="2019"  min="2019" max="2080">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-create-calendar-form">
+                <h5 class="font-weight-bold">Configuración del rango de fechas para pedir días libres</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="init-date-request">Inicio de peticiones de días libres:</label>
+                        <input type="date" id="init-date-request" name="init-date-request" class="form-control text-center" min="2019-01-01">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="end-date-request">Fin de peticiones de días libres:</label>
+                        <input type="date" id="end-date-request" name="end-date-request"class="form-control text-center" min="2019-01-01">
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-create-calendar-form">
+                <h5 class="font-weight-bold">Añadir la cantidad días según el tipo de días libres</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <label for="end">Número de días de vacaciones:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" id="holidays-number" class="form-control text-center" min="0" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <label for="end">Número de días personales:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" id="personal-days-number" class="form-control text-center" min="0" value="0">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="section-create-calendar-form">
+                <h5 class="font-weight-bold">Escoger los días laborables</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6 col-xl-3">
+                        <label >Seleccionar días laborable</label>
+                    </div>
+                    <div class="form-group col-md-6 col-xl-4">
+                        <select multiple class="form-control selectpicker" height="150" id="work-days-select">
+                            <option value="1">Lunes</option>
+                            <option value="2">Martes</option>
+                            <option value="3">Miercoles</option>
+                            <option value="4">Jueves</option>
+                            <option value="5">Viernes</option>
+                            <option value="6">Sabado</option>
+                            <option value="0">Domingo</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-create-calendar-form">
+                <h5 class="font-weight-bold">Añadir los días festivos del año laboral</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label for="start">Selecciona los días festivos individualmente:</label>
+                        <input type="date" id="feastday-date" class="form-control text-center" min="2019-01-01">
+                    </div>
+
+                    <div class="form-group col-md-5">
+                        <label>Días festivos seleccionados:</label>
+                        <div class="card-body contenedor-dias-vacaciones-seleccionados">
+                            <ul class="list-group" id="feastday-selected-container">
+                                {# ! Aquí se añade los días festivos seleccionados #}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="section-create-calendar-form">
+                <div class="form-row">
+                    <div class="form-group col-md-12 d-flex justify-content-center">
+                        <button type="button" class="btn btn-primary" id="create-calendar-btn">Crear Calendario</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+    </div>{# ? CREATE CALENDAR VIEW END #}
+    
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/../assets/js/CalendarModule/calendarCreatorRenderTemplate.js"></script>
+    <script type="text/javascript" src="/../assets/js/CalendarModule/calendarCreatorModel.js"></script>
+    <script type="text/javascript" src="/../assets/js/CalendarModule/calendarController.js"></script>
+    
+
+{% endblock %}

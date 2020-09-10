@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Edit Calendar{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+{% endblock %}
+
+{% block main_dashboard %}
+    <div class="p-3 mb-3 bg-light rounded">
+        <h3 class="title-block-workspace center-title">Seleciona tus días de vacaciones</h3>
+    </div>
+    <div class="container justify-content-center formulario-area">
+        <h4>Buscar por año laboral</h4>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="working-year-select">Filtrar por año laboral:</label>
+                    <select id="working-year-select" class="form-control">
+                        {% for calendar in calendars %}
+                            <option value="{{ calendar.calendarId }}">{{ calendar.workingYear }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="working-year-filter-btn">Buscador:</label>
+                    <button type="button" class="form-control btn btn-outline-primary" id="working-year-filter-btn">Filtrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr class="my-4 col-12">
+    <div id="dayoff-config-container">{# ! Dayoff Config View #}
+    </div>{# ! End Dayoff Config View #}
+
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/../assets/js/DayOffFormModule/dayOffFormRenderTemplate.js"></script>
+    <script type="text/javascript" src="/../assets/js/DayOffFormModule/dayOffFormConfigModel.js"></script>
+    <script type="text/javascript" src="/../assets/js/DayOffFormModule/dayOffFormConfigController.js"></script>
+    <script type="text/javascript" src="/../assets/js/DayOffFormModule/dayOffFormController.js"></script>
+
+{% endblock %}

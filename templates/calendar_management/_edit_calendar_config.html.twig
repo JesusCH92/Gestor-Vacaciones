@@ -1,0 +1,111 @@
+<div class="section-create-calendar-form">
+    <h5 class="font-weight-bold">Editar el rango para pedir vacaciones</h5>
+    <div class="form-row">
+        <div class="form-group col-md-6 col-xl-4">
+            <label for="init-date-request">Inicio de petición de vacaciones:</label>
+            <input type="date" value="{{ calendar_config.initDate }}" id="init-date-request" name="init-date-request" class="form-control text-center" min="2019-01-01">
+        </div>
+        <div class="form-group col-md-6 col-xl-4">
+            <label for="end-date-request">Fin de petición de vacaciones:</label>
+            <input type="date" value="{{ calendar_config.endDate }}" id="end-date-request" name="end-date-request"class="form-control text-center" min="2019-01-01">
+        </div>
+        <div class="form-group col-md-10 col-xl-4">
+            <label class="col-12" for="update-dayoff-request-btn">Guardar el rango de petición</label>
+            {# <button class="btn btn-outline-info" id="update-dayoff-request-btn">
+                <span class="oi oi-check" title="Save Range Day Off Request" aria-hidden="true" id="range-dayoff-request-save-btn"></span>
+            </button> #}
+
+            <button class="btn btn-outline-primary" id="update-dayoff-request-btn">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="section-create-calendar-form">
+    <h5 class="font-weight-bold">Editar la cantidad días según el tipo de días libres</h5>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="holidays-number-input">Número de días de vacaciones:</label>
+            <div class="input-group">
+                <input type="number" id="holidays-number-input" class="form-control text-center" min="0" value="{{ calendar_config.typeDayOffCollection.Holiday }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" title="Update holiday number" id="update-hodliday-number-btn">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label for="personal-days-number-input">Número de días personales:</label>
+            <div class="input-group">
+                <input type="number" id="personal-days-number-input" class="form-control text-center" min="0" value="{{ calendar_config.typeDayOffCollection.Personal }}">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" title="Update personal day off number" id="update-personal-dayoff-number-btn">
+                        Guardar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-create-calendar-form">
+    <h5 class="font-weight-bold">Editar los días laborables</h5>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label >Seleccionar días laborable</label>
+            <select multiple="multiple" class="form-control" height="150" id="work-days-select">
+                <option value="1" {% if "1" in calendar_config.workDays %}selected="selected"{% endif %}>Lunes</option>
+                <option value="2" {% if "2" in calendar_config.workDays %}selected="selected"{% endif %}>Martes</option>
+                <option value="3" {% if "3" in calendar_config.workDays %}selected="selected"{% endif %}>Miercoles</option>
+                <option value="4" {% if "4" in calendar_config.workDays %}selected="selected"{% endif %}>Jueves</option>
+                <option value="5" {% if "5" in calendar_config.workDays %}selected="selected"{% endif %}>Viernes</option>
+                <option value="6" {% if "6" in calendar_config.workDays %}selected="selected"{% endif %}>Sabado</option>
+                <option value="0" {% if "0" in calendar_config.workDays %}selected="selected"{% endif %}>Domingo</option>
+            </select>
+        </div>
+        <div class="form-group col-md-5">
+            <label class="col-12" for="update-working-days-btn">Guardar los días laborables</label>
+            <button class="btn btn-outline-primary" id="update-working-days-btn">
+                Guardar
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="section-create-calendar-form">
+    <h5 class="font-weight-bold">Editar los días festivos del año laboral</h5>
+    <label>Listado de los días festivos:</label>
+    <div class="form-row d-flex justify-content-center">
+        <div class="card-body contenedor-dias-vacaciones-seleccionados col-12 col-md-8 col-xl-5">
+            <ul class="list-group" id="feastday-selected-container">
+                {# ! Aquí se añaden los días festivos seleccionados #}
+                {% for feastday in calendar_config.feastdayCollection %}
+                    {% include 'calendar_management/feastday_item/feastday_item.html.twig' %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="section-create-calendar-form">
+    <h5 class="font-weight-bold">Añadir los días festivos del año laboral</h5>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+            <label for="start">Selecciona los días festivos individualmente:</label>
+            <input type="date" id="feastday-date" class="form-control text-center" min="2019-01-01">
+        </div>
+
+        <div class="form-group col-md-5">
+            <label>Días festivos seleccionados:</label>
+            <div class="card-body contenedor-dias-vacaciones-seleccionados">
+                <ul class="list-group" id="feastday-list-container">
+                    {# ! Aquí se añade los días festivos seleccionados #}
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Edit User{% endblock %}
+{% block stylesheets %} 
+    {{ parent() }} 
+{% endblock %}
+
+{% block main_dashboard %}
+    <div class="p-3 mb-3 bg-light rounded">
+        <h3 class="title-block-workspace center-title">Gestión de usuario - Editar/Baja</h3>
+    </div>
+    <div class="container justify-content-center formulario-area">
+        <h4>Buscar Usuarios</h4>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="departments-select">Filtrar por departamento:</label>
+                    <select id="departments-select" class="form-control">
+                        {% for department in department_collection %}
+                            <option value="{{ department.departmentId }}">{{ department.departmentName }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="input--user-name">Filtrar nombre:</label>
+                    <input type="text" class="form-control" id="input--user-name">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label for="btn--user-name-filter">Buscador:</label>
+                    <button type="button" class="form-control btn btn-outline-primary" id="btn--user-name-filter">Filtrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <hr class="my-4 col-12">
+    <div id="container--user-name-filtered">{# ! User in Departments Filtered View #}
+    </div>{# ! End User in Departments Filtered View #}
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/../assets/js/UserModule/userFormModel.js"></script>
+    <script type="text/javascript" src="/../assets/js/UserModule/userFormController.js"></script>
+    <script type="text/javascript" src="/../assets/js/UserModule/filteringUserItemRenderTemplate.js"></script>
+    <script type="text/javascript" src="/../assets/js/UserModule/filteringUserItemModel.js"></script>
+    <script type="text/javascript" src="/../assets/js/UserModule/filteringUserItemController.js"></script>
+    <script type="text/javascript" src="/../assets/js/UserModule/editUserRenderTemplate.js"></script>
+    <script type="text/javascript" src="/../assets/js/UserModule/editUserModel.js"></script>
+    <script type="text/javascript" src="/../assets/js/UserModule/editUserController.js"></script>
+
+{% endblock %}

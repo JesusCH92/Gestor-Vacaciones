@@ -1,0 +1,72 @@
+<nav class="navbar navbar-expand-lg navbar-light" {% if not is_granted('ROLE_ADMIN') %} style="background-color: #4f97e3;" {% else %} style="background-color: rgba(40,40,43,0.89);" {% endif %}>
+    <a class="navbar-brand text-white" href="#">Vacaciones TFM</a>
+
+    {% if app.user %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                {% if not is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{{ path('app_dashboard') }}" id="work-space">Espacio de trabajo</a>
+                    </li>
+
+                {% endif %}
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="calendar-management" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestión de calendarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="calendar-management">
+                            <a class="dropdown-item" href="{{ path('app_calendar_management') }}" id="create-calendar-view">Crear Calendario</a>
+                            <a class="dropdown-item" href="{{ path('app_edit_calendar') }}" id="edit-calendar-view">Editar Calendario</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="user-management" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestión de usuarios
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="user-management">
+                            <a class="dropdown-item" href="{{ path("app_register") }}" id="register-user-btn">Dar alta a un usuario</a>
+                            <a class="dropdown-item" href="{{ path("app_user_searcher_view") }}" id="edit-user-btn">Editar/Baja a un usuario</a>
+                        </div>
+                    </li>
+                {% endif %}
+
+                {% if is_granted('ROLE_SUPERVISOR') %}
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="supervise-user" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Supervisar Empleados
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="supervise-user">
+                            <a class="dropdown-item" href="{{ path("app_notifications_list") }}" id="notificationes-btn">Leer Notificaciones</a>
+                            <a class="dropdown-item" href="{{ path("supervise_day_off_employee") }}" id="search-user-vacation-btn">Revisar días de vacaciones por usuario</a>
+                        </div>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="{{ path('app_company_management') }}" id="work-space">Gestión de la Empresa</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown-A" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ app.user.name }}
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown-A">
+                    <a class="dropdown-item" href="#" id="user-profile-btn">Perfil</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('app_logout') }}">Salir</a>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+</nav>

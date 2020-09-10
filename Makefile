@@ -29,15 +29,43 @@ endef
 create-network:
 	-@docker network create lasalle_network
 
-##    start:			starts web server containers (nginx + PHP fpm)
+##    start:			starts web server containers (nginx + PHP fpm + MySQL)
 .PHONY : start
 start: create-network
-	@docker-compose up -d
+	@docker-compose -f docker-compose.yml -f docker-compose.db.yml up -d
 
 ##    stop:			stops webserver containers
 .PHONY : stop
 stop: 
-	@docker-compose -f docker-compose.yml stop
+	@docker-compose -f docker-compose.yml -f docker-compose.db.yml stop
+
+## ! deploy project by environment dev-> up environment + clear cache + install dependencies + migration database
+.PHONY : deploy@dev
+deploy@dev: create-network
+	@docker-compose -f docker-compose.yml -f docker-compose.db.yml up -d
+	-@$(call docker_phpcli_run,php bin/console cache:clear -e dev);
+	-@$(call docker_phpcli_run,php bin/console cache:warmup -e dev);
+	-@$(call docker_phpcli_run,composer install --no-interaction) ;
+	-@$(call docker_phpcli_run,php bin/console doctrine:database:drop --force -e dev);
+	-@$(call docker_phpcli_run,php bin/console doctrine:database:create --if-not-exists -e dev);
+	-@$(call docker_phpcli_run,php bin/console doctrine:migrations:migrate --no-interaction -e dev);
+	
+## ! deploy project by environment prod-> up environment + clear cache + install dependencies + migration database
+.PHONY : deploy
+deploy: create-network
+	@docker-compose -f docker-compose.yml -f docker-compose.db.yml up -d
+	-@$(call docker_phpcli_run,php bin/console cache:clear -e prod);
+	-@$(call docker_phpcli_run,php bin/console cache:warmup -e prod);
+	-@$(call docker_phpcli_run,composer install --no-interaction) ;
+	-@$(call docker_phpcli_run,php bin/console doctrine:database:drop --force -e prod);
+	-@$(call docker_phpcli_run,php bin/console doctrine:database:create --if-not-exists -e prod);
+	-@$(call docker_phpcli_run,php bin/console doctrine:migrations:migrate --no-interaction -e prod);
+
+## ! Install dependencies with composer
+.PHONY : install
+install:
+	-@$(call docker_phpcli_run,composer install --no-interaction) ;
+
 
 ##    remove:			stops all containers and delete them
 .PHONY : remove

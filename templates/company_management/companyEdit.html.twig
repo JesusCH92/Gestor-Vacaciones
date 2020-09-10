@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}} - Company{% endblock %}
+{% block stylesheets %} {{ parent() }} {% endblock %}
+
+{% block main_dashboard %}
+    <div class="p-3 mb-3 bg-light rounded">
+        <h3 class="title-block-workspace center-title">Gestión Empresa - Editar Empresa</h3>
+    </div>
+
+    <div id="formulario-area" class="formulario-area container col-12">{# ? Ventana Editar Empresa #}
+        <section>
+
+            <label class="title-block-formulario subtitulo-solicitud">Editar nombre de la Empresa</label>
+        
+            <div class="form-row">
+                <div class="form-group col-md-1 col-12">
+                    <label for="Name">Nombre:</label>
+                </div>
+                <div class="form-group col-md-4 col-12">
+                    <label for="Name" id="company--name__label">{{ department_collection.companyName }}</label>
+                </div>
+        
+                <div class="form-group col-md-1">
+                    <a class="btn btn-link" data-toggle="collapse" href="#edit-company-name-container" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Editar
+                    </a>
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="collapse input-group" id="edit-company-name-container">
+                        <input type="text" class="form-control" id="company-rename-input" placeholder="Renombrar la empresa">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" id="edit-company-name-btn">
+                                Guardar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+            <label class="title-block-formulario subtitulo-solicitud">Editar departamentos de la empresa:</label>
+
+            <div class="form-row">
+                <div class="form-group col-xl-12">
+                    <div class="list-group list-group-flush" id="department--container">
+        
+                        <div class="list-group-item">
+                            <div class="row">
+                                <div class="col-4 text-center font-weight-bold">Campos del departamento</div>
+                                <div class="col-8 text-center font-weight-bold">Campo editado</div>
+                            </div>
+                        </div>
+                        {% for department in department_collection.departments %}
+                        
+                            {% include 'company_management/_department.html.twig' %}
+
+                        {% endfor %}
+        
+                    </div>
+                </div>
+            </div>
+
+            <label class="title-block-formulario subtitulo-solicitud">Añadir departamentos a la empresa</label>
+
+            <div class="form-row">
+                <div class="form-group col-xl-7 col-md-12">
+                    <label for="company-name">Nombre del departamento:</label>
+                    <input type="text" class="form-control" id="department-name-added" placeholder="Nombre del departamento" required>
+                </div>
+                <div class="form-group col-xl-3 col-md-10">
+                    <label for="company-name">Código del departamento:</label>
+                    <input type="text" class="form-control" id="code-department-added" placeholder="Código del departamento" required>
+                </div>
+                <div class="form-group col-xl-2 col-md-2 pt-1">
+                    <div class="form-group col-md-12 d-flex justify-content-center pt-4">
+                        <button type="button" class="btn btn-primary" id="dpt-add-btn">Añadir</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>{# ? Fin de la Ventana de las Editar Empresa #}
+    
+{% endblock %}
+
+{% block head_js %}
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/../assets/js/CompanyModule/companyModel.js"></script>
+    <script src="/../assets/js/CompanyModule/companyController.js"></script>
+
+{% endblock %}
