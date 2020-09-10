@@ -15,13 +15,14 @@ var editCalendarModel = (function() {
                 callback({calendarConfigContainer : container, calendarConfig : data.calendar_config, calendarId: id});
             },
             error: function(data){
-                paintErrorModal({message_error: 'hola mundo'});
-                console.log(data);
+                //console.log(data.responseJSON.message);
+                callbackError({message_error: JSON.parse(data.responseText).message});
+                //console.log(data);
             }
         });
     };
 
-    var updateDayOffRequest = function ({dayOffRequest, callback = console.log}) {
+    var updateDayOffRequest = function ({dayOffRequest, callback = console.log, callbackError = console.log}) {
         $.ajax({
             type: 'PUT',
             url: '/calendar/management/dayoffrequest',
@@ -31,12 +32,13 @@ var editCalendarModel = (function() {
                 callback(data);
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
+                console.log(JSON.parse(data.responseText).message);
             }
         });
     };
 
-    var updateWorkDays = function ({workDays, callback = console.log}) {
+    var updateWorkDays = function ({workDays, callback = console.log, callbackError = console.log}) {
         $.ajax({
             type: 'PUT',
             url: '/calendar/management/update/workDays',
@@ -46,12 +48,12 @@ var editCalendarModel = (function() {
                 callback(data);
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var updateTypeDayOffNumber = function ({typeDayOff, callback = console.log}) {
+    var updateTypeDayOffNumber = function ({typeDayOff, callback = console.log, callbackError = console.log}) {
         $.ajax({
             type: 'PUT',
             url: '/calendar/management/typeDayOff',
@@ -61,12 +63,12 @@ var editCalendarModel = (function() {
                 callback(data);
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var addFeastday = function ({feastday, callback = console.log, container, deleteItem}) {
+    var addFeastday = function ({feastday, callback = console.log, container, deleteItem, callbackError = console.log}) {
         $.ajax({
             type: 'POST',
             url: '/calendar/management/add/feastday',
@@ -80,12 +82,12 @@ var editCalendarModel = (function() {
                 deleteItem.remove();
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var deleteFeastday =  function ({feastday, callback = console.log, deleteItem}) {
+    var deleteFeastday =  function ({feastday, callback = console.log, deleteItem, callbackError = console.log}) {
         $.ajax({
             type: 'DELETE',
             url: '/calendar/management/delete/feastday',
@@ -96,7 +98,7 @@ var editCalendarModel = (function() {
                 deleteItem.remove();
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
