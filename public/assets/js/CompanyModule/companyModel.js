@@ -1,6 +1,6 @@
 var companyModel = (function(){
 
-    var createDepartment = function({ department, callback = console.log, container }) {
+    var createDepartment = function({ department, callback = console.log, container, callbackError = console.log }) {
         $.ajax({
             type: 'POST',
             url: '/company/management/add/department',
@@ -13,12 +13,12 @@ var companyModel = (function(){
                 });
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var editCompany = function({ company, callback = console.log, id, label }) {
+    var editCompany = function({ company, callback = console.log, id, label, callbackError = console.log }) {
         $.ajax({
             type: 'POST',
             url: `/company/management/edit/${id}`,
@@ -31,12 +31,12 @@ var companyModel = (function(){
                 label.html(company['name']);
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var departmentNameUpdate = function ({ department, callback = console.log, label }) {
+    var departmentNameUpdate = function ({ department, callback = console.log, label, callbackError = console.log }) {
         $.ajax({
             type: 'POST',
             url: `/company/management/edit/department/name`,
@@ -49,12 +49,12 @@ var companyModel = (function(){
                 label.text(department['name']);
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var departmentCodeUpdate = function ({ department, callback = console.log, label }) {
+    var departmentCodeUpdate = function ({ department, callback = console.log, label, callbackError = console.log }) {
         $.ajax({
             type: 'POST',
             url: `/company/management/edit/department/code`,
@@ -67,7 +67,7 @@ var companyModel = (function(){
                 label.text(department['code']);
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
