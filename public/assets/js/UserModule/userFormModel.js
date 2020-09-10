@@ -1,5 +1,5 @@
 var userFormModel = ( function () {
-    var updateRolUser = function ({ userCorpus, callback = console.log}) {
+    var updateRolUser = function ({ userCorpus, callback = console.log, callbackError = console.log}) {
         $.ajax({
             type: 'PUT',
             url: '/user/management/rol',
@@ -9,12 +9,12 @@ var userFormModel = ( function () {
                 callback(data);
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
 
-    var deleteUser = function ({ id, callback = console.log }) {
+    var deleteUser = function ({ id, callback = console.log, callbackError = console.log }) {
         $.ajax({
             type: 'DELETE',
             url: `/user/management/delete/${id}`,
@@ -25,7 +25,7 @@ var userFormModel = ( function () {
                 // callback({calendarConfigContainer : container, calendarConfig : data.calendar_config, calendarId: id});
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
