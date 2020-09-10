@@ -6,7 +6,7 @@ use App\Department\ApplicationService\GetAllDepartments;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class SearchDayOffByUserController extends AbstractController
+final class SearchDayOffByUserController extends AbstractController
 {
     private GetAllDepartments $getAllDepartments;
 
