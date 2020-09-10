@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class FilterDayOffFormByUserId extends AbstractController
+final class FilterDayOffFormByUserId extends AbstractController
 {
     private CalendarByActualYear $getCalendarByYear;
     private GetCalendarConfig $getCalendarConfig;
