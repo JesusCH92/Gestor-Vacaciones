@@ -62,7 +62,7 @@ var companyController = (function(){
                 },
                 id : $id,
                 label : $companyNameLabel,
-                callbackError : _errorModal.paintErrorModal()
+                callbackError : _errorModal.paintErrorModal
             });
         });
 
