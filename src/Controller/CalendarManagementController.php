@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 final class CalendarManagementController extends AbstractController
 {
     /**
-     * @Route("/calendar/management", name="app_calendar_management")
+     * @Route("/calendar/management", methods={"GET"}, name="app_calendar_management")
      */
     public function index()
     {
