@@ -35,7 +35,7 @@ class FilterDayOffFormByUserId extends AbstractController
     }
 
     /**
-     * @Route("/supervise/management/dayoff/user/{id}", name="app_supervise_dayoff_user")
+     * @Route("/supervise/management/dayoff/user/{id}", methods={"GET"}, name="app_supervise_dayoff_user")
      */
     public function findUserInDayOffForm($id)
     {
