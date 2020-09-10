@@ -3,6 +3,7 @@ var dayOffFormConfigController = (function(){
     var $workingYearSelect = $("#working-year-select");
     var $dayoffConfigContainer = $("#dayoff-config-container");
 
+    var _errorModal = errorModal();
 
     var initEvent = function () {
         var _dayOffFormRenderTemplate= dayOffFormRenderTemplate();
@@ -17,7 +18,8 @@ var dayOffFormConfigController = (function(){
             _dayoffFormConfigModel.getCalendarConfigByWorkingYear({
                 id : $workingYear,
                 callback : _dayOffFormRenderTemplate.paintDayOffConfig,
-                container : $dayoffConfigContainer
+                container : $dayoffConfigContainer,
+                callbackError : _errorModal.paintErrorModal
             });
         });
     };
