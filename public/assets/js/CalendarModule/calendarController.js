@@ -11,6 +11,7 @@ var calendarController = (function(){
 
     var _calendarCreatorModel = calendarCreatorModel();
     var _calendarCreatorRenderTemplate = calendarCreatorRenderTemplate();
+    var _errorModal = errorModal();
 
     var getAllFeastdaySelectedInContainer = function ( { feastdaySelected } ) {
         var $feastdaySelectedCollection = [];
@@ -60,7 +61,8 @@ var calendarController = (function(){
                     personalDaysNumber : $personalDaysNumber,
                     workDays : $workDays.length === 0 ? '' : $workDays,
                     feastDayCollection : $feastDayCollection.length === 0 ? '' : $feastDayCollection
-                }
+                },
+                callbackError : _errorModal.paintErrorModal
             });
         });
     };
