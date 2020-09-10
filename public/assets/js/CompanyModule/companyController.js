@@ -13,6 +13,8 @@ var companyController = (function(){
     var $departmentCodeInputIdTag = "#department--code-input-";
     var $departmentCodeLabelIdTag = "#department--code-label-"; 
 
+    var _errorModal = errorModal();
+
     var paintDepartment = function( {containerDepartment, department} ) {
         containerDepartment.append(department);
     };
@@ -36,7 +38,8 @@ var companyController = (function(){
                     code : $departmentCode
                 },
                 callback : paintDepartment,
-                container : $departmentContainer
+                container : $departmentContainer,
+                callbackError : _errorModal.paintErrorModal
             });
 
         });
@@ -58,7 +61,8 @@ var companyController = (function(){
                     id : $id
                 },
                 id : $id,
-                label : $companyNameLabel
+                label : $companyNameLabel,
+                callbackError : _errorModal.paintErrorModal()
             });
         });
 
@@ -77,7 +81,8 @@ var companyController = (function(){
             };
             companyModel.departmentNameUpdate({
                 department : $departmentCorpus,
-                label : $($departmentNameLabelIdTag + $departmentId)
+                label : $($departmentNameLabelIdTag + $departmentId),
+                callbackError : _errorModal.paintErrorModal
             });
         });
 
@@ -96,7 +101,8 @@ var companyController = (function(){
             };
             companyModel.departmentCodeUpdate({
                 department : $departmentCorpus,
-                label : $($departmentCodeLabelIdTag + $departmentId)
+                label : $($departmentCodeLabelIdTag + $departmentId),
+                callbackError : _errorModal.paintErrorModal
             });
         });
     };
