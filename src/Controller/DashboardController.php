@@ -49,7 +49,7 @@ final class DashboardController extends AbstractController
     }
 
     /**
-     * @Route("/dashboard", name="app_dashboard")
+     * @Route("/dashboard", methods={"GET"}, name="app_dashboard")
      */
     public function index()
     {
