@@ -4,6 +4,7 @@ var filteringUserItemController = (function () {
 
     var _filteringUserItemRenderTemplate = filteringUserItemRenderTemplate();
     var _filteringUserItemModel = filteringUserItemModel();
+    var _errorModal = errorModal();
 
     var initEvent = function () {
         $filteringUserCollection.click(function(){
@@ -12,7 +13,8 @@ var filteringUserItemController = (function () {
             _filteringUserItemModel.getUserById({
                 id : $userSelected,
                 callback : _filteringUserItemRenderTemplate.paintUserFormContainer,
-                container : $userFormContainer
+                container : $userFormContainer,
+                callbackError : _errorModal.paintErrorModal
             });
         });
     };
