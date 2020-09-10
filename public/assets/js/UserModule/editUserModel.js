@@ -1,5 +1,5 @@
 var editUserModel = (function() {
-    var getFilteringUser = function ({userSearchedCorpus, callback = console.log, container}) {
+    var getFilteringUser = function ({userSearchedCorpus, callback = console.log, container, callbackError = console.log}) {
         $.ajax({
             type: 'GET',
             url: `/user/management/filtering`,
@@ -10,7 +10,7 @@ var editUserModel = (function() {
                 callback({ container : container, template : data.user_collection_template });
             },
             error: function(data){
-                console.log(data);
+                callbackError({message_error: JSON.parse(data.responseText).message});
             }
         });
     };
