@@ -1,5 +1,11 @@
 var editCalendarModel = (function() {
-    var getCalendarConfigByWorkingYear = function ({id, callback = console.log, container}) {
+    var paintErrorModal = function ({message_error}) {
+        // $("#main-container").append(_modal);
+        $("#modal-error").modal('show')
+        // return _modal;
+    };
+
+    var getCalendarConfigByWorkingYear = function ({id, callback = console.log, container, callbackError = console.log}) {
         $.ajax({
             type: 'GET',
             url: `/calendar/management/config/${id}`,
@@ -9,6 +15,7 @@ var editCalendarModel = (function() {
                 callback({calendarConfigContainer : container, calendarConfig : data.calendar_config, calendarId: id});
             },
             error: function(data){
+                paintErrorModal({message_error: 'hola mundo'});
                 console.log(data);
             }
         });
