@@ -57,10 +57,10 @@ var calendarConfigController = (function(_calendarId){
         });
 
         $updateWorkingDaysBtn.click( function() {
-            var $workDays = $workDaysSelect.val() === [] ? "" : $workDaysSelect.val();
+            var $workDays = $workDaysSelect.val();
             var $workDaysCorpus = {
                 calendarId : calendarId,
-                workDays : $workDays
+                workDays : $workDays.length === 0 ? "" : $workDays
             };
             console.log($workDaysCorpus);
             _editCalendarModel.updateWorkDays({ workDays : $workDaysCorpus, callbackError : _errorModal.paintErrorModal });
