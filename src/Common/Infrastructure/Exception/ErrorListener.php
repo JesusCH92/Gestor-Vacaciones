@@ -15,10 +15,10 @@ class ErrorListener
     {
         // You get the exception object from the received event
         $exception = $event->getThrowable();
-        $message = json_encode([
-                "message" => $exception->getMessage(),
-                "code" => $exception->getCode()
-        ]);
+        $message = sprintf(
+            'Error: %s',
+            $exception->getMessage()
+        );
 
         // Customize your response object to display the exception details
         $response = new Response();
