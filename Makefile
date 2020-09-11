@@ -61,6 +61,17 @@ deploy: create-network
 	-@$(call docker_phpcli_run,php bin/console doctrine:database:create --if-not-exists -e prod);
 	-@$(call docker_phpcli_run,php bin/console doctrine:migrations:migrate --no-interaction -e prod);
 
+## ! Clear cacher for dev environment
+.PHONY : clear-cache@dev
+clear-cache@dev:
+	-@$(call docker_phpcli_run,php bin/console cache:clear -e dev);
+
+## ! Clear cacher for prod environment
+.PHONY : clear-cache
+clear-cache:
+	-@$(call docker_phpcli_run,php bin/console cache:clear -e prod);
+
+
 ## ! Install dependencies with composer
 .PHONY : install
 install:
