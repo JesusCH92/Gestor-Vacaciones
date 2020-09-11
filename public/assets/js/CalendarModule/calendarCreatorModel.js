@@ -9,7 +9,7 @@ var calendarCreatorModel = (function () {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
