@@ -1,46 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Vacation Manager{% endblock %}</title>
+{% extends 'base.html.twig' %}
 
-    {% block head_css %}
-        <!-- Copy CSS from https://getbootstrap.com/docs/4.4/getting-started/introduction/#css -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    {% endblock %}
-
-    {% block stylesheets %}
-        <link href="/assets/css/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/style.css" rel="stylesheet">
-    {% endblock %}
-
-</head>
-<body class="container">
-
-
-<section class="container" id="main-container">
-    {% block main_dashboard %}
-        <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-            <h1 class="mr-3 pr-3 align-top border-right inline-block align-content-center">{% block code %}{{ status_code }}{% endblock %}</h1>
-            <div class="inline-block align-middle">
-                <h2 class="font-weight-normal lead" id="desc">{% block description %}{{ status_text }}{% endblock %}</h2>
-            </div>
+{% block main_dashboard %}
+    <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+        <h1 class="mr-3 pr-3 align-top border-right inline-block align-content-center">{% block code %}{{ status_code }}{% endblock %}</h1>
+        <div class="inline-block align-middle">
+            <h2 class="font-weight-normal lead" id="desc">{% block description %}{{ status_text }}{% endblock %}</h2>
         </div>
-    {% endblock %}
-</section>
-
-
-
-{% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    </div>
 {% endblock %}
-
-{% block head_js %}
-    <!-- Copy JavaScript from https://getbootstrap.com/docs/4.4/getting-started/introduction/#js -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-{% endblock %}
-</body>
-</html>
-
-
