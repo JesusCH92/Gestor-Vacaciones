@@ -15,22 +15,40 @@ class ErrorListener
     {
         // You get the exception object from the received event
         $exception = $event->getThrowable();
-        $message = sprintf(
-            'Error: %s',
-            $exception->getMessage()
-        );
-
-        // Customize your response object to display the exception details
-        $response = new Response();
-        $response->setContent($message);
 
         // HttpExceptionInterface is a special type of exception that
         // holds status code and header details
         if ($exception instanceof HttpExceptionInterface) {
+            $request = $event->getRequest();
+            $format  = $request->attributes->get('_format');
+
+            if ('json' !== $format || 'v1' !== $request->attributes->get('version')) {
+                return;
+            }
+
+            $exception = $event->getThrowable();
+
+            // Customize your response object to display the exception details
+            $response = new JsonResponse();
+            $response
+                ->setData(
+                    [
+                        'error'   => $exception->getStatusCode(),
+                        'message' => $exception->getMessage(),
+                    ]
+                );
             $response->setStatusCode($exception->getStatusCode());
             $response->headers->replace($exception->getHeaders());
         } else {
-            $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
+
+            $message = sprintf(
+                'Error: %s',
+                $exception->getMessage()
+            );
+
+            // Customize your response object to display the exception details
+            $response = new Response();
+            $response->setContent($message);
         }
 
         // sends the modified response object to the event
