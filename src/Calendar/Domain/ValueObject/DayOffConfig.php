@@ -75,7 +75,7 @@ final class DayOffConfig
         $month = intval($dateByYearAndMonthAndDay[1]);
         $day = intval($dateByYearAndMonthAndDay[2]);
 
-        return (!checkdate($month, $day, $year) && 3 === count($date));
+        return (!checkdate($month, $day, $year) && 3 === count($dateByYearAndMonthAndDay));
     }
 
     public function isDateLessThanTwentyNineteen(string $date): bool
