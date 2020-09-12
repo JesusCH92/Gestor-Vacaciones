@@ -16,16 +16,16 @@
 
     </head>
     <body class="container">
-
-        {% include '_menu/_menu.html.twig' %}
+        {% block menu %}
+        {% endblock %}
 
         <section class="container" id="main-container">
             {% block main_dashboard %}
 
             {% endblock %}
         </section>
-
-        {% include '_error_modal/_error_modal.html.twig' %}
+        {% block error_modal %}
+        {% endblock %}
 
         {% block javascripts %}
             <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

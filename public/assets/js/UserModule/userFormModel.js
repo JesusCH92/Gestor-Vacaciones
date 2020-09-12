@@ -9,7 +9,7 @@ var userFormModel = ( function () {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -24,7 +24,7 @@ var userFormModel = ( function () {
                 // callback({calendarConfigContainer : container, calendarConfig : data.calendar_config, calendarId: id});
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };

@@ -11,7 +11,7 @@ var dayOffFormConfigModel = (function() {
                 location.reload();
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -26,7 +26,7 @@ var dayOffFormConfigModel = (function() {
                 callback({dayoffConfigContainer : container, dayoffConfig : data.dayoff_config, calendarId: id});
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };

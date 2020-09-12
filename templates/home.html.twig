@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block menu %}
+    {% include '_menu/_menu.html.twig' %}
+{% endblock %}
+
+{% block error_modal %}
+    {% include '_error_modal/_error_modal.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="/../assets/js/ErrorModal/errorModalTemplate.js"></script>
+{% endblock %}

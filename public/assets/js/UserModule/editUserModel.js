@@ -10,7 +10,7 @@ var editUserModel = (function() {
                 callback({ container : container, template : data.user_collection_template });
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
