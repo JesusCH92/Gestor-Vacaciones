@@ -7,11 +7,10 @@ var daysOffModel = (function() {
             async: true,
             data: {filterEmployeesCorpus},
             success: function(data){
-                //callback(data);
                 callback({filterUserDayOff : container, dayoffConfig : data.dayoff_config});
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -26,7 +25,7 @@ var daysOffModel = (function() {
                 callback({calendarContainer : container, calendar : data.user_dayoff_calendar});
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };

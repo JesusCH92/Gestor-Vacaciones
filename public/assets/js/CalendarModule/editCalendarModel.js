@@ -11,7 +11,7 @@ var editCalendarModel = (function() {
             },
             error: function(data){
                 //console.log(data.responseJSON.message);
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
                 //console.log(data);
             }
         });
@@ -27,8 +27,7 @@ var editCalendarModel = (function() {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
-                console.log(JSON.parse(data.responseText).message);
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -43,7 +42,7 @@ var editCalendarModel = (function() {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -58,7 +57,7 @@ var editCalendarModel = (function() {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -77,7 +76,7 @@ var editCalendarModel = (function() {
                 deleteItem.remove();
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -93,7 +92,7 @@ var editCalendarModel = (function() {
                 deleteItem.remove();
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };

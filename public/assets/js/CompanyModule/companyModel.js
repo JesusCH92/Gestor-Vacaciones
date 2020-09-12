@@ -13,7 +13,7 @@ var companyModel = (function(){
                 });
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -31,7 +31,7 @@ var companyModel = (function(){
                 label.html(company['name']);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -49,7 +49,7 @@ var companyModel = (function(){
                 label.text(department['name']);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -67,7 +67,7 @@ var companyModel = (function(){
                 label.text(department['code']);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };

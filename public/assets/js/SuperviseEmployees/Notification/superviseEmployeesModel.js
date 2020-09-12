@@ -9,7 +9,7 @@ var superviseEmployeesModel = (function() {
                 callback({employeeInfo : container, dayoffConfig : data.dayoff_config});
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -25,7 +25,7 @@ var superviseEmployeesModel = (function() {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
@@ -41,7 +41,7 @@ var superviseEmployeesModel = (function() {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: JSON.parse(data.responseText).message});
+                callbackError({message_error: data.responseText});
             }
         });
     };
