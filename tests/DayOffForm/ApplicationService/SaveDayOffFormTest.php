@@ -25,7 +25,7 @@ class SaveDayOffFormTest extends TestCase
     /**
      * @test
      */
-    public function notValidCountDaysSelected()
+    public function throwExceptionIfNumberOfDaysSelectedIsInvalid()
     {
         $this->expectException(InvalidCountDayOffRequest::class);
 
@@ -46,7 +46,7 @@ class SaveDayOffFormTest extends TestCase
     /**
      * @test
      */
-    public function notValidDateBeforeThanCurrentDateByTypeDayOff()
+    public function throwExceptionIfDateIsBeforeThanCurrentDateDependingOfTypeDayOff()
     {
         $this->expectException(InvalidLowerDateSelectedThanCurrentDate::class);
 
@@ -68,7 +68,7 @@ class SaveDayOffFormTest extends TestCase
     /**
      * @test
      */
-    public function notCorrectDaySelectedTiming()
+    public function throwExceptionIfSelectedDateIsNotBetweenRangesOfDayOffRequest()
     {
         $this->expectException(InvalidDayOffSelectedException::class);
 
@@ -90,7 +90,7 @@ class SaveDayOffFormTest extends TestCase
     /**
      * @test
      */
-    public function notDateSelected()
+    public function throwExceptionIfDayOffRequestIsEmpty()
     {
         $this->expectException(InvalidCountNoDaysSelected::class);
 

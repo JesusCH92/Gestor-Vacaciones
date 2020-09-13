@@ -19,7 +19,7 @@ class CreateCalendarConfigTest extends TestCase
     /**
      * @test
      */
-    public function calendarAlreadyExists()
+    public function throwExceptionIfCalendarWorkingYearAlreadyExists()
     {
         $this->expectException(CalendarAlreadyExistsException::class);
 
@@ -34,7 +34,7 @@ class CreateCalendarConfigTest extends TestCase
     /**
      * @test
      */
-    public function notValidYearForLowerThanTwentyNineteen()
+    public function throwExceptionIfYearIsBeforeThanTwentyNineteen()
     {
         $this->expectException(InvalidWorkingYearException::class);
 
@@ -49,7 +49,7 @@ class CreateCalendarConfigTest extends TestCase
     /**
      * @test
      */
-    public function notValidWorkDay()
+    public function throwExceptionIfWorkDayValueIsNotBetweenZeroAndSix()
     {
         $this->expectException(InvalidWorkDayException::class);
 
@@ -64,7 +64,7 @@ class CreateCalendarConfigTest extends TestCase
     /**
      * @test
      */
-    public function InotValidDayOffRequestDates()
+    public function throwExceptionIfInvalidDayOffRequestDates()
     {
         $this->expectException(InvalidDayOffRequestDates::class);
 
@@ -79,7 +79,7 @@ class CreateCalendarConfigTest extends TestCase
     /**
      * @test
      */
-    public function notValidDateException()
+    public function throwExceptionIfDateIsInvalid()
     {
         $this->expectException(InvalidDateException::class);
 

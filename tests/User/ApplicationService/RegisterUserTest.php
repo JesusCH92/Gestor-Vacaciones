@@ -21,7 +21,7 @@ class RegisterUserTest extends TestCase
     /**
      * @test
      */
-    public function userAlreadyExists()
+    public function throwExceptionIfUserEmailAlreadyExists()
     {
         $this->expectException(AlreadyExistingUserException::class);
 
@@ -39,7 +39,7 @@ class RegisterUserTest extends TestCase
     /**
      * @test
      */
-    public function notValidRole()
+    public function throwExceptionIfUserRoleIsNotUserOrSupervisor()
     {
         $this->expectException(InvalidRoleException::class);
         $company = new Company();
