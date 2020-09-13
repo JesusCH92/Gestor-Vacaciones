@@ -77,6 +77,10 @@ clear-cache:
 install:
 	-@$(call docker_phpcli_run,composer install --no-interaction) ;
 
+## ! Run php unit test
+.PHONY : php-test
+php-test:
+	-@$(call docker_phpcli_run,php bin/phpunit --testdox);
 
 ##    remove:			stops all containers and delete them
 .PHONY : remove
