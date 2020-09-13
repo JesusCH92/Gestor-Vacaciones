@@ -8,9 +8,14 @@ use App\Calendar\ApplicationService\Exception\CalendarAlreadyExistsException;
 use App\Calendar\Domain\Exception\InvalidDayOffRequestDates;
 use App\Calendar\Domain\Exception\InvalidWorkDayException;
 use App\Calendar\Domain\Exception\InvalidWorkingYearException;
+use App\Calendar\Domain\ValueObject\DayOffConfig;
+use App\Calendar\Domain\ValueObject\WorkDays;
+use App\Calendar\Domain\ValueObject\WorkingYear;
+use App\Entity\Calendar;
 use App\Entity\Company;
 use App\Feastday\Domain\Exception\InvalidDateException;
 use App\Tests\Calendar\Infrastructure\OrmCalendarRepositoryInvalidStub;
+use App\Tests\Calendar\Infrastructure\OrmCalendarRepositorySpy;
 use App\Tests\Calendar\Infrastructure\OrmCalendarRepositoryStub;
 use PHPUnit\Framework\TestCase;
 
@@ -89,5 +94,21 @@ class CreateCalendarConfigTest extends TestCase
         $ormCalendarRepositoryStub = new OrmCalendarRepositoryStub();
         $createCalendarConfig = new CreateCalendarConfig($ormCalendarRepositoryStub);
         $createCalendarConfig->__invoke($calendarRequest);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldCreateCalendarConfig()
+    {
+        $calendarRequest = new CalendarRequest('2020', '2020-01-01', '2021-01-31', 20, 10, ['1', '2', '3'], [],
+            new Company());
+
+        $ormCalendarRepositorySpy = new OrmCalendarRepositorySpy();
+        $createCalendarConfig = new CreateCalendarConfig($ormCalendarRepositorySpy);
+
+        $createCalendarConfig->__invoke($calendarRequest);
+        
+        $this->assertTrue($ormCalendarRepositorySpy->verify());
     }
 }
