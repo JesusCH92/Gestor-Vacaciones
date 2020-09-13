@@ -8,6 +8,7 @@ use App\Entity\Company;
 use App\Entity\Department;
 use App\Tests\User\Infrastructure\OrmUserFactoryDummy;
 use App\Tests\User\Infrastructure\OrmUserRepositoryInvalidStub;
+use App\Tests\User\Infrastructure\OrmUserRepositorySpy;
 use App\Tests\User\Infrastructure\OrmUserRepositoryStub;
 use App\User\ApplicationService\DTO\RegisterUserRequest;
 use App\User\ApplicationService\Exception\AlreadyExistingUserException;
@@ -50,5 +51,22 @@ class RegisterUserTest extends TestCase
 
         $registerUser = new RegisterUser($ormUserFactoryDummy,$ormUserRepositoryStub);
         $registerUser->__invoke($registerUserRequest);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldRegisterUser()
+    {
+        $company = new Company();
+        $registerUserRequest = new RegisterUserRequest('miriam','lopez','663786798','miriam@gmail.com','password',new Department('TFM','t', $company),$company,'ROLE_USER');
+
+        $ormUserFactoryDummy = new OrmUserFactoryDummy();
+        $ormUserRepositorySpy = new OrmUserRepositorySpy();
+
+        $registerUser = new RegisterUser($ormUserFactoryDummy,$ormUserRepositorySpy);
+        $registerUser->__invoke($registerUserRequest);
+
+        $this->assertTrue($ormUserRepositorySpy->verify());
     }
 }
