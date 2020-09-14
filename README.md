@@ -30,3 +30,13 @@ make start
 ```bash
 make stop
 ```
+
+## Acceso al sistema
+
+Después de desplegar el proyecto correctamente, debe acceder al siguiente enlace
+```
+http://localhost:8080/login
+```
+Y acceder como administrador con las siguientes credenciales:
+* **Email:** admin@admin
+* **Password:** admintfm
