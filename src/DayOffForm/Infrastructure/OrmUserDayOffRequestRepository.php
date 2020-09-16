@@ -42,7 +42,8 @@ final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepositor
             $dayOffFormCollection = $dayOffFormRepository->findBy([
                 'user' => $user,
                 'statusDayOffForm.statusDayOffForm' => 'Pending'
-            ]);
+            ],
+            ['createdAt' => 'ASC']);
 
             foreach ($dayOffFormCollection as $dayOffForm) {
                 $userByPendingStatus = ['user' => $user, 'day_off_form' => $dayOffForm];
