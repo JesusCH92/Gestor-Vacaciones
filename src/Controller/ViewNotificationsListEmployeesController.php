@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\SuperviseEmployees\ApplicationService\DTO\UserByDepartmentRequest;
-use App\SuperviseEmployees\ApplicationService\GetUsersWithPendingStatus;
+use App\DayOffForm\ApplicationService\DTO\UserByDepartmentRequest;
+use App\DayOffForm\ApplicationService\GetUsersWithPendingStatus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 

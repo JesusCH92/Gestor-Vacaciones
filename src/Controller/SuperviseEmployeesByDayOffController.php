@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\SuperviseEmployees\ApplicationService\DTO\DayOffFormRequest;
-use App\SuperviseEmployees\ApplicationService\GetDayOffFormRequest;
+use App\DayOffForm\ApplicationService\DTO\DayOffFormRequest;
+use App\DayOffForm\ApplicationService\GetDayOffFormRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
