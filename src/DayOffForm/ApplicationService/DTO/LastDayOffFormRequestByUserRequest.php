@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService\DTO;
 
-
 use App\User\Domain\User;
 
-class LastDayOffFormRequestByUserRequest
+final class LastDayOffFormRequestByUserRequest
 {
     private User $user;
 
@@ -19,5 +19,4 @@ class LastDayOffFormRequestByUserRequest
     {
         return $this->user;
     }
-
 }

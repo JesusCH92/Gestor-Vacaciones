@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService\DTO;
 
-
 use App\Entity\Calendar;
 
-class UserInDayOffFormByUserIdRequest
+final class UserInDayOffFormByUserIdRequest
 {
     private Calendar $calendar;
     private string $userId;

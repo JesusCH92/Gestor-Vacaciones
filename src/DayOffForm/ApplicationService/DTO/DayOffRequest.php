@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService\DTO;
 
@@ -68,5 +69,4 @@ final class DayOffRequest
     {
         return $this->remainingDaysByType;
     }
-
 }

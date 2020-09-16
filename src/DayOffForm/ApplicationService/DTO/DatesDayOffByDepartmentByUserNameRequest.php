@@ -1,24 +1,24 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService\DTO;
 
-
 use App\Entity\Calendar;
 
-class DatesDayOffByDepartmentByUserNameRequest
+final class DatesDayOffByDepartmentByUserNameRequest
 {
     private Calendar $calendar;
     private int $departmentId;
     private string $userName;
-    private string $filtereDayOffFormType;
+    private string $filteredDayOffFormType;
 
-    public function __construct(Calendar $calendar, int $departmentId, string $userName, string $filtereDayOffFormType)
+    public function __construct(Calendar $calendar, int $departmentId, string $userName, string $filteredDayOffFormType)
     {
         $this->calendar = $calendar;
-        $this->departmentId =$departmentId;
+        $this->departmentId = $departmentId;
         $this->userName = $userName;
-        $this->filtereDayOffFormType = $filtereDayOffFormType;
+        $this->filteredDayOffFormType = $filteredDayOffFormType;
     }
 
     public function calendar(): Calendar
@@ -36,9 +36,8 @@ class DatesDayOffByDepartmentByUserNameRequest
         return $this->userName;
     }
 
-    public function filtereDayOffFormType(): string
+    public function filteredDayOffFormType(): string
     {
-        return $this->filtereDayOffFormType;
+        return $this->filteredDayOffFormType;
     }
-
 }

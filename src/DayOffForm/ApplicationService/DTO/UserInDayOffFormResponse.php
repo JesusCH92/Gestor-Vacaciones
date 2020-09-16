@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService\DTO;
-
 
 final class UserInDayOffFormResponse
 {
@@ -13,8 +13,14 @@ final class UserInDayOffFormResponse
     private string $codeDayOffForm;
     private array $daysOffRequest;
 
-    public function __construct(string $userId, string $email, string $userName, string $lastName, string $codeDayOffForm, array $daysOffRequest)
-    {
+    public function __construct(
+        string $userId,
+        string $email,
+        string $userName,
+        string $lastName,
+        string $codeDayOffForm,
+        array $daysOffRequest
+    ) {
         $this->userId = $userId;
         $this->email = $email;
         $this->userName = $userName;

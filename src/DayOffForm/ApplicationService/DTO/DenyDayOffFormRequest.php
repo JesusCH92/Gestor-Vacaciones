@@ -1,10 +1,10 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService\DTO;
 
-
-class DenyDayOffFormRequest
+final class DenyDayOffFormRequest
 {
     private string $dayOffFormId;
     private string $supervisorId;

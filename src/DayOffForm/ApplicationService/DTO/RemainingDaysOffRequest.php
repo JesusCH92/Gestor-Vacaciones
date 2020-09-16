@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService\DTO;
-
 
 use App\Entity\Calendar;
 use App\User\Domain\User;
@@ -17,7 +17,7 @@ final class RemainingDaysOffRequest
     {
         $this->calendar = $calendar;
         $this->user = $user;
-        $this->typeDayOffCollection =$typeDayOffCollection;
+        $this->typeDayOffCollection = $typeDayOffCollection;
     }
 
     public function calendar(): Calendar
