@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
 
-namespace App\SuperviseEmployees\ApplicationService;
+namespace App\DayOffForm\ApplicationService;
 
-
-use App\SuperviseEmployees\ApplicationService\DTO\DayOffFormRequest;
-use App\SuperviseEmployees\ApplicationService\DTO\DayOffFormResponse;
-use App\SuperviseEmployees\ApplicationService\Exception\InvalidDayOffForm;
-use App\SuperviseEmployees\Domain\DTO\DatesDayOffFormRequest;
-use App\SuperviseEmployees\Domain\UserDayOffRequestRepository;
+use App\DayOffForm\ApplicationService\DTO\DayOffFormRequest;
+use App\DayOffForm\ApplicationService\DTO\DayOffFormResponse;
+use App\DayOffForm\ApplicationService\Exception\InvalidDayOffForm;
+use App\DayOffForm\Domain\DTO\DatesDayOffFormRequest;
+use App\DayOffForm\Domain\UserDayOffRequestRepository;
 
 final class GetDayOffFormRequest
 {
@@ -22,11 +22,13 @@ final class GetDayOffFormRequest
     public function __invoke(DayOffFormRequest $dayOffFormRequest): DayOffFormResponse
     {
         $dayOffForm = $this->userDayOffRequestRepository->findDayOfFormById($dayOffFormRequest->dayOffFormId());
-        if (null === $dayOffForm){
+
+        if (null === $dayOffForm) {
             throw new InvalidDayOffForm();
         }
         $datesDayOffForm = $this->userDayOffRequestRepository->findByDayOffFormRequestById(new DatesDayOffFormRequest($dayOffForm));
-        return new DayOffFormResponse($dayOffForm,$datesDayOffForm);
+
+        return new DayOffFormResponse($dayOffForm, $datesDayOffForm);
 
     }
 

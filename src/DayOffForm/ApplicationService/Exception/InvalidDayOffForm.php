@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
 
-namespace App\SuperviseEmployees\ApplicationService\Exception;
+namespace App\DayOffForm\ApplicationService\Exception;
 
 use Exception;
 use Throwable;
 
-class InvalidDayOffForm extends Exception
+final class InvalidDayOffForm extends Exception
 {
     public function __construct($code = 0, Throwable $previous = null)
     {

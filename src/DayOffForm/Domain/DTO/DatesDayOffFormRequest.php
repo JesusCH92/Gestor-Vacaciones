@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
 
-namespace App\SuperviseEmployees\Domain\DTO;
+namespace App\DayOffForm\Domain\DTO;
 
-
-class DatesDayOffFormRequest
+final class DatesDayOffFormRequest
 {
-    private  $dayOffForm;
+    private $dayOffForm;
 
     public function __construct($dayOffForm)
     {

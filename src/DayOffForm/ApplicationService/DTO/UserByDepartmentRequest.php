@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
-namespace App\SuperviseEmployees\ApplicationService\DTO;
-
+namespace App\DayOffForm\ApplicationService\DTO;
 
 use App\Entity\Department;
 

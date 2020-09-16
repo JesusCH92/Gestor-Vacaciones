@@ -1,14 +1,14 @@
 <?php
 
+declare(strict_types=1);
 
-namespace App\SuperviseEmployees\Infrastructure;
+namespace App\DayOffForm\Infrastructure;
 
-
+use App\DayOffForm\Domain\DTO\DatesDayOffFormRequest;
+use App\DayOffForm\Domain\UserDayOffRequestRepository;
 use App\Entity\DayOffForm;
 use App\Entity\DayOffFormRequest;
 use App\Entity\Department;
-use App\SuperviseEmployees\Domain\DTO\DatesDayOffFormRequest;
-use App\SuperviseEmployees\Domain\UserDayOffRequestRepository;
 use App\User\Infrastructure\Model\SymfonyUser;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -19,6 +19,12 @@ final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepositor
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+    }
+
+    public function findUsersByDepartmentByPendingStatus(Department $department): array
+    {
+        $usersByDepartmentCollection = $this->findUsersByDepartment($department);
+        return $this->findUsersWithPendingStatusOfDayOffForm($usersByDepartmentCollection);
     }
 
     public function findUsersByDepartment(Department $department)
@@ -33,7 +39,10 @@ final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepositor
         $dayOffFormRepository = $this->entityManager->getRepository(DayOffForm::class);
         foreach ($usersCollection as $user) {
 
-            $dayOffFormCollection = $dayOffFormRepository->findBy(['user' => $user, 'statusDayOffForm.statusDayOffForm' => 'Pending']);
+            $dayOffFormCollection = $dayOffFormRepository->findBy([
+                'user' => $user,
+                'statusDayOffForm.statusDayOffForm' => 'Pending'
+            ]);
 
             foreach ($dayOffFormCollection as $dayOffForm) {
                 $userByPendingStatus = ['user' => $user, 'day_off_form' => $dayOffForm];
@@ -44,18 +53,13 @@ final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepositor
         return $usersByPendingStatusCollection;
     }
 
-    public function findUsersByDepartmentByPendingStatus(Department $department)
-    {
-        $usersByDepartmentCollection = $this->findUsersByDepartment($department);
-        return $this->findUsersWithPendingStatusOfDayOffForm($usersByDepartmentCollection);
-    }
-
-    public function findDayOfFormById(string $dayOffFormId)
+    public function findDayOfFormById(string $dayOffFormId): ?DayOffForm
     {
         $userRepository = $this->entityManager->getRepository(DayOffForm::class);
         return $userRepository->find($dayOffFormId);
 
     }
+
     public function findByDayOffFormRequestById(DatesDayOffFormRequest $dayOffForm): array
     {
         $userRepository = $this->entityManager->getRepository(DayOffFormRequest::class);
