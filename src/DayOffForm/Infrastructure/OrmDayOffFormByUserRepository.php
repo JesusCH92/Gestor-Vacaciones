@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\DayOffForm\Infrastructure;
 
@@ -27,11 +27,10 @@ final class OrmDayOffFormByUserRepository implements DayOffFormByUserRepository,
             ->createQueryBuilder()
             ->select('dof', 'dofr')
             ->from(DayOffForm::class, 'dof')
-            ->leftJoin(DayOffFormRequest::class, 'dofr', 'WITH', 'dof.codeDayOffForm = dofr.dayOffForm' )
+            ->leftJoin(DayOffFormRequest::class, 'dofr', 'WITH', 'dof.codeDayOffForm = dofr.dayOffForm')
             ->where('dof.user = :userId')
-            ->setParameter('userId', $user->userId())
-            ;
-        
+            ->setParameter('userId', $user->userId());
+
         return $qb->getQuery()->getResult();
     }
 
