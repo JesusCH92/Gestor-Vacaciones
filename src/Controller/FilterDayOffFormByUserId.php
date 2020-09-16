@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
-
 
 use App\Calendar\ApplicationService\CalendarByActualYear;
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
@@ -43,7 +43,7 @@ final class FilterDayOffFormByUserId extends AbstractController
 
         $calendarByYear = $this->getCalendarByYear;
         $year = date("Y");
-        $calendar = $calendarByYear->__invoke($year);
+        $calendar = $calendarByYear->__invoke(intval($year));
 
         $findDatesDayOffFormByUser = $this->findDatesDayOffFormByUser;
 
@@ -71,7 +71,5 @@ final class FilterDayOffFormByUserId extends AbstractController
         return new JsonResponse([
             'user_dayoff_calendar' => $dayOffConfigTemplate
         ]);
-
-
     }
 }

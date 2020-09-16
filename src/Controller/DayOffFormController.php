@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -22,12 +23,10 @@ final class DayOffFormController extends AbstractController
      */
     public function index()
     {
-        $user = $this->getUser();
 
         $calendarByYear = $this->getCalendarByYear;
         $year = date("Y");
-        $calendar = $calendarByYear->__invoke($year);
-
+        $calendar = $calendarByYear->__invoke(intval($year));
 
         return $this->render('dayoff_form/dayoff.html.twig', [
             'calendars' => $calendar

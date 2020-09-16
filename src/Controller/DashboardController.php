@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Calendar\ApplicationService\CalendarByActualYear;
@@ -14,7 +16,6 @@ use App\DayOffForm\ApplicationService\GetLastDayOffFormRequestByUser;
 use App\DayOffForm\ApplicationService\GetRemainingDaysOffByUser;
 use App\DayOffForm\ApplicationService\GetUsersOnDayOffToday;
 use App\Entity\Calendar;
-use App\TypeDayOff\Domain\Constants\DayOff;
 use App\User\Domain\User;
 use DateTimeImmutable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,20 +58,21 @@ final class DashboardController extends AbstractController
 
         $calendarByYear = $this->getCalendarByYear;
         $currentYear = date("Y");
-        $calendar = $calendarByYear->__invoke($currentYear);
+        $calendar = $calendarByYear->__invoke(intval($currentYear));
 
         $calendarConfigRequest = new CalendarConfigRequest($calendar->calendar()->calendarId());
         $getCalendarConfig = $this->getCalendarConfig;
         $calendarConfigResponse = $getCalendarConfig->__invoke($calendarConfigRequest);
 
-        $getDatesByUserRequest = new GetDatesOfAllTypesAndStatusRequest($calendar->calendar(),$user->userId());
+        $getDatesByUserRequest = new GetDatesOfAllTypesAndStatusRequest($calendar->calendar(), $user->userId());
         $getDatesOfAllTypesAndStatusByUser = $this->getDatesOfAllTypesAndStatusByUser;
         $datesByTypeAndStatusCollection = $getDatesOfAllTypesAndStatusByUser->__invoke($getDatesByUserRequest);
 
         $getUsersOnDayOffToday = $this->getUsersOnDayOffToday;
         $usersOnDayOffTodayCollection = $getUsersOnDayOffToday->__invoke();
 
-        $remainingDaysTypes = $this->remainingDays($calendar->calendar(), $user, $calendarConfigResponse->typeDayOffCollection());
+        $remainingDaysTypes = $this->remainingDays($calendar->calendar(), $user,
+            $calendarConfigResponse->typeDayOffCollection());
 
         $getLastDayOffFormRequestByUser = $this->getLastDayOffFormRequestByUser;
         $statusLastDayOffFormRequest = $getLastDayOffFormRequestByUser->__invoke(new LastDayOffFormRequestByUserRequest($user));
@@ -93,7 +95,7 @@ final class DashboardController extends AbstractController
         ]);
     }
 
-    private function remainingDays(Calendar $calendar, User $user, array $typeDayOffCollection) :array
+    private function remainingDays(Calendar $calendar, User $user, array $typeDayOffCollection): array
     {
         $dayOffOfCalendarRequest = new RemainingDaysOffRequest($calendar, $user,
             $typeDayOffCollection);

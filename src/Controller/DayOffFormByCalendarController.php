@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -61,7 +62,8 @@ final class DayOffFormByCalendarController extends AbstractController
             $calendarConfigResponse->feastdayCollection()
         );
 
-        $remainingDaysOffResponse = $this->remainingDays($calendarResponse->calendar(), $user, $calendarConfigResponse->typeDayOffCollection());
+        $remainingDaysOffResponse = $this->remainingDays($calendarResponse->calendar(), $user,
+            $calendarConfigResponse->typeDayOffCollection());
 
         $dayOffConfigTemplate = $this->render('dayoff_form/dayoff_form_request/_dayoff_request.html.twig', [
             'calendar' => $calendarConfigResponse,
@@ -77,8 +79,12 @@ final class DayOffFormByCalendarController extends AbstractController
         ]);
 
     }
-    private function remainingDays(Calendar $calendar, User $user, array $typeDayOffCollection) :RemainingDaysOffResponse
-    {
+
+    private function remainingDays(
+        Calendar $calendar,
+        User $user,
+        array $typeDayOffCollection
+    ): RemainingDaysOffResponse {
         $dayOffOfCalendarRequest = new RemainingDaysOffRequest($calendar, $user,
             $typeDayOffCollection);
         $getRemainingDaysOffByUser = $this->getRemainingDaysOffByUser;

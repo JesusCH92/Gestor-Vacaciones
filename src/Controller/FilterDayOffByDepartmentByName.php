@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -41,7 +42,7 @@ final class FilterDayOffByDepartmentByName extends AbstractController
      */
     public function findUserInDayOff(Request $request)
     {
-        if(!$request->isXmlHttpRequest()){
+        if (!$request->isXmlHttpRequest()) {
             return new Response('not ajax', 404);
         }
 
@@ -51,7 +52,7 @@ final class FilterDayOffByDepartmentByName extends AbstractController
 
         $calendarByYear = $this->getCalendarByYear;
         $currentYear = date("Y");
-        $calendar = $calendarByYear->__invoke($currentYear);
+        $calendar = $calendarByYear->__invoke(intval($currentYear));
 
         if ('0' === $departmentId && '' === $userName) {
             $filtereDayOffFormType = OrmUsersInDayOffFormRepository::USERSINDAYOFF;
@@ -65,7 +66,7 @@ final class FilterDayOffByDepartmentByName extends AbstractController
 
         $findDatesDayOffFormByDepartmentByUserName = $this->findDatesDayOffFormByDepartmentByUserName;
         $datesDayOffFormResponse = $findDatesDayOffFormByDepartmentByUserName->__invoke(new DatesDayOffByDepartmentByUserNameRequest($calendar->calendar(),
-            $departmentId, $userName, $filtereDayOffFormType));
+            intval($departmentId), $userName, $filtereDayOffFormType));
 
         $getCalendarConfig = $this->getCalendarConfig;
         $calendarConfigResponse = $getCalendarConfig->__invoke(new CalendarConfigRequest($calendar->calendar()->calendarId()));
@@ -88,10 +89,5 @@ final class FilterDayOffByDepartmentByName extends AbstractController
         return new JsonResponse([
             'dayoff_config' => $dayOffConfigTemplate
         ]);
-
-
-        //return new Response('??');
-
     }
-
 }

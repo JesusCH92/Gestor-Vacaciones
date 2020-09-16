@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
 
@@ -34,6 +35,6 @@ final class DenyNotificationEmployeesController extends AbstractController
         $denyDayOffForm->__invoke(new DenyDayOffFormRequest($dayOffId, $user->userId(), $observation));
 
 
-        return Response::create('??????');
+        return Response::create('Denied');
     }
 }

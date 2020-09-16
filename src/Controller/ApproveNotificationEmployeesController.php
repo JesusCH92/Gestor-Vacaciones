@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\DayOffForm\ApplicationService\ApproveDayOffForm;
@@ -32,8 +34,7 @@ final class ApproveNotificationEmployeesController extends AbstractController
         $approveDayOffForm = $this->approveDayOffForm;
         $approveDayOffForm->__invoke(new ApproveDayOffFormRequest($dayOffId, $user->userId(), $observation));
 
-
-        return Response::create('??????');
+        return Response::create('Approved');
     }
 
 }

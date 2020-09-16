@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
@@ -54,7 +56,8 @@ final class DayOffRequestController extends AbstractController
         $getCalendarConfig = $this->getCalendarConfig;
         $calendarConfigResponse = $getCalendarConfig->__invoke($calendarRequest);
 
-        $remainingDaysByType = $this->remainingDays($calendar->calendar(), $user, $calendarConfigResponse->typeDayOffCollection(),$request['type_of_day']);
+        $remainingDaysByType = $this->remainingDays($calendar->calendar(), $user,
+            $calendarConfigResponse->typeDayOffCollection(), $request['type_of_day']);
 
         $saveDayOffRequest = $this->saveDayOffRequest;
         $saveDayOffRequest(
@@ -72,13 +75,13 @@ final class DayOffRequestController extends AbstractController
         return Response::create('Day off form request saved');
     }
 
-    private function remainingDays(Calendar $calendar, User $user, array $typeDayOffCollection, string $typeDayOff) :int
+    private function remainingDays(Calendar $calendar, User $user, array $typeDayOffCollection, string $typeDayOff): int
     {
         $dayOffOfCalendarRequest = new RemainingDaysOffRequest($calendar, $user,
             $typeDayOffCollection);
         $getRemainingDaysOffByUser = $this->getRemainingDaysOffByUser;
         $remainingDaysOffResponse = $getRemainingDaysOffByUser->__invoke($dayOffOfCalendarRequest);
-        if ($typeDayOff !== DayOff::WORKOFF){
+        if ($typeDayOff !== DayOff::WORKOFF) {
             return $remainingDaysOffResponse->remainingDaysOff()[$typeDayOff];
         }
         return 0;

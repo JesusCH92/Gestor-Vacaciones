@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
-
 
 use App\SuperviseEmployees\ApplicationService\DTO\DayOffFormRequest;
 use App\SuperviseEmployees\ApplicationService\GetDayOffFormRequest;
@@ -36,6 +36,5 @@ final class SuperviseEmployeesByDayOffController extends AbstractController
         return new JsonResponse([
             'dayoff_config' => $dayOffConfigTemplate
         ]);
-
     }
 }

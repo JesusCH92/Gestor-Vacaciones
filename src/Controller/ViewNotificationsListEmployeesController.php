@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
-
 
 use App\SuperviseEmployees\ApplicationService\DTO\UserByDepartmentRequest;
 use App\SuperviseEmployees\ApplicationService\GetUsersWithPendingStatus;
@@ -29,7 +29,5 @@ final class ViewNotificationsListEmployeesController extends AbstractController
         return $this->render('supervise_employees/notification-list.html.twig', [
             'users' => $userByDepartmentResponse->usersCollection()
         ]);
-
     }
-
 }
