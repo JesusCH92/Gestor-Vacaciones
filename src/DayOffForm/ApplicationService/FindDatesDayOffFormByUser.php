@@ -1,11 +1,10 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService;
 
-
 use App\DayOffForm\ApplicationService\DTO\UserInDayOffFormByUserIdRequest;
-use App\DayOffForm\ApplicationService\DTO\UserInDayOffFormResponse;
 use App\DayOffForm\Domain\UsersInDayOffFormRepository;
 
 final class FindDatesDayOffFormByUser
@@ -24,5 +23,4 @@ final class FindDatesDayOffFormByUser
 
         return FindDatesDayOffFormByDepartmentByUserName::mappingUsersInDayOffCollection($usersInDayOffApproved);
     }
-
 }

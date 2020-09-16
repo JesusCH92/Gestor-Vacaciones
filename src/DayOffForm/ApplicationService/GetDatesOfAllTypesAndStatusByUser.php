@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService;
-
 
 use App\DayOffForm\ApplicationService\DTO\DateByTypeByStatusResponse;
 use App\DayOffForm\ApplicationService\DTO\GetDatesOfAllTypesAndStatusRequest;
@@ -25,17 +25,18 @@ final class GetDatesOfAllTypesAndStatusByUser
         $datesByUser = $this->dayOffRepository->findByCalendarByUser($calendar, $userId);
 
         return $this->mappingDateByTypeAndStatus($datesByUser);
-
     }
 
     public function mappingDateByTypeAndStatus(array $datesByUser): array
     {
         $datesCollection = [];
+
         foreach ($datesByUser as $date) {
             $dateByTypeByStatus = new DateByTypeByStatusResponse($date['typeDayOff'],
                 $date['statusDayOffForm.statusDayOffForm'], $date['dayOffSelected.dayOffSelected']->format('Y-m-d'));
-            array_push($datesCollection,$dateByTypeByStatus);
+            array_push($datesCollection, $dateByTypeByStatus);
         }
+
         return $datesCollection;
     }
 }

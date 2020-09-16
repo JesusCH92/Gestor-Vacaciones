@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService;
-
 
 use App\DayOffForm\ApplicationService\DTO\LastDayOffFormRequestByUserRequest;
 use App\DayOffForm\ApplicationService\DTO\StateLastDayOffFormRequestByUser;
@@ -17,8 +17,8 @@ final class GetLastDayOffFormRequestByUser
         $this->dayOffRepository = $dayOffRepository;
     }
 
-    public function __invoke(LastDayOffFormRequestByUserRequest $lastDayOffFormRequestByUserRequest): ?StateLastDayOffFormRequestByUser
-    {
+    public function __invoke(LastDayOffFormRequestByUserRequest $lastDayOffFormRequestByUserRequest
+    ): ?StateLastDayOffFormRequestByUser {
         $lastDayOffFormByUser = $this->dayOffRepository->findLastDayOffFormRequestByUser($lastDayOffFormRequestByUserRequest->user());
 
         if (!empty($lastDayOffFormByUser)) {

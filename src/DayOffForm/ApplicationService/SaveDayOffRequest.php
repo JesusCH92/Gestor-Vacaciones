@@ -36,7 +36,7 @@ final class SaveDayOffRequest
         $statusDayOffForm = new StatusDayOffForm();
         // ! Roles got from SymfonyUser entity;
         $roleUser = $dayOffRequest->user()->getRoles()[0];
-        $statusDayOffForm->statusByUserRole($roleUser); 
+        $statusDayOffForm->statusByUserRole($roleUser);
 
         $countDayOffRequest = new  CountDayOffRequest(count($dayOffRequest->daysOffSelected()));
         $countDayOffRequest->checkCountDaysSelected($dayOffRequest->typeDayOffSelected(), $remainingDays);
@@ -54,8 +54,10 @@ final class SaveDayOffRequest
         );
     }
 
-    public function mappingDayOffFormRequestFromDayOffRequest(DayOffRequest $dayOffRequest, DayOffForm $dayOffForm): array
-    {
+    public function mappingDayOffFormRequestFromDayOffRequest(
+        DayOffRequest $dayOffRequest,
+        DayOffForm $dayOffForm
+    ): array {
         $dayOffFormRequestCollection = [];
 
         $initDateDayOffRequest = $dayOffRequest->calendar()->dayOffConfig()->initDateDayOffRequest();
@@ -64,7 +66,8 @@ final class SaveDayOffRequest
 
         foreach ($dayOffRequest->daysOffSelected() as $dayOff) {
             $dayOffSelected = new DayOffSelected($dayOff);
-            $dayOffSelectedValid = $dayOffSelected->guardIfIsValidDate($typeDayOffSelected, $initDateDayOffRequest, $endDateDayOffRequest);
+            $dayOffSelectedValid = $dayOffSelected->guardIfIsValidDate($typeDayOffSelected, $initDateDayOffRequest,
+                $endDateDayOffRequest);
 
             $dayOfFormRequest = new DayOffFormRequest($dayOffForm, $dayOffSelectedValid);
 

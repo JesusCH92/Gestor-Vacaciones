@@ -6,7 +6,6 @@ namespace App\DayOffForm\ApplicationService;
 
 use App\DayOffForm\ApplicationService\DTO\DatesDayOffByDepartmentByUserNameRequest;
 use App\DayOffForm\ApplicationService\DTO\UserInDayOffFormResponse;
-use App\DayOffForm\Domain\DayOffRepository;
 use App\DayOffForm\Domain\DTO\UsersInDayOffFormFilteredRequest;
 use App\DayOffForm\Domain\UsersInDayOffFormRepository;
 
@@ -25,7 +24,7 @@ final class FindDatesDayOffFormByDepartmentByUserName
             $dayOffByDepartmentByUserNameRequest->calendar(),
             $dayOffByDepartmentByUserNameRequest->departmentId(),
             $dayOffByDepartmentByUserNameRequest->userName(),
-            $dayOffByDepartmentByUserNameRequest->filtereDayOffFormType()
+            $dayOffByDepartmentByUserNameRequest->filteredDayOffFormType()
             );
 
         $usersInDayOffApproved = $this->usersInDayOffFormRepository->userInDayOffByFilteringType($usersInDayOffFormFilteredRequest);

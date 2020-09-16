@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService;
-
 
 use App\DayOffForm\ApplicationService\DTO\ApproveDayOffFormRequest;
 use App\DayOffForm\Domain\DayOffRepository;
@@ -20,6 +20,5 @@ final class ApproveDayOffForm
     {
         $this->dayOffRepository->approveDayOffForm($approveDayOffFormRequest->dayOffFormId(),
             $approveDayOffFormRequest->comment(), $approveDayOffFormRequest->supervisorId());
-
     }
 }

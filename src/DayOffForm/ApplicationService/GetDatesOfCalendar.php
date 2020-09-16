@@ -1,10 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\DayOffForm\ApplicationService;
 
 use App\DayOffForm\ApplicationService\DTO\DatesOfCalendarResponse;
+use DateInterval;
+use DatePeriod;
 use DateTimeImmutable;
 
 final class GetDatesOfCalendar
@@ -21,12 +23,10 @@ final class GetDatesOfCalendar
         ];
 
         $datePeriod = $this->daysInBetween($init_date, $end_date);
-        $yearArray =$this->saveMonthsInArray($datePeriod, $feastdays, $month, $monthArray);
+        $yearArray = $this->saveMonthsInArray($datePeriod, $feastdays, $month, $monthArray);
 
         $calendarDatesResponse = [];
-        // $calendarDatesFormat = new DatesOfCalendarResponse(
 
-        // )
         foreach ($yearArray as $monthCalendar) {
             array_push($calendarDatesResponse, new DatesOfCalendarResponse(
                 $monthCalendar['year'],
@@ -39,19 +39,11 @@ final class GetDatesOfCalendar
 
     public function daysInBetween($init_date, $end_date)
     {
-        return new \DatePeriod(
+        return new DatePeriod(
             $init_date,
-            new \DateInterval('P1D'),
+            new DateInterval('P1D'),
             $end_date->modify('+1 day')
         );
-    }
-
-    public function checkDiferentMonth(DateTimeImmutable $date, string $month)
-    {
-        if ($date->format('m') != $month) {
-            return true;
-        }
-        return false;
     }
 
     public function saveMonthsInArray($datePeriod, $feastdays, $month, $monthArray)
@@ -83,10 +75,18 @@ final class GetDatesOfCalendar
         return $yearArray;
     }
 
+    public function checkDiferentMonth(DateTimeImmutable $date, string $month)
+    {
+        if ($date->format('m') != $month) {
+            return true;
+        }
+        return false;
+    }
+
     public function saveWeeksInArray(array $feastdays, DateTimeImmutable $date)
     {
 
-        $isFeastday= $this->isFeastDay($feastdays, $date);
+        $isFeastday = $this->isFeastDay($feastdays, $date);
         $dayOfWeek = date("w", strtotime($date->format('Y-m-d')));
 
         $dayArray = [
