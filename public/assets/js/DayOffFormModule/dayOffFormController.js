@@ -15,7 +15,7 @@ var dayOffFormController = (function(_calendarId){
     var $remainingDayHoliday = $(".remaining-day-holiday");
     var $remainingDayPersonal = $(".remaining-day-personal");
     var $typeDayOffFormSelect = $("#type-day-off-form-select");
-
+    var message;
     var _dayOffFormRenderTemplate= dayOffFormRenderTemplate();
     var _errorModal = errorModal();
 
@@ -27,6 +27,8 @@ var dayOffFormController = (function(_calendarId){
 
             if (isValidDate($dayOfMonth) !== true && 'Work_off' !==$typeDayOffSelected) {
                 console.log('no es valida la fecha');
+                message = 'no es valida la fecha';
+                _errorModal.paintErrorModal({message_error : message});
                 return;
             }
             callprintDatesSelected($dayOfMonth);
@@ -43,10 +45,14 @@ var dayOffFormController = (function(_calendarId){
 
             if (isValidDate($initRange.val()) !== true && 'Work_off' !==$typeDayOffSelected) {
                 console.log('no es valida la fecha');
+                message = 'La fecha seleccionada es incorrecta';
+                _errorModal.paintErrorModal({message_error : message});
                 return;
             }
             if ($initRange.val() < $initDateDayOff.html() || $endRange.val() > $endDateDayOff.html() || $endRange.val()<$initRange.val()){
                 console.log("La fecha seleccionada es incorrecta");
+                message = 'La fecha seleccionada es incorrecta';
+                _errorModal.paintErrorModal({message_error : message});
             }
             $feastDays=JSON.parse($feastDaysCalendarCollection.val());
 
@@ -64,15 +70,21 @@ var dayOffFormController = (function(_calendarId){
 
             if ($datesSelectedArray.length===0){
                 console.log("No hay días seleccionados");
+                message = 'No hay días seleccionados';
+                _errorModal.paintErrorModal({message_error : message});
                 return;
             }
 
             if ($typeDayOff === 'Holiday' && parseInt($remainingDayHoliday.text()) < $datesSelectedArray.length){
                 console.log("No puedes pedir tantos días de vacaciones");
+                message = 'No puedes pedir tantos días de vacaciones';
+                _errorModal.paintErrorModal({message_error : message});
                 return;
             }
             if ($typeDayOff === 'Personal' && parseInt($remainingDayPersonal.text()) < $datesSelectedArray.length){
                 console.log("No puedes pedir tantos días personales");
+                message = 'No puedes pedir tantos días personales';
+                _errorModal.paintErrorModal({message_error : message});
                 return;
             }
             var _dayoffFormConfigModel = dayOffFormConfigModel();
