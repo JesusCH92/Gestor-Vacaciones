@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\Domain\Exception;
 
 use Exception;
 use Throwable;
 
-class InvalidLowerDateSelectedThanCurrentDate extends Exception
+final class InvalidLowerDateSelectedThanCurrentDate extends Exception
 {
     public function __construct($code = 0, Throwable $previous = null)
     {
