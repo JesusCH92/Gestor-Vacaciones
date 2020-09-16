@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\DayOffForm\Domain\DTO;
-
 
 use App\Entity\Calendar;
 
@@ -40,5 +40,4 @@ final class UsersInDayOffFormFilteredRequest
     {
         return $this->filtereDayOffFormType;
     }
-
 }
