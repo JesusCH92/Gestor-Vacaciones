@@ -218,7 +218,7 @@
                 {% if users_dayoff is not empty %}
                 <div class="list-group">
                     {% for user in users_dayoff %}
-                    <p class="list-group-item list-group-item-action list-group-item-light mb-0 user-on-dayoff{% if user.typeDayOff == 'Work_off' %} workoff {% elseif user.typeDayOff == 'Holiday' %} holiday {% else %} personal {% endif %}">{{ user.name }} {{ user.lastname }}</p>
+                    <p class="list-group-item list-group-item list-group-item-light mb-0 user-on-dayoff{% if user.typeDayOff == 'Work_off' %} workoff {% elseif user.typeDayOff == 'Holiday' %} holiday {% else %} personal {% endif %}">{{ user.name }} {{ user.lastname }}</p>
                     {% endfor %}
                 </div>
                 {% endif %}
