@@ -29,7 +29,7 @@
                                 {% endif %}
                                 {% for day in month.week %}
                                     {% set dayNumber = day.date|split('-') %}
-                                    <div class="col calendar-month day-of-month {% if day.date == current_day %} today-current {% endif %} {% if day.feastday %} feastday {% elseif day.day not in working_days %} no-working-day {% else %}selectable-day {% endif %}" date="{{ day.date }}" day="{{ day.day }}">{{ dayNumber[2] }}</div>
+                                    <div class="col calendar-month day-of-month form {% if day.date == current_day %} today-current {% endif %} {% if day.feastday %} feastday {% elseif day.day not in working_days %} no-working-day {% else %}selectable-day {% endif %}" date="{{ day.date }}" day="{{ day.day }}">{{ dayNumber[2] }}</div>
                                 {% endfor %}
                                 {% set lastWeek = month.week|last %}
                                 {% if lastWeek.day<6 %}

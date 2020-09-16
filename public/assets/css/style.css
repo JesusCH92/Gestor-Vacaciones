@@ -380,23 +380,23 @@ Ventana Revistar dias de vacaciones por usuario
     border: 2px solid;
 }
 
-.today-current:hover{
+.form.today-current:hover{
     color:#ffffff;
     font-weight: bolder;
     border-color: #4f97e3;
 }
 
-.today-current.feastday:hover{
+.form.today-current.feastday:hover{
     color: #E91E63;
     border-color: #E91E63;
 }
 
-.today-current.no-working-day:hover{
+.form.today-current.no-working-day:hover{
     color: grey;
     border-color: grey;
 }
 
-.selectable-day:hover{
+.form.selectable-day:hover{
     background-color: #4f97e3;
     color: #ffffff;
     font-weight: bolder;
@@ -407,7 +407,7 @@ Ventana Revistar dias de vacaciones por usuario
     box-shadow: 0 0 1px 1px #0d66c1;
 }
 
-.selectable-day:active{
+.form.selectable-day:active{
     border: 1px solid #4254ba;
     box-shadow: 0 0 1px 1px #ffffff;
     color: #4254ba;
@@ -420,10 +420,17 @@ Ventana Revistar dias de vacaciones por usuario
     color: #E91E63;
     border-radius: 5px;
     border: 2px solid;
-    cursor: not-allowed;
 }
+
 .no-working-day{
     color: gray;
+}
+
+.form.feastday{
+    cursor: not-allowed;
+}
+
+.form.no-working-day{
     cursor: not-allowed;
 }
 
