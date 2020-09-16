@@ -28,34 +28,34 @@ body{
     text-align: center;
 }
 
-.listado-notificaciones{
+.notification-list{
     margin: 0;     padding: 5px;
     max-height: calc(100vh - 380px);
     overflow-y: auto;
 }
 
-#informacion-solicitud-usuario, .listado-notificaciones, .formulario-area, .block-formulario, 
+#informacion-solicitud-usuario, .notification-list, .formulario-area, .block-formulario,
 .area-personal-perfil-usuario, .contenedor-dias-vacaciones, .dias-disponibles, #calendar_first{
     border: 1px solid #dddddd;
     border-radius: 5px;
     box-shadow : 0 1px 4px 0 rgba(0,0,0,0.37);
 }
 
-.list-group-item.list-group-item-action.list-group-item-light.notificacion-usuario{
+.list-group-item.list-group-item-action.list-group-item-light.user-notification{
     border: 0;
 }
 /** fin ventana notificaciones **/
 
 /** ventana solicitud-notificacion **/
 
-.datos-usuario{
+.user-data{
     font-weight: bold;
     font-size: 13px;
     padding-top: 9px;
     padding-left: 1px;
 }
 
-#peticion-dias-vacaciones{
+#days-off-request{
     max-height: 150px;
     overflow-y: auto;
 }

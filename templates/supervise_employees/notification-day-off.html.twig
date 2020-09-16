@@ -5,29 +5,37 @@
             <div class="container" id="informacion-solicitud-usuario">
 
                 <div class="row">
-                    <h5 class="col-12 subtitulo-solicitud">Información del Solicitante</h5>
+                    <h5 class="col-12">Información del Solicitante</h5>
                     <form class="col-12">
                         <input type="hidden" id="day-off-form-id" value="{{ dayoff.codeDayOffForm }}">
                         <div class="form-group">
-                            <label class="datos-usuario">Nombre:</label>
+                            <label class="user-data">Nombre:</label>
                             <label for="name">{{ dayoff.user.name }}</label>
                         </div>
                         <div class="form-group">
-                            <label class="datos-usuario">Apellidos:</label>
+                            <label class="user-data">Apellidos:</label>
                             <label for="lastname">{{ dayoff.user.lastname }}</label>
                         </div>
                         <div class="form-group">
-                            <label class="datos-usuario">Departamento:</label>
+                            <label class="user-data">Departamento:</label>
                             <label for="department">{{ dayoff.user.getDepartment.departmentName }}</label>
                         </div>
                         <div class="form-group">
-                            <label class="datos-usuario">Tipo de solicitud:</label>
-                            <label for="type-day-off">{{ dayoff.typeDayOff }}</label>
+                            <label class="user-data">Tipo de solicitud:</label>
+                            <label for="type-day-off">
+                                {% if dayoff.typeDayOff == 'Holiday' %}
+                                    Vacaciones
+                                {% elseif dayoff.typeDayOff == 'Personal' %}
+                                    Días personales
+                                {% else %}
+                                    Baja laboral
+                                {% endif %}
+                            </label>
                         </div>
                         <div class="form-group">
-                            <button type="button" id="datos-usuario-btn" class="btn btn-link text-dark datos-usuario" data-toggle="collapse" data-target="#peticion-dias-vacaciones" aria-expanded="true" aria-controls="peticion-dias-vacaciones">
+                            <button type="button" id="user-data-btn" class="btn btn-link text-dark user-data" data-toggle="collapse" data-target="#days-off-request" aria-expanded="true" aria-controls="days-off-request">
                                 Días solicitados de vacaciones:</button>
-                            <div id="peticion-dias-vacaciones" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                 <div class="card-body">
                                     <ul class="list-group">
                                         {% for date in dayOffRequest %}
@@ -40,9 +48,9 @@
 
                         <hr class="col-11">
 
-                        <h5 class="col-12 px-0 subtitulo-solicitud">Resolución de la petición</h5>
+                        <h5 class="col-12 px-0">Resolución de la petición</h5>
                         <div class="form-group">
-                            <label class="datos-usuario" for="supervisor-comment">Comentario:</label>
+                            <label class="user-data" for="supervisor-comment">Comentario:</label>
                             <textarea class="form-control" id="supervisor-comment" rows="3"></textarea>
                         </div>
 
