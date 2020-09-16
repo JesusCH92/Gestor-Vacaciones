@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\User\Infrastructure\Persistence;
 
+use App\Common\Infrastructure\Constants\Constants;
 use App\User\Domain\User;
 use App\User\Domain\UserByDepartmentRepository;
 use App\User\Domain\UserByIdRepository;
@@ -50,8 +51,10 @@ final class OrmUserRepository implements UserRepository, UserByDepartmentReposit
             ->from(SymfonyUser::class, 'su')
             ->where('su.department = :department')
             ->andWhere('su.name LIKE :username')
+            ->andWhere('su.userId <> :adminId')
             ->setParameter('department', $departmentId)
             ->setParameter('username', "%$userName%")
+            ->setParameter('adminId', Constants::ADMIN_ID)
             ;
             
         return $qb->getQuery()->getResult();
