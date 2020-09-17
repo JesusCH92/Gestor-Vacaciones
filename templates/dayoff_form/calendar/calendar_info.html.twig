@@ -2,7 +2,7 @@
 <div class="form-group">
     <h5>Seleccionar fechas para solicitar vacaciones</h5>
     <div class="container-carousel-of-dates  d-flex justify-content-center align-items-center">
-        <div id="carouselExampleControls" class="carousel slide workspace-calendar" data-interval="false">
+        <div id="carouselControls" class="carousel slide workspace-calendar" data-interval="false">
             <div class="carousel-inner" id="datesCarousel">
                 {% for month in calendar_info %}
                     <div class="carousel-item {% if month.month== "now"|date("m") %} active {% endif %}">
@@ -43,11 +43,11 @@
                 {% endfor %}
 
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
