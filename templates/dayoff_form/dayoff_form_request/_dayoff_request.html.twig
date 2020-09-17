@@ -38,7 +38,7 @@
 
 
 </div>
-<div class="row container-area-form-vacation" id="container-area-form-vacation">
+<div class="row container-area-form-vacation">
     <div class="container my-2">
         <h5>Seleccionar un rango de fechas para solicitar vacaciones</h5>
         <div class="row">
@@ -48,7 +48,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <label for="end">Último día de vacaciones:</label>
-                <input type="date" id="end" class="form-control date-range end-range" name="trip-start" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
+                <input type="date" id="end" class="form-control date-range end-range" name="trip-end" value="yyyy-mm-dd" min="{{ calendar.initDate }}" max="{{ calendar.endDate }}">
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
     {% if calendar.endDate > current_day %}
     <div class="col-xl-4 col-md-8 col-12 container my-2">
 
-        <div class="container contenedor-dias-vacaciones">
+        <div class="container days-off-container">
 
             <form>
                 <input type="hidden" id="feast-days-calendar-collection" value="{{ feast_days }}">

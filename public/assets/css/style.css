@@ -35,7 +35,7 @@ body{
 }
 
 #informacion-solicitud-usuario, .notification-list, .formulario-area, .block-formulario,
-.area-personal-perfil-usuario, .contenedor-dias-vacaciones, .dias-disponibles, #calendar_first{
+.area-personal-perfil-usuario, .days-off-container, .dias-disponibles, #calendar_first{
     border: 1px solid #dddddd;
     border-radius: 5px;
     box-shadow : 0 1px 4px 0 rgba(0,0,0,0.37);
