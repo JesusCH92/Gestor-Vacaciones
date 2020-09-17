@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DoctrineMigrations;
 
+use App\Common\Infrastructure\Constants\Constants;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
@@ -33,7 +34,7 @@ VALUES(:id,:id_department, :id_company, :email, :user_name, :last_name, :phone_n
 SQL
             ,
             [
-                'id'       => '2609380a-bf2c-4db3-9e6f-1e622e0e6845',
+                'id'       => Constants::ADMIN_ID,
                 'id_department' => 1,
                 'id_company' => 1,
                 'email'    => 'admin@admin',
