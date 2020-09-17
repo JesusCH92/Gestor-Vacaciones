@@ -152,19 +152,17 @@ Ventana Revistar dias de vacaciones por usuario
     text-align: left;
     color: gray;
 }
-#format-background1{
+.gray-container{
     height: 110px;
 }
-#format-background2{
-    height: 110px;
-}
+
 #days-holidays{
     color: #2d77ff;
 }
 .info{
     color: gray;
 }
-#solicitud-vacaciones-btn{
+#day-off-request-btn{
     background-color: #2d77ff;
 }
 #history{

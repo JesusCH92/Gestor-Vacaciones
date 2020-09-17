@@ -21,7 +21,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-4 my-auto">
-                <div class="p-3 mb-3 bg-light rounded" id="format-background1">
+                <div class="p-3 mb-3 bg-light rounded gray-container">
                     <div class="container">
                         <div class="row">
                             <div class="col">
@@ -36,7 +36,7 @@
             </div>
 
             <div class="col-sm-12 col-md-4 my-auto">
-                <div class="p-3 mb-3 bg-light rounded" id="format-background2">
+                <div class="p-3 mb-3 bg-light rounded gray-container">
                     <h5>NOTIFICACIONES</h5>
                     <p class="info">{% if last_dayoff is null %} No hay solucitudes {% else %}El estado de tu última solicitud es:
                             {% if last_dayoff.statusLastDayOff == 'PENDING' %}
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-4 text-center my-auto">
-                <a role="button" class="btn btn-primary btn-lg" id="solicitud-vacaciones-btn" href="{{ path('app_dayoff') }}">Solicitar vacaciones</a>
+                <a role="button" class="btn btn-primary btn-lg" id="day-off-request-btn" href="{{ path('app_dayoff') }}">Solicitar vacaciones</a>
             </div>
         </div>
     </div>
