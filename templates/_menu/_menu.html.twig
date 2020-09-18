@@ -44,7 +44,7 @@
                             Supervisar Empleados
                         </a>
                         <div class="dropdown-menu" aria-labelledby="supervise-user">
-                            <a class="dropdown-item" href="{{ path("app_notifications_list") }}" id="notificationes-btn">Leer Notificaciones</a>
+                            <a class="dropdown-item" href="{{ path("app_notifications_list") }}" id="notificationes-btn">Notificaciones</a>
                             <a class="dropdown-item" href="{{ path("supervise_day_off_employee") }}" id="search-user-vacation-btn">Revisar días de vacaciones por usuario</a>
                         </div>
                     </li>
@@ -60,8 +60,6 @@
                     {{ app.user.name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown-A">
-                    <a class="dropdown-item" href="#" id="user-profile-btn">Perfil</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ path('app_logout') }}">Salir</a>
                 </div>
             </div>
