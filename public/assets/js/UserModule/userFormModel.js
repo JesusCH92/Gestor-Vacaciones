@@ -9,7 +9,7 @@ var userFormModel = ( function () {
                 callback(data);
             },
             error: function(data){
-                callbackError({message_error: data.responseText});
+                callbackError({ message_error: data.responseText });
             }
         });
     };
@@ -19,12 +19,11 @@ var userFormModel = ( function () {
             type: 'DELETE',
             url: `/user/management/delete/${id}`,
             async: true,
-            success: function(data){
-                callback(data);
-                // callback({calendarConfigContainer : container, calendarConfig : data.calendar_config, calendarId: id});
+            success: function(){
+                callback({ userId : id });
             },
             error: function(data){
-                callbackError({message_error: data.responseText});
+                callbackError({ message_error: data.responseText });
             }
         });
     };
