@@ -5,6 +5,7 @@ var userFormController = ( function (id) {
     var $editAndRemoveformBtn = $(".form--btn")
     var $userRolSelectForm = $("#form--rol-select"); 
 
+    var _userFormRenderTemplate = userFormRenderTemplate();
     var _userFormModel = userFormModel();
     var _errorModal = errorModal();
 
@@ -17,6 +18,7 @@ var userFormController = ( function (id) {
             console.log(_userId);
             _userFormModel.deleteUser({
                 id : _userId,
+                callback : _userFormRenderTemplate.removeUserItem,
                 callbackError : _errorModal.paintErrorModal
             });
         });
