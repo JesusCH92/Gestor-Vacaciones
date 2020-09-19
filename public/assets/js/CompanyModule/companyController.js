@@ -11,9 +11,17 @@ var companyController = (function(){
     var $departmentNameLabelIdTag = "#department--name-label-";
     var $departmentCodeBtnClass = "department--code-btn";
     var $departmentCodeInputIdTag = "#department--code-input-";
-    var $departmentCodeLabelIdTag = "#department--code-label-"; 
+    var $departmentCodeLabelIdTag = "#department--code-label-";
+    var $companyNameErrorSpan = $("#company-name-error-span");
+    var $departmentCodeErrorSpan = $("#code-department-added-error-span");
+    var $departmentNameErrorSpan = $("#department-name-added-error-span");
+    var $departmentNameErrorSpanIdTag = "#department--name-error-span-";
+    var $departmentCodeErrorSpanIdTag = "#department--code-error-span-";
+
 
     var _errorModal = errorModal();
+    var _validator = validator();
+    var _companyRenderTemplate = companyRenderTemplate();
 
     var paintDepartment = function( {containerDepartment, department} ) {
         containerDepartment.append(department);
@@ -25,12 +33,32 @@ var companyController = (function(){
             var $departmentName = $departmentNameAdded.val().trim();
             var $departmentCode = $codeDepartmentAdded.val().trim();
 
-            console.log($departmentName);
-            console.log($departmentCode);
-
-            if ($departmentName === "" || $departmentCode === "") {
+            if (_validator.isBlankInput({ input : $departmentName })) {
+                _companyRenderTemplate.paintErrorMessage({
+                    errorId : $departmentNameErrorSpan,
+                    errorMessage : 'Department name must not be blank.'
+                });
                 return;
             }
+
+            _companyRenderTemplate.removeErrorMessage({ errorId : $departmentNameErrorSpan });
+
+            if (_validator.isBlankInput({ input : $departmentCode })) {
+                _companyRenderTemplate.paintErrorMessage({
+                    errorId : $departmentCodeErrorSpan,
+                    errorMessage : 'Department code must not be blank.'
+                });
+                return;
+            }
+
+            if (_validator.isInputLengthGreaterThanTen({ input : $departmentCode })) {
+                _companyRenderTemplate.paintErrorMessage({
+                    errorId : $departmentCodeErrorSpan,
+                    errorMessage : 'Department code must not be more than 10 characters.'
+                });
+                return;
+            }
+            _companyRenderTemplate.removeErrorMessage({ errorId : $departmentCodeErrorSpan });
 
             companyModel.createDepartment({
                 department : {
@@ -45,15 +73,18 @@ var companyController = (function(){
         });
 
         $editCompanyBtn.click( function(){
-            console.log("don't push me!!");
-
             var $companyRename = $renameCompanyInput.val().trim();
             var $id = '1';  // * debe ser un string
-            console.log($companyRename);
 
-            if ($companyRename === "") {
+            if (_validator.isBlankInput({ input : $companyRename })) {
+                _companyRenderTemplate.paintErrorMessage({
+                    errorId : $companyNameErrorSpan,
+                    errorMessage : 'Company name must not be blank.'
+                });
                 return;
             }
+
+            _companyRenderTemplate.removeErrorMessage({ errorId : $companyNameErrorSpan });
 
             companyModel.editCompany({
                 company : {
@@ -72,13 +103,22 @@ var companyController = (function(){
             }
             var $departmentId = $(event.target).attr('deptId');
             var $departmentNameInput = $($departmentNameInputIdTag + $departmentId);
-            if ( $departmentNameInput.val().trim() === "") {
+
+            if (_validator.isBlankInput({ input : $departmentNameInput.val().trim() })) {
+                _companyRenderTemplate.paintErrorMessage({
+                    errorId : $($departmentNameErrorSpanIdTag + $departmentId),
+                    errorMessage : 'Department name must not be blank.'
+                });
                 return;
             }
+
+            _companyRenderTemplate.removeErrorMessage({ errorId : $($departmentNameErrorSpanIdTag + $departmentId) });
+
             var $departmentCorpus = {
                 id : $departmentId,
                 name : $departmentNameInput.val().trim()
             };
+
             companyModel.departmentNameUpdate({
                 department : $departmentCorpus,
                 label : $($departmentNameLabelIdTag + $departmentId),
@@ -92,13 +132,29 @@ var companyController = (function(){
             }
             var $departmentId = $(event.target).attr('deptId');
             var $departmentCodeInput = $($departmentCodeInputIdTag + $departmentId);
-            if ( $departmentCodeInput.val().trim() === "" || $departmentCodeInput.val().trim().length > 10) {
+
+            if (_validator.isBlankInput({ input : $departmentCodeInput.val().trim() })) {
+                _companyRenderTemplate.paintErrorMessage({
+                    errorId : $($departmentCodeErrorSpanIdTag + $departmentId),
+                    errorMessage : 'Department code must not be blank.'
+                });
                 return;
             }
+
+            if (_validator.isInputLengthGreaterThanTen({ input : $departmentCodeInput.val().trim() })) {
+                _companyRenderTemplate.paintErrorMessage({
+                    errorId : $($departmentCodeErrorSpanIdTag + $departmentId),
+                    errorMessage : 'Department code must not be more than 10 characters.'
+                });
+                return;
+            }
+            _companyRenderTemplate.removeErrorMessage({ errorId : $($departmentCodeErrorSpanIdTag + $departmentId) });
+
             var $departmentCorpus = {
                 id : $departmentId,
                 code : $departmentCodeInput.val().trim()
             };
+
             companyModel.departmentCodeUpdate({
                 department : $departmentCorpus,
                 label : $($departmentCodeLabelIdTag + $departmentId),
