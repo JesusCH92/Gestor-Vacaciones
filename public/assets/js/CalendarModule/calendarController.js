@@ -35,7 +35,7 @@ var calendarController = (function(){
             if ( !_validator.isValidDate($feastdaySelected) ) {
                 _calendarCreatorRenderTemplate.paintErrorMessage({
                     errorId : $feastDayErrorSpan,
-                    errorMessage : 'Date is not valid. Must be 01-01-2019.'
+                    errorMessage : 'Date is not valid. Must be greater than 01-01-2019.'
                 });
                 return;
             }
