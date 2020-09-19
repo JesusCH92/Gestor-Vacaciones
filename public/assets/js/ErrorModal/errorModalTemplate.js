@@ -5,8 +5,8 @@ var errorModal = (function (){
             $("#modal-content").removeClass("modal--success-container");
         }
 
-        if ( $("#modal-button").hasClass("btn-success") ) {
-            $("#modal-button").removeClass("btn-success");
+        if ( $("#modal-button").hasClass("btn-primary") ) {
+            $("#modal-button").removeClass("btn-primary");
         }
 
         if ( !$("#modal-button").hasClass("btn-danger") ) {
@@ -27,8 +27,8 @@ var errorModal = (function (){
             $("#modal-button").removeClass("btn-danger");
         }
 
-        if ( !$("#modal-button").hasClass("btn-success") ) {
-            $("#modal-button").addClass("btn-success");
+        if ( !$("#modal-button").hasClass("btn-primary") ) {
+            $("#modal-button").addClass("btn-primary");
         }
 
         $(".modal-title").text(message_title);
