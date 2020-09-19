@@ -12,44 +12,57 @@ var calendarConfigController = (function(_calendarId){
     var $feastdayInput = $("#feastday-date");
     var $feastdaySelectedContiner = $("#feastday-list-container");
     var $feastdayInCalendarContainer = $("#feastday-selected-container");
+    var $initDateErrorSpan = $("#init-date-request-error");
+    var $endDateErrorSpan = $("#end-date-request-error");
+    var $holidayErrorSpan = $("#holidays-number-error");
+    var $personalDayErrorSpan = $("#personal-days-number-error");
+    var $feastDayErrorSpan = $("#feastday-date-error");
     
+    var _validator = validator();
+    var _calendarConfigRenderTemplate = calendarConfigRenderTemplate();
     var _editCalendarModel = editCalendarModel();
     var _errorModal = errorModal();
 
-    var isValidDate = function ($dateString) {
-        var $date = new Date($dateString);
-        return $date instanceof Date && !isNaN($date) && ($date >= new Date('2019-01-01'));
-    };
-
-    var paintFeastDayInFeastDayContainer = function ({ feastday, container }) {
-        var feastDayItem = `
-            <li class="list-group-item d-flex justify-content-between feastday-item" feastday-date="${feastday}">
-                <p class="m-auto">${feastday}</p>
-                <a class="btn btn-link feastday-reset-btn my-auto">
-                    <span class="oi oi-circle-x" title="Quit feast day selected" aria-hidden="true"></span>
-                </a>
-                <a class="btn btn-link feastday-add-btn my-auto">
-                    <span class="oi oi-circle-check" title="Add feast day selected" aria-hidden="true"></span>
-                </a>
-            </li>
-        `;
-        container.append(feastDayItem);
-        var _feastdayController = feastdayController(calendarId);
-        _feastdayController.initEventFeastday();
-    };
-
     var initEventCalendarConfig = function() {
         $updateDayOffRequestBtn.click( function() {
-            var $initDateRquest = $initDateRequestInput.val();
+            var $initDateRequest = $initDateRequestInput.val();
             var $endDateRequest = $endDateRequestInput.val();
 
-            if ($initDateRquest === ""  || $endDateRequest === "") {
+            if ( !_validator.isValidDate($initDateRequest) ) {
+                _calendarConfigRenderTemplate.paintErrorMessage({
+                    errorId : $initDateErrorSpan,
+                    errorMessage : 'Init date is not valid. Must be greater than 01-01-2019.'
+                });
                 return;
             }
+
+            if ( !_validator.isValidDate($endDateRequest) ) {
+                _calendarConfigRenderTemplate.paintErrorMessage({
+                    errorId : $endDateErrorSpan,
+                    errorMessage : 'End date is not valid. Must be greater than 01-01-2019.'
+                });
+                return;
+            }
+
+            if ( !_validator.endDateIsGreaterThanInitDate($initDateRequest, $endDateRequest) ) {
+                _calendarConfigRenderTemplate.paintErrorMessage({
+                    errorId : $initDateErrorSpan,
+                    errorMessage : 'End date must be greater than init date.'
+                });
+                _calendarConfigRenderTemplate.paintErrorMessage({
+                    errorId : $endDateErrorSpan,
+                    errorMessage : 'End date must be greater than init date.'
+                });
+                return;
+            }
+
+            _calendarConfigRenderTemplate.removeErrorMessage({ errorId : $initDateErrorSpan });
+            _calendarConfigRenderTemplate.removeErrorMessage({ errorId : $endDateErrorSpan });
+
             _editCalendarModel.updateDayOffRequest({
                 dayOffRequest : {
                     calendarId : calendarId,
-                    initDateRequest : $initDateRquest,
+                    initDateRequest : $initDateRequest,
                     endDateRequest : $endDateRequest
                 },
                 callbackError : _errorModal.paintErrorModal
@@ -62,44 +75,71 @@ var calendarConfigController = (function(_calendarId){
                 calendarId : calendarId,
                 workDays : $workDays.length === 0 ? "" : $workDays
             };
-            console.log($workDaysCorpus);
+
             _editCalendarModel.updateWorkDays({ workDays : $workDaysCorpus, callbackError : _errorModal.paintErrorModal });
         });
 
         $updateHolidayNumberBtn.click( function() {
             var $holidayNumberDays = $holidaysNumberInput.val();
+
+            if ( _validator.isIntegerPositive($holidayNumberDays) ) {
+                _calendarConfigRenderTemplate.paintErrorMessage({
+                    errorId : $holidayErrorSpan,
+                    errorMessage : 'A type day off count could not be negative.'
+                });
+                return;
+            }
+
+            _calendarConfigRenderTemplate.removeErrorMessage({ errorId : $holidayErrorSpan });
+
             var $holidayCorpus = {
                 calendarId : calendarId,
                 number : $holidayNumberDays,
                 type : 'Holiday'
             };
-            console.log($holidayCorpus);
+
             _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $holidayCorpus, callbackError : _errorModal.paintErrorModal });
         });
 
         $updatePersonalDayOffNumberBtn.click( function() {
             var $personalDayOffNumberDays = $personalDaysNumberInput.val();
+
+            if ( _validator.isIntegerPositive($personalDayOffNumberDays) ) {
+                _calendarConfigRenderTemplate.paintErrorMessage({
+                    errorId : $personalDayErrorSpan,
+                    errorMessage : 'A type day off count could not be negative.'
+                });
+                return;
+            }
+
+            _calendarConfigRenderTemplate.removeErrorMessage({ errorId : $personalDayErrorSpan });
+
             var $personalDayOffCorpus = {
                 calendarId : calendarId,
                 number : $personalDayOffNumberDays,
                 type : 'Personal'
             };
-            console.log($personalDayOffCorpus);
+
             _editCalendarModel.updateTypeDayOffNumber({ typeDayOff : $personalDayOffCorpus, callbackError: _errorModal.paintErrorModal });
         });
 
         $feastdayInput.change(function(){
             var $feastdaySelected = $feastdayInput.val();
-            if (isValidDate($feastdaySelected) !== true ) {
-                console.log('no es valida la fecha');
+
+            if ( !_validator.isValidDate($feastdaySelected) ) {
+                _calendarConfigRenderTemplate.paintErrorMessage({
+                    errorId : $feastDayErrorSpan,
+                    errorMessage : 'Date is not valid. Must be 01-01-2019.'
+                });
                 return;
             }
-            console.log('la fecha es valida');
-            console.log($feastdaySelected);
 
-            paintFeastDayInFeastDayContainer({
+            _calendarConfigRenderTemplate.removeErrorMessage({ errorId : $feastDayErrorSpan});
+
+            _calendarConfigRenderTemplate.paintFeastDayInFeastDayContainer({
                 feastday : $feastdaySelected,
-                container : $feastdaySelectedContiner
+                container : $feastdaySelectedContiner,
+                calendarId : calendarId
             });
         });
 
@@ -112,7 +152,7 @@ var calendarConfigController = (function(_calendarId){
                 calendarId : calendarId,
                 date : $feastdayItemToDelete.attr("feastday-date")
             };
-            console.log($feastdayItemToDelete.attr("feastday-date"));
+            
             _editCalendarModel.deleteFeastday({ feastday : $feastdayCorpus, deleteItem : $feastdayItemToDelete, callbackError : _errorModal.paintErrorModal});
         });
 
