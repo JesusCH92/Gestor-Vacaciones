@@ -15,11 +15,11 @@ var userFormController = ( function (id) {
         });
 
         $removeUserBtn.click( function () {
-            console.log(_userId);
             _userFormModel.deleteUser({
                 id : _userId,
                 callback : _userFormRenderTemplate.removeUserItem,
-                callbackError : _errorModal.paintErrorModal
+                callbackError : _errorModal.paintErrorModal,
+                successModal : _errorModal.paintSuccessModal
             });
         });
 
