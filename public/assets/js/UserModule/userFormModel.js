@@ -6,7 +6,10 @@ var userFormModel = ( function () {
             async: true,
             data: {userCorpus},
             success: function(data){
-                callback(data);
+                callback({
+                    message_title : 'Updated Role',
+                    message : `User has the ${userCorpus['rol'].replace("ROLE_", "")} role`
+                });
             },
             error: function(data){
                 callbackError({ message_error: data.responseText });
