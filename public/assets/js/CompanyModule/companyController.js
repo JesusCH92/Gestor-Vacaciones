@@ -23,10 +23,6 @@ var companyController = (function(){
     var _validator = validator();
     var _companyRenderTemplate = companyRenderTemplate();
 
-    var paintDepartment = function( {containerDepartment, department} ) {
-        containerDepartment.append(department);
-    };
-
     var initEvents =  function(){
 
         $addDepartmentBtn.click( function(){
@@ -65,7 +61,7 @@ var companyController = (function(){
                     name : $departmentName,
                     code : $departmentCode
                 },
-                callback : paintDepartment,
+                callback : _companyRenderTemplate.paintDepartment,
                 container : $departmentContainer,
                 callbackError : _errorModal.paintErrorModal
             });
