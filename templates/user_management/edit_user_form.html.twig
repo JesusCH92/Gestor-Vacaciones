@@ -57,8 +57,8 @@
                     <label for="form--rol-select">Rol</label>
                     <select id="form--rol-select" class="form-control">
                         
-                        <option value="ROLE_USER">Empleado</option>
-                        <option value="ROLE_SUPERVISOR">Supervisor</option>
+                        <option value="ROLE_USER" {% if user_info.userRole == 'ROLE_USER' %}selected{% endif %}>Empleado</option>
+                        <option value="ROLE_SUPERVISOR" {% if user_info.userRole == 'ROLE_SUPERVISOR' %}selected{% endif %}>Supervisor</option>
                         
                     </select>
                 </div>
