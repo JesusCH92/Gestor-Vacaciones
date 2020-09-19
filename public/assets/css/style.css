@@ -514,15 +514,15 @@ Ventana Revistar dias de vacaciones por usuario
 }
 
 .modal--error-container.modal--success-container{
-    border: 2px solid #00CA4E;
+    border: 2px solid #4f97e3;
 }
 
 .modal--error-container.modal--success-container > div > .modal-title{
-    color: #00CA4E;
+    color: #4f97e3;
     font-weight: bold;
 }
 
 .modal--error-container.modal--success-container > div > button.close{
-    color: #00CA4E;
+    color: #4f97e3;
 }
 /** End Modal **/
