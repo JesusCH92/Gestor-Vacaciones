@@ -14,12 +14,16 @@ var userFormModel = ( function () {
         });
     };
 
-    var deleteUser = function ({ id, callback = console.log, callbackError = console.log }) {
+    var deleteUser = function ({ id, callback = console.log, callbackError = console.log, successModal = console.log }) {
         $.ajax({
             type: 'DELETE',
             url: `/user/management/delete/${id}`,
             async: true,
             success: function(){
+                successModal({
+                    message_title : 'User Deleted',
+                    message : 'User has been unsubscribed'
+                });
                 callback({ userId : id });
             },
             error: function(data){
