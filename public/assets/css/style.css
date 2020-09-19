@@ -261,10 +261,11 @@ Ventana Revistar dias de vacaciones por usuario
 
 /** End Login window**/
 
-/** Etiqueta de prueba, debe ser eliminada despues de agregar los estilos correspondientes a los iconos**/
-.prova-pencil-icon .oi-pencil{
-    color: red;
+/** Create Calendar View**/
+.error--calendar-span{
+    display: none;
 }
+/** End Create Calendar View**/
 
 /** Edit Calendar View**/
 .feastday-reset-btn, .feastday-add-btn, .feastday-delete-btn{
