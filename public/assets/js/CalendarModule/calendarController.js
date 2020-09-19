@@ -119,7 +119,8 @@ var calendarController = (function(){
                     feastDayCollection : $feastDayCollection.length === 0 ? '' : $feastDayCollection
                 },
                 callback : _calendarCreatorRenderTemplate.cleanCalendarForm,
-                callbackError : _errorModal.paintErrorModal
+                callbackError : _errorModal.paintErrorModal,
+                successModal : _errorModal.paintSuccessModal
             });
         });
     };
