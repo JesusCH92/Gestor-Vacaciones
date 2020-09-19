@@ -6,7 +6,7 @@ var calendarCreatorModel = (function () {
             async: true,
             data: {calendar},
             success: function(data){
-                callback(data);
+                callback();
             },
             error: function(data){
                 callbackError({message_error: data.responseText});
