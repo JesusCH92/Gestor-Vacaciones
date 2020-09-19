@@ -1,4 +1,14 @@
 var calendarCreatorRenderTemplate = (function () {
+    var $workingYearInput = $("#working-year");
+    var $initDateRequestInput = $("#init-date-request");
+    var $endDateRequestInput = $("#end-date-request");
+    var $holidaysNumberInput = $("#holidays-number");
+    var $personalDaysNumberInput = $("#personal-days-number");
+    var $workDaysSelected = $("#work-days-select");
+    var $feastdayDateInput = $("#feastday-date");
+    var $feastdaySelectedContainer = $("#feastday-selected-container");
+    var $erroSpan = $(".error--calendar-span");
+
     var paintFeastDayInFeastDayContainer = function ({ feastday, container }) {
         var feastDayRow = `
             <li class="list-group-item d-flex justify-content-between">
@@ -11,7 +21,27 @@ var calendarCreatorRenderTemplate = (function () {
         container.append(feastDayRow);
     };
 
+    var paintErrorMessage = function ({ errorId, errorMessage = 'Is not valid' }) {
+        errorId.find(".form-error-message").text(errorMessage);
+        errorId.fadeIn();
+    };
+
+    var cleanCalendarForm = function () {
+        $workingYearInput.val("2019");
+        $initDateRequestInput.val("");
+        $endDateRequestInput.val("");
+        $holidaysNumberInput.val("0");
+        $personalDaysNumberInput.val("0");
+        $workDaysSelected.selectpicker('val','');
+        $feastdayDateInput.val("");
+        $feastdaySelectedContainer.empty();
+
+        $erroSpan.fadeOut();
+    };
+
     return {
-        paintFeastDayInFeastDayContainer : paintFeastDayInFeastDayContainer
+        paintFeastDayInFeastDayContainer : paintFeastDayInFeastDayContainer,
+        paintErrorMessage : paintErrorMessage,
+        cleanCalendarForm : cleanCalendarForm
     }
 });
