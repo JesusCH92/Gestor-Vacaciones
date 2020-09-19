@@ -498,3 +498,31 @@ Ventana Revistar dias de vacaciones por usuario
     border-color: #E544FF;
 }
 /* ! Fin Calendario del carousel */
+
+/** Modal **/
+.modal--error-container{
+    border: 2px solid #E91E63;
+}
+
+.modal--error-container > div > .modal-title{
+    color: #E91E63;
+    font-weight: bold;
+}
+
+.modal--error-container > div > button.close{
+    color: #E91E63;
+}
+
+.modal--error-container.modal--success-container{
+    border: 2px solid #00CA4E;
+}
+
+.modal--error-container.modal--success-container > div > .modal-title{
+    color: #00CA4E;
+    font-weight: bold;
+}
+
+.modal--error-container.modal--success-container > div > button.close{
+    color: #00CA4E;
+}
+/** End Modal **/
