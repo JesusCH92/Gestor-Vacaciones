@@ -4,10 +4,22 @@
         <div class="form-group col-md-6 col-xl-4">
             <label for="init-date-request">Inicio de petición de vacaciones:</label>
             <input type="date" value="{{ calendar_config.initDate }}" id="init-date-request" name="init-date-request" class="form-control text-center" min="2019-01-01">
+            <span class="invalid-feedback error--calendar-span" id="init-date-request-error">
+                <span class="d-block">
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span> 
+                    <span class="form-error-message">Message.</span>
+                </span>
+            </span>
         </div>
         <div class="form-group col-md-6 col-xl-4">
             <label for="end-date-request">Fin de petición de vacaciones:</label>
             <input type="date" value="{{ calendar_config.endDate }}" id="end-date-request" name="end-date-request"class="form-control text-center" min="2019-01-01">
+            <span class="invalid-feedback error--calendar-span" id="end-date-request-error">
+                <span class="d-block">
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span> 
+                    <span class="form-error-message">Message.</span>
+                </span>
+            </span>
         </div>
         <div class="form-group col-md-10 col-xl-4">
             <label class="col-12" for="update-dayoff-request-btn">Guardar el rango de petición</label>
@@ -35,6 +47,12 @@
                     </button>
                 </div>
             </div>
+            <span class="invalid-feedback error--calendar-span px-3" id="holidays-number-error">
+                <span class="d-block">
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span> 
+                    <span class="form-error-message">Message.</span>
+                </span>
+            </span>
         </div>
 
         <div class="form-group col-md-6">
@@ -47,6 +65,12 @@
                     </button>
                 </div>
             </div>
+            <span class="invalid-feedback error--calendar-span px-3" id="personal-days-number-error">
+                <span class="d-block">
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span> 
+                    <span class="form-error-message">Message.</span>
+                </span>
+            </span>
         </div>
     </div>
 </div>
@@ -96,6 +120,12 @@
         <div class="form-group col-md-5">
             <label for="start">Selecciona los días festivos individualmente:</label>
             <input type="date" id="feastday-date" class="form-control text-center" min="2019-01-01">
+            <span class="invalid-feedback error--calendar-span" id="feastday-date-error">
+                <span class="d-block">
+                    <span class="form-error-icon badge badge-danger text-uppercase">Error</span> 
+                    <span class="form-error-message">Message.</span>
+                </span>
+            </span>
         </div>
 
         <div class="form-group col-md-5">
