@@ -31,6 +31,7 @@ var userFormController = ( function (id) {
             console.log($editUserCorpus);
             _userFormModel.updateRolUser({
                 userCorpus : $editUserCorpus,
+                callback : _errorModal.paintSuccessModal,
                 callbackError : _errorModal.paintErrorModal
             });
         });
