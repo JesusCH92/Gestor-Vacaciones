@@ -16,6 +16,7 @@ var dayOffFormController = (function(_calendarId){
     var $remainingDayPersonal = $(".remaining-day-personal");
     var $typeDayOffFormSelect = $("#type-day-off-form-select");
     var message;
+
     var _dayOffFormRenderTemplate= dayOffFormRenderTemplate();
     var _errorModal = errorModal();
 
@@ -36,7 +37,6 @@ var dayOffFormController = (function(_calendarId){
 
 
         $dateRangeSelected.change(function() {
-
             if ("" === $initRange.val() || "" === $endRange.val()){
                 return;
             }
@@ -49,24 +49,25 @@ var dayOffFormController = (function(_calendarId){
                 _errorModal.paintErrorModal({message_error : message});
                 return;
             }
+
             if ($initRange.val() < $initDateDayOff.html() || $endRange.val() > $endDateDayOff.html() || $endRange.val()<$initRange.val()){
                 console.log("La fecha seleccionada es incorrecta");
                 message = 'La fecha seleccionada es incorrecta';
                 _errorModal.paintErrorModal({message_error : message});
             }
+
             $feastDays=JSON.parse($feastDaysCalendarCollection.val());
 
             $arrayDatesRange = getDatesInRange($initRange.val(),$endRange.val());
+
             for (let i=0;i<$arrayDatesRange.length;i++){
                 callprintDatesSelected($arrayDatesRange[i]);
             }
-
-
         });
 
         $saveDayOffForm.click( function() {
             var $datesSelectedArray = getDatesSelected();
-            var $typeDayOff = $("#type-day-off-form-select").children("option:selected").val();
+            var $typeDayOff = $("#type-day-off-form-select").val();
 
             if ($datesSelectedArray.length===0){
                 console.log("No hay días seleccionados");
@@ -88,13 +89,16 @@ var dayOffFormController = (function(_calendarId){
                 return;
             }
             var _dayoffFormConfigModel = dayOffFormConfigModel();
+
             _dayoffFormConfigModel.saveDayOffFormRequest({
                 day_off_request : {
                     id_calendar : $calendarId,
                     days_off : JSON.stringify($datesSelectedArray),
                     type_of_day : $typeDayOff
                 },
-                callbackError : _errorModal.paintErrorModal
+                callback : _dayOffFormRenderTemplate.resetDayOffRequestForm,
+                callbackError : _errorModal.paintErrorModal,
+                successModal : _errorModal.paintSuccessModal
             });
 
         });
@@ -125,6 +129,7 @@ var dayOffFormController = (function(_calendarId){
         var dateArray = [];
         var currentDate = new Date(startDate);
         var endDate = new Date(stopDate);
+
         while (currentDate <= endDate) {
             var month = parseInt(currentDate.getMonth())+1;
             var day = currentDate.getDate();
@@ -136,14 +141,15 @@ var dayOffFormController = (function(_calendarId){
             }
             dateArray.push( currentDate.getFullYear()+"-"+month +"-"+day );
             currentDate.setDate(currentDate.getDate() + 1);
-
         }
+
         return dateArray;
     };
 
     var getDatesSelected = function () {
         var dateArray = [];
         $listDatesSelected = $datesSelectedCalendar.find("li");
+
         for (let i=0; i<$listDatesSelected.length;i++){
             dateArray.push( $listDatesSelected[i].innerText );
         }
