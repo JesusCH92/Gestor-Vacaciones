@@ -8,9 +8,9 @@
                     {% for user in user_collection %}
                         <a href="#" class="list-group-item list-group-item-action list-group-item-light user--item" id="{{ user.userId }}">{{ user.userNameAndLastName }}</a>
                     {% else %}
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+                        <p class="list-group-item list-group-item-action list-group-item-light">
                             <em>Ningún usuario encontrado</em>
-                        </a>
+                        </p>
                     {% endfor %}
                 </div>
         </div>{# ! Fin listado de los usuarios buscados #}
