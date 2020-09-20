@@ -144,7 +144,7 @@ var calendarConfigController = (function(_calendarId){
         });
 
         $feastdayInCalendarContainer.click(function() {
-            if ( !$(event.target).hasClass('feastday-delete-btn') ) {
+            if ( !$(event.target).hasClass('feastday--delete') ) {
                 return;
             }
             var $feastdayItemToDelete = $(event.target).closest("li.feastday-item-calendar");
