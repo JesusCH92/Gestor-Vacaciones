@@ -21,7 +21,7 @@ var dayOffFormRenderTemplate = ( function () {
         var countDaysSelected = $countDaysSelected.html();
         var countdays =countDaysSelected.split(":");
         var count =parseInt(countdays[1])+1;
-        $countDaysSelected.html("Días seleccionados:"+ count);
+        $countDaysSelected.html("Días seleccionados: "+ count);
     };
 
     var resetDayOffRequestForm = function ({ dayoff_type, dayoff_count }) {
