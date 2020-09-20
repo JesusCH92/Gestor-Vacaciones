@@ -132,6 +132,10 @@ Ventana Revistar dias de vacaciones por usuario
 .title-days-selected{
     margin: 4% 8% 0 8%;
 }
+
+.dates-selected-calendar:empty::before{
+    content: 'No hay ningún día seleccionado'
+}
 /** Fin de la Ventana formulario de las solicitudes de vacaciones**/
 
 /**Ventana Espacio de trabajo **/
