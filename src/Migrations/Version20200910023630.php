@@ -23,9 +23,9 @@ final class Version20200910023630 extends AbstractMigration
         $this->addSql("INSERT INTO `company` VALUES (1,'MPWAR')");  // ! Company Default Values
         $this->addSql("INSERT INTO `department` VALUES (1,1,'Trabajo Final de Master','TFM')");     // ! Department in Company
         // ! create config by calendars 2019 and 2020
-        $this->addSql("INSERT INTO `calendar` VALUES ('1a2edc8e-8b1c-4769-81ae-2a53d148b7d8',1,'2019-01-01','2020-01-25','[\"2\", \"3\", \"4\", \"5\"]',2019),('3bef8293-9dfb-4648-8fe7-373185240766',1,'2020-01-01','2021-01-31','[\"1\", \"2\", \"4\", \"5\"]',2020)");
+        $this->addSql("INSERT INTO `calendar` VALUES ('1a2edc8e-8b1c-4769-81ae-2a53d148b7d8',1,'2019-01-01','2020-01-25','[\"1\", \"2\", \"3\", \"4\", \"5\"]',2019),('3bef8293-9dfb-4648-8fe7-373185240766',1,'2020-01-01','2021-01-31','[\"1\", \"2\", \"3\", \"4\", \"5\"]',2020)");
         // ! create day off by calendar 2019 and 2020
-        $this->addSql("INSERT INTO `type_day_off` VALUES (1,'3bef8293-9dfb-4648-8fe7-373185240766','Holiday',20),(2,'3bef8293-9dfb-4648-8fe7-373185240766','Personal',20),(3,'1a2edc8e-8b1c-4769-81ae-2a53d148b7d8','Holiday',10),(4,'1a2edc8e-8b1c-4769-81ae-2a53d148b7d8','Personal',10)");
+        $this->addSql("INSERT INTO `type_day_off` VALUES (1,'3bef8293-9dfb-4648-8fe7-373185240766','Holiday',20),(2,'3bef8293-9dfb-4648-8fe7-373185240766','Personal',2),(3,'1a2edc8e-8b1c-4769-81ae-2a53d148b7d8','Holiday',20),(4,'1a2edc8e-8b1c-4769-81ae-2a53d148b7d8','Personal',2)");
         $this->addSql(
             <<<SQL
 INSERT INTO `user`
