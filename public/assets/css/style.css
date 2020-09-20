@@ -333,9 +333,6 @@ Ventana Revistar dias de vacaciones por usuario
     height: 560px;
 }
 
-/* ! Calendar : refactor names id and class */
-
-/* ! Calendario del carousel: refactor */
 .calendar-month{
     text-align: center;
 }
@@ -526,3 +523,10 @@ Ventana Revistar dias de vacaciones por usuario
     color: #4f97e3;
 }
 /** End Modal **/
+
+/** Company Management **/
+#department--container{
+    max-height: 400px;
+    overflow-y: auto;
+}
+/** End Company Management **/
