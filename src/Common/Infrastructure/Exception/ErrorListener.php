@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ErrorListener
 {
@@ -16,9 +18,13 @@ class ErrorListener
         // You get the exception object from the received event
         $exception = $event->getThrowable();
 
+        if ($exception instanceof AccessDeniedHttpException) {
+            throw new NotFoundHttpException();  // ! Replace 403 code for 404, not reveal information
+        }
+
         // HttpExceptionInterface is a special type of exception that
         // holds status code and header details
-        if ($exception instanceof HttpExceptionInterface) {
+        elseif ($exception instanceof HttpExceptionInterface) {
             $request = $event->getRequest();
             $format  = $request->attributes->get('_format');
 
