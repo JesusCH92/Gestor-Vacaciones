@@ -10,6 +10,10 @@
                     <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center list-group-item-light user-in-dayOff-filtered" userId="{{ user.userId }}">{{ user.userName }} {{ user.lastName }}</button>
                     {% set usersUniqueFilterResult = usersUniqueFilterResult|merge([user.userId]) %}
                 {% endif %}
+            {% else %}
+            <button type="button" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center list-group-item-light">
+                <em>No se han encontrado resultados</em>
+            </button>
             {% endfor %}
         </div>
     </div>
