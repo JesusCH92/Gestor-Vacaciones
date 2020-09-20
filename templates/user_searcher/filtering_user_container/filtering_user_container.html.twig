@@ -4,15 +4,19 @@
 
         <div class="col-xl-4 col-md-3 col-12">{# ! listado de los usuarios buscados #}
             <h5 class="col-12">Listado de empleados</h5>
-                <div class="list-group">
+                <div class="list-group" id="user-list--container">
                     {% for user in user_collection %}
                         <a href="#" class="list-group-item list-group-item-action list-group-item-light user--item" id="{{ user.userId }}">{{ user.userNameAndLastName }}</a>
+                    {% else %}
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">
+                            <em>Ningún usuario encontrado</em>
+                        </a>
                     {% endfor %}
                 </div>
         </div>{# ! Fin listado de los usuarios buscados #}
 
         <div class="col-xl-8 col-md-9 col-12" id="container--user-form">{# ! formulario del usuario del listado #}
-            {# <h5 class="col-12">Datos del empleado</h5> #}
+            
         </div>{# ! Fin formulario del usuario del listado #}
 
     </div>
