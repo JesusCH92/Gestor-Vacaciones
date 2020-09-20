@@ -14,7 +14,7 @@ var dayOffFormRenderTemplate = ( function () {
 
     var printDates = function ( {date} ) {
         var dateList =   document.createElement("li");
-        dateList.className = "list-group-item date-selected";
+        dateList.className = "list-group-item date-selected d-flex justify-content-center";
         dateList.innerText = date;
         $datesSelectedCalendar.append(dateList);
 
