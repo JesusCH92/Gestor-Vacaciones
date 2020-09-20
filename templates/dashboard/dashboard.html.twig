@@ -215,15 +215,16 @@
             </div>
             <div class="col-md-12 col-sm-12 col-lg-4">
                 <h5>Compañeros en día libre:</h5>
-                {% if users_dayoff is not empty %}
                 <div class="list-group">
                     {% for user in users_dayoff %}
                     <p class="list-group-item list-group-item list-group-item-light mb-0 user-on-dayoff{% if user.typeDayOff == 'Work_off' %} workoff {% elseif user.typeDayOff == 'Holiday' %} holiday {% else %} personal {% endif %}">{{ user.name }} {{ user.lastname }}</p>
+                    {% else %}
+                    <p class="list-group-item list-group-item list-group-item-light mb-0 user-on-dayoff">
+                        <em>Ningún compañero está de vacaciones</em>
+                    </p>
                     {% endfor %}
                 </div>
-                {% endif %}
-                
-                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
