@@ -103,7 +103,7 @@
     <h5 class="font-weight-bold">Editar los días festivos del año laboral</h5>
     <label>Listado de los días festivos:</label>
     <div class="form-row d-flex justify-content-center">
-        <div class="card-body contenedor-dias-vacaciones-seleccionados col-12 col-md-8 col-xl-5">
+        <div class="card-body feastday--container col-12 col-md-8 col-xl-5">
             <ul class="list-group" id="feastday-selected-container">
                 {# ! Aquí se añaden los días festivos seleccionados #}
                 {% for feastday in calendar_config.feastdayCollection %}
@@ -130,7 +130,7 @@
 
         <div class="form-group col-md-5">
             <label>Días festivos seleccionados:</label>
-            <div class="card-body contenedor-dias-vacaciones-seleccionados">
+            <div class="card-body feastday--container">
                 <ul class="list-group" id="feastday-list-container">
                     {# ! Aquí se añade los días festivos seleccionados #}
                 </ul>
