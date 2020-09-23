@@ -1,11 +1,11 @@
-{# {% set workingDays = ['1','2','3','4','5'] %} #}
 <div class="form-group">
     <h5>Seleccionar fechas para solicitar vacaciones</h5>
     <div class="container-carousel-of-dates  d-flex justify-content-center align-items-center">
         <div id="carouselControls" class="carousel slide workspace-calendar" data-interval="false">
             <div class="carousel-inner" id="datesCarousel">
                 {% for month in calendar_info %}
-                    <div class="carousel-item {% if month.month== "now"|date("m") %} active {% endif %}">
+                
+                    <div class="carousel-item {% if month.month== "now"|date("m") and month.year == "now"|date("Y") %} active {% endif %}">
                         <div class="container calendar-month">
                             <div class="row">
 
