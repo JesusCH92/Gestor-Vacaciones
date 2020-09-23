@@ -15,12 +15,15 @@ var dayOffFormController = (function(_calendarId){
     var $remainingDayHoliday = $(".remaining-day-holiday");
     var $remainingDayPersonal = $(".remaining-day-personal");
     var $typeDayOffFormSelect = $("#type-day-off-form-select");
+    var $calendarCarousel = $("#datesCarousel");
     var message;
 
     var _dayOffFormRenderTemplate= dayOffFormRenderTemplate();
     var _errorModal = errorModal();
 
     var initEventDayOffConfig = function() {
+
+        _dayOffFormRenderTemplate.addActiveToCarousel($calendarCarousel); // ! Add active class for render calendar carousel
 
         $datesInCalendar.click( function() {
             var $dayOfMonth = $(this).attr("date");
