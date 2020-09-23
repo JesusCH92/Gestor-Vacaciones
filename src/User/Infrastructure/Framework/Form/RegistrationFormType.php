@@ -46,7 +46,7 @@ class RegistrationFormType extends AbstractType
                 'class' => Company::class,
             ])
             ->add('roles', ChoiceType::class, [
-                'choices'  => ['User' => 'ROLE_USER', 'Supervisor' => 'ROLE_SUPERVISOR'],
+                'choices'  => ['Empleado' => 'ROLE_USER', 'Supervisor' => 'ROLE_SUPERVISOR'],
             ])
         ;
     }
