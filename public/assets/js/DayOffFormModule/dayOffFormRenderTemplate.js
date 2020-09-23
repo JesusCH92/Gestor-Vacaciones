@@ -38,9 +38,17 @@ var dayOffFormRenderTemplate = ( function () {
         $($remainingDayInputClassTag + dayoff_type).text($remainingDayTotal);
     };
 
+    var addActiveToCarousel = function ( carouselId ) {
+        if (carouselId.find('.active').length !== 0) {
+            return;
+        }
+        $($('.carousel-item ')[0]).addClass('active');
+    };
+
     return {
         paintDayOffConfig : paintDayOffConfig,
         printDates : printDates,
-        resetDayOffRequestForm : resetDayOffRequestForm
+        resetDayOffRequestForm : resetDayOffRequestForm,
+        addActiveToCarousel : addActiveToCarousel
     }
 });
