@@ -5,17 +5,12 @@
 {% block stylesheets %} {{ parent() }} {% endblock %}
 
 {% block main_dashboard %}
-    {% if app.user %}
-        <div>
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
     <div class="wrapper login-form-container">
         <div id="formContent">
-        <!-- Login Form -->
+        {# ! Login Form #}
         <form method="POST">
             <h2 class="h2-login">Login</h2>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" placeholder="email" class="form-control login" required autofocus>
