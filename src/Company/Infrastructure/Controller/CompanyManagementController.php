@@ -10,7 +10,6 @@ use App\Company\ApplicationService\GetAllDepartmentsByAdmin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class CompanyManagementController extends AbstractController
@@ -45,7 +44,7 @@ final class CompanyManagementController extends AbstractController
     public function addDepartment(Request $request)
     {
         if(!$request->isXmlHttpRequest()){
-            return new Response('not ajax', 404);
+            throw $this->createNotFoundException();
         }
 
         $department = $request->get('department');

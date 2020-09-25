@@ -15,7 +15,6 @@ use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class FilterDayOffByDepartmentByName extends AbstractController
@@ -43,7 +42,7 @@ final class FilterDayOffByDepartmentByName extends AbstractController
     public function findUserInDayOff(Request $request)
     {
         if (!$request->isXmlHttpRequest()) {
-            return new Response('not ajax', 404);
+            throw $this->createNotFoundException();
         }
 
         $request = $request->get('filterEmployeesCorpus');
