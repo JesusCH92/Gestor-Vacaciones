@@ -23,22 +23,12 @@ final class EditCompanyManagementController extends AbstractController
      */
     public function index($id, Request $request)
     {
-        // return $this->render('edit_company/index.html.twig', [
-        //     'controller_name' => 'EditCompanyController',
-        // ]);
-
         $adminUser = $this->getUser();
 
         $company = $request->get('company');
 
         $companyRename = $company['name'];
         $companyId = $company['id'];
-
-        var_dump($id);
-        // var_dump( $company );
-
-        var_dump( $companyRename );
-        var_dump( $companyId );
 
         $companyRequest = new CompanyRequest(
             $companyRename,
@@ -51,6 +41,6 @@ final class EditCompanyManagementController extends AbstractController
         $updateCompanyService->__invoke($companyRequest);
 
 
-        return Response::create('???');
+        return Response::create('Edit company name');
     }
 }
