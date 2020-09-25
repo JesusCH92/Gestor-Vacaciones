@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\Department\Infrastructure\Controller;
 
 use App\Department\ApplicationService\DepartmentNameUpdater;
 use App\Department\ApplicationService\DTO\DepartmentNameRequest;
