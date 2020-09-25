@@ -10,6 +10,15 @@ app_add_department:
 app_edit_company_management:
     path: /company/management/edit/{id}
     controller: App\Company\Infrastructure\Controller\EditCompanyManagementController::index
+
+# * Department Module
+app_department_name_update:
+    path: /company/management/edit/department/name
+    controller: App\Department\Infrastructure\Controller\DepartmentNameUpdaterController::departmentNameUpdate
+
+app_department_code_update:
+    path: /company/management/edit/department/code
+    controller: App\Department\Infrastructure\Controller\DepartmentCodeUpdaterController::departmentCodeUpdate
     
 # * Calendar Module
 app_calendar_config_by_id:
