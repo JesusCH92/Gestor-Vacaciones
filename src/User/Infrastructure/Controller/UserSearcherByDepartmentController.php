@@ -2,14 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\User\Infrastructure\Controller;
 
 use App\User\ApplicationService\DTO\UserByDepartmentRequest;
 use App\User\ApplicationService\GetUserByDepartment;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class UserSearcherByDepartmentController extends AbstractController
@@ -37,14 +36,11 @@ final class UserSearcherByDepartmentController extends AbstractController
                 $department
             )
         );
-        
-        // dump($usersCollection);
 
         $userCollectionTemplate = $this->render('user_searcher/filtering_user_container/filtering_user_container.html.twig', [
             'user_collection' => $usersCollection,
         ])->getContent();
 
-        // return Response::create('user list searched');
         return new JsonResponse([
             'user_collection_template' => $userCollectionTemplate
         ]);

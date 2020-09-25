@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\User\Infrastructure\Controller;
 
 use App\User\ApplicationService\DTO\UserByIdRequest;
 use App\User\ApplicationService\UserDeleter;

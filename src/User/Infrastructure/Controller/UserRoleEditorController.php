@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\User\Infrastructure\Controller;
 
 use App\User\ApplicationService\DTO\UserRoleRequest;
 use App\User\ApplicationService\UserRoleEditor;

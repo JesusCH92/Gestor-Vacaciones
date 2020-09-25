@@ -2,14 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\User\Infrastructure\Controller;
 
 use App\User\ApplicationService\DTO\UserByIdRequest;
 use App\User\ApplicationService\DTO\UserByIdResponse;
 use App\User\ApplicationService\FindUserById;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class UserSearcherByIdController extends AbstractController
@@ -42,16 +41,11 @@ final class UserSearcherByIdController extends AbstractController
             $user->getDepartment()->departmentName(),
             $user->roles()->roles()[0]
         );
-        
-        // dump($userResponse);
-
-        // dump($user->roles()->roles()[0]);
 
         $userFormTemplate = $this->render('user_management/edit_user_form.html.twig', [
             'user_info' => $userResponse,
         ])->getContent();
 
-        // return Response::create('user list searched');
         return new JsonResponse([
             'user_form_template' => $userFormTemplate
         ]);
