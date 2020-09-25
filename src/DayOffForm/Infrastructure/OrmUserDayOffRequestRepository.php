@@ -43,7 +43,7 @@ final class OrmUserDayOffRequestRepository implements UserDayOffRequestRepositor
                 'user' => $user,
                 'statusDayOffForm.statusDayOffForm' => 'Pending'
             ],
-            ['createdAt' => 'ASC']);
+                ['createdAt' => 'ASC']);
 
             foreach ($dayOffFormCollection as $dayOffForm) {
                 $userByPendingStatus = ['user' => $user, 'day_off_form' => $dayOffForm];

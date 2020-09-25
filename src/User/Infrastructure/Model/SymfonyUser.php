@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Infrastructure\Model;
 
 use App\User\Domain\User;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -21,7 +21,7 @@ class SymfonyUser extends User implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -41,7 +41,7 @@ class SymfonyUser extends User implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     /**

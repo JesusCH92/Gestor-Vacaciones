@@ -2,14 +2,13 @@
 
 namespace App\User\Domain;
 
-use Ramsey\Uuid\Doctrine\UuidGenerator;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-// use Symfony\Component\Security\Core\User\UserInterface;
-use App\Entity\Department;
 use App\Entity\Company;
+use App\Entity\Department;
 use App\User\Domain\ValueObject\Roles;
+use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Nonstandard\Uuid;
+
+// use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\MappedSuperclass
@@ -65,8 +64,16 @@ class User
      */
     protected $company;
 
-    public function __construct(string $email, string $name, string $lastname, string $phone, Roles $roles, string $password, Department $department, Company $company)
-    {
+    public function __construct(
+        string $email,
+        string $name,
+        string $lastname,
+        string $phone,
+        Roles $roles,
+        string $password,
+        Department $department,
+        Company $company
+    ) {
         $this->userId = Uuid::uuid4();
         $this->email = $email;
         $this->name = $name;

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\ApplicationService;
 
@@ -21,12 +21,17 @@ final class UserDeleter
     private DayOffFormDeleter $dayOffFormDeleter;
     private DayOffFormRequestDeleter $dayOffFormRequestDeleter;
 
-    public function __construct(FindUserById $findUserById, UserDeleteRepository $userDeleteRepository, GetAllFormRequestByUser $getAllFormRequestByUser, DayOffFormDeleter $dayOffFormDeleter, DayOffFormRequestDeleter $dayOffFormRequestDeleter)
-    {
+    public function __construct(
+        FindUserById $findUserById,
+        UserDeleteRepository $userDeleteRepository,
+        GetAllFormRequestByUser $getAllFormRequestByUser,
+        DayOffFormDeleter $dayOffFormDeleter,
+        DayOffFormRequestDeleter $dayOffFormRequestDeleter
+    ) {
         $this->findUserById = $findUserById;
         $this->userDeleteRepository = $userDeleteRepository;
         $this->getAllFormRequestByUser = $getAllFormRequestByUser;
-        $this->dayOffFormDeleter =$dayOffFormDeleter;
+        $this->dayOffFormDeleter = $dayOffFormDeleter;
         $this->dayOffFormRequestDeleter = $dayOffFormRequestDeleter;
     }
 

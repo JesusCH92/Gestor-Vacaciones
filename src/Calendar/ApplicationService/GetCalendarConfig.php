@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService;
 
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
+use App\Calendar\ApplicationService\DTO\CalendarConfigResponse;
 use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
 use App\Calendar\Domain\CalendarConfigRepository;
-use App\Calendar\ApplicationService\DTO\CalendarConfigResponse;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
 final class GetCalendarConfig
@@ -24,13 +24,13 @@ final class GetCalendarConfig
         if (!Uuid::isValid($calendarConfigRequest->calendarId())) {
             throw new CalendarNotFoundException();
         }
-        
+
         $calendarEntity = $this->calendarConfigRepository->getCalendarByCalendarId($calendarConfigRequest);
 
         if (null === $calendarEntity) {
             throw new CalendarNotFoundException();
         }
-        
+
         $initDateRequest = $calendarEntity->dayOffConfig()->initDateDayOffRequest()->format('Y-m-d');
         $endDateRequest = $calendarEntity->dayOffConfig()->endDateDayOffRequest()->format('Y-m-d');
         $workDays = $calendarEntity->workDays()->workDays();
@@ -58,8 +58,8 @@ final class GetCalendarConfig
     {
         $feastdayCollection = [];
 
-        foreach($feastdayEntities as $feasday){
-            array_push($feastdayCollection, 
+        foreach ($feastdayEntities as $feasday) {
+            array_push($feastdayCollection,
                 $feasday->feastdayDate()->feastdayDate()->format('Y-m-d')
             );
         }
@@ -71,7 +71,7 @@ final class GetCalendarConfig
     {
         $typeDayOffCollection = [];
 
-        foreach($typeDayOffEntities as $typeDayOff){
+        foreach ($typeDayOffEntities as $typeDayOff) {
             $dayOff = $typeDayOff->typeDayOff();
             $countDayOff = $typeDayOff->countDayOff()->countDayOff();
 

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Infrastructure\Persistence;
 
@@ -23,7 +23,6 @@ final class OrmUserRepository implements UserRepository, UserByDepartmentReposit
     }
 
     public function findUserByEmail(string $email): ?User
-
     {
         $userRepository = $this->entityManager->getRepository(SymfonyUser::class);
         $user = $userRepository->findBy(
@@ -54,9 +53,8 @@ final class OrmUserRepository implements UserRepository, UserByDepartmentReposit
             ->andWhere('su.userId <> :adminId')
             ->setParameter('department', $departmentId)
             ->setParameter('username', "%$userName%")
-            ->setParameter('adminId', Constants::ADMIN_ID)
-            ;
-            
+            ->setParameter('adminId', Constants::ADMIN_ID);
+
         return $qb->getQuery()->getResult();
     }
 

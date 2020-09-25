@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Infrastructure;
 
-use App\Calendar\Domain\CalendarConfigRepository;
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
+use App\Calendar\Domain\CalendarConfigRepository;
 use App\Entity\Calendar;
 use App\Entity\FeastDay;
 use App\Entity\TypeDayOff;
@@ -14,11 +14,12 @@ use Doctrine\ORM\EntityManagerInterface;
 final class OrmCalendarConfigRepository implements CalendarConfigRepository
 {
     private EntityManagerInterface $entityManager;
-    
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
+
     public function getCalendarByCalendarId(CalendarConfigRequest $calendarConfigRequest): Calendar
     {
         $calendarId = $calendarConfigRequest->calendarId();
@@ -34,7 +35,7 @@ final class OrmCalendarConfigRepository implements CalendarConfigRepository
     public function getFeastdayByCalendarId(CalendarConfigRequest $calendarConfigRequest): array
     {
         $calendarId = $calendarConfigRequest->calendarId();
-        
+
         $feastdayRepository = $this->entityManager->getRepository(FeastDay::class);
         $feastdayEntities = $feastdayRepository->findBy(
             [
@@ -48,7 +49,7 @@ final class OrmCalendarConfigRepository implements CalendarConfigRepository
     public function getTypeDayOffByCalendarId(CalendarConfigRequest $calendarConfigRequest): array
     {
         $calendarId = $calendarConfigRequest->calendarId();
-        
+
         $typeDayOffRepository = $this->entityManager->getRepository(TypeDayOff::class);
         $typeDayOffEntities = $typeDayOffRepository->findBy(
             [

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Infrastructure\Controller;
 
@@ -26,8 +26,8 @@ final class UserDeleterController extends AbstractController
     {
 
         $userDeleter = $this->userDeleter;
-        $userDeleter->__invoke( new UserByIdRequest($id) );
-        
+        $userDeleter->__invoke(new UserByIdRequest($id));
+
         return Response::create("user delete");
     }
 }

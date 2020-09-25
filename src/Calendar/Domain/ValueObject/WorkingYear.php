@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Domain\ValueObject;
 
@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 final class WorkingYear
 {
-    /** 
+    /**
      * @ORM\Column(type="integer", name="working_year", unique=true)
      */
     private int $workingYear;
@@ -21,11 +21,6 @@ final class WorkingYear
     {
         $this->guardIsValidYear($workingYear);
         $this->workingYear = $workingYear;
-    }
-
-    public function workingYear(): int
-    {
-        return $this->workingYear;
     }
 
     public function guardIsValidYear(int $year): void
@@ -38,5 +33,10 @@ final class WorkingYear
     public function isValidYearForGreaterThanOrEqualTwentyNineteen(int $year): bool
     {
         return 2019 > $year;
+    }
+
+    public function workingYear(): int
+    {
+        return $this->workingYear;
     }
 }

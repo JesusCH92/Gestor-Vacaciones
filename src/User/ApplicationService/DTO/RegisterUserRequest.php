@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\ApplicationService\DTO;
 
@@ -18,8 +18,16 @@ final class RegisterUserRequest
     private Company $company;
     private string $roles;
 
-    public function __construct(string $name, string $lastName, string $phone, string $email, string $password, Department $deparment, Company $company, string $roles)
-    {
+    public function __construct(
+        string $name,
+        string $lastName,
+        string $phone,
+        string $email,
+        string $password,
+        Department $deparment,
+        Company $company,
+        string $roles
+    ) {
         $this->name = $name;
         $this->lastName = $lastName;
         $this->phone = $phone;

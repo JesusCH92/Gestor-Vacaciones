@@ -38,6 +38,38 @@ final class OrmUsersInDayOffFormRepository implements UsersInDayOffFormRepositor
         return $userInDayOffFilteredCollection;
     }
 
+    public function findDayOffFormRequestByCalendarUserId(Calendar $calendar, string $userId): array
+    {
+        $qb = $this->entityManager->createQueryBuilder();
+
+        $qb
+            ->select('u.userId', 'u.email', 'u.name', 'u.lastname', 'dof.codeDayOffForm',
+                'dor.dayOffSelected.dayOffSelected')
+            ->from('App\User\Infrastructure\Model\SymfonyUser', 'u')
+            ->leftJoin(
+                'App\Entity\DayOffForm',
+                'dof',
+                Join::WITH,
+                'u.userId = dof.user'
+            )
+            ->leftJoin('App\Entity\DayOffFormRequest',
+                'dor',
+                Join::WITH,
+                'dof = dor.dayOffForm'
+            )
+            ->where('
+            u.userId = :userId
+            and dof.calendar = :calendar 
+            and dof.typeDayOff = :typeDayOff and dof.statusDayOffForm.statusDayOffForm = :statusDayOffForm
+            ')
+            ->setParameter('calendar', $calendar)
+            ->setParameter('typeDayOff', DayOff::HOLIDAY)
+            ->setParameter('statusDayOffForm', StatusDayOffForm::APPROVED)
+            ->setParameter('userId', $userId);
+
+        return $qb->getQuery()->getResult();
+    }
+
     private function usersInDayOffByNameInDepartmentFiltered(Calendar $calendar, string $userName, int $departmentId)
     {
         $qb = $this->entityManager->createQueryBuilder();
@@ -100,39 +132,6 @@ final class OrmUsersInDayOffFormRepository implements UsersInDayOffFormRepositor
             ->setParameter('typeDayOff', DayOff::HOLIDAY)
             ->setParameter('statusDayOffForm', StatusDayOffForm::APPROVED)
             ->setParameter('userName', "%$userName%");
-
-        return $qb->getQuery()->getResult();
-    }
-
-
-    public function findDayOffFormRequestByCalendarUserId(Calendar $calendar, string $userId): array
-    {
-        $qb = $this->entityManager->createQueryBuilder();
-
-        $qb
-            ->select('u.userId', 'u.email', 'u.name', 'u.lastname', 'dof.codeDayOffForm',
-                'dor.dayOffSelected.dayOffSelected')
-            ->from('App\User\Infrastructure\Model\SymfonyUser', 'u')
-            ->leftJoin(
-                'App\Entity\DayOffForm',
-                'dof',
-                Join::WITH,
-                'u.userId = dof.user'
-            )
-            ->leftJoin('App\Entity\DayOffFormRequest',
-                'dor',
-                Join::WITH,
-                'dof = dor.dayOffForm'
-            )
-            ->where('
-            u.userId = :userId
-            and dof.calendar = :calendar 
-            and dof.typeDayOff = :typeDayOff and dof.statusDayOffForm.statusDayOffForm = :statusDayOffForm
-            ')
-            ->setParameter('calendar', $calendar)
-            ->setParameter('typeDayOff', DayOff::HOLIDAY)
-            ->setParameter('statusDayOffForm', StatusDayOffForm::APPROVED)
-            ->setParameter('userId', $userId);
 
         return $qb->getQuery()->getResult();
     }

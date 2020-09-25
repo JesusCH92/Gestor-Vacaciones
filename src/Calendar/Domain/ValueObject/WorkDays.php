@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Domain\ValueObject;
 
@@ -29,7 +29,7 @@ final class WorkDays
         self::SATURDAY,
         self::SUNDAY
     ];
-    
+
     /**
      * @ORM\Column(type="json", name="work_days")
      */
@@ -42,7 +42,7 @@ final class WorkDays
 
     public function setWorkDays(array $workDays)
     {
-        foreach($workDays as $day) {
+        foreach ($workDays as $day) {
             if (!in_array($day, static::$allowedValues, true)) {
                 throw new InvalidWorkDayException($day);
             }

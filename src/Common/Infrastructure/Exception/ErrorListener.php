@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Common\Infrastructure\Exception;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class ErrorListener
@@ -26,7 +26,7 @@ class ErrorListener
         // holds status code and header details
         elseif ($exception instanceof HttpExceptionInterface) {
             $request = $event->getRequest();
-            $format  = $request->attributes->get('_format');
+            $format = $request->attributes->get('_format');
 
             if ('json' !== $format || 'v1' !== $request->attributes->get('version')) {
                 return;
@@ -39,7 +39,7 @@ class ErrorListener
             $response
                 ->setData(
                     [
-                        'error'   => $exception->getStatusCode(),
+                        'error' => $exception->getStatusCode(),
                         'message' => $exception->getMessage(),
                     ]
                 );

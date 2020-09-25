@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Feastday\ApplicationService;
 
@@ -29,7 +29,8 @@ final class FeastdayDeleter
         $feastdayDate = $feastdayRequest->feastdayDate();
 
         $feastdayDateValueObject = new FeastdayDate($feastdayDate);
-        $feastdayEntity = $this->feastdayDeleterRepository->findFeastday($calendarId, $feastdayDateValueObject->feastdayDate());
+        $feastdayEntity = $this->feastdayDeleterRepository->findFeastday($calendarId,
+            $feastdayDateValueObject->feastdayDate());
 
         if (null === $feastdayEntity) {
             throw new FeastdayNotFoundException();

@@ -1,10 +1,9 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Infrastructure;
 
-use App\Calendar\ApplicationService\DTO\CalendarRequest;
 use App\Calendar\Domain\CalendarRepository;
 use App\Entity\Calendar;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 final class OrmCalendarRepository implements CalendarRepository
 {
     private EntityManagerInterface $entityManager;
-    
+
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -31,6 +30,13 @@ final class OrmCalendarRepository implements CalendarRepository
         $calendarEntity = [] === $calendar ? null : $calendar[0];
 
         return $calendarEntity;
+    }
+
+    public function saveCalendarConfig(Calendar $calendar, array $typeDayOffCollection, array $feastdayCollection): void
+    {
+        $this->saveCalendar($calendar);
+        $this->saveTypeDayOffCollection($typeDayOffCollection);
+        $this->saveFeastdayCollection($feastdayCollection);
     }
 
     public function saveCalendar(Calendar $calendarEntity): void
@@ -53,13 +59,6 @@ final class OrmCalendarRepository implements CalendarRepository
             $this->entityManager->persist($feastdayEntity);
             $this->entityManager->flush();
         }
-    }
-
-    public function saveCalendarConfig(Calendar $calendar, array $typeDayOffCollection, array $feastdayCollection): void
-    {
-        $this->saveCalendar($calendar);
-        $this->saveTypeDayOffCollection($typeDayOffCollection);
-        $this->saveFeastdayCollection($feastdayCollection);
     }
 
 }

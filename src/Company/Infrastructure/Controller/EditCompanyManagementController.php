@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\Infrastructure\Controller;
 
 use App\Company\ApplicationService\DTO\CompanyRequest;

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Infrastructure;
 
@@ -40,7 +40,7 @@ final class OrmCalendarCrudRepository implements CalendarUpdaterRepository, Feas
         $feastdayRepository = $this->entityManager->getRepository(Feastday::class);
         $feastday = $feastdayRepository->findBy(
             [
-                'calendar'     => $calendarId,
+                'calendar' => $calendarId,
                 'feastdayDate.feastdayDate' => $feastdaydate
             ]
         );

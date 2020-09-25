@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\ApplicationService;
 
-use App\Company\Domain\DepartmentCrudRepository;
 use App\Company\ApplicationService\DTO\DepartmentRequest;
 use App\Company\ApplicationService\DTO\DepartmentResponse;
+use App\Company\Domain\DepartmentCrudRepository;
 
 final class CreateDepartment
 {

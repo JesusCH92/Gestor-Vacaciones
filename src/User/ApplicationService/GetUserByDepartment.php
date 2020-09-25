@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\ApplicationService;
 
@@ -32,12 +32,12 @@ final class GetUserByDepartment
         $userByDepartmentCollection = [];
 
         foreach ($userCollection as $user) {
-            array_push($userByDepartmentCollection, 
+            array_push($userByDepartmentCollection,
                 new UserByDepartmentResponse(
                     $user->name() . ' ' . $user->lastname(),
                     $user->userId()
-                    )
-                );
+                )
+            );
         }
         return $userByDepartmentCollection;
     }

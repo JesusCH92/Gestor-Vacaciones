@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Feastday\Domain;
 
@@ -10,5 +10,6 @@ use DateTimeImmutable;
 interface FeastdayDeleterRepository
 {
     public function findFeastday(string $calendarId, DateTimeImmutable $feastdaydate): ?FeastDay;
+
     public function deleteFeastday(FeastDay $feastdayEntity): void;
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService;
 
@@ -10,11 +10,11 @@ use App\Calendar\Domain\CalendarRepository;
 use App\Calendar\Domain\ValueObject\DayOffConfig;
 use App\Calendar\Domain\ValueObject\WorkDays;
 use App\Calendar\Domain\ValueObject\WorkingYear;
-use App\TypeDayOff\Domain\Constants\DayOff;
 use App\Entity\Calendar;
 use App\Entity\FeastDay;
 use App\Entity\TypeDayOff;
 use App\Feastday\Domain\ValueObject\FeastdayDate;
+use App\TypeDayOff\Domain\Constants\DayOff;
 use App\TypeDayOff\Domain\ValueObject\CountDayOff;
 
 final class CreateCalendarConfig
@@ -64,8 +64,10 @@ final class CreateCalendarConfig
         return $calendarEntity;
     }
 
-    public function mappingTypeDayOffFromCalendarRequest(Calendar $calendarEntity, CalendarRequest $calendarRequest): array
-    {
+    public function mappingTypeDayOffFromCalendarRequest(
+        Calendar $calendarEntity,
+        CalendarRequest $calendarRequest
+    ): array {
         $holidayTypeDayOffEntity = new TypeDayOff(
             DayOff::HOLIDAY,
             new CountDayOff(intval($calendarRequest->holidaysNumber())),
@@ -86,11 +88,13 @@ final class CreateCalendarConfig
         return $typeDayOffEntityCollection;
     }
 
-    public function mappingFeastDayFromCalendarRequest(Calendar $calendarEntity,CalendarRequest $calendarRequest): array
-    {
+    public function mappingFeastDayFromCalendarRequest(
+        Calendar $calendarEntity,
+        CalendarRequest $calendarRequest
+    ): array {
         $feastDayCollection = [];
 
-        foreach($calendarRequest->feastdayCollection() as $feastday){
+        foreach ($calendarRequest->feastdayCollection() as $feastday) {
 
             $feastdayDateEntity = new FeastdayDate($feastday);
 

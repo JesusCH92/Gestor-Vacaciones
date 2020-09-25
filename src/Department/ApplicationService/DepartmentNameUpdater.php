@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Department\ApplicationService;
 
@@ -13,8 +13,10 @@ final class DepartmentNameUpdater
     private FindDepartmentById $findDepartmentById;
     private DepartmentUpdateRepository $departmentUpdateRepository;
 
-    public function __construct(FindDepartmentById $findDepartmentById, DepartmentUpdateRepository $departmentUpdateRepository)
-    {
+    public function __construct(
+        FindDepartmentById $findDepartmentById,
+        DepartmentUpdateRepository $departmentUpdateRepository
+    ) {
         $this->findDepartmentById = $findDepartmentById;
         $this->departmentUpdateRepository = $departmentUpdateRepository;
     }

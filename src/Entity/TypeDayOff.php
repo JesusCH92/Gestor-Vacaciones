@@ -40,7 +40,7 @@ class TypeDayOff
         $this->countDayOff = $countDayOff;
         $this->calendar = $calendar;
     }
-    
+
     public function typeDayOffId(): int
     {
         return $this->typeDayOffId;

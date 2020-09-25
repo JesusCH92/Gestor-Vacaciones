@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Infrastructure\Controller;
 
-use App\Calendar\ApplicationService\WorkDaysUpdater;
 use App\Calendar\ApplicationService\DTO\WorkDaysRequest;
+use App\Calendar\ApplicationService\WorkDaysUpdater;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

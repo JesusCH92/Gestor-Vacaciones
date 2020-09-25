@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\TypeDayOff\ApplicationService;
 
@@ -32,7 +32,7 @@ final class TypeDayOffNumberUpdater
         if (null === $typeDayOffEntity) {
             throw new CalendarNotFoundException();
         }
-        
+
         $typeDayOffEntity->countDayOff()->setCountDayOff(
             intval($typeDayOffRequest->dayOffNumber())
         );

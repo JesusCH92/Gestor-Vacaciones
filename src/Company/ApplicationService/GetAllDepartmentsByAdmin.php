@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\ApplicationService;
 
-use App\Company\Domain\DepartmentRepository;
-use App\User\Domain\User;
 use App\Company\ApplicationService\DTO\DepartmentResponse;
 use App\Company\ApplicationService\DTO\DepartmentsInCompany;
+use App\Company\Domain\DepartmentRepository;
+use App\User\Domain\User;
 
 final class GetAllDepartmentsByAdmin
 {

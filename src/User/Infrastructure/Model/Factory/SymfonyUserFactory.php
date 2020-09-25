@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Infrastructure\Model\Factory;
 
@@ -20,9 +20,17 @@ final class SymfonyUserFactory implements UserFactory
     {
         $this->passwordEncoder = $passwordEncoder;
     }
-    
-    public function register(string $name, string $lastName, string $phone, string $email, string $password, Department $deparment, Company $company, Roles $roles): User
-    {
+
+    public function register(
+        string $name,
+        string $lastName,
+        string $phone,
+        string $email,
+        string $password,
+        Department $deparment,
+        Company $company,
+        Roles $roles
+    ): User {
         $user = new SymfonyUser($email, $name, $lastName, $phone, $roles, $password, $deparment, $company);
 
         $encodedPassword = $this->passwordEncoder->encodePassword(

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Department\ApplicationService;
 
@@ -17,6 +17,6 @@ final class FindDepartmentById
 
     public function __invoke(string $departmentId)
     {
-        return $this->departmentUpdateRepository->findDepartmentById( $departmentId );
+        return $this->departmentUpdateRepository->findDepartmentById($departmentId);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\ApplicationService\DTO;
 
 final class DepartmentResponse
@@ -17,19 +19,19 @@ final class DepartmentResponse
         $this->departmentCode = $departmentCode;
     }
 
-    public function departmentId() : int
+    public function departmentId(): int
     {
         return $this->departmentId;
     }
 
-    public function departmentName() : string
+    public function departmentName(): string
     {
         return $this->departmentName;
     }
 
-    public function departmentCode() : string
+    public function departmentCode(): string
     {
         return $this->departmentCode;
     }
-    
+
 }

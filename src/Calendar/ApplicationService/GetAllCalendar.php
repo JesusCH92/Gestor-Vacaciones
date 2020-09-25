@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService;
 
@@ -21,14 +21,14 @@ final class GetAllCalendar
     {
         $calendarCollection = $this->calendarByWorkingYearRepository->getAllCalendarByCompany($company);
         $calendarResponseCollection = $this->mappingCalendarEntitiesCollectionToCalendarByWorkingYearResponse($calendarCollection);
-        
+
         return $calendarResponseCollection;
     }
 
-    public function mappingCalendarEntitiesCollectionToCalendarByWorkingYearResponse(array $calendarEntitiesCollection): array
-    {
+    public function mappingCalendarEntitiesCollectionToCalendarByWorkingYearResponse(array $calendarEntitiesCollection
+    ): array {
         $calendarResponseCollection = [];
-        foreach($calendarEntitiesCollection as $calendarEntity){
+        foreach ($calendarEntitiesCollection as $calendarEntity) {
             $calendarResponse = new CalendarByWorkingYearResponse(
                 $calendarEntity->calendarId(),
                 $calendarEntity->workingYear()->workingYear()

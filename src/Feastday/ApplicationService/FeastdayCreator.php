@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Feastday\ApplicationService;
 
@@ -39,7 +39,7 @@ final class FeastdayCreator
             throw new FeastdayAlreadyExistsException($feastdayDate);
         }
 
-        
+
         $feastdayEntity = new FeastDay(
             $feastdayDateValueObject,
             $calendarEntity

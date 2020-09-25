@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Infrastructure;
 
@@ -26,7 +26,7 @@ final class OrmCalendarByWorkingYearRepository implements CalendarByWorkingYearR
                 'company' => $company
             ]
         );
-        
+
         return $calendar;
     }
 }

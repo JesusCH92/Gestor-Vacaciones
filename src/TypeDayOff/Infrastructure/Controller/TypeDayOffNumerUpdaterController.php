@@ -1,15 +1,15 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\TypeDayOff\Infrastructure\Controller;
 
 use App\TypeDayOff\ApplicationService\DTO\TypeDayOffRequest;
+use App\TypeDayOff\ApplicationService\TypeDayOffNumberUpdater;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\TypeDayOff\ApplicationService\TypeDayOffNumberUpdater;
 
 final class TypeDayOffNumerUpdaterController extends AbstractController
 {

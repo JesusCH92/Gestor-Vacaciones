@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\ApplicationService;
 
@@ -26,6 +26,6 @@ final class FindUserById
             throw new UserNotFoundException($userId);
         }
 
-        return $this->userByIdRepository->findUserById( $userId );
+        return $this->userByIdRepository->findUserById($userId);
     }
 }

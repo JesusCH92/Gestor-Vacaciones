@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Infrastructure\Framework\Form\Model;
 
@@ -61,7 +61,7 @@ final class RegistrationFormModel
     {
         $this->email = $email;
     }
-    
+
     public function plainPassword(): ?string
     {
         return $this->plainPassword;

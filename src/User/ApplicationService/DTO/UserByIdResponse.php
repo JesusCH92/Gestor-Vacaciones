@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\ApplicationService\DTO;
 
@@ -14,8 +14,15 @@ final class UserByIdResponse
     private string $department;
     private string $userRole;
 
-    public function __construct(string $userName, string $userLastName, string $userEmail, string $userPhone, string $company, string $department, string $userRole)
-    {
+    public function __construct(
+        string $userName,
+        string $userLastName,
+        string $userEmail,
+        string $userPhone,
+        string $company,
+        string $department,
+        string $userRole
+    ) {
         $this->userName = $userName;
         $this->userLastName = $userLastName;
         $this->userEmail = $userEmail;
@@ -25,37 +32,37 @@ final class UserByIdResponse
         $this->userRole = $userRole;
     }
 
-    public function userName() : string
+    public function userName(): string
     {
         return $this->userName;
     }
 
-    public function userLastName() : string
+    public function userLastName(): string
     {
         return $this->userLastName;
     }
 
-    public function userEmail() : string
+    public function userEmail(): string
     {
         return $this->userEmail;
     }
-    
-    public function userPhone() : string
+
+    public function userPhone(): string
     {
         return $this->userPhone;
     }
 
-    public function company() : string
+    public function company(): string
     {
         return $this->company;
     }
 
-    public function department() : string
+    public function department(): string
     {
         return $this->department;
     }
 
-    public function userRole() : string
+    public function userRole(): string
     {
         return $this->userRole;
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\ApplicationService\DTO;
 
 use App\User\Domain\User;
@@ -19,17 +21,17 @@ final class CompanyRequest
         $this->user = $user;
     }
 
-    public function companyName() : string
+    public function companyName(): string
     {
         return $this->companyName;
     }
 
-    public function companyId() : string
+    public function companyId(): string
     {
         return $this->companyId;
     }
 
-    public function user() : User
+    public function user(): User
     {
         return $this->user;
     }

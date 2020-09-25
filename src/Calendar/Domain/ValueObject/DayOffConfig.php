@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Domain\ValueObject;
 
 use App\Calendar\Domain\Exception\InvalidDayOffRequestDates;
 use App\Calendar\Domain\Exception\InvalidWorkingYearException;
 use App\Feastday\Domain\Exception\InvalidDateException;
-use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Embeddable
@@ -30,14 +30,11 @@ final class DayOffConfig
         $this->setDayOffConfig($initDateDayOffRequest, $endDateDayOffRequest);
     }
 
-    public function initDateDayOffRequest(): DateTimeImmutable
+    public function setDayOffConfig(string $initDate, string $endDate): void
     {
-        return $this->initDateDayOffRequest;
-    }
-
-    public function endDateDayOffRequest(): DateTimeImmutable
-    {
-        return $this->endDateDayOffRequest;
+        $this->guardAreValidDayOffRequestDates($initDate, $endDate);
+        $this->initDateDayOffRequest = new DateTimeImmutable($initDate);
+        $this->endDateDayOffRequest = new DateTimeImmutable($endDate);
     }
 
     public function guardAreValidDayOffRequestDates($initDate, $endDate): void
@@ -63,11 +60,6 @@ final class DayOffConfig
         }
     }
 
-    public function isEndDateIsGreaterOrEqualThanInitDate(string $initDate, string $endDate): bool
-    {
-        return new DateTimeImmutable($endDate) <= new DateTimeImmutable($initDate);
-    }
-
     public function isValidDate(string $date): bool
     {
         $dateByYearAndMonthAndDay = explode('-', $date);
@@ -86,10 +78,18 @@ final class DayOffConfig
         return $year < 2019;
     }
 
-    public function setDayOffConfig(string $initDate, string $endDate): void
+    public function isEndDateIsGreaterOrEqualThanInitDate(string $initDate, string $endDate): bool
     {
-        $this->guardAreValidDayOffRequestDates($initDate, $endDate);
-        $this->initDateDayOffRequest = new DateTimeImmutable($initDate);
-        $this->endDateDayOffRequest = new DateTimeImmutable($endDate);
+        return new DateTimeImmutable($endDate) <= new DateTimeImmutable($initDate);
+    }
+
+    public function initDateDayOffRequest(): DateTimeImmutable
+    {
+        return $this->initDateDayOffRequest;
+    }
+
+    public function endDateDayOffRequest(): DateTimeImmutable
+    {
+        return $this->endDateDayOffRequest;
     }
 }

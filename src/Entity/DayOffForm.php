@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\DayOffForm\Domain\ValueObject\CountDayOffRequest;
 use App\User\Domain\User;
-use App\User\Infrastructure\Model\SymfonyUser;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;

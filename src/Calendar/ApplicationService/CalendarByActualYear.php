@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService;
-
 
 use App\Calendar\ApplicationService\DTO\CalendarByYearResponse;
 use App\Calendar\Domain\CalendarRepository;

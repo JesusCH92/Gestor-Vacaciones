@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Security;
 
 use App\User\Infrastructure\Model\SymfonyUser;
@@ -31,8 +33,12 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
     private $csrfTokenManager;
     private $passwordEncoder;
 
-    public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        UrlGeneratorInterface $urlGenerator,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        UserPasswordEncoderInterface $passwordEncoder
+    ) {
         $this->entityManager = $entityManager;
         $this->urlGenerator = $urlGenerator;
         $this->csrfTokenManager = $csrfTokenManager;
@@ -96,7 +102,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
             return new RedirectResponse($targetPath);
         }
 
-        if ('ROLE_ADMIN' === $token->getUser()->roles()->roles()[0] ) {
+        if ('ROLE_ADMIN' === $token->getUser()->roles()->roles()[0]) {
             // ! If is admin redirect to Company Management functionlity
             return new RedirectResponse($this->urlGenerator->generate('app_company_management'));
         }

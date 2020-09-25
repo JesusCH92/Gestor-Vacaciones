@@ -41,8 +41,12 @@ class Calendar
      */
     private $workingYear;
 
-    public function __construct(DayOffConfig $dayOffConfig, WorkDays $workDays, Company $company, WorkingYear $workingYear)
-    {
+    public function __construct(
+        DayOffConfig $dayOffConfig,
+        WorkDays $workDays,
+        Company $company,
+        WorkingYear $workingYear
+    ) {
         $this->calendarId = Uuid::uuid4();
         $this->dayOffConfig = $dayOffConfig;
         $this->workDays = $workDays;

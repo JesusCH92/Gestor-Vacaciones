@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\ApplicationService\DTO;
 
 final class DepartmentsInCompany
@@ -17,17 +19,17 @@ final class DepartmentsInCompany
         $this->departments = $departments;
     }
 
-    public function companyId() : int
+    public function companyId(): int
     {
         return $this->companyId;
     }
-    
-    public function companyName() : string
+
+    public function companyName(): string
     {
         return $this->companyName;
     }
-    
-    public function departments() : array
+
+    public function departments(): array
     {
         return $this->departments;
     }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\ApplicationService;
 
@@ -8,7 +8,6 @@ use App\User\ApplicationService\DTO\UserByIdRequest;
 use App\User\ApplicationService\DTO\UserRoleRequest;
 use App\User\ApplicationService\Exception\UserNotFoundException;
 use App\User\Domain\UserRepository;
-use Ramsey\Uuid\Nonstandard\Uuid;
 
 final class UserRoleEditor
 {

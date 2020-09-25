@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\TypeDayOff\Domain\ValueObject;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\TypeDayOff\Domain\Exception\NegativeCountDayOffException;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Embeddable
@@ -35,13 +35,13 @@ final class CountDayOff
         return 0 > $count;
     }
 
-    public function countDayOff(): int
-    {
-        return $this->countDayOff;
-    }
-
     public function setCountDayOff(int $dayOffNumber): void
     {
         $this->countDayOff = $dayOffNumber;
+    }
+
+    public function countDayOff(): int
+    {
+        return $this->countDayOff;
     }
 }

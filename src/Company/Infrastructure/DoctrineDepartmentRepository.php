@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\Infrastructure;
 
 use App\Company\ApplicationService\DTO\DepartmentRequest;
@@ -8,7 +10,6 @@ use App\Company\Domain\DepartmentRepository;
 use App\Company\Infrastructure\Mapping\DepartmentRequestMapping;
 use App\Entity\Department;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Query;
 
 final class DoctrineDepartmentRepository implements DepartmentRepository, DepartmentCrudRepository
 {
@@ -16,8 +17,10 @@ final class DoctrineDepartmentRepository implements DepartmentRepository, Depart
 
     private DepartmentRequestMapping $departmentRequestMapping;
 
-    public function __construct(EntityManagerInterface $entityManager, DepartmentRequestMapping $departmentRequestMapping)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        DepartmentRequestMapping $departmentRequestMapping
+    ) {
         $this->entityManager = $entityManager;
         $this->departmentRequestMapping = $departmentRequestMapping;
     }
@@ -54,8 +57,8 @@ final class DoctrineDepartmentRepository implements DepartmentRepository, Depart
         $departmentRepository = $this->entityManager->getRepository(Department::class);
         $departmentEntity = $departmentRepository->findBy(
             [
-                'departmentName' => $departmentName, 
-                'departmentCode' => $codeDepartment 
+                'departmentName' => $departmentName,
+                'departmentCode' => $codeDepartment
             ]
         );
 

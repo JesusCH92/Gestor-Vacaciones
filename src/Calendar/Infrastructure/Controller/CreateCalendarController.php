@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\Infrastructure\Controller;
 
@@ -34,7 +34,7 @@ final class CreateCalendarController extends AbstractController
         $personalDaysNumber = $calendarConfig['personalDaysNumber'];
         $workDays = $calendarConfig['workDays'] === '' ? [] : $calendarConfig['workDays'];
         $feastdayCollection = $calendarConfig['feastDayCollection'] === '' ? [] : $calendarConfig['feastDayCollection'];
-        
+
 
         $company = $this->getUser()->getCompany();
 

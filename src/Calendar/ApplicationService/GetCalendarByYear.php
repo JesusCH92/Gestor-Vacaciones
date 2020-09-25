@@ -17,9 +17,9 @@ final class GetCalendarByYear
 
     public function __invoke(int $year)
     {
-        $calendarCollection=[];
-        $calendarCollection = $this->actualYear($year,$calendarCollection);
-        $calendarCollection = $this->yearBefore($year - 1,$calendarCollection);
+        $calendarCollection = [];
+        $calendarCollection = $this->actualYear($year, $calendarCollection);
+        $calendarCollection = $this->yearBefore($year - 1, $calendarCollection);
 
         return $calendarCollection;
 
@@ -31,19 +31,23 @@ final class GetCalendarByYear
         if ($calendar == null) {
             throw new CalendarNotFoundException();
         }
-        $calendarArray = ['workingYear'=>$calendar->workingYear()->workingYear(),
-            'calendarId'=>$calendar->calendarId()];
-        array_push($calendarCollection,$calendarArray);
+        $calendarArray = [
+            'workingYear' => $calendar->workingYear()->workingYear(),
+            'calendarId' => $calendar->calendarId()
+        ];
+        array_push($calendarCollection, $calendarArray);
         return $calendarCollection;
     }
 
     public function yearBefore(int $yearBefore, array $calendarCollection)
     {
         $calendar = $this->calendarRepository->findCalendarByWorkingYear($yearBefore);
-        if (null !== $calendar){
-            $calendarArray = ['workingYear'=>$calendar->workingYear()->workingYear(),
-                'calendarId'=>$calendar->calendarId()];
-            array_push($calendarCollection,$calendarArray);
+        if (null !== $calendar) {
+            $calendarArray = [
+                'workingYear' => $calendar->workingYear()->workingYear(),
+                'calendarId' => $calendar->calendarId()
+            ];
+            array_push($calendarCollection, $calendarArray);
         }
         return $calendarCollection;
     }

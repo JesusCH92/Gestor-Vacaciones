@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService;
-
 
 use App\Calendar\ApplicationService\DTO\CalendarByIdResponse;
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
@@ -10,7 +10,7 @@ use App\Calendar\ApplicationService\Exception\CalendarNotFoundException;
 use App\Calendar\Domain\CalendarConfigRepository;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
-class GetCalendarById
+final class GetCalendarById
 {
     private CalendarConfigRepository $calendarConfigRepository;
 

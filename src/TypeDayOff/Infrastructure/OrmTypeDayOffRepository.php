@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\TypeDayOff\Infrastructure;
 
@@ -22,7 +22,7 @@ final class OrmTypeDayOffRepository implements TypeDayOffRepository
         $typeDayOffRepository = $this->entityManager->getRepository(TypeDayOff::class);
         $typeDayOff = $typeDayOffRepository->findBy(
             [
-                'calendar'   => $calendarId,
+                'calendar' => $calendarId,
                 'typeDayOff' => $dayoffType
             ]
         );

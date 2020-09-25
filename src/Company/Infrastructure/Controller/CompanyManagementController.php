@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Company\Infrastructure\Controller;
 
@@ -43,7 +43,7 @@ final class CompanyManagementController extends AbstractController
      */
     public function addDepartment(Request $request)
     {
-        if(!$request->isXmlHttpRequest()){
+        if (!$request->isXmlHttpRequest()) {
             throw $this->createNotFoundException();
         }
 
@@ -51,7 +51,7 @@ final class CompanyManagementController extends AbstractController
         $departmentName = $department['name'];
         $departmentCode = $department['code'];
 
-        $companyId = intval( $this->getUser()->getCompany()->companyId() );
+        $companyId = intval($this->getUser()->getCompany()->companyId());
 
         $departmentRequest = new DepartmentRequest(
             $companyId,

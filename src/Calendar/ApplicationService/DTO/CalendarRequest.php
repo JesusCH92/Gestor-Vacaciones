@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService\DTO;
 
@@ -17,8 +17,16 @@ final class CalendarRequest
     private array $feastdayCollection;
     private Company $company;
 
-    public function __construct(string $workingYear, string $initDateRequest, string $endDateRequest, string $holidaysNumber, string $personalDayNumber, array $workDays, array $feastdayCollection, Company $company)
-    {
+    public function __construct(
+        string $workingYear,
+        string $initDateRequest,
+        string $endDateRequest,
+        string $holidaysNumber,
+        string $personalDayNumber,
+        array $workDays,
+        array $feastdayCollection,
+        Company $company
+    ) {
         $this->workingYear = $workingYear;
         $this->initDateRequest = $initDateRequest;
         $this->endDateRequest = $endDateRequest;

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Domain\ValueObject;
 
@@ -36,7 +36,7 @@ final class Roles
             throw new InvalidRoleException($role);
         }
 
-        $this->roles = [ $role ];
+        $this->roles = [$role];
     }
 
     public function roles(): array

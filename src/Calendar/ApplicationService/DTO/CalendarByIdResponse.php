@@ -1,12 +1,12 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService\DTO;
 
-
 use App\Entity\Calendar;
 
-class CalendarByIdResponse
+final class CalendarByIdResponse
 {
     private Calendar $calendar;
 

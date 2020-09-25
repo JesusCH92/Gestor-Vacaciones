@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Infrastructure\Controller;
 
@@ -37,9 +37,10 @@ final class UserSearcherByDepartmentController extends AbstractController
             )
         );
 
-        $userCollectionTemplate = $this->render('user_searcher/filtering_user_container/filtering_user_container.html.twig', [
-            'user_collection' => $usersCollection,
-        ])->getContent();
+        $userCollectionTemplate = $this->render('user_searcher/filtering_user_container/filtering_user_container.html.twig',
+            [
+                'user_collection' => $usersCollection,
+            ])->getContent();
 
         return new JsonResponse([
             'user_collection_template' => $userCollectionTemplate

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Company\Infrastructure\Mapping;
 
-use App\Entity\Department;
-use App\Entity\Company;
 use App\Company\ApplicationService\DTO\DepartmentRequest;
+use App\Entity\Company;
+use App\Entity\Department;
 use Doctrine\ORM\EntityManagerInterface;
 
 final class DepartmentRequestMapping
@@ -21,9 +23,9 @@ final class DepartmentRequestMapping
         $companyRepository = $this->entityManager->getRepository(Company:: class);
 
         $companyById = $companyRepository->findBy(
-            [ 'companyId' => $departmentRequest->companyId() ]
+            ['companyId' => $departmentRequest->companyId()]
         );
-        
+
         $departmentEnity = new Department(
             $departmentRequest->departmentName(),
             $departmentRequest->departmentCode(),

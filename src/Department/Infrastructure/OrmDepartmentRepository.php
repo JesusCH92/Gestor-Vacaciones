@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Department\Infrastructure;
-
 
 use App\Department\Domain\DepartmentRepository;
 use App\Department\Domain\DepartmentUpdateRepository;
@@ -36,12 +36,11 @@ final class OrmDepartmentRepository implements DepartmentRepository, DepartmentU
             ->entityManager
             ->createQueryBuilder()
             ->update(Department::class, 'd')
-            ->set('d.departmentName',':departmentName')
+            ->set('d.departmentName', ':departmentName')
             ->where('d.departmentId = :departmentId')
             ->setParameter('departmentName', $departmentName)
             ->setParameter('departmentId', $departmentId)
-            ->getQuery()
-            ;
+            ->getQuery();
         $qb->execute();
     }
 
@@ -51,12 +50,11 @@ final class OrmDepartmentRepository implements DepartmentRepository, DepartmentU
             ->entityManager
             ->createQueryBuilder()
             ->update(Department::class, 'd')
-            ->set('d.departmentCode',':departmentCode')
+            ->set('d.departmentCode', ':departmentCode')
             ->where('d.departmentId = :departmentId')
             ->setParameter('departmentCode', $departmentCode)
             ->setParameter('departmentId', $departmentId)
-            ->getQuery()
-            ;
+            ->getQuery();
         $qb->execute();
     }
 

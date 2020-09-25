@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Calendar\ApplicationService;
 
@@ -30,12 +30,12 @@ final class DayOffConfigUpdater
         if (null === $calendarEntity) {
             throw new CalendarNotFoundException();
         }
-        
+
         $calendarEntity->dayOffConfig()->setDayOffConfig(
             $dayOffConfigRequest->initDateDayOffRequest(),
             $dayOffConfigRequest->endDateDayOffRequest()
         );
-        
+
         $this->calendarUpdaterRepository->saveCalendar($calendarEntity);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\User\Domain\Factory;
 
@@ -11,5 +11,14 @@ use App\User\Domain\ValueObject\Roles;
 
 interface UserFactory
 {
-    public function register(string $name, string $lastName, string $phone, string $email, string $password, Department $deparment, Company $company, Roles $roles): User;
+    public function register(
+        string $name,
+        string $lastName,
+        string $phone,
+        string $email,
+        string $password,
+        Department $deparment,
+        Company $company,
+        Roles $roles
+    ): User;
 }

@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Department\Infrastructure\Controller;
 
@@ -22,7 +22,7 @@ final class DepartmentNameUpdaterController extends AbstractController
 
     /**
      * @Route("/company/management/edit/department/name", name="app_department_name_update", methods={"POST"})
-     */   
+     */
     public function departmentNameUpdate(Request $request)
     {
         $department = $request->get('department');

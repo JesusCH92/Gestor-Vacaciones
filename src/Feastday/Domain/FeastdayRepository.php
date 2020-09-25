@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace App\Feastday\Domain;
 
@@ -11,6 +11,8 @@ use DateTimeImmutable;
 interface FeastdayRepository
 {
     public function getCalendarByCalendarId(string $calendarId): ?Calendar;
+
     public function findFeastday(string $calendarId, DateTimeImmutable $feastdaydate): ?FeastDay;
+
     public function saveFeastday(FeastDay $feastdayEntity): void;
 }

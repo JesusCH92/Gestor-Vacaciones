@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Department\ApplicationService;
-
 
 use App\Department\ApplicationService\DTO\DepartmentCollectionResponse;
 use App\Department\Domain\DepartmentRepository;
