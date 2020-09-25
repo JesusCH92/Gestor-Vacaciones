@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Company\Infrastructure\Controller;
 
 use App\Company\ApplicationService\DTO\CompanyRequest;
 use App\Company\ApplicationService\UpdateCompany;
