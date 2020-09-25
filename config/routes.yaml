@@ -1,3 +1,21 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+# * Company Module
+app_company_management:
+    path: /company/management
+    controller: App\Company\Infrastructure\Controller\CompanyManagementController::index
+
+app_add_department:
+    path: /company/management/add/department
+    controller: App\Company\Infrastructure\Controller\CompanyManagementController::addDepartment
+
+# * Calendar Module
+app_calendar_config_by_id:
+    path: /calendar/management/config/{id}
+    controller: App\Calendar\Infrastructure\Controller\CalendarConfigByCalendarId::index
+
+app_calendar_management:
+    path: /calendar/management
+    controller: App\Calendar\Infrastructure\Controller\CalendarManagementController::index
+
+app_create_calendar:
+    path: /calendar/management/create/calendar
+    controller: App\Calendar\Infrastructure\Controller\CreateCalendarController::create  
