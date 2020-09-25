@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\TypeDayOff\Infrastructure\Controller;
 
 use App\TypeDayOff\ApplicationService\DTO\TypeDayOffRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
