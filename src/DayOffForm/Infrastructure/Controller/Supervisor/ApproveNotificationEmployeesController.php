@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\DayOffForm\Infrastructure\Controller\Supervisor;
 
 use App\DayOffForm\ApplicationService\ApproveDayOffForm;
 use App\DayOffForm\ApplicationService\DTO\ApproveDayOffFormRequest;

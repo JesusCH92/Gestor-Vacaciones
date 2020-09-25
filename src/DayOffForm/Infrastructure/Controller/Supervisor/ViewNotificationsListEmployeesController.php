@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\DayOffForm\Infrastructure\Controller\Supervisor;
 
 use App\DayOffForm\ApplicationService\DTO\UserByDepartmentRequest;
 use App\DayOffForm\ApplicationService\GetUsersWithPendingStatus;
@@ -19,7 +19,7 @@ final class ViewNotificationsListEmployeesController extends AbstractController
     }
 
     /**
-     * @Route("supervise/management/notification/list", methods={"GET"}, name="app_notifications_list")
+     * @Route("/supervise/management/notification/list", methods={"GET"}, name="app_notifications_list")
      */
     public function index()
     {

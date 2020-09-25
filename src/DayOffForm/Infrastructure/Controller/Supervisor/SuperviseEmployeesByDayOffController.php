@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\DayOffForm\Infrastructure\Controller\Supervisor;
 
 use App\DayOffForm\ApplicationService\DTO\DayOffFormRequest;
 use App\DayOffForm\ApplicationService\GetDayOffFormRequest;
@@ -20,7 +20,7 @@ final class SuperviseEmployeesByDayOffController extends AbstractController
     }
 
     /**
-     * @Route("supervise/management/notification/employees/dayoff/{id}", methods={"GET"}, name="app_dayoff_notification")
+     * @Route("/supervise/management/notification/employees/dayoff/{id}", methods={"GET"}, name="app_dayoff_notification")
      */
     public function dayOff($id)
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\DayOffForm\Infrastructure\Controller\Supervisor;
 
 use App\Calendar\ApplicationService\CalendarByActualYear;
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
