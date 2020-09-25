@@ -2,14 +2,13 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\Feastday\Infrastructure\Controller;
 
 use App\Feastday\ApplicationService\DTO\FeastdayRequest;
 use App\Feastday\ApplicationService\FeastdayCreator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 final class FeastdayCreatorController extends AbstractController

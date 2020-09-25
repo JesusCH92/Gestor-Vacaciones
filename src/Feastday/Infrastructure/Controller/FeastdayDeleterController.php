@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\Feastday\Infrastructure\Controller;
 
 use App\Feastday\ApplicationService\DTO\FeastdayRequest;
 use App\Feastday\ApplicationService\FeastdayDeleter;
