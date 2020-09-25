@@ -20,6 +20,18 @@ app_create_calendar:
     path: /calendar/management/create/calendar
     controller: App\Calendar\Infrastructure\Controller\CreateCalendarController::create
 
+app_dayoff_request_update:
+    path: /calendar/management/dayoffrequest
+    controller: App\Calendar\Infrastructure\Controller\DayOffRequestUpdaterController::updateDayOffRequest
+
+app_edit_calendar:
+    path: /calendar/management/edit/calendar
+    controller: App\Calendar\Infrastructure\Controller\EditCalendarConfigController::edit
+
+app_workdays_update:
+    path: /calendar/management/update/workDays
+    controller: App\Calendar\Infrastructure\Controller\WorkDaysUpdaterController::updateWorkDays
+
 # * DayOffForm Supervisor Module
 app_notification_supervise_approve:
     path: /supervise/management/notification/approve
