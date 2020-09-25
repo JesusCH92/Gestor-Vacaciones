@@ -7,6 +7,10 @@ app_add_department:
     path: /company/management/add/department
     controller: App\Company\Infrastructure\Controller\CompanyManagementController::addDepartment
 
+app_edit_company_management:
+    path: /company/management/edit/{id}
+    controller: App\Company\Infrastructure\Controller\EditCompanyManagementController::index
+    
 # * Calendar Module
 app_calendar_config_by_id:
     path: /calendar/management/config/{id}
