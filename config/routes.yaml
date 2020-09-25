@@ -104,3 +104,36 @@ app_dayoff:
 app_dayoff_request:
     path: /dayoff/request/management/add
     controller: App\DayOffForm\Infrastructure\Controller\DayOffForm\DayOffRequestController::dayOff
+
+# * User Module
+app_login:
+    path: /login
+    controller: App\User\Infrastructure\Controller\SecurityController::login
+
+app_logout:
+    path: /logout
+    controller: App\User\Infrastructure\Controller\SecurityController::logout
+
+app_register:
+    path: /user/management/register
+    controller: App\User\Infrastructure\Controller\RegistrationController::register
+
+app_user_delete:
+    path: /user/management/delete/{id}
+    controller: App\User\Infrastructure\Controller\UserDeleterController::userDelete
+
+app_user_rol_update:
+    path: /user/management/rol
+    controller: App\User\Infrastructure\Controller\UserRoleEditorController::userRoleUpdate
+
+app_filtering_user_by_department:
+    path: /user/management/filtering
+    controller: App\User\Infrastructure\Controller\UserSearcherByDepartmentController::filteringUserByDepartment
+
+app_filtering_user_by_id:
+    path: /user/management/filter/id/{id}
+    controller: App\User\Infrastructure\Controller\UserSearcherByIdController::getUserFormById
+
+app_user_searcher_view:
+    path: /user/management/edit/view
+    controller: App\User\Infrastructure\Controller\UserSearcherViewController::index
