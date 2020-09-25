@@ -49,7 +49,7 @@ app_supervise_day_off_employee:
     path: /supervise/management/dayoff/employees
     controller: App\DayOffForm\Infrastructure\Controller\Supervisor\SearchDayOffByUserController::index
     
-# * DayOffForm Supervisor Module
+# * DayOffForm Module
 app_dashboard:
     path: /dashboard
     controller: App\DayOffForm\Infrastructure\Controller\DayOffForm\DashboardController::index
