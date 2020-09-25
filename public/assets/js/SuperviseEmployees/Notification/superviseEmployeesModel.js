@@ -20,7 +20,6 @@ var superviseEmployeesModel = (function() {
             async: true,
             data: {day_off},
             success: function(data){
-                //window.location.replace("http://localhost:8080/notification/list/employees");
                 location.reload();
                 callback(data);
             },
