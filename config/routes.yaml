@@ -45,6 +45,15 @@ app_workdays_update:
     path: /calendar/management/update/workDays
     controller: App\Calendar\Infrastructure\Controller\WorkDaysUpdaterController::updateWorkDays
 
+# * Feastday Module
+app_feastday_create:
+    path: /calendar/management/add/feastday
+    controller: App\Feastday\Infrastructure\Controller\FeastdayCreatorController::feastdayCreate
+
+app_feastday_delete:
+    path: /calendar/management/delete/feastday
+    controller: App\Feastday\Infrastructure\Controller\FeastdayDeleterController::feastdayDelete
+
 # * DayOffForm Supervisor Module
 app_notification_supervise_approve:
     path: /supervise/management/notification/approve
