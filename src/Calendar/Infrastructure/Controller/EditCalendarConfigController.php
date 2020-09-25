@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\Calendar\Infrastructure\Controller;
 
 use App\Calendar\ApplicationService\GetAllCalendar;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

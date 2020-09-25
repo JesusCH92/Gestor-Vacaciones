@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\Calendar\Infrastructure\Controller;
 
 use App\Calendar\ApplicationService\DayOffConfigUpdater;
 use App\Calendar\ApplicationService\DTO\DayOffConfigRequest;
