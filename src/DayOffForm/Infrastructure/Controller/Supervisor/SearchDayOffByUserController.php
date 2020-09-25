@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller;
+namespace App\DayOffForm\Infrastructure\Controller\Supervisor;
 
 use App\Department\ApplicationService\GetAllDepartments;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,7 +18,7 @@ final class SearchDayOffByUserController extends AbstractController
     }
 
     /**
-     * @Route("/supervise/management/dayoff/employees", methods={"GET"}, name="supervise_day_off_employee")
+     * @Route("/supervise/management/dayoff/employees", methods={"GET"}, name="app_supervise_day_off_employee")
      */
     public function index()
     {
