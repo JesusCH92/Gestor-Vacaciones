@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Controller;
+declare(strict_types = 1);
+
+namespace App\Company\Infrastructure\Controller;
 
 use App\Company\ApplicationService\CreateDepartment;
 use App\Company\ApplicationService\DTO\DepartmentRequest;
@@ -27,7 +29,6 @@ final class CompanyManagementController extends AbstractController
      */
     public function index()
     {
-        // dump($this->getUser()->getCompany()->getId());exit;
         $adminUser = $this->getUser();
 
         $departmentCollectionService = $this->getAllDepartmentsByAdmin;
@@ -51,10 +52,7 @@ final class CompanyManagementController extends AbstractController
         $departmentName = $department['name'];
         $departmentCode = $department['code'];
 
-        // dump($this->getUser());exit;
         $companyId = intval( $this->getUser()->getCompany()->companyId() );
-        // $companyId = 1;
-        // echo 'aqui' . PHP_EOL;exit;
 
         $departmentRequest = new DepartmentRequest(
             $companyId,
@@ -65,9 +63,6 @@ final class CompanyManagementController extends AbstractController
         $createDepartment = $this->createDepartment;
         $departmentCreated = $createDepartment->__invoke($departmentRequest);
 
-        // echo json_encode($departmentCreated) . PHP_EOL;
-        // echo $departmentCreated->departmentName() . PHP_EOL;
-
         $departmentTemplate = $this->render('company_management/_department.html.twig', [
             'department' => $departmentCreated,
         ])->getContent();
@@ -75,8 +70,5 @@ final class CompanyManagementController extends AbstractController
         return new JsonResponse([
             'department_created' => $departmentTemplate
         ]);
-
-        // return new Response('ddd');
-        // return Response::create('???');
     }
 }
