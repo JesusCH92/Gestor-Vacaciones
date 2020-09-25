@@ -54,6 +54,11 @@ app_feastday_delete:
     path: /calendar/management/delete/feastday
     controller: App\Feastday\Infrastructure\Controller\FeastdayDeleterController::feastdayDelete
 
+# * TypeDayOff Module
+app_typeDayOff_update:
+    path: /calendar/management/typeDayOff
+    controller: App\TypeDayOff\Infrastructure\Controller\TypeDayOffNumerUpdaterController::typeDayOffNumberUpdater
+
 # * DayOffForm Supervisor Module
 app_notification_supervise_approve:
     path: /supervise/management/notification/approve
