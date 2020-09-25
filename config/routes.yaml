@@ -44,3 +44,24 @@ app_dayoff_notification:
 app_notifications_list:
     path: /supervise/management/notification/list
     controller: App\DayOffForm\Infrastructure\Controller\Supervisor\ViewNotificationsListEmployeesController::index
+
+app_supervise_day_off_employee:
+    path: /supervise/management/dayoff/employees
+    controller: App\DayOffForm\Infrastructure\Controller\Supervisor\SearchDayOffByUserController::index
+    
+# * DayOffForm Supervisor Module
+app_dashboard:
+    path: /dashboard
+    controller: App\DayOffForm\Infrastructure\Controller\DayOffForm\DashboardController::index
+
+app_dayoff_config:
+    path: /dayoff/request/{id}
+    controller: App\DayOffForm\Infrastructure\Controller\DayOffForm\DayOffFormByCalendarController::index
+
+app_dayoff:
+    path: /dayoff/request
+    controller: App\DayOffForm\Infrastructure\Controller\DayOffForm\DayOffFormController::index
+
+app_dayoff_request:
+    path: /dayoff/request/management/add
+    controller: App\DayOffForm\Infrastructure\Controller\DayOffForm\DayOffRequestController::dayOff
