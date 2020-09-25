@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace App\Controller;
+namespace App\Calendar\Infrastructure\Controller;
 
 use App\Calendar\ApplicationService\DTO\CalendarConfigRequest;
 use App\Calendar\ApplicationService\GetCalendarConfig;
@@ -24,22 +24,16 @@ final class CalendarConfigByCalendarId extends AbstractController
      */
     public function index($id)
     {
-        // dump($id);
-        // $company = $this->getUser()->getCompany();
         $calendarId = $id;
 
         $calendarConfigRequest = new CalendarConfigRequest($calendarId);
         $getCalendarConfig = $this->getCalendarConfig;
         $calendarConfigResponse = $getCalendarConfig->__invoke($calendarConfigRequest);
 
-        //->getContent();
         $calendarConfigTemplate = $this->render('calendar_management/_edit_calendar_config.html.twig', [
             'calendar_config' => $calendarConfigResponse,
         ])->getContent();
 
-        // return $this->render('calendar_management/_edit_calendar_config.html.twig', [
-        //     'calendar_config' => $calendarConfigResponse,
-        // ]);
         return new JsonResponse([
             'calendar_config' => $calendarConfigTemplate
         ]);
