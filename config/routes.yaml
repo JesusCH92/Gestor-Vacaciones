@@ -18,4 +18,29 @@ app_calendar_management:
 
 app_create_calendar:
     path: /calendar/management/create/calendar
-    controller: App\Calendar\Infrastructure\Controller\CreateCalendarController::create  
+    controller: App\Calendar\Infrastructure\Controller\CreateCalendarController::create
+
+# * DayOffForm Supervisor Module
+app_notification_supervise_approve:
+    path: /supervise/management/notification/approve
+    controller: App\DayOffForm\Infrastructure\Controller\Supervisor\ApproveNotificationEmployeesController::dayOff
+
+app_notification_supervise_denied:
+    path: /supervise/management/notification/deny
+    controller: App\DayOffForm\Infrastructure\Controller\Supervisor\DenyNotificationEmployeesController::dayOff
+
+app_supervise_management_find_employees:
+    path: /supervise/management/dayoff/employees/filter
+    controller: App\DayOffForm\Infrastructure\Controller\Supervisor\FilterDayOffByDepartmentByName::findUserInDayOff
+
+app_supervise_dayoff_user:
+    path: /supervise/management/dayoff/user/{id}
+    controller: App\DayOffForm\Infrastructure\Controller\Supervisor\FilterDayOffFormByUserId::findUserInDayOffForm
+
+app_dayoff_notification:
+    path: /supervise/management/notification/employees/dayoff/{id}
+    controller: App\DayOffForm\Infrastructure\Controller\Supervisor\SuperviseEmployeesByDayOffController::dayOff
+
+app_notifications_list:
+    path: /supervise/management/notification/list
+    controller: App\DayOffForm\Infrastructure\Controller\Supervisor\ViewNotificationsListEmployeesController::index
